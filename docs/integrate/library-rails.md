@@ -73,6 +73,6 @@ claims beyond what those files state.
 
 ## Related
 
-- <a href="adapters.md">Adapter pattern</a>
-- <a href="library-psps.md">PSP library</a>
-- <a href="../architecture/overview.md">Architecture overview</a>
+- [Adapter pattern](adapters.md)
+- [PSP library](library-psps.md)
+- [Architecture overview](../architecture/overview.md)

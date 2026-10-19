@@ -42,6 +42,6 @@ this hub.
 
 ## Related
 
-- <a href="openapi.md">OpenAPI index</a>
-- <a href="../architecture/overview.md">Architecture overview</a>
-- <a href="../versioning/bom.md">Versioning and BOM</a> (Jafly **26.10.19**)
+- [OpenAPI index](openapi.md)
+- [Architecture overview](../architecture/overview.md)
+- [Versioning and BOM](../versioning/bom.md) (Jafly **26.10.19**)

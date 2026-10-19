@@ -1,46 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
 <title id="title">OpenPlatform in firefly-oss</title>
-<desc id="desc">OpenPlatform modules live in firefly-oss on the Jafly train. Commercial products in firefly-serviceOS may compose those modules. Institution systems connect through adapters.</desc>
+<desc id="desc">OpenPlatform modules live in firefly-oss. Commercial products may compose those modules. Institution systems connect through adapters. Runtime train is Jafly 26.10.19.</desc>
 <style>
-  .t { font-family: Manrope, Arial, Helvetica, sans-serif; fill: #10110F; }
-  .title { font-size: 24px; font-weight: 700; }
-  .sub { font-size: 14px; fill: #62645B; }
+  .t { font-family: Manrope, Arial, Helvetica, sans-serif; }
+  .title { font-size: 24px; font-weight: 700; fill: #F3F1EB; }
+  .sub { font-size: 14px; fill: #BFB8AB; }
   .h { font-size: 15px; font-weight: 700; }
-  .k { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; fill: #62645B; }
+  .k { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; }
 </style>
-<rect width="960" height="420" rx="18" fill="#F3F1EB"/>
+<rect width="960" height="420" rx="16" fill="#10110F"/>
 <text class="t title" x="36" y="44">OpenPlatform = firefly-oss</text>
 <text class="t sub" x="36" y="70">Modules, libraries, parent BOM, and this documentation hub.</text>
 
-<!-- center: openplatform -->
-<rect x="300" y="100" width="360" height="180" rx="12" fill="#FFB34A"/>
-<text class="t k" x="320" y="128">THIS HUB</text>
-<text class="t h" x="320" y="158">firefly-oss · OpenPlatform</text>
-<text class="t" x="320" y="188" style="font-size:13px">core-* · domain-* · exp-*</text>
-<text class="t" x="320" y="210" style="font-size:13px">library-psps · library-rails</text>
-<text class="t" x="320" y="232" style="font-size:13px">firefly-parent · OpenAPI · modules</text>
-<text class="t" x="320" y="254" style="font-size:13px">docs.fireflysoftware.io</text>
+<rect x="36" y="110" width="230" height="160" rx="12" fill="#1A1B17" stroke="#474A42"/>
+<text class="t k" x="56" y="140" fill="#BFB8AB">BOUNDARY</text>
+<text class="t h" x="56" y="172" fill="#FFB34A">Adapters</text>
+<text class="t" x="56" y="204" fill="#F3F1EB" style="font-size:13px">Institution systems</text>
+<text class="t" x="56" y="226" fill="#F3F1EB" style="font-size:13px">and providers</text>
 
-<!-- left: adapters -->
-<rect x="36" y="120" width="230" height="140" rx="12" fill="#10110F"/>
-<text class="t k" x="56" y="148" fill="#BFB8AB">BOUNDARY</text>
-<text class="t h" x="56" y="178" fill="#FFB34A">Adapters</text>
-<text class="t" x="56" y="208" fill="#F3F1EB" style="font-size:13px">Institution systems</text>
-<text class="t" x="56" y="230" fill="#F3F1EB" style="font-size:13px">and providers</text>
+<path d="M266 190 H292" stroke="#FFB34A" stroke-width="3"/>
+<polygon points="292,184 304,190 292,196" fill="#FFB34A"/>
 
-<path d="M266 190 H292" stroke="#855414" stroke-width="3"/>
-<polygon points="292,184 304,190 292,196" fill="#855414"/>
+<rect x="312" y="100" width="336" height="180" rx="12" fill="#FFB34A"/>
+<text class="t k" x="332" y="130" fill="#10110F">THIS HUB</text>
+<text class="t h" x="332" y="162" fill="#10110F">firefly-oss · OpenPlatform</text>
+<text class="t" x="332" y="194" fill="#10110F" style="font-size:13px">core-* · domain-* · exp-*</text>
+<text class="t" x="332" y="216" fill="#10110F" style="font-size:13px">library-psps · library-rails</text>
+<text class="t" x="332" y="238" fill="#10110F" style="font-size:13px">docs.fireflysoftware.io</text>
 
-<!-- right: jafly -->
-<path d="M668 190 H694" stroke="#855414" stroke-width="3"/>
-<polygon points="694,184 706,190 694,196" fill="#855414"/>
+<path d="M648 190 H674" stroke="#FFB34A" stroke-width="3"/>
+<polygon points="674,184 686,190 674,196" fill="#FFB34A"/>
 
-<rect x="714" y="120" width="210" height="140" rx="12" fill="#10110F"/>
-<text class="t k" x="734" y="148" fill="#BFB8AB">RUNTIME</text>
-<text class="t h" x="734" y="178" fill="#FFB34A">Jafly 26.10.19</text>
-<text class="t" x="734" y="208" fill="#F3F1EB" style="font-size:13px">Boot 4.1.1 · Java 25</text>
-<text class="t" x="734" y="230" fill="#F3F1EB" style="font-size:13px">fireflyframework</text>
+<rect x="694" y="110" width="230" height="160" rx="12" fill="#1A1B17" stroke="#474A42"/>
+<text class="t k" x="714" y="140" fill="#BFB8AB">RUNTIME</text>
+<text class="t h" x="714" y="172" fill="#FFB34A">Jafly 26.10.19</text>
+<text class="t" x="714" y="204" fill="#F3F1EB" style="font-size:13px">Boot 4.1.1 · Java 25</text>
+<text class="t" x="714" y="226" fill="#F3F1EB" style="font-size:13px">fireflyframework</text>
 
-<text class="t sub" x="36" y="340">Commercial products under firefly-serviceOS may compose these modules; this hub documents the platform in firefly-oss.</text>
+<text class="t sub" x="36" y="340">Commercial products may compose these modules; this hub documents the platform in firefly-oss.</text>
 <text class="t sub" x="36" y="368">Product narrative: fireflysoftware.io/openplatform</text>
 </svg>

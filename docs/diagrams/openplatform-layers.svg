@@ -1,54 +1,45 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
 <title id="title">OpenPlatform service bands</title>
-<desc id="desc">Channels sit above experience, domain, and core repositories in firefly-oss. Adapters and libraries connect institution systems and providers. Jafly 26.10.19 with Spring Boot 4.1.1 underpins the stack.</desc>
-<defs>
-  <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#F3F1EB"/>
-    <stop offset="100%" stop-color="#EBE7DF"/>
-  </linearGradient>
-  <linearGradient id="amberWash" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#FFB34A" stop-opacity="0.22"/>
-    <stop offset="100%" stop-color="#FFB34A" stop-opacity="0"/>
-  </linearGradient>
-</defs>
+<desc id="desc">Channels sit above experience, domain, and core repositories in firefly-oss. Adapters and libraries connect institution systems and providers. Train pin 26.10.19 with Spring Boot 4.1.1.</desc>
 <style>
-  .t { font-family: Manrope, Arial, Helvetica, sans-serif; fill: #10110F; }
-  .title { font-size: 26px; font-weight: 700; }
-  .sub { font-size: 15px; fill: #62645B; }
-  .h { font-size: 16px; font-weight: 700; }
+  .t { font-family: Manrope, Arial, Helvetica, sans-serif; }
+  .title { font-size: 26px; font-weight: 700; fill: #F3F1EB; }
+  .sub { font-size: 14px; fill: #BFB8AB; }
+  .h { font-size: 16px; font-weight: 700; fill: #10110F; }
   .p { font-size: 13px; fill: #62645B; }
-  .chip { font-family: SFMono-Regular, Consolas, monospace; font-size: 11px; fill: #10110F; }
+  .on-dark { fill: #F3F1EB; }
+  .on-amber { fill: #10110F; }
 </style>
-<rect width="960" height="560" rx="18" fill="url(#paper)"/>
-<rect x="0" y="0" width="960" height="120" fill="url(#amberWash)"/>
+<rect width="960" height="560" rx="16" fill="#10110F"/>
+<rect x="0" y="0" width="960" height="108" fill="#1A1B17"/>
 <text class="t title" x="36" y="48">OpenPlatform layers in firefly-oss</text>
 <text class="t sub" x="36" y="76">Experience, domain, and core repositories. Outside systems stay behind adapters.</text>
 
-<g transform="translate(56 130)">
-  <path d="M80 40 L420 10 L760 40 L420 70 Z" fill="#10110F"/>
-  <text class="t" x="340" y="48" fill="#F3F1EB" style="font-size:14px;font-weight:700">Channels</text>
-  <text class="t" x="280" y="66" fill="#BFB8AB" style="font-size:12px">Apps, portals, partner surfaces</text>
+<g transform="translate(48 132)">
+  <rect x="0" y="0" width="864" height="58" rx="8" fill="#2A2C26"/>
+  <text class="t on-dark" x="28" y="25" style="font-size:12px;font-weight:700;letter-spacing:0.08em">CHANNELS</text>
+  <text class="t on-dark" x="28" y="46" style="font-size:14px">Apps, portals, and partner surfaces</text>
 
-  <path d="M100 96 L420 66 L740 96 L420 126 Z" fill="#FFB34A"/>
-  <text class="t h" x="330" y="100">Experience · exp-*</text>
-  <text class="t" x="300" y="118" style="font-size:12px">Channel and journey APIs (BFF)</text>
+  <rect x="0" y="70" width="864" height="70" rx="8" fill="#FFB34A"/>
+  <text class="t on-amber" x="28" y="98" style="font-size:12px;font-weight:700;letter-spacing:0.08em">EXPERIENCE</text>
+  <text class="t on-amber" x="28" y="122" style="font-size:16px;font-weight:700">exp-* · channel and journey APIs</text>
 
-  <path d="M120 152 L420 122 L720 152 L420 182 Z" fill="#EBE7DF" stroke="#D8D4CA"/>
-  <text class="t h" x="330" y="156">Domain · domain-*</text>
-  <text class="t p" x="290" y="174">Commands, queries, process coordination</text>
+  <rect x="0" y="152" width="864" height="70" rx="8" fill="#F3F1EB"/>
+  <text class="t h" x="28" y="180" style="font-size:12px;letter-spacing:0.08em;fill:#855414">DOMAIN</text>
+  <text class="t h" x="28" y="204">domain-* · commands, queries, process coordination</text>
 
-  <path d="M140 208 L420 178 L700 208 L420 238 Z" fill="#F3F1EB" stroke="#855414" stroke-width="2"/>
-  <text class="t h" x="350" y="212">Core · core-*</text>
-  <text class="t p" x="310" y="230">Persistence and core APIs</text>
+  <rect x="0" y="234" width="864" height="70" rx="8" fill="#EBE7DF"/>
+  <text class="t h" x="28" y="262" style="font-size:12px;letter-spacing:0.08em;fill:#855414">CORE</text>
+  <text class="t h" x="28" y="286">core-* · persistence and core APIs</text>
 
-  <path d="M160 264 L420 234 L680 264 L420 294 Z" fill="#62645B"/>
-  <text class="t" x="300" y="268" fill="#F3F1EB" style="font-size:14px;font-weight:700">Adapters · library-*</text>
-  <text class="t" x="250" y="286" fill="#F3F1EB" style="font-size:12px">library-psps · library-rails · institution systems</text>
+  <rect x="0" y="316" width="864" height="70" rx="8" fill="#62645B"/>
+  <text class="t on-dark" x="28" y="344" style="font-size:12px;font-weight:700;letter-spacing:0.08em">ADAPTERS</text>
+  <text class="t on-dark" x="28" y="368" style="font-size:15px;font-weight:700">library-psps · library-rails · institution systems</text>
 </g>
 
-<g transform="translate(56 470)">
-  <rect x="0" y="0" width="848" height="56" rx="8" fill="#10110F"/>
-  <text class="t" x="24" y="24" fill="#BFB8AB" style="font-size:11px;font-weight:600;letter-spacing:0.06em">RUNTIME TRAIN</text>
-  <text class="t" x="24" y="44" fill="#F3F1EB" style="font-size:13px">com.firefly:firefly-parent ? org.fireflyframework:fireflyframework-parent 26.10.19 · Spring Boot 4.1.1 · Java 25</text>
+<g transform="translate(48 468)">
+  <rect x="0" y="0" width="864" height="56" rx="8" fill="#1A1B17" stroke="#474A42"/>
+  <text class="t" x="24" y="24" fill="#BFB8AB" style="font-size:11px;font-weight:700;letter-spacing:0.08em">RUNTIME TRAIN</text>
+  <text class="t" x="24" y="44" fill="#F3F1EB" style="font-size:13px">firefly-parent via fireflyframework-parent 26.10.19 · Spring Boot 4.1.1 · Java 25</text>
 </g>
 </svg>

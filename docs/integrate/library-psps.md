@@ -74,6 +74,6 @@ hooks.
 
 ## Related
 
-- <a href="adapters.md">Adapter pattern</a>
-- <a href="library-rails.md">Payment rails library</a>
-- <a href="../architecture/overview.md">Architecture overview</a>
+- [Adapter pattern](adapters.md)
+- [Payment rails library](library-rails.md)
+- [Architecture overview](../architecture/overview.md)

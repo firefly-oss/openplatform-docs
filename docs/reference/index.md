@@ -12,7 +12,7 @@ Indexes of **known** OpenAPI specifications and event-contract locations in `fir
 <ol class="ff-steps" markdown="0">
   <li class="ff-step">
     <p class="ff-step__title">Start from the module</p>
-    <p class="ff-step__meta">Open the <a href="../modules/catalog/">business module</a> that owns your journey.</p>
+    <p class="ff-step__meta">Open the <a href="/modules/catalog/">business module</a> that owns your journey.</p>
   </li>
   <li class="ff-step">
     <p class="ff-step__title">Follow the OpenAPI link</p>

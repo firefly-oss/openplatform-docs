@@ -14,56 +14,56 @@ Each business module and the shared identity services have a dedicated page with
 ## Browse by module
 
 <div class="ff-modules" markdown="0">
-  <article class="ff-module">
-    <p class="ff-module__id">customers</p>
-    <p class="ff-module__title"><a href="customers/">Customers</a></p>
-    <p class="ff-module__meta">People, legal entities, relationships, and consent.</p>
-  </article>
-  <article class="ff-module">
-    <p class="ff-module__id">onboarding</p>
-    <p class="ff-module__title"><a href="onboarding/">Onboarding</a></p>
-    <p class="ff-module__meta">Data collection, KYC/KYB evidence, and journey status.</p>
-  </article>
-  <article class="ff-module">
-    <p class="ff-module__id">products</p>
-    <p class="ff-module__title"><a href="products/">Products</a></p>
-    <p class="ff-module__meta">Commercial configuration for offers you sell.</p>
-  </article>
-  <article class="ff-module">
-    <p class="ff-module__id">agreements</p>
-    <p class="ff-module__title"><a href="agreements/">Agreements</a></p>
-    <p class="ff-module__meta">Contracts, documents, and signature workflows.</p>
-  </article>
-  <article class="ff-module">
-    <p class="ff-module__id">distribution</p>
-    <p class="ff-module__title"><a href="distribution/">Distribution</a></p>
-    <p class="ff-module__meta">Partner channels and distributor access.</p>
-  </article>
-  <article class="ff-module">
-    <p class="ff-module__id">accounts</p>
-    <p class="ff-module__title"><a href="accounts/">Accounts</a></p>
-    <p class="ff-module__meta">Account records and related financial posts.</p>
-  </article>
-  <article class="ff-module">
-    <p class="ff-module__id">payments</p>
-    <p class="ff-module__title"><a href="payments/">Payments</a></p>
-    <p class="ff-module__meta">Orders, cards, rails, and PSP boundaries.</p>
-  </article>
-  <article class="ff-module">
-    <p class="ff-module__id">lending</p>
-    <p class="ff-module__title"><a href="lending/">Lending</a></p>
-    <p class="ff-module__meta">Origination, servicing, collateral, collections.</p>
-  </article>
-  <article class="ff-module">
-    <p class="ff-module__id">risk</p>
-    <p class="ff-module__title"><a href="risk/">Risk</a></p>
-    <p class="ff-module__meta">Risk and compliance operations for journeys.</p>
-  </article>
-  <article class="ff-module">
-    <p class="ff-module__id">shared</p>
-    <p class="ff-module__title"><a href="shared/">Shared services</a></p>
-    <p class="ff-module__meta">Identity and common services used across modules.</p>
-  </article>
+  <a class="ff-module" href="/modules/customers/">
+    <span class="ff-module__id">customers</span>
+    <span class="ff-module__title">Customers</span>
+    <span class="ff-module__meta">People, legal entities, relationships, and consent.</span>
+  </a>
+  <a class="ff-module" href="/modules/onboarding/">
+    <span class="ff-module__id">onboarding</span>
+    <span class="ff-module__title">Onboarding</span>
+    <span class="ff-module__meta">Data collection, KYC/KYB evidence, and journey status.</span>
+  </a>
+  <a class="ff-module" href="/modules/products/">
+    <span class="ff-module__id">products</span>
+    <span class="ff-module__title">Products</span>
+    <span class="ff-module__meta">Commercial configuration for offers you sell.</span>
+  </a>
+  <a class="ff-module" href="/modules/agreements/">
+    <span class="ff-module__id">agreements</span>
+    <span class="ff-module__title">Agreements</span>
+    <span class="ff-module__meta">Contracts, documents, and signature workflows.</span>
+  </a>
+  <a class="ff-module" href="/modules/distribution/">
+    <span class="ff-module__id">distribution</span>
+    <span class="ff-module__title">Distribution</span>
+    <span class="ff-module__meta">Partner channels and distributor access.</span>
+  </a>
+  <a class="ff-module" href="/modules/accounts/">
+    <span class="ff-module__id">accounts</span>
+    <span class="ff-module__title">Accounts</span>
+    <span class="ff-module__meta">Account records and related financial posts.</span>
+  </a>
+  <a class="ff-module" href="/modules/payments/">
+    <span class="ff-module__id">payments</span>
+    <span class="ff-module__title">Payments</span>
+    <span class="ff-module__meta">Orders, cards, rails, and PSP boundaries.</span>
+  </a>
+  <a class="ff-module" href="/modules/lending/">
+    <span class="ff-module__id">lending</span>
+    <span class="ff-module__title">Lending</span>
+    <span class="ff-module__meta">Origination, servicing, collateral, collections.</span>
+  </a>
+  <a class="ff-module" href="/modules/risk/">
+    <span class="ff-module__id">risk</span>
+    <span class="ff-module__title">Risk</span>
+    <span class="ff-module__meta">Risk and compliance operations for journeys.</span>
+  </a>
+  <a class="ff-module" href="/modules/shared/">
+    <span class="ff-module__id">shared</span>
+    <span class="ff-module__title">Shared services</span>
+    <span class="ff-module__meta">Identity and common services used across modules.</span>
+  </a>
 </div>
 
 ## Inventory (module, page, status)

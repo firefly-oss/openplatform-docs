@@ -62,10 +62,10 @@ track. Do not edit GoDaddy or Pages domain settings from docs-only work.
 | `latest` | Alias pointing at the current public train |
 
 When the BOM pin moves, deploy a new version string and retarget
-`latest`. Keep <a href="bom.md">Versioning and BOM</a> in sync with the
+`latest`. Keep [Versioning and BOM](bom.md) in sync with the
 pin you advertise.
 
 ## Related
 
-- <a href="bom.md">Versioning and BOM</a>
-- <a href="../contribute/index.md">Contribute</a>
+- [Versioning and BOM](bom.md)
+- [Contribute](../contribute/index.md)

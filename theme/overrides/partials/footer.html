@@ -1,6 +1,6 @@
 {#-
   Firefly OpenPlatform footer.
-  Prev/next navigation, multi-column useful links, then copyright meta.
+  Prev/next navigation, brand lockup (logo | OpenPlatform), useful links, copyright.
 -#}
 <footer class="md-footer">
   {% if "navigation.footer" in features %}
@@ -50,7 +50,21 @@
   <div class="ff-footer">
     <div class="ff-footer__inner md-grid">
       <div class="ff-footer__brand">
-        <p class="ff-footer__product">OpenPlatform</p>
+        <a
+          href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
+          class="ff-footer__lockup"
+          aria-label="Firefly OpenPlatform"
+        >
+          <img
+            class="ff-footer__logo"
+            src="{{ 'assets/brand/firefly-logo-compact-reversed.svg' | url }}"
+            alt="Firefly"
+            width="112"
+            height="28"
+          />
+          <span class="ff-footer__sep" aria-hidden="true">|</span>
+          <span class="ff-footer__product">OpenPlatform</span>
+        </a>
         <p class="ff-footer__slogan">Attitude makes the difference.</p>
         <p class="ff-footer__blurb">Developer hub for Firefly OpenPlatform modules in firefly-oss.</p>
       </div>

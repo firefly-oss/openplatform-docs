@@ -4,7 +4,7 @@
 # site_name is the product only. The Firefly wordmark lives in theme.logo
 # so the header reads: [logo] | OpenPlatform (see overrides/partials/header.html).
 site_name: OpenPlatform
-site_description: Developer documentation for Firefly OpenPlatform — business modules, architecture, and how to build on the platform.
+site_description: Developer documentation for OpenPlatform — firefly-oss business modules, architecture, OpenAPI, and adapters.
 site_author: Firefly Software
 site_url: https://docs.fireflysoftware.io/
 repo_url: https://github.com/firefly-oss/openplatform-docs
@@ -90,9 +90,11 @@ extra_css:
   - stylesheets/firefly-docs.css
 
 extra:
-  version:
-    provider: mike
-    default: latest
+  # mike version selector stays off until `mike deploy` publishes versions.json
+  # (flat gh-pages snapshot today). Re-enable with:
+  #   version:
+  #     provider: mike
+  #     default: latest
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/firefly-oss
@@ -100,15 +102,15 @@ extra:
     brand: Firefly
     products:
       - OpenPlatform
-      - LendingOS
     slogan: Attitude makes the difference.
 
 nav:
   - Home: index.md
-  - Ecosystem: ecosystem.md
-  - Start here: start/index.md
+  - Start:
+      - Navigate: start/index.md
+      - Ecosystem: ecosystem.md
   - Architecture: architecture/overview.md
-  - Business modules:
+  - Modules:
       - Catalogue: modules/catalog.md
       - Customers: modules/customers.md
       - Onboarding: modules/onboarding.md
@@ -120,12 +122,12 @@ nav:
       - Lending: modules/lending.md
       - Risk: modules/risk.md
       - Shared services: modules/shared.md
-  - Insurance (in development):
+  - Insurance:
       - Overview: insurance/index.md
       - Policy lifecycle: insurance/policy-lifecycle.md
-      - Underwriting operations: insurance/underwriting.md
-      - Claims operations: insurance/claims.md
-      - Insurance financial flows: insurance/financial-flows.md
+      - Underwriting: insurance/underwriting.md
+      - Claims: insurance/claims.md
+      - Financial flows: insurance/financial-flows.md
   - Reference:
       - Overview: reference/index.md
       - OpenAPI index: reference/openapi.md
@@ -133,7 +135,7 @@ nav:
   - Integrate:
       - Adapter pattern: integrate/adapters.md
       - PSP library: integrate/library-psps.md
-      - Payment rails library: integrate/library-rails.md
+      - Payment rails: integrate/library-rails.md
   - Versioning:
       - BOM and pins: versioning/bom.md
       - Publish with mike: versioning/mike.md

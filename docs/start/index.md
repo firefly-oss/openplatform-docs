@@ -8,19 +8,19 @@ It does **not** teach how to scaffold or build Java services on the framework tr
 
 <ol class="ff-steps" markdown="0">
   <li class="ff-step">
-    <p class="ff-step__title"><a href="../ecosystem/">Ecosystem</a></p>
+    <p class="ff-step__title"><a href="/ecosystem/">Ecosystem</a></p>
     <p class="ff-step__meta">OpenPlatform equals firefly-oss modules and libraries. Framework details stay outbound.</p>
   </li>
   <li class="ff-step">
-    <p class="ff-step__title"><a href="../architecture/overview/">Architecture</a></p>
+    <p class="ff-step__title"><a href="/architecture/overview/">Architecture</a></p>
     <p class="ff-step__meta">How experience, domain, and core bands fit, and where adapters sit.</p>
   </li>
   <li class="ff-step">
-    <p class="ff-step__title"><a href="../modules/catalog/">Module catalogue</a></p>
+    <p class="ff-step__title"><a href="/modules/catalog/">Module catalogue</a></p>
     <p class="ff-step__meta">Every business module id with repository maps and OpenAPI links grounded in real repos.</p>
   </li>
   <li class="ff-step">
-    <p class="ff-step__title"><a href="../integrate/adapters/">Integrate</a> and <a href="../reference/openapi/">OpenAPI index</a></p>
+    <p class="ff-step__title"><a href="/integrate/adapters/">Integrate</a> and <a href="/reference/openapi/">OpenAPI index</a></p>
     <p class="ff-step__meta">firefly-oss libraries (library-psps, library-rails) and published contracts.</p>
   </li>
 </ol>
