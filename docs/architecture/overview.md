@@ -2,7 +2,7 @@
 
 OpenPlatform keeps business modules composable, shared services reusable, and systems outside Firefly behind adapters. The shape below is what you will see across `firefly-oss` repositories.
 
-<img src="/diagrams/openplatform-layers.svg" alt="OpenPlatform service bands on the current Jafly train" width="960" height="560" />
+<img src="/diagrams/openplatform-layers.svg?v=20261019" alt="OpenPlatform service bands on the current Jafly train" width="960" height="560" />
 
 ## Why the bands exist
 
@@ -95,7 +95,7 @@ See the [business modules catalogue](../modules/catalog.md) for purpose, coverag
 
 A journey step may touch several layers (channel, process, modules, core, third party). Third parties and legacy cores stay behind adapters so provider details do not leak into every application.
 
-<img src="/diagrams/openplatform-adapters.svg" alt="Adapter boundary between firefly-oss services and external systems" width="960" height="360" />
+<img src="/diagrams/openplatform-adapters.svg?v=20261019" alt="Adapter boundary between firefly-oss services and external systems" width="960" height="360" />
 
 Worked adapter guides:
 

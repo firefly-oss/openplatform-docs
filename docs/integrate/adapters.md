@@ -2,7 +2,7 @@
 
 OpenPlatform keeps provider and institution-system details behind **adapters** so business modules stay portable. This page teaches the pattern; the PSP and rails guides are worked examples from public repositories.
 
-<img src="/diagrams/openplatform-adapters.svg" alt="Adapter boundary between firefly-oss services and external systems" width="960" height="360" />
+<img src="/diagrams/openplatform-adapters.svg?v=20261019" alt="Adapter boundary between firefly-oss services and external systems" width="960" height="360" />
 
 ## Intent
 

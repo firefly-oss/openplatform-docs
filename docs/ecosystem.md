@@ -2,7 +2,7 @@
 
 This page places **OpenPlatform** (`firefly-oss`) next to the framework train and the adapter boundary so you know what this hub documents before you clone a repository.
 
-<img src="/diagrams/openplatform-ecosystem.svg" alt="OpenPlatform in firefly-oss on the Jafly train with adapters at the boundary" width="960" height="420" />
+<img src="/diagrams/openplatform-ecosystem.svg?v=20261019" alt="OpenPlatform in firefly-oss on the Jafly train with adapters at the boundary" width="960" height="420" />
 
 ## What this hub owns
 

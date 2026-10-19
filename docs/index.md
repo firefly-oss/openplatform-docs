@@ -22,7 +22,7 @@ hide:
     </ul>
   </div>
   <div class="ff-hero__visual">
-    <img src="/diagrams/openplatform-layers.svg" alt="OpenPlatform layers: experience, domain, core, and adapters in firefly-oss" width="960" height="560" />
+    <img src="/diagrams/openplatform-layers.svg?v=20261019" alt="OpenPlatform layers: experience, domain, core, and adapters in firefly-oss" width="960" height="560" />
   </div>
 </div>
 
@@ -90,7 +90,7 @@ Each module page maps real repositories (`core-*`, `domain-*`, `exp-*`), links O
 
 Channels call experience services. Domain services coordinate commands. Core services persist state. Providers and institution systems sit behind adapters.
 
-<img src="/diagrams/openplatform-layers.svg" alt="OpenPlatform layers: experience, domain, core, and adapters" width="960" height="560" />
+<img src="/diagrams/openplatform-layers.svg?v=20261019" alt="OpenPlatform layers: experience, domain, core, and adapters" width="960" height="560" />
 
 Pin for consumption accuracy: Spring Boot **4.1.1** via `com.firefly:firefly-parent` and framework parent **26.10.19**. See [Versioning and BOM](versioning/bom.md). Framework tooling: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).
 
