@@ -50,10 +50,11 @@ Prefer the [adapter pattern](../integrate/adapters.md) whenever a journey talks 
 
 ## How to start
 
-1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**.
-2. Read the worked guides: [PSP library](../integrate/library-psps.md) and [Payment rails library](../integrate/library-rails.md).
-3. Mirror `core-banking-payments` or `exp-cards` depending on the surface ([First service](../start/first-service.md)).
-4. Keep vendor SDKs in adapter modules, not in domain services.
+1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+2. Open the repositories in the layer map above and read each README and OpenAPI.
+3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
+4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+
 
 ## OpenAPI
 

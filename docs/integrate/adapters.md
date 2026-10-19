@@ -12,7 +12,7 @@ OpenPlatform keeps provider and institution-system details behind **adapters** s
 
 ## SPI and ports
 
-OpenPlatform and Jafly use the same idea: a **port** (interface) in the application or library, and an **adapter** that implements that port for one external system.
+OpenPlatform libraries use the same port idea as the wider Firefly stack: a **port** (interface) in the application or library, and an **adapter** that implements that port for one external system.
 
 | Role | Responsibility |
 |------|----------------|
@@ -96,4 +96,4 @@ Until a BOM registration recipe is published for every OpenPlatform module, mirr
 
 - [Payments module](../modules/payments.md) for repositories that consume these libraries
 - [Architecture overview](../architecture/overview.md) for where adapters sit in the band model
-- [First service](../start/first-service.md) if you are still scaffolding a module
+- [Start here](../start/index.md) to navigate the module catalogue

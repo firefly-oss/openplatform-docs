@@ -46,10 +46,11 @@ Insurer rating engines and third-party pricing systems stay behind [adapters](..
 
 ## How to start
 
-1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**.
-2. Mirror `domain-product-catalog` for catalogue work or `domain-core-pricing-engine` for simulations ([First service](../start/first-service.md)).
-3. Open OpenAPI links below; treat `core-common-pricing-mgmt` as present but without a published OpenAPI file yet.
-4. Continue to [agreements](agreements.md) or [lending](lending.md) once you have a product id to attach.
+1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+2. Open the repositories in the layer map above and read each README and OpenAPI.
+3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
+4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+
 
 ## OpenAPI
 

@@ -106,9 +106,7 @@ extra:
 nav:
   - Home: index.md
   - Ecosystem: ecosystem.md
-  - Start here:
-      - Prerequisites: start/prerequisites.md
-      - First service (Jafly): start/first-service.md
+  - Start here: start/index.md
   - Architecture: architecture/overview.md
   - Business modules:
       - Catalogue: modules/catalog.md

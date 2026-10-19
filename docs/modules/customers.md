@@ -47,10 +47,11 @@ Invented repository names are not listed. Every row below is present under `fire
 
 ## How to start
 
-1. Confirm the parent pin on [Versioning and BOM](../versioning/bom.md): Jafly **26.10.19**, Spring Boot **4.1.1**, Java **25**.
-2. Clone a neighbour: prefer `domain-customer-people` for orchestration work, or `core-common-customer-mgmt` for persistence APIs.
-3. Follow [First service](../start/first-service.md) to mirror the Maven layout and rename packages.
-4. Open the OpenAPI files linked below before designing new endpoints.
+1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+2. Open the repositories in the layer map above and read each README and OpenAPI.
+3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
+4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+
 
 ## OpenAPI
 
@@ -78,4 +79,4 @@ Both core and domain repositories are multi-module Maven projects (`-core`, `-we
 
 ## Next steps
 
-Mirror `domain-customer-people` or `core-common-customer-mgmt` when extending party behaviour. If the journey still collects KYC evidence, continue on [Onboarding](onboarding.md).
+Open `domain-customer-people` or `core-common-customer-mgmt` for party APIs. If the journey still collects KYC evidence, continue on [Onboarding](onboarding.md).

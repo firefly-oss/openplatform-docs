@@ -46,10 +46,11 @@ Do not claim regulatory outcomes for an institution from this hub. Compliance ev
 
 ## How to start
 
-1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**.
-2. Mirror `domain-lending-credit-scoring` for orchestration work ([First service](../start/first-service.md)).
-3. Put bureau SDKs behind adapters; see [Adapters](../integrate/adapters.md).
-4. Return to [Lending](lending.md) or [Onboarding](onboarding.md) for the journey that owns the case.
+1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+2. Open the repositories in the layer map above and read each README and OpenAPI.
+3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
+4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+
 
 ## OpenAPI
 

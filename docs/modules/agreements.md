@@ -46,10 +46,11 @@ Do not embed provider-specific signature SDKs in domain services. See [Adapters]
 
 ## How to start
 
-1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**.
-2. Mirror `domain-common-contracts` for orchestration or `core-common-contract-mgmt` for persistence ([First service](../start/first-service.md)).
-3. Read OpenAPI before adding fields that already exist as document metadata.
-4. Plan provider wiring through adapters, not domain dependencies.
+1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+2. Open the repositories in the layer map above and read each README and OpenAPI.
+3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
+4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+
 
 ## OpenAPI
 

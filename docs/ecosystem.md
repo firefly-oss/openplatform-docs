@@ -56,4 +56,4 @@ Industry applications under [firefly-serviceOS](https://github.com/firefly-servi
 
 1. Confirm the current pin on [Versioning and BOM](versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
 2. Skim [Architecture](architecture/overview.md) so band prefixes (`exp-*`, `domain-*`, `core-*`) make sense.
-3. Open [Start here](start/prerequisites.md) when you are ready to create or extend a service.
+3. Open [Start here](start/index.md) to navigate the module catalogue.

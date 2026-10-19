@@ -77,10 +77,11 @@ Business modules should call these APIs rather than inventing parallel stores.
 
 ## How to start
 
-1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**.
-2. For login and SCA, start with `exp-security` and the SCA core/domain pair ([First service](../start/first-service.md)).
-3. For notifications, start with `exp-notifications` or `domain-common-notifications`.
-4. Keep identity-provider SDKs behind [adapters](../integrate/adapters.md).
+1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+2. Open the repositories in the layer map above and read each README and OpenAPI.
+3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
+4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+
 
 ## OpenAPI
 

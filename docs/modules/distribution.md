@@ -45,10 +45,11 @@ Direct-to-customer journeys may skip this module. Partner-led journeys should no
 
 ## How to start
 
-1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**.
-2. Mirror `exp-distributor` for portal work ([First service](../start/first-service.md)).
-3. Keep commercial product truth in [products](products.md); do not duplicate catalogue definitions here.
-4. Pair with [onboarding](onboarding.md) for partner-led KYC/KYB.
+1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+2. Open the repositories in the layer map above and read each README and OpenAPI.
+3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
+4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+
 
 ## OpenAPI
 
@@ -78,4 +79,4 @@ Core, domain, and experience repositories for this module id are present under `
 
 ## Next steps
 
-Pair with [Products](products.md) and [Onboarding](onboarding.md). Mirror `exp-distributor` when extending partner channels.
+Pair with [Products](products.md) and [Onboarding](onboarding.md). Start from `exp-distributor` for partner-channel surfaces.

@@ -6,10 +6,10 @@ Each business module and the shared identity services have a dedicated page with
 
 ## How to use this catalogue
 
-1. Match the journey step you are building (party, agreement, payment, loan, and so on) to a module id.
+1. Match the journey step (party, agreement, payment, loan, and so on) to a module id.
 2. Open that module page for repositories and layer prefixes (`core-*`, `domain-*`, `exp-*`).
-3. Confirm the parent pin on [Versioning and BOM](../versioning/bom.md) before you assume Boot or Java levels from a README badge (**26.10.19** / Boot **4.1.1** / Java **25**).
-4. Put anything outside Firefly behind an [adapter](../integrate/adapters.md).
+3. Use the [OpenAPI index](../reference/openapi.md) for published contracts; treat each repo README as authoritative for local run.
+4. Put anything outside Firefly behind an [adapter](../integrate/adapters.md). The current train pin is on [Versioning and BOM](../versioning/bom.md).
 
 ## Browse by module
 
@@ -121,7 +121,7 @@ These exist under the local `firefly-oss` tree and are called out on module page
 
 - [Architecture overview](../architecture/overview.md) — experience / domain / core bands in `firefly-oss`, Jafly **26.10.19**
 - [Adapter pattern](../integrate/adapters.md) and library guides for `library-psps` and `library-rails`
-- [Start here — Prerequisites](../start/prerequisites.md) and [First service](../start/first-service.md)
+- [Start here](../start/index.md) — how to navigate this hub
 
 ## Still to deepen
 

@@ -46,10 +46,11 @@ Keep relationship data and financial movements in the services that own them. Do
 
 ## How to start
 
-1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**.
-2. Mirror `exp-accounts` for channel work or `domain-banking-accounts` for domain orchestration ([First service](../start/first-service.md)).
-3. Read OpenAPI for accounts before assuming ledger endpoints live on the same service.
-4. For money movement at the rail edge, continue to [payments](payments.md).
+1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+2. Open the repositories in the layer map above and read each README and OpenAPI.
+3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
+4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+
 
 ## OpenAPI
 

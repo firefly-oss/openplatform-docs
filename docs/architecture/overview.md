@@ -109,14 +109,12 @@ APIs and events form the backbone between modules. See the [OpenAPI index](../re
 
 Where AI participates in a journey, it decides within approved limits, explained, recorded, and open to human review. Decisions with significant effects on people, or beyond delegated limits, go to people with delegated authority. Platform documentation must not describe AI as replacing staff outside those limits.
 
-## Runtime note
+## Runtime pin (brief)
 
-Module services are Java Spring applications on the framework train pinned by OpenPlatform (Boot **4.1.1** via `fireflyframework-parent` **26.10.19**, Java **25**). Workflow coordination may use Firefly Weave. Treat each runtime’s docs as authoritative for that layer.
-
-See [Versioning and BOM](../versioning/bom.md) and [Ecosystem](../ecosystem.md).
+OpenPlatform modules currently consume Boot **4.1.1** via `fireflyframework-parent` **26.10.19** (Java **25**). See [Versioning and BOM](../versioning/bom.md). Framework bootstrap and SPI usage: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).
 
 ## What next
 
-1. [Prerequisites](../start/prerequisites.md) if you are setting up a workstation.
-2. [First service](../start/first-service.md) if you are creating or extending a module.
-3. [Module catalogue](../modules/catalog.md) if you already know the bounded context.
+1. [Start here](../start/index.md) to navigate this hub.
+2. [Module catalogue](../modules/catalog.md) to pick a bounded context.
+3. [OpenAPI index](../reference/openapi.md) for published contracts.

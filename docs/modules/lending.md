@@ -68,10 +68,11 @@ Credit scoring and bureau calls belong in [risk](risk.md) and adapters, not insi
 
 ## How to start
 
-1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**. Several READMEs still show older Boot badges — verify the parent POM.
-2. Mirror `exp-lending` for portal work or `domain-lending-loan-origination` for origination ([First service](../start/first-service.md)).
-3. Pick the product-line core that matches the offer; do not invent a new product-line repo name in docs.
-4. Open [Risk](risk.md) before wiring bureau calls into a lending core.
+1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+2. Open the repositories in the layer map above and read each README and OpenAPI.
+3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
+4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+
 
 ## OpenAPI
 

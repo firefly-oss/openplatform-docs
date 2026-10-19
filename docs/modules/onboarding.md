@@ -47,10 +47,11 @@ Short, instantaneous registrations may stay closer to `customers`. Identity-prov
 
 ## How to start
 
-1. Confirm pins: Jafly **26.10.19** / Boot **4.1.1** / Java **25** ([BOM](../versioning/bom.md)).
-2. Mirror [`exp-onboarding`](https://github.com/firefly-oss/exp-onboarding) for channel work, or `domain-customer-kyc-kyb` for domain workflows ([First service](../start/first-service.md)).
-3. Read the KYC vs KYB maturity notes below before planning a KYC-only cutover.
-4. Design provider calls through the [adapter pattern](../integrate/adapters.md).
+1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+2. Open the repositories in the layer map above and read each README and OpenAPI.
+3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
+4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+
 
 ## OpenAPI
 
@@ -80,4 +81,4 @@ Per the `domain-customer-kyc-kyb` README, the KYB track is the primary implement
 
 ## Next steps
 
-Read [Adapters](../integrate/adapters.md) before wiring an identity provider. Use [First service](../start/first-service.md) if you are mirroring `exp-onboarding`.
+Read [Adapters](../integrate/adapters.md) before wiring an identity provider. Browse `exp-onboarding` OpenAPI from the [OpenAPI index](../reference/openapi.md).
