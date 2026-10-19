@@ -7,6 +7,10 @@ From application, offer, and decision to the records that service a loan.
 Public product page:
 <https://fireflysoftware.io/openplatform/modules/>
 
+## When you need this module
+
+Use `lending` for origination, servicing, collateral, and collections records. Credit policy and final decisions stay with the institution. Product experiences such as LendingOS compose this module with customers, products, agreements, and risk.
+
 ## Coverage
 
 - Applications, documents, offers, and decision records
@@ -14,6 +18,11 @@ Public product page:
 - Collateral, collections, and product-specific data
 
 ## How it is used
+
+1. Experience lending APIs start applications and servicing journeys.
+2. Domain origination and servicing services coordinate commands.
+3. Core repositories persist applications, offers, schedules, collateral, and collections.
+4. Risk scoring and bureau calls sit in [risk](risk.md) and adapters, not inside every lending core.
 
 Compose consumer or business finance. Credit policy and decisions stay
 with the institution. Product experiences such as LendingOS compose this
@@ -60,3 +69,7 @@ institution.
 - <a href="risk.md">Risk and compliance operations</a>
 - <a href="accounts.md">Accounts and financial records</a>
 - <a href="catalog.md">Business modules catalogue</a>
+
+## What next
+
+Open [Risk](risk.md) for scoring records and [Adapters](../integrate/adapters.md) for bureau boundaries. Confirm Boot badges against parent **26.10.19**.

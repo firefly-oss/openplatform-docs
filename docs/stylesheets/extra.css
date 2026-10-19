@@ -1,13 +1,16 @@
 /*
-Firefly Software — MkDocs Material brand tokens.
-Maps Weave’s --md-* variables to the Firefly palette (charcoal, paper, amber)
-and Manrope. Dual light (default) and dark (slate) palettes.
+Firefly Software — OpenPlatform MkDocs theme.
+Charcoal #10110F / paper #F3F1EB / amber #FFB34A. Manrope self-hosted.
+Light (default) and dark (slate) palettes both first-class.
 
 Author: Firefly Software
 SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
 */
 
-/* Manrope (SIL Open Font License 1.1, ../assets/fonts/manrope/OFL.txt). */
+/* ------------------------------------------------------------------ */
+/* Manrope (SIL OFL 1.1). Paths relative to stylesheets/ in the built */
+/* site so fonts resolve on localhost and docs.fireflysoftware.io.    */
+/* ------------------------------------------------------------------ */
 @font-face {
   font-family: "Manrope";
   font-style: normal;
@@ -28,10 +31,24 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Light palette — paper surfaces, charcoal ink. */
+/* ------------------------------------------------------------------ */
+/* Tokens                                                             */
+/* ------------------------------------------------------------------ */
 :root,
 [data-md-color-scheme="default"] {
-  --md-text-font: "Manrope";
+  --ff-charcoal: #10110f;
+  --ff-charcoal-raised: #1a1b17;
+  --ff-paper: #f3f1eb;
+  --ff-paper-raised: #ebe7df;
+  --ff-amber: #ffb34a;
+  --ff-amber-soft: #facc8a;
+  --ff-amber-deep: #855414;
+  --ff-steel: #62645b;
+  --ff-line: #d8d4ca;
+  --ff-ink: #10110f;
+  --ff-muted: #62645b;
+
+  --md-text-font: "Manrope", system-ui, sans-serif;
   --md-code-font: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --md-primary-fg-color: #10110f;
   --md-primary-fg-color--light: #1a1b17;
@@ -44,16 +61,27 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
   --md-code-bg-color: #ebe7df;
   --md-typeset-a-color: #855414;
   --md-accent-fg-color: #ffb34a;
-  --md-accent-fg-color--transparent: rgb(255 179 74 / 0.12);
+  --md-accent-fg-color--transparent: rgb(255 179 74 / 0.14);
   --md-typeset-mark-color: rgb(255 179 74 / 0.35);
   --md-footer-bg-color: #10110f;
   --md-footer-bg-color--dark: #10110f;
   --md-footer-fg-color: #f3f1eb;
 }
 
-/* Dark palette — charcoal surfaces, paper ink (Weave default). */
 [data-md-color-scheme="slate"] {
-  --md-text-font: "Manrope";
+  --ff-charcoal: #10110f;
+  --ff-charcoal-raised: #1a1b17;
+  --ff-paper: #f3f1eb;
+  --ff-paper-raised: #ebe7df;
+  --ff-amber: #ffb34a;
+  --ff-amber-soft: #facc8a;
+  --ff-amber-deep: #855414;
+  --ff-steel: #bfb8ab;
+  --ff-line: #474a42;
+  --ff-ink: #f3f1eb;
+  --ff-muted: #bfb8ab;
+
+  --md-text-font: "Manrope", system-ui, sans-serif;
   --md-code-font: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --md-primary-fg-color: #10110f;
   --md-primary-fg-color--light: #1a1b17;
@@ -66,25 +94,67 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
   --md-code-bg-color: #1a1b17;
   --md-typeset-a-color: #facc8a;
   --md-accent-fg-color: #ffb34a;
-  --md-accent-fg-color--transparent: rgb(255 179 74 / 0.1);
+  --md-accent-fg-color--transparent: rgb(255 179 74 / 0.12);
   --md-typeset-mark-color: rgb(255 179 74 / 0.3);
   --md-footer-bg-color: #10110f;
   --md-footer-bg-color--dark: #10110f;
   --md-footer-fg-color: #f3f1eb;
 }
 
+/* ------------------------------------------------------------------ */
+/* Shell: header, grid, typography                                    */
+/* ------------------------------------------------------------------ */
 .md-header {
+  background: var(--ff-charcoal);
   border-bottom: 1px solid #474a42;
+  box-shadow: none;
 }
 
-[data-md-color-scheme="default"] .md-header {
-  border-bottom-color: #d8d4ca;
+.md-header__inner {
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.md-header__button.md-logo {
+  margin: 0.2rem 0.15rem 0.2rem 0;
+  padding: 0.2rem;
 }
 
 .md-header__button.md-logo img,
 .md-nav__title .md-nav__button.md-logo img {
-  height: 1.6rem;
+  height: 1.55rem;
   width: auto;
+}
+
+/* Logo already says Firefly; hide Material's duplicate site_name topic. */
+.ff-header-site-name {
+  display: none !important;
+}
+
+.ff-header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-right: 0.65rem;
+  color: var(--ff-paper);
+  font-family: "Manrope", system-ui, sans-serif;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.ff-header-brand__sep {
+  color: rgb(243 241 235 / 0.35);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.ff-header-brand__product {
+  color: var(--ff-paper);
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 .md-header__title {
@@ -92,34 +162,56 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
   letter-spacing: -0.025em;
 }
 
+.md-tabs {
+  background: var(--ff-charcoal);
+  border-bottom: 1px solid #474a42;
+}
+
+.md-tabs__link {
+  font-weight: 550;
+  letter-spacing: -0.015em;
+  opacity: 0.78;
+}
+
+.md-tabs__link--active,
+.md-tabs__link:hover,
+.md-tabs__link:focus {
+  opacity: 1;
+}
+
 .md-grid {
-  max-width: 76rem;
+  max-width: 78rem;
 }
 
 .md-typeset {
-  font-size: 0.82rem;
-  line-height: 1.7;
+  font-size: 0.86rem;
+  line-height: 1.72;
+  letter-spacing: -0.005em;
 }
 
 .md-typeset h1 {
   color: var(--md-default-fg-color);
-  font-weight: 700;
-  letter-spacing: -0.035em;
+  font-weight: 720;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  margin-bottom: 0.65em;
 }
 
 .md-typeset h2 {
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 650;
+  letter-spacing: -0.028em;
+  margin-top: 1.65em;
 }
 
 .md-typeset h3 {
-  font-weight: 600;
+  font-weight: 620;
+  letter-spacing: -0.02em;
 }
 
 .md-typeset p,
 .md-typeset ul,
 .md-typeset ol {
-  max-width: 78ch;
+  max-width: 72ch;
 }
 
 .md-typeset a {
@@ -136,24 +228,35 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
 }
 
 .md-typeset pre {
-  border: 1px solid #474a42;
-  border-radius: 0.2rem;
-}
-
-[data-md-color-scheme="default"] .md-typeset pre {
-  border-color: #d8d4ca;
+  border: 1px solid var(--ff-line);
+  border-radius: 0.25rem;
 }
 
 .md-typeset table:not([class]) {
-  font-size: 0.74rem;
+  font-size: 0.78rem;
+  border-radius: 0.2rem;
+  overflow: hidden;
 }
 
 .md-typeset table:not([class]) th {
   background: var(--md-code-bg-color);
+  font-weight: 650;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 0.25rem;
+  border-color: var(--ff-line);
+  font-size: 0.82rem;
 }
 
 .md-nav__link--active {
-  font-weight: 600;
+  font-weight: 650;
+  color: var(--md-default-fg-color);
+}
+
+.md-sidebar {
+  padding-top: 0.35rem;
 }
 
 :focus-visible {
@@ -161,148 +264,258 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
   outline-offset: 3px;
 }
 
-@media (max-width: 44.984375em) {
-  .md-typeset {
-    font-size: 0.8rem;
-  }
-
-  .md-typeset h1 {
-    font-size: 1.7em;
-  }
+/* Atmosphere on content area (subtle paper grain / wash). */
+.md-main {
+  background:
+    radial-gradient(ellipse 70% 40% at 0% 0%, rgb(255 179 74 / 0.07), transparent 55%),
+    radial-gradient(ellipse 50% 35% at 100% 8%, rgb(16 17 15 / 0.04), transparent 50%),
+    var(--md-default-bg-color);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
-    animation: none !important;
-  }
+[data-md-color-scheme="slate"] .md-main {
+  background:
+    radial-gradient(ellipse 70% 40% at 0% 0%, rgb(255 179 74 / 0.08), transparent 55%),
+    radial-gradient(ellipse 45% 30% at 100% 0%, rgb(243 241 235 / 0.04), transparent 50%),
+    var(--md-default-bg-color);
 }
 
-/* Diagrams stay light on their own paper panel (Weave pattern). */
-.md-typeset img[src*="diagrams/"] {
-  background: #f3f1eb;
-  border-radius: 0.35rem;
+.md-footer {
+  border-top: 1px solid #474a42;
+}
+
+.ff-footer-tagline {
+  margin-top: 0.35rem;
+  color: rgb(243 241 235 / 0.72);
+  font-size: 0.72rem;
+  letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------------ */
+/* Media: diagrams + scheme-aware isometrics                          */
+/* ------------------------------------------------------------------ */
+.md-typeset img[src*="diagrams/"],
+.md-typeset img[src*="assets/isometrics/"] {
+  display: block;
   width: 100%;
   height: auto;
   max-width: 52rem;
+  border-radius: 0.4rem;
+}
+
+.md-typeset img[src*="diagrams/"] {
+  background: #f3f1eb;
+  border: 1px solid var(--ff-line);
+}
+
+.ff-iso {
+  display: block;
+  margin: 1.1rem 0 1.6rem;
+  max-width: 52rem;
+}
+
+.ff-iso img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.4rem;
+  border: 1px solid var(--ff-line);
+}
+
+.ff-iso__dark {
+  display: none;
+}
+
+[data-md-color-scheme="slate"] .ff-iso__light {
+  display: none;
+}
+
+[data-md-color-scheme="slate"] .ff-iso__dark {
+  display: block;
+}
+
+.ff-iso__caption {
+  margin: 0.45rem 0 0;
+  color: var(--ff-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  max-width: none;
 }
 
 /* ------------------------------------------------------------------ */
-/* Hub composition helpers (OpenPlatform / docs.fireflysoftware.io)   */
+/* Home composition                                                   */
 /* ------------------------------------------------------------------ */
+.ff-home .md-typeset > h1:first-of-type {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 .ff-hero {
-  --ff-hero-ink: var(--md-default-fg-color);
-  --ff-hero-muted: var(--md-default-fg-color--light);
-  --ff-hero-line: #d8d4ca;
-  --ff-hero-amber: #ffb34a;
-  margin: 0 0 1.75rem;
-  max-width: 52rem;
-  padding: 1.35rem 1.25rem 1.4rem;
-  border: 1px solid var(--ff-hero-line);
-  border-radius: 0.25rem;
+  --ff-hero-ink: var(--ff-ink);
+  --ff-hero-muted: var(--ff-muted);
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+  margin: 0 0 2rem;
+  padding: 1.75rem 1.5rem 1.85rem;
+  border: 1px solid var(--ff-line);
+  border-radius: 0.45rem;
+  overflow: hidden;
   background:
-    radial-gradient(ellipse 80% 60% at 100% 0%, rgb(255 179 74 / 0.16), transparent 55%),
-    linear-gradient(165deg, var(--md-code-bg-color) 0%, var(--md-default-bg-color) 72%);
+    radial-gradient(ellipse 90% 70% at 100% -10%, rgb(255 179 74 / 0.28), transparent 55%),
+    radial-gradient(ellipse 50% 45% at -5% 110%, rgb(16 17 15 / 0.06), transparent 50%),
+    linear-gradient(155deg, var(--md-code-bg-color) 0%, var(--md-default-bg-color) 68%);
+  animation: ff-hero-in 0.55s ease-out both;
 }
 
 [data-md-color-scheme="slate"] .ff-hero {
-  --ff-hero-line: #474a42;
   background:
-    radial-gradient(ellipse 80% 60% at 100% 0%, rgb(255 179 74 / 0.12), transparent 55%),
-    linear-gradient(165deg, #1a1b17 0%, #10110f 72%);
+    radial-gradient(ellipse 90% 70% at 100% -10%, rgb(255 179 74 / 0.18), transparent 55%),
+    radial-gradient(ellipse 40% 40% at 0% 100%, rgb(243 241 235 / 0.05), transparent 45%),
+    linear-gradient(155deg, #1a1b17 0%, #10110f 70%);
+}
+
+@media (min-width: 60em) {
+  .ff-hero {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+    align-items: center;
+    padding: 2.1rem 2rem 2.2rem;
+    gap: 2rem;
+  }
+}
+
+.ff-hero__copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.ff-hero__visual {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.ff-hero__visual .ff-iso {
+  margin: 0;
+}
+
+.ff-hero__visual img {
+  border: 0;
+  box-shadow: 0 18px 40px rgb(16 17 15 / 0.12);
+}
+
+[data-md-color-scheme="slate"] .ff-hero__visual img {
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.35);
 }
 
 .ff-hero__kicker {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.7rem;
   color: var(--ff-hero-muted);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .ff-hero__brand {
-  margin: 0 0 0.45rem;
+  margin: 0 0 0.55rem;
   color: var(--ff-hero-ink);
-  font-size: clamp(1.85rem, 4.2vw, 2.55rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
+  font-size: clamp(2.2rem, 5vw, 3.15rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
 }
 
 .ff-hero__lede {
   margin: 0 0 0.85rem;
   color: var(--ff-hero-ink);
-  font-size: 1.02rem;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.45;
-  max-width: 42ch;
+  font-size: clamp(1.02rem, 2vw, 1.18rem);
+  font-weight: 520;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  max-width: 38ch;
 }
 
 .ff-hero__body {
-  margin: 0 0 1rem;
+  margin: 0 0 1.05rem;
   color: var(--ff-hero-muted);
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   line-height: 1.65;
-  max-width: 58ch;
+  max-width: 52ch;
 }
 
 .ff-hero__slogan {
-  margin: 0 0 1.1rem;
+  margin: 0 0 1.2rem;
   color: var(--ff-hero-ink);
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 650;
   letter-spacing: -0.01em;
 }
 
 .ff-hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem 0.75rem;
+  gap: 0.55rem 0.7rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .ff-hero__actions a {
-  display: inline-block;
-  padding: 0.4rem 0.85rem;
-  border: 1px solid var(--ff-hero-line);
-  border-radius: 0.15rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.48rem 0.95rem;
+  border: 1px solid var(--ff-line);
+  border-radius: 0.2rem;
   background: var(--md-default-bg-color);
   color: var(--ff-hero-ink) !important;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
   text-decoration: none !important;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
 }
 
 .ff-hero__actions a:hover {
-  border-color: var(--ff-hero-amber);
-  background: rgb(255 179 74 / 0.12);
+  border-color: var(--ff-amber);
+  background: rgb(255 179 74 / 0.14);
+  transform: translateY(-1px);
 }
 
 .ff-hero__actions a.ff-hero__primary {
-  border-color: var(--ff-hero-amber);
-  background: var(--ff-hero-amber);
+  border-color: var(--ff-amber);
+  background: var(--ff-amber);
   color: #10110f !important;
 }
 
 .ff-hero__actions a.ff-hero__primary:hover {
-  background: #facc8a;
+  background: var(--ff-amber-soft);
 }
 
+@keyframes ff-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Pins */
 .ff-pins {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
-  margin: 0 0 1.5rem;
+  gap: 0.5rem;
+  margin: 0 0 1.85rem;
   padding: 0;
   list-style: none;
   max-width: 52rem;
@@ -311,40 +524,42 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
 .ff-pin {
   display: inline-flex;
   flex-direction: column;
-  gap: 0.12rem;
-  min-width: 7.5rem;
+  gap: 0.15rem;
+  min-width: 7.75rem;
   margin: 0;
-  padding: 0.55rem 0.7rem;
-  border: 1px solid #d8d4ca;
-  border-top: 3px solid #ffb34a;
-  border-radius: 0.15rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--ff-line);
+  border-top: 3px solid var(--ff-amber);
+  border-radius: 0.2rem;
   background: var(--md-code-bg-color);
+  transition: border-color 0.15s ease;
 }
 
-[data-md-color-scheme="slate"] .ff-pin {
-  border-color: #474a42;
+.ff-pin:hover {
+  border-color: var(--ff-amber);
 }
 
 .ff-pin__label {
-  color: var(--md-default-fg-color--light);
+  color: var(--ff-muted);
   font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 650;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .ff-pin__value {
-  color: var(--md-default-fg-color);
+  color: var(--ff-ink);
   font-family: var(--md-code-font);
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
+/* Paths / role cards */
 .ff-paths {
   display: grid;
-  gap: 0.75rem;
-  margin: 0.85rem 0 1.75rem;
+  gap: 0.85rem;
+  margin: 0.95rem 0 1.9rem;
   max-width: 52rem;
   grid-template-columns: 1fr;
 }
@@ -358,135 +573,206 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
 .ff-path {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.4rem;
   margin: 0;
-  padding: 0.95rem 1rem;
-  border: 1px solid #d8d4ca;
-  border-radius: 0.2rem;
-  background: var(--md-default-bg-color);
-  transition: border-color 0.15s ease, transform 0.15s ease;
-}
-
-[data-md-color-scheme="slate"] .ff-path {
-  border-color: #474a42;
+  padding: 1.05rem 1.1rem;
+  border: 1px solid var(--ff-line);
+  border-radius: 0.3rem;
+  background:
+    linear-gradient(180deg, rgb(255 179 74 / 0.06), transparent 42%),
+    var(--md-default-bg-color);
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .ff-path:hover {
-  border-color: #ffb34a;
-  transform: translateY(-1px);
+  border-color: var(--ff-amber);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgb(16 17 15 / 0.06);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .ff-path:hover {
-    transform: none;
-  }
+[data-md-color-scheme="slate"] .ff-path:hover {
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.28);
 }
 
 .ff-path__kicker {
   margin: 0;
-  color: var(--md-default-fg-color--light);
+  color: var(--ff-muted);
   font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-weight: 650;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .ff-path__title {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.25;
 }
 
 .ff-path__title a {
-  color: var(--md-default-fg-color) !important;
+  color: var(--ff-ink) !important;
   text-decoration: none !important;
 }
 
 .ff-path__title a:hover {
-  color: #855414 !important;
+  color: var(--ff-amber-deep) !important;
 }
 
 [data-md-color-scheme="slate"] .ff-path__title a:hover {
-  color: #facc8a !important;
+  color: var(--ff-amber-soft) !important;
 }
 
 .ff-path__meta {
   margin: 0;
-  color: var(--md-default-fg-color--light);
-  font-size: 0.76rem;
-  line-height: 1.5;
+  color: var(--ff-muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
   max-width: none;
 }
 
-/* Topology / layer diagrams */
-.ff-topo {
-  --ff-topo-ink: var(--md-default-fg-color);
-  --ff-topo-muted: var(--md-default-fg-color--light);
-  --ff-topo-paper: var(--md-code-bg-color);
-  --ff-topo-line: #d8d4ca;
-  --ff-topo-amber: #ffb34a;
-  --ff-topo-steel: #62645b;
-  margin: 1.25rem 0 1.75rem;
+/* Illustrated section */
+.ff-section {
+  display: grid;
+  gap: 1.15rem;
+  margin: 1.75rem 0 2rem;
+  max-width: 52rem;
+  align-items: center;
+}
+
+@media (min-width: 56em) {
+  .ff-section--split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  }
+
+  .ff-section--split-rev {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  }
+
+  .ff-section--split-rev .ff-section__visual {
+    order: -1;
+  }
+}
+
+.ff-section__copy > :first-child {
+  margin-top: 0;
+}
+
+.ff-section__visual .ff-iso {
+  margin: 0;
+}
+
+/* Steps (didactic) */
+.ff-steps {
+  counter-reset: ff-step;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0 1.75rem;
+  padding: 0;
+  list-style: none;
   max-width: 52rem;
 }
 
-[data-md-color-scheme="slate"] .ff-topo {
-  --ff-topo-line: #474a42;
-  --ff-topo-steel: #bfb8ab;
+.ff-step {
+  counter-increment: ff-step;
+  position: relative;
+  margin: 0;
+  padding: 0.95rem 1rem 0.95rem 3.1rem;
+  border: 1px solid var(--ff-line);
+  border-radius: 0.25rem;
+  background: var(--md-default-bg-color);
+}
+
+.ff-step::before {
+  content: counter(ff-step, decimal-leading-zero);
+  position: absolute;
+  left: 0.85rem;
+  top: 0.95rem;
+  color: var(--ff-amber-deep);
+  font-family: var(--md-code-font);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+[data-md-color-scheme="slate"] .ff-step::before {
+  color: var(--ff-amber);
+}
+
+.ff-step__title {
+  margin: 0 0 0.3rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ff-step__meta {
+  margin: 0;
+  color: var(--ff-muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  max-width: none;
+}
+
+/* Topology */
+.ff-topo {
+  margin: 1.25rem 0 1.85rem;
+  max-width: 52rem;
 }
 
 .ff-topo__caption {
   margin: 0 0 0.65rem;
-  color: var(--ff-topo-muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
+  color: var(--ff-muted);
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .ff-topo__stack {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
-  padding: 0.85rem 0.95rem;
-  border: 1px solid var(--ff-topo-line);
-  border-radius: 0.2rem;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--ff-line);
+  border-radius: 0.3rem;
   background:
-    linear-gradient(180deg, rgb(255 179 74 / 0.08), transparent 42%),
-    var(--ff-topo-paper);
+    linear-gradient(180deg, rgb(255 179 74 / 0.1), transparent 40%),
+    var(--md-code-bg-color);
 }
 
 .ff-topo__band {
   display: grid;
   gap: 0.35rem;
-  padding: 0.7rem 0.8rem;
-  border-left: 3px solid var(--ff-topo-amber);
-  border-radius: 0.15rem;
+  padding: 0.8rem 0.9rem;
+  border-left: 3px solid var(--ff-amber);
+  border-radius: 0.18rem;
   background: var(--md-default-bg-color);
 }
 
 .ff-topo__band--steel {
-  border-left-color: var(--ff-topo-steel);
+  border-left-color: var(--ff-steel);
 }
 
 .ff-topo__band--core {
-  border-left-color: #855414;
+  border-left-color: var(--ff-amber-deep);
 }
 
 .ff-topo__label {
   margin: 0;
-  color: var(--ff-topo-ink);
-  font-size: 0.78rem;
+  color: var(--ff-ink);
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .ff-topo__meta {
   margin: 0;
-  color: var(--ff-topo-muted);
-  font-size: 0.72rem;
-  line-height: 1.45;
+  color: var(--ff-muted);
+  font-size: 0.74rem;
+  line-height: 1.5;
   max-width: none;
 }
 
@@ -494,30 +780,30 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin: 0.15rem 0 0;
+  margin: 0.2rem 0 0;
   padding: 0;
   list-style: none;
 }
 
 .ff-topo__chips li {
   margin: 0;
-  padding: 0.15rem 0.45rem;
-  border: 1px solid var(--ff-topo-line);
+  padding: 0.18rem 0.48rem;
+  border: 1px solid var(--ff-line);
   border-radius: 0.12rem;
-  background: var(--ff-topo-paper);
-  color: var(--ff-topo-ink);
+  background: var(--md-code-bg-color);
+  color: var(--ff-ink);
   font-family: var(--md-code-font);
   font-size: 0.68rem;
 }
 
 .ff-topo__map {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.7rem;
   grid-template-columns: 1fr;
-  padding: 0.85rem 0.95rem;
-  border: 1px solid var(--ff-topo-line);
-  border-radius: 0.2rem;
-  background: var(--ff-topo-paper);
+  padding: 1rem;
+  border: 1px solid var(--ff-line);
+  border-radius: 0.3rem;
+  background: var(--md-code-bg-color);
 }
 
 @media (min-width: 48em) {
@@ -530,29 +816,129 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  padding: 0.75rem 0.8rem;
-  border-top: 3px solid var(--ff-topo-amber);
-  border-radius: 0.15rem;
+  padding: 0.85rem 0.9rem;
+  border-top: 3px solid var(--ff-amber);
+  border-radius: 0.18rem;
   background: var(--md-default-bg-color);
 }
 
 .ff-topo__card--oss {
-  border-top-color: #855414;
+  border-top-color: var(--ff-amber-deep);
 }
 
 .ff-topo__card--svc {
-  border-top-color: var(--ff-topo-amber);
+  border-top-color: var(--ff-amber);
 }
 
 .ff-topo__card--fw {
-  border-top-color: var(--ff-topo-steel);
+  border-top-color: var(--ff-steel);
   grid-column: 1 / -1;
 }
 
 .ff-topo__kicker {
   margin: 0;
-  color: var(--ff-topo-muted);
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
+  color: var(--ff-muted);
+  font-size: 0.66rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+/* Module browse grid */
+.ff-modules {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1rem 0 1.75rem;
+  max-width: 52rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 42em) {
+  .ff-modules {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 62em) {
+  .ff-modules {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.ff-module {
+  margin: 0;
+  padding: 0.9rem 0.95rem;
+  border: 1px solid var(--ff-line);
+  border-radius: 0.25rem;
+  background: var(--md-default-bg-color);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.ff-module:hover {
+  border-color: var(--ff-amber);
+  transform: translateY(-1px);
+}
+
+.ff-module__id {
+  margin: 0 0 0.25rem;
+  color: var(--ff-muted);
+  font-family: var(--md-code-font);
+  font-size: 0.68rem;
+}
+
+.ff-module__title {
+  margin: 0 0 0.35rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ff-module__title a {
+  color: var(--ff-ink) !important;
+  text-decoration: none !important;
+}
+
+.ff-module__meta {
+  margin: 0;
+  color: var(--ff-muted);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  max-width: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive + a11y                                                  */
+/* ------------------------------------------------------------------ */
+@media (max-width: 44.984375em) {
+  .md-typeset {
+    font-size: 0.82rem;
+  }
+
+  .md-typeset h1 {
+    font-size: 1.7em;
+  }
+
+  .ff-header-brand__product {
+    font-size: 0.88rem;
+  }
+
+  .ff-hero {
+    padding: 1.35rem 1.1rem 1.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .ff-path:hover,
+  .ff-hero__actions a:hover,
+  .ff-module:hover {
+    transform: none;
+  }
 }

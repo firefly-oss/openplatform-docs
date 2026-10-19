@@ -8,6 +8,10 @@ each case.
 Public product page:
 <https://fireflysoftware.io/openplatform/modules/>
 
+## When you need this module
+
+Use `risk` when you need structured records of credit scoring, provisioning, screening cases, or regulatory reporting submissions. Actuarial and bureau systems integrate through adapters; they are not replaced by default.
+
 ## Coverage
 
 - Credit-scoring requests, models, and result records
@@ -15,6 +19,11 @@ Public product page:
 - Case and submission records for screening and reporting workflows
 
 ## How it is used
+
+1. Lending or onboarding journeys request a scoring or screening case.
+2. Domain scoring services orchestrate the case.
+3. Core scoring, provisioning, or regulatory repositories store results and history.
+4. Bureau and screening providers stay behind adapters; significant or out-of-limit decisions go to people with delegated authority.
 
 Connect approved risk calculations to operational records. Actuarial and
 bureau systems integrate through adapters; they are not replaced by
@@ -49,6 +58,8 @@ under `firefly-oss`. This page describes operational records and
 integration points; it does not claim regulatory outcomes for any
 institution.
 
+Parent pin for new work: Jafly **26.10.19** / Boot **4.1.1** / Java **25**.
+
 ## Related modules
 
 - <a href="lending.md">The lending lifecycle</a>
@@ -56,3 +67,7 @@ institution.
 - <a href="customers.md">Customers and relationships</a>
 - <a href="../integrate/adapters.md">Integrate — adapters</a>
 - <a href="catalog.md">Business modules catalogue</a>
+
+## What next
+
+Return to [Lending](lending.md) or [Onboarding](onboarding.md) for the journey that owns the case. Do not invent compliance outcomes in docs or READMEs.

@@ -1,7 +1,6 @@
 # Your first service (Jafly)
 
-How a new Java service fits the Firefly stack when OpenPlatform is pinned
-to Jafly **26.10.19** / Spring Boot **4.1.1** / Java **25**.
+How a new Java service fits the Firefly stack when OpenPlatform is pinned to Jafly **26.10.19** / Spring Boot **4.1.1** / Java **25**. Read [Prerequisites](prerequisites.md) first if your workstation is not set up.
 
 <ul class="ff-pins" markdown="0">
   <li class="ff-pin">
@@ -22,10 +21,7 @@ to Jafly **26.10.19** / Spring Boot **4.1.1** / Java **25**.
   </li>
 </ul>
 
-Prefer Maven Central. Use `-Pjafly-packages` only when Central is
-unreachable (see <a href="../versioning/bom.md">Versioning and BOM</a>).
-`com.firefly:firefly-parent` inherits **26.10.19** for OpenPlatform
-modules.
+Prefer Maven Central. Use `-Pjafly-packages` only when Central is unreachable (see [Versioning and BOM](../versioning/bom.md)). `com.firefly:firefly-parent` inherits **26.10.19** for OpenPlatform modules.
 
 ## Inheritance chain
 
@@ -35,9 +31,7 @@ org.fireflyframework:fireflyframework-parent  (26.10.19, Boot 4.1.1, Java 25)
         └── your module                       (com.firefly:<artifactId>)
 ```
 
-Declare `firefly-parent` as the Maven parent. You inherit framework BOM
-management, OpenAPI packaging conventions, and Boot plugin configuration
-without redeclaring Boot versions in every module.
+Declare `firefly-parent` as the Maven parent. You inherit framework BOM management, OpenAPI packaging conventions, and Boot plugin configuration without redeclaring Boot versions in every module.
 
 Example reactor parent (pattern used by existing `domain-*` services):
 
@@ -53,13 +47,11 @@ Example reactor parent (pattern used by existing `domain-*` services):
 <packaging>pom</packaging>
 ```
 
-Install or resolve `com.firefly:firefly-parent` from your organisation’s
-mirror of `firefly-oss/firefly-parent` before building local modules.
+Install or resolve `com.firefly:firefly-parent` from your organisation’s mirror of `firefly-oss/firefly-parent` before building local modules.
 
 ## Choose a layer, then mirror a neighbour
 
-OpenPlatform modules follow naming and packaging conventions already
-visible under `firefly-oss`:
+OpenPlatform modules follow naming and packaging conventions already visible under `firefly-oss`:
 
 | Prefix | Use when |
 |--------|----------|
@@ -68,17 +60,26 @@ visible under `firefly-oss`:
 | `exp-*` | You expose a channel journey (BFF) over domain SDKs |
 | `library-*` | You share rail or provider interfaces without a deployable service |
 
-There is no separate published Maven archetype for OpenPlatform today.
-The practical path is:
+There is no separate published Maven archetype for OpenPlatform today. The practical path is:
 
-1. Pick the module id you are extending
-   (<a href="../modules/catalog.md">catalogue</a>).
-2. Clone a neighbouring repository with the same prefix and copy its
-   multi-module layout (`-interfaces` / `-models` or `-infra`, `-core`,
-   `-web`, `-sdk` as applicable).
-3. Rename artifact ids and base packages under `com.firefly`.
-4. Keep the parent as `com.firefly:firefly-parent` so you stay on
-   **26.10.19**.
+<ol class="ff-steps" markdown="0">
+  <li class="ff-step">
+    <p class="ff-step__title">Pick the module id</p>
+    <p class="ff-step__meta">Use the <a href="../modules/catalog/">catalogue</a> so your artifact names match an existing bounded context.</p>
+  </li>
+  <li class="ff-step">
+    <p class="ff-step__title">Clone a neighbour with the same prefix</p>
+    <p class="ff-step__meta">Copy its multi-module layout (<code>-interfaces</code> / <code>-models</code> or <code>-infra</code>, <code>-core</code>, <code>-web</code>, <code>-sdk</code> as applicable).</p>
+  </li>
+  <li class="ff-step">
+    <p class="ff-step__title">Rename artifacts and packages</p>
+    <p class="ff-step__meta">Keep base packages under <code>com.firefly</code> and stay consistent with neighbours in that context.</p>
+  </li>
+  <li class="ff-step">
+    <p class="ff-step__title">Keep firefly-parent</p>
+    <p class="ff-step__meta">Do not override Boot or Java levels locally. Stay on inherited <strong>26.10.19</strong>.</p>
+  </li>
+</ol>
 
 Good starting mirrors:
 
@@ -98,47 +99,31 @@ your-service/
 └── your-service-sdk/                # generated client for consumers
 ```
 
-`core-*` services often use `-models` (entities, repositories, migrations)
-instead of `-infra`. Match the neighbour you copied.
+`core-*` services often use `-models` (entities, repositories, migrations) instead of `-infra`. Match the neighbour you copied.
 
 ## Honest Boot 4.1 notes
 
-OpenPlatform’s **current** parent train is Spring Boot **4.1.1** through
-Jafly **26.10.19**. That is the pin to target for new work.
+OpenPlatform’s **current** parent train is Spring Boot **4.1.1** through Jafly **26.10.19**. That is the pin to target for new work.
 
 Be aware that:
 
-- Many module README badges and older docs still say “Spring Boot 3.x”.
-  Those lines can lag the parent POM. Always trust the parent chain
-  (`firefly-parent` through `fireflyframework-parent` **26.10.19**), not a
-  badge.
-- Boot 4 sits on a newer Spring generation than Boot 3. When you lift an
-  older module, expect dependency and configuration review (Jakarta APIs,
-  actuator and security defaults, and plugin versions from the parent).
-- Do not mix Boot 3 and Boot 4 coordinates in one reactor. If a dependency
-  is not yet on the **26.10.19** BOM, raise that in the module owning the
-  dependency rather than overriding Boot in your POM.
-- Framework behaviour (cache, security, ECM, EDA, CQRS, workflows) comes
-  from published Jafly artifacts. Prefer those modules over copying
-  framework code into a business service.
+- Many module README badges and older docs still say “Spring Boot 3.x”. Those lines can lag the parent POM. Always trust the parent chain (`firefly-parent` through `fireflyframework-parent` **26.10.19**), not a badge.
+- Boot 4 sits on a newer Spring generation than Boot 3. When you lift an older module, expect dependency and configuration review (Jakarta APIs, actuator and security defaults, and plugin versions from the parent).
+- Do not mix Boot 3 and Boot 4 coordinates in one reactor. If a dependency is not yet on the **26.10.19** BOM, raise that in the module owning the dependency rather than overriding Boot in your POM.
+- Framework behaviour (cache, security, ECM, EDA, CQRS, workflows) comes from published Jafly artifacts. Prefer those modules over copying framework code into a business service.
 
-Published Jafly docs:
-<https://fireflyframework.github.io/fireflyframework-jafly/>
+Published Jafly docs: <https://fireflyframework.github.io/fireflyframework-jafly/>
 
 ## Build and run sketch
 
-From the service repository (after JDK **25** and a resolved
-`firefly-parent`):
+From the service repository (after JDK **25** and a resolved `firefly-parent`):
 
 ```sh
 ./mvnw -q verify
 # or: mvn -q verify
 ```
 
-Run the `-web` module with the Spring Boot plugin as that repository’s
-README describes (profiles, local compose files, and ports differ per
-service). Prefer Central-resolved `org.fireflyframework:*` artifacts at
-**26.10.19**.
+Run the `-web` module with the Spring Boot plugin as that repository’s README describes (profiles, local compose files, and ports differ per service). Prefer Central-resolved `org.fireflyframework:*` artifacts at **26.10.19**.
 
 Optional packages profile when Central is unreachable:
 
@@ -149,33 +134,23 @@ Optional packages profile when Central is unreachable:
 ## Expose HTTP and stay behind adapters
 
 1. Keep public HTTP in the `-web` artifact.
-2. Enable OpenAPI generation in `-web` when the parent conventions
-   require it (`openapi.gen.skip` is true by default on
-   `firefly-parent`; flip it in modules that publish an SDK).
-3. Call other OpenPlatform services through their published `-sdk`
-   artifacts where available.
-4. Put external systems behind adapters (see
-   <a href="../integrate/adapters.md">Integrate</a>). Do not embed
-   provider SDKs in every application service.
+2. Enable OpenAPI generation in `-web` when the parent conventions require it (`openapi.gen.skip` is true by default on `firefly-parent`; flip it in modules that publish an SDK).
+3. Call other OpenPlatform services through their published `-sdk` artifacts where available.
+4. Put external systems behind adapters (see [Integrate](../integrate/adapters.md)). Do not embed provider SDKs in every application service.
 
 ## Suggested first steps (checklist)
 
-1. Confirm JDK **25** and Maven can resolve
-   `org.fireflyframework:fireflyframework-parent:26.10.19` from Central.
-2. Ensure `com.firefly:firefly-parent` is available (clone/install
-   `firefly-oss/firefly-parent` if your mirror does not publish it yet).
-3. Mirror a `core-*`, `domain-*`, or `exp-*` neighbour in the same bounded
-   context.
-4. Set the parent to `com.firefly:firefly-parent` and keep
-   `fireflyframework.bom.version` inherited (**26.10.19**).
-5. Align reactive or servlet style with neighbouring modules in that
-   context (most OpenPlatform services use WebFlux).
+1. Confirm JDK **25** and Maven can resolve `org.fireflyframework:fireflyframework-parent:26.10.19` from Central.
+2. Ensure `com.firefly:firefly-parent` is available (clone/install `firefly-oss/firefly-parent` if your mirror does not publish it yet).
+3. Mirror a `core-*`, `domain-*`, or `exp-*` neighbour in the same bounded context.
+4. Set the parent to `com.firefly:firefly-parent` and keep `fireflyframework.bom.version` inherited (**26.10.19**).
+5. Align reactive or servlet style with neighbouring modules in that context (most OpenPlatform services use WebFlux).
 6. Wire OpenAPI / SDK only when you need a published client.
 7. Add adapter boundaries for anything outside Firefly.
 
-## Next
+## What next
 
-- <a href="prerequisites.md">Prerequisites</a>
-- <a href="../architecture/overview.md">Architecture overview</a>
-- <a href="../modules/catalog.md">Business modules catalogue</a>
-- <a href="../versioning/bom.md">Versioning and BOM</a>
+- [Architecture overview](../architecture/overview.md) for band rationale
+- [Business modules catalogue](../modules/catalog.md) for the context you own
+- [Adapter pattern](../integrate/adapters.md) before you touch a provider SDK
+- [Versioning and BOM](../versioning/bom.md) when you document pins in a README

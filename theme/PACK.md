@@ -22,3 +22,7 @@ cp -R theme/assets/fonts/. docs/assets/fonts/
 ## Brand
 
 Firefly · OpenPlatform · LendingOS · Attitude makes the difference.
+
+## Header branding
+
+`site_name` is **OpenPlatform** only. The Firefly wordmark is `theme.logo` (compact reversed). `overrides/partials/header.html` renders logo + `|` + OpenPlatform in Manrope.

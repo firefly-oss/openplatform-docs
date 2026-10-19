@@ -1,7 +1,9 @@
 # Firefly OpenPlatform developer documentation hub.
 # Theme pack: vendored from firefly-oss/brand-kit dist/Firefly-Brand-Kit/16-MkDocs/
 
-site_name: Firefly OpenPlatform
+# site_name is the product only. The Firefly wordmark lives in theme.logo
+# so the header reads: [logo] | OpenPlatform (see overrides/partials/header.html).
+site_name: OpenPlatform
 site_description: Developer documentation for Firefly OpenPlatform — business modules, architecture, and how to build on the platform.
 site_author: Firefly Software
 site_url: https://docs.fireflysoftware.io/
@@ -17,7 +19,7 @@ theme:
   name: material
   language: en
   font: false
-  logo: assets/brand/firefly-logo-primary-reversed.svg
+  logo: assets/brand/firefly-logo-compact-reversed.svg
   favicon: assets/brand/favicon.svg
   custom_dir: theme/overrides
   palette:
@@ -37,13 +39,20 @@ theme:
         name: Switch to light mode
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
+    - navigation.expand
+    - navigation.indexes
     - navigation.top
     - navigation.footer
     - navigation.tracking
+    - navigation.instant
+    - navigation.instant.progress
     - search.suggest
     - search.highlight
+    - search.share
     - content.code.copy
+    - content.tabs.link
     - toc.follow
 
 plugins:

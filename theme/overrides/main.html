@@ -1,10 +1,38 @@
 {#
-  Firefly MkDocs Material override stub.
-  Extend Material's main.html when a product needs site-wide chrome.
-  Keep overrides minimal; prefer CSS tokens in stylesheets/extra.css.
+  Firefly OpenPlatform Material shell.
+  Homepage gets ff-home so the hero can go edge-strong without fighting
+  Material's default article chrome.
 #}
 {% extends "base.html" %}
 
 {% block announce %}
-  {# Optional product announcement bar. Leave empty by default. #}
+{% endblock %}
+
+{% block htmltitle %}
+  {% if page and page.is_homepage %}
+    <title>OpenPlatform — Firefly developer docs</title>
+  {% elif page and page.meta and page.meta.title %}
+    <title>{{ page.meta.title }} — OpenPlatform</title>
+  {% elif page and page.title and not page.is_homepage %}
+    <title>{{ page.title | striptags }} — OpenPlatform</title>
+  {% else %}
+    <title>{{ config.site_name }}</title>
+  {% endif %}
+{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% if page and page.is_homepage %}
+  <meta name="ff-page" content="home" />
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if page and page.is_homepage %}
+  <div class="ff-home">
+    {{ super() }}
+  </div>
+  {% else %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}

@@ -1,16 +1,24 @@
 # Architecture overview
 
-OpenPlatform keeps business modules composable, shared services reusable,
-and systems outside Firefly behind adapters. The picture below is the
-shape you will see across `firefly-oss` repositories.
+OpenPlatform keeps business modules composable, shared services reusable, and systems outside Firefly behind adapters. The picture below is the shape you will see across `firefly-oss` repositories.
 
-<img src="../diagrams/openplatform-layers.svg" alt="OpenPlatform service bands on the current Jafly train" width="960" />
+<div class="ff-iso" markdown="0">
+  <img class="ff-iso__light" src="/assets/isometrics/layers-light.webp" alt="OpenPlatform service bands from experience to adapters" width="784" height="441" />
+  <img class="ff-iso__dark" src="/assets/isometrics/layers-dark.webp" alt="OpenPlatform service bands from experience to adapters" width="784" height="441" />
+  <p class="ff-iso__caption">Experience, domain, core, and adapter planes.</p>
+</div>
+
+<img src="/diagrams/openplatform-layers.svg" alt="OpenPlatform service bands on the current Jafly train" width="960" />
+
+## Why the bands exist
+
+A single deployable that mixes HTTP for channels, domain rules, and persistence becomes hard to change when one journey needs a different pace from another. OpenPlatform splits that work into three repository conventions so teams can evolve a bounded context without rewriting everything above or below it.
+
+Adapters sit at the edge. Provider SDKs and institution cores stay out of domain services so you can swap a rail, a PSP, or a document store without rewriting every application that starts a payment or stores a signed agreement.
 
 ## Service bands
 
-OpenPlatform services follow a three-band repository convention. Channels
-and products sit above; institution systems and providers sit behind
-adapters.
+Channels and products sit above; institution systems and providers sit behind adapters.
 
 <div class="ff-topo" role="img" aria-label="OpenPlatform layers from experience to core, with adapters at the boundary">
   <p class="ff-topo__caption">OpenPlatform service bands</p>
@@ -57,14 +65,11 @@ Around those bands:
 - **Process** coordinates across modules (orchestration, workflows such as Weave).
 - **Shared / identity** covers users, notifications, reference data, and related common services.
 
-Repository naming for the service bands is summarised in the
-<a href="../modules/catalog.md">business modules catalogue</a>.
+Repository naming for the service bands is summarised in the [business modules catalogue](../modules/catalog.md).
 
 ## Topology: organisations and products
 
-Public OpenPlatform modules live under **firefly-oss**. Commercial
-industry applications and packaged services are published under
-**firefly-serviceOS**. Both sit on the same Jafly runtime train.
+Public OpenPlatform modules live under **firefly-oss**. Commercial industry applications and packaged services are published under **firefly-serviceOS**. Both sit on the same Jafly runtime train.
 
 <div class="ff-topo" role="img" aria-label="firefly-serviceOS industry solutions on OpenPlatform modules in firefly-oss, on Jafly">
   <p class="ff-topo__caption">Where code and products live</p>
@@ -91,38 +96,46 @@ industry applications and packaged services are published under
 
 The website and this hub share the same OpenPlatform module ids:
 
-`customers`, `onboarding`, `products`, `agreements`, `distribution`,
-`accounts`, `payments`, `lending`, `risk`, plus shared identity services.
+`customers`, `onboarding`, `products`, `agreements`, `distribution`, `accounts`, `payments`, `lending`, `risk`, plus shared identity services.
 
-See the <a href="../modules/catalog.md">business modules catalogue</a>
-for purpose, coverage, and repository names.
+See the [business modules catalogue](../modules/catalog.md) for purpose, coverage, and repository names.
 
 ## Integration grammar
 
-A journey step may touch several layers (channel, process, modules, core,
-third party). Third parties and legacy cores stay behind adapters so
-provider details do not leak into every application. Worked adapter
-guides:
+A journey step may touch several layers (channel, process, modules, core, third party). Third parties and legacy cores stay behind adapters so provider details do not leak into every application.
 
-- <a href="../integrate/adapters.md">Adapter pattern</a>
-- <a href="../integrate/library-psps.md">PSP library (`library-psps`)</a>
-- <a href="../integrate/library-rails.md">Payment rails library (`library-rails`)</a>
+<div class="ff-iso" markdown="0">
+  <img class="ff-iso__light" src="/assets/isometrics/adapter-light.webp" alt="Adapter plugins between OpenPlatform and external systems" width="784" height="441" />
+  <img class="ff-iso__dark" src="/assets/isometrics/adapter-dark.webp" alt="Adapter plugins between OpenPlatform and external systems" width="784" height="441" />
+  <p class="ff-iso__caption">Ports and adapters keep providers at the edge.</p>
+</div>
+
+Worked adapter guides:
+
+- [Adapter pattern](../integrate/adapters.md)
+- [PSP library (`library-psps`)](../integrate/library-psps.md)
+- [Payment rails library (`library-rails`)](../integrate/library-rails.md)
+
+APIs and events form the backbone between modules:
+
+<div class="ff-iso" markdown="0">
+  <img class="ff-iso__light" src="/assets/isometrics/apis-light.webp" alt="APIs and events backbone across OpenPlatform modules" width="784" height="441" />
+  <img class="ff-iso__dark" src="/assets/isometrics/apis-dark.webp" alt="APIs and events backbone across OpenPlatform modules" width="784" height="441" />
+  <p class="ff-iso__caption">Contracts between services stay explicit.</p>
+</div>
 
 ## AI stance
 
-Where AI participates in a journey, it decides within approved limits,
-explained, recorded, and open to human review. Decisions with significant
-effects on people, or beyond delegated limits, go to people with
-delegated authority. Platform documentation should never claim fully
-autonomous replacement of staff.
+Where AI participates in a journey, it decides within approved limits, explained, recorded, and open to human review. Decisions with significant effects on people, or beyond delegated limits, go to people with delegated authority. Platform documentation must not describe AI as replacing staff outside those limits.
 
 ## Runtime note
 
-Module services are Java Spring applications on the framework train
-pinned by OpenPlatform (Boot **4.1.1** via
-`fireflyframework-parent` **26.10.19**, Java **25**). Workflow
-coordination may use Firefly Weave. Treat each runtime’s docs as
-authoritative for that layer.
+Module services are Java Spring applications on the framework train pinned by OpenPlatform (Boot **4.1.1** via `fireflyframework-parent` **26.10.19**, Java **25**). Workflow coordination may use Firefly Weave. Treat each runtime’s docs as authoritative for that layer.
 
-See <a href="../versioning/bom.md">Versioning and BOM</a> and
-<a href="../ecosystem.md">Ecosystem</a>.
+See [Versioning and BOM](../versioning/bom.md) and [Ecosystem](../ecosystem.md).
+
+## What next
+
+1. [Prerequisites](../start/prerequisites.md) if you are setting up a workstation.
+2. [First service](../start/first-service.md) if you are creating or extending a module.
+3. [Module catalogue](../modules/catalog.md) if you already know the bounded context.
