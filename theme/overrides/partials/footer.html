@@ -1,0 +1,100 @@
+{#-
+  Firefly OpenPlatform footer.
+  Prev/next navigation, multi-column useful links, then copyright meta.
+-#}
+<footer class="md-footer">
+  {% if "navigation.footer" in features %}
+    {% if page.previous_page or page.next_page %}
+      {% if page.meta and page.meta.hide %}
+        {% set hidden = "hidden" if "footer" in page.meta.hide %}
+      {% endif %}
+      <nav class="md-footer__inner md-grid" aria-label="{{ lang.t('footer') }}" {{ hidden }}>
+        {% if page.previous_page %}
+          {% set direction = lang.t("footer.previous") %}
+          <a href="{{ page.previous_page.url | url }}" class="md-footer__link md-footer__link--prev" aria-label="{{ direction }}: {{ page.previous_page.title | e }}">
+            <div class="md-footer__button md-icon">
+              {% set icon = config.theme.icon.previous or "material/arrow-left" %}
+              {% include ".icons/" ~ icon ~ ".svg" %}
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                {{ direction }}
+              </span>
+              <div class="md-ellipsis">
+                {{ page.previous_page.title }}
+              </div>
+            </div>
+          </a>
+        {% endif %}
+        {% if page.next_page %}
+          {% set direction = lang.t("footer.next") %}
+          <a href="{{ page.next_page.url | url }}" class="md-footer__link md-footer__link--next" aria-label="{{ direction }}: {{ page.next_page.title | e }}">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                {{ direction }}
+              </span>
+              <div class="md-ellipsis">
+                {{ page.next_page.title }}
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              {% set icon = config.theme.icon.next or "material/arrow-right" %}
+              {% include ".icons/" ~ icon ~ ".svg" %}
+            </div>
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% endif %}
+
+  <div class="ff-footer">
+    <div class="ff-footer__inner md-grid">
+      <div class="ff-footer__brand">
+        <p class="ff-footer__product">OpenPlatform</p>
+        <p class="ff-footer__slogan">Attitude makes the difference.</p>
+        <p class="ff-footer__blurb">Developer hub for Firefly OpenPlatform modules on the Jafly train.</p>
+      </div>
+      <nav class="ff-footer__cols" aria-label="Footer">
+        <div class="ff-footer__col">
+          <p class="ff-footer__heading">Docs</p>
+          <ul>
+            <li><a href="{{ 'start/prerequisites/' | url }}">Start here</a></li>
+            <li><a href="{{ 'architecture/overview/' | url }}">Architecture</a></li>
+            <li><a href="{{ 'modules/catalog/' | url }}">Modules</a></li>
+            <li><a href="{{ 'versioning/bom/' | url }}">Versioning</a></li>
+            <li><a href="{{ 'contribute/' | url }}">Contribute</a></li>
+          </ul>
+        </div>
+        <div class="ff-footer__col">
+          <p class="ff-footer__heading">Modules</p>
+          <ul>
+            <li><a href="{{ 'modules/customers/' | url }}">Customers</a></li>
+            <li><a href="{{ 'modules/lending/' | url }}">Lending</a></li>
+            <li><a href="{{ 'modules/payments/' | url }}">Payments</a></li>
+            <li><a href="{{ 'modules/shared/' | url }}">Shared services</a></li>
+            <li><a href="{{ 'insurance/' | url }}">Insurance</a></li>
+          </ul>
+        </div>
+        <div class="ff-footer__col">
+          <p class="ff-footer__heading">Elsewhere</p>
+          <ul>
+            <li><a href="https://fireflysoftware.io/" rel="noopener">fireflysoftware.io</a></li>
+            <li><a href="https://fireflysoftware.io/openplatform/" rel="noopener">OpenPlatform product</a></li>
+            <li><a href="https://github.com/firefly-oss" rel="noopener">GitHub firefly-oss</a></li>
+            <li><a href="https://fireflyframework.github.io/fireflyframework-jafly/" rel="noopener">Jafly docs</a></li>
+            <li><a href="{{ config.repo_url }}" rel="noopener">This repository</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      {% include "partials/copyright.html" %}
+      {% if config.extra.social %}
+        {% include "partials/social.html" %}
+      {% endif %}
+    </div>
+  </div>
+</footer>

@@ -2,48 +2,57 @@
 
 **Development area:** Underwriting operations (insurance)
 
-Evidence, underwriting rules, referrals, and decisions under the
-insurer’s authority.
+Evidence, underwriting rules, referrals, and decisions under the insurer’s authority. OpenPlatform supplies case-shaped foundations from onboarding and risk; underwriting authority stays with the insurer.
 
-Public description:
-<https://fireflysoftware.io/openplatform/#insurance-development>
+Public description: <https://fireflysoftware.io/openplatform/#insurance-development>
 
-## Intent
+## Why this area exists
 
-Support submission intake, evidence collection, rule evaluation, and
-referral to people with delegated authority. AI may prepare and decide
-**within approved limits**, with explanation and a path to human review.
-Decisions beyond those limits stay with the insurer’s delegated roles.
+Underwriting needs structured evidence and decision records without embedding every rules engine or actuarial system in a journey service. This area describes how to reuse onboarding-style cases and risk records while keeping significant decisions with people who have delegated authority.
+
+## When to use it
+
+Use this area when designing referral, evidence, or decision flows for insurance underwriting on OpenPlatform foundations. For credit scoring in lending, prefer the [risk](../modules/risk.md) module.
 
 ## Foundations already in OpenPlatform
 
 | Module | Why it matters for underwriting |
-|--------|--------------------------------|
-| <a href="../modules/customers.md">Customers</a> | Parties on the submission |
-| <a href="../modules/onboarding.md">Onboarding</a> | Evidence and verification patterns |
-| <a href="../modules/products.md">Products</a> | Product rules and documentation requirements |
-| <a href="../modules/agreements.md">Agreements</a> | Document and agreement context |
-| <a href="../modules/distribution.md">Distribution</a> | Broker and agent submissions |
-| <a href="../modules/risk.md">Risk</a> | Structured decision and case records (lending-oriented today; patterns reuse) |
+|--------|---------------------------------|
+| [Onboarding](../modules/onboarding.md) | Long-running evidence collection and case status |
+| [Customers](../modules/customers.md) | Party identifiers for applicants and insureds |
+| [Products](../modules/products.md) | Product configuration; rating engines via adapters |
+| [Risk](../modules/risk.md) | Structured review and decision records |
+| [Shared services](../modules/shared.md) | Identity, SCA, and notifications |
 
-## Repositories and APIs
+## Layer map
 
-There is **no dedicated** OpenPlatform underwriting module repository
-set published under `firefly-oss` for this development area yet.
+No dedicated underwriting repositories are published under `firefly-oss` for this area yet.
 
-Use foundation OpenAPI:
-<a href="../reference/openapi.md">OpenAPI index</a>.
+| Expected layer | Status (2026-10-18/19) |
+|----------------|------------------------|
+| Experience | Not published |
+| Domain | Not published |
+| Core | Not published |
+| Adapters | Rules engines, actuarial, and bureau systems behind [adapters](../integrate/adapters.md) |
 
-Event contracts: **stub** —
-<a href="../reference/events.md">Event contracts</a>.
+## How to start
+
+1. Reuse [onboarding](../modules/onboarding.md) patterns for evidence over time.
+2. Store operational decision records using [risk](../modules/risk.md) shapes where they fit; do not invent compliance outcomes in docs.
+3. Keep rating and actuarial systems behind adapters.
+4. Parent pin: **26.10.19** / Boot **4.1.1** / Java **25**.
+
+## OpenAPI and events
+
+Foundation specs: [OpenAPI index](../reference/openapi.md). Events: [stub](../reference/events.md).
 
 ## Maturity notes
 
-Aligned with the website “in development” language. This hub does not
-claim autonomous underwriting outcomes or regulatory approval.
+In development on the product site. Decisions with significant effects on people, or beyond delegated limits, go to people with delegated authority. AI decides within approved limits, explained, recorded, and open to human review.
 
-## Related areas
+## Related
 
-- <a href="policy-lifecycle.md">Policy lifecycle</a>
-- <a href="claims.md">Claims operations</a>
-- <a href="index.md">Insurance development areas</a>
+- [Policy lifecycle](policy-lifecycle.md)
+- [Claims operations](claims.md)
+- [Risk](../modules/risk.md)
+- [Insurance development areas](index.md)

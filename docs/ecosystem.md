@@ -3,8 +3,8 @@
 Firefly Software ships an open platform, industry products, and shared frameworks. This page places **OpenPlatform** in that landscape so you know which GitHub organisation owns what before you clone a repository.
 
 <div class="ff-iso" markdown="0">
-  <img class="ff-iso__light" src="/assets/isometrics/assembly-light.webp" alt="Industry products assembled on OpenPlatform modules" width="784" height="441" />
-  <img class="ff-iso__dark" src="/assets/isometrics/assembly-dark.webp" alt="Industry products assembled on OpenPlatform modules" width="784" height="441" />
+  <img class="ff-iso__light" src="/assets/isometrics/assembly-light.svg" alt="Industry products assembled on OpenPlatform modules" width="1600" height="900" />
+  <img class="ff-iso__dark" src="/assets/isometrics/assembly-dark.svg" alt="Industry products assembled on OpenPlatform modules" width="1600" height="900" />
   <p class="ff-iso__caption">Products on modules on frameworks (brand kit isometric).</p>
 </div>
 

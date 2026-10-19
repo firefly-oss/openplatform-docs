@@ -10,7 +10,7 @@ site_url: https://docs.fireflysoftware.io/
 repo_url: https://github.com/firefly-oss/openplatform-docs
 repo_name: firefly-oss/openplatform-docs
 edit_uri: edit/main/docs/
-copyright: Copyright 2026 Firefly Software
+copyright: Copyright 2026 Firefly Software Foundation & Firefly Software Solutions Inc
 strict: true
 docs_dir: docs
 site_dir: site

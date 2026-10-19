@@ -2,74 +2,98 @@
 
 **Module id:** `lending`
 
-From application, offer, and decision to the records that service a loan.
+From application, offer, and decision records through servicing, collateral, and collections. Credit policy and final decisions stay with the institution. Product experiences such as LendingOS compose this module with customers, products, agreements, and risk.
 
-Public product page:
-<https://fireflysoftware.io/openplatform/modules/>
+Public product page: <https://fireflysoftware.io/openplatform/modules/>
 
-## When you need this module
+## Why this module exists
 
-Use `lending` for origination, servicing, collateral, and collections records. Credit policy and final decisions stay with the institution. Product experiences such as LendingOS compose this module with customers, products, agreements, and risk.
+Lending spans many bounded contexts (origination, servicing, collateral, collections, product lines). Putting them in one monolith makes every change a release risk. OpenPlatform publishes separate core/domain repositories so teams can evolve origination without rewriting servicing, and product-line cores (personal loans, mortgage, and others) can specialise without forking the whole stack.
 
-## Coverage
+## When to use it
 
-- Applications, documents, offers, and decision records
-- Disbursements, repayment schedules, and servicing events
-- Collateral, collections, and product-specific data
+Use `lending` for origination, servicing, collateral, collections, and product-line loan data.
 
-## How it is used
+Credit scoring and bureau calls belong in [risk](risk.md) and adapters, not inside every lending core. Credit policy ownership remains with the institution.
 
-1. Experience lending APIs start applications and servicing journeys.
-2. Domain origination and servicing services coordinate commands.
-3. Core repositories persist applications, offers, schedules, collateral, and collections.
-4. Risk scoring and bureau calls sit in [risk](risk.md) and adapters, not inside every lending core.
+## Key concepts
 
-Compose consumer or business finance. Credit policy and decisions stay
-with the institution. Product experiences such as LendingOS compose this
-module with customers, products, agreements, and risk.
+| Concept | Meaning in this module |
+|---------|------------------------|
+| Origination | Application, offer, and decision records |
+| Servicing | Schedules, disbursements, and servicing events |
+| Collateral | Assets linked to applications or loans |
+| Collections | Delinquency and collections cases |
+| Product line | Specialised core/domain for personal loans, mortgage, asset finance, and similar |
 
-## Key repositories
+## Layer map (repos that exist)
+
+### Cross-cutting lending
 
 | Repository | Layer | Role |
 |------------|-------|------|
-| <a href="https://github.com/firefly-oss/core-lending-loan-origination"><code>core-lending-loan-origination</code></a> | `core-*` | Application, offer, and decision persistence |
-| <a href="https://github.com/firefly-oss/domain-lending-loan-origination"><code>domain-lending-loan-origination</code></a> | `domain-*` | Origination domain orchestration |
-| <a href="https://github.com/firefly-oss/core-lending-loan-servicing"><code>core-lending-loan-servicing</code></a> | `core-*` | Servicing records and schedules |
-| <a href="https://github.com/firefly-oss/domain-lending-loan-servicing"><code>domain-lending-loan-servicing</code></a> | `domain-*` | Servicing domain orchestration |
-| <a href="https://github.com/firefly-oss/core-lending-collateral-management"><code>core-lending-collateral-management</code></a> | `core-*` | Collateral linked to applications |
-| <a href="https://github.com/firefly-oss/core-lending-delinquency-collections"><code>core-lending-delinquency-collections</code></a> | `core-*` | Delinquency and collections |
+| [`core-lending-loan-origination`](https://github.com/firefly-oss/core-lending-loan-origination) | `core-*` | Application, offer, and decision persistence |
+| [`domain-lending-loan-origination`](https://github.com/firefly-oss/domain-lending-loan-origination) | `domain-*` | Origination domain orchestration |
+| [`core-lending-loan-servicing`](https://github.com/firefly-oss/core-lending-loan-servicing) | `core-*` | Servicing records and schedules |
+| [`domain-lending-loan-servicing`](https://github.com/firefly-oss/domain-lending-loan-servicing) | `domain-*` | Servicing domain orchestration |
+| [`core-lending-collateral-management`](https://github.com/firefly-oss/core-lending-collateral-management) | `core-*` | Collateral linked to applications |
+| [`core-lending-delinquency-collections`](https://github.com/firefly-oss/core-lending-delinquency-collections) | `core-*` | Delinquency and collections |
+| [`exp-lending`](https://github.com/firefly-oss/exp-lending) | `exp-*` | Lending portal BFF (simulation, application, underwriting hand-off) |
 
-Product-line repositories also under `firefly-oss` include personal loans,
-mortgage, asset finance, credit cards, and supply-chain finance
-(`core-lending-*` / `domain-lending-*`). Experience layer:
-<a href="https://github.com/firefly-oss/exp-lending"><code>exp-lending</code></a>.
+### Product-line repositories
 
-## API and events
+| Repository | Layer | Role |
+|------------|-------|------|
+| [`core-lending-personal-loans`](https://github.com/firefly-oss/core-lending-personal-loans) | `core-*` | Personal-loan product data |
+| [`domain-lending-personal-loans`](https://github.com/firefly-oss/domain-lending-personal-loans) | `domain-*` | Personal-loan domain orchestration |
+| [`core-lending-mortgage`](https://github.com/firefly-oss/core-lending-mortgage) | `core-*` | Mortgage product data (SDK artifact uses `mortgages`) |
+| [`core-lending-asset-finance`](https://github.com/firefly-oss/core-lending-asset-finance) | `core-*` | Asset-finance product data |
+| [`domain-lending-asset-finance`](https://github.com/firefly-oss/domain-lending-asset-finance) | `domain-*` | Asset-finance domain orchestration |
+| [`core-lending-credit-cards`](https://github.com/firefly-oss/core-lending-credit-cards) | `core-*` | Revolving credit-card lending records |
+| [`core-lending-supply-chain-finance`](https://github.com/firefly-oss/core-lending-supply-chain-finance) | `core-*` | Supply-chain finance product data |
 
-OpenAPI paths for this module:
-<a href="../reference/openapi.md#lending-lending">OpenAPI index — lending</a>
-(includes product-line specs; `firefly-lending` mock YAML is marked
-sample only).
+**Gap:** no `domain-lending-mortgage`, `domain-lending-credit-cards`, or `domain-lending-supply-chain-finance` in the inventory. Product-line domain coverage is uneven; confirm each README before planning a full vertical.
 
-Event contracts: <a href="../reference/events.md">stub until published</a>.
+**Risk-adjacent (documented under [risk](risk.md)):** `core-lending-credit-scoring`, `domain-lending-credit-scoring`, `core-lending-provisioning-risk`, `core-lending-regulatory-compliance`.
+
+**Sample only:** [`firefly-lending`](https://github.com/firefly-oss/firefly-lending) mock OpenAPI is marked sample in the [OpenAPI index](../reference/openapi.md#lending-lending) — not the production module contract.
+
+## How a typical call path looks
+
+1. `exp-lending` starts applications and servicing journeys.
+2. Domain origination or servicing services coordinate commands.
+3. Core repositories persist applications, offers, schedules, collateral, and collections.
+4. Product-line cores hold specialised loan data when the product requires it.
+5. Scoring and bureau calls go to [risk](risk.md) and adapters.
+
+## How to start
+
+1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**. Several READMEs still show older Boot badges — verify the parent POM.
+2. Mirror `exp-lending` for portal work or `domain-lending-loan-origination` for origination ([First service](../start/first-service.md)).
+3. Pick the product-line core that matches the offer; do not invent a new product-line repo name in docs.
+4. Open [Risk](risk.md) before wiring bureau calls into a lending core.
+
+## OpenAPI
+
+Cross-cutting and product-line specs are listed under [OpenAPI — lending](../reference/openapi.md#lending-lending). Prefer `*-sdk/src/main/resources/openapi.yml` in each repository.
+
+## Events
+
+[Stub until published](../reference/events.md).
 
 ## Maturity notes
 
-Origination, servicing, collateral, and collections repositories are
-present as multi-module Maven projects. Several READMEs still mention
-older Boot badge lines; OpenPlatform’s current parent pin is Boot
-**4.1.1** via Jafly **26.10.19** — verify each module’s parent before
-assuming runtime parity. Credit policy ownership remains with the
-institution.
+Origination, servicing, collateral, and collections repositories are present as multi-module Maven projects. Product-line coverage varies. Credit policy ownership remains with the institution. Parent pin for new work: **26.10.19** / Boot **4.1.1** / Java **25**.
 
 ## Related modules
 
-- <a href="products.md">Products and commercial configuration</a>
-- <a href="agreements.md">Agreements and documents</a>
-- <a href="risk.md">Risk and compliance operations</a>
-- <a href="accounts.md">Accounts and financial records</a>
-- <a href="catalog.md">Business modules catalogue</a>
+- [Products and commercial configuration](products.md)
+- [Agreements and documents](agreements.md)
+- [Risk and compliance operations](risk.md)
+- [Accounts and financial records](accounts.md)
+- [Customers and relationships](customers.md)
+- [Business modules catalogue](catalog.md)
 
-## What next
+## Next steps
 
 Open [Risk](risk.md) for scoring records and [Adapters](../integrate/adapters.md) for bureau boundaries. Confirm Boot badges against parent **26.10.19**.

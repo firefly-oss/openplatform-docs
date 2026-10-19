@@ -3,8 +3,8 @@
 OpenPlatform keeps business modules composable, shared services reusable, and systems outside Firefly behind adapters. The picture below is the shape you will see across `firefly-oss` repositories.
 
 <div class="ff-iso" markdown="0">
-  <img class="ff-iso__light" src="/assets/isometrics/layers-light.webp" alt="OpenPlatform service bands from experience to adapters" width="784" height="441" />
-  <img class="ff-iso__dark" src="/assets/isometrics/layers-dark.webp" alt="OpenPlatform service bands from experience to adapters" width="784" height="441" />
+  <img class="ff-iso__light" src="/assets/isometrics/layers-light.svg" alt="OpenPlatform service bands from experience to adapters" width="1600" height="900" />
+  <img class="ff-iso__dark" src="/assets/isometrics/layers-dark.svg" alt="OpenPlatform service bands from experience to adapters" width="1600" height="900" />
   <p class="ff-iso__caption">Experience, domain, core, and adapter planes.</p>
 </div>
 
@@ -105,8 +105,8 @@ See the [business modules catalogue](../modules/catalog.md) for purpose, coverag
 A journey step may touch several layers (channel, process, modules, core, third party). Third parties and legacy cores stay behind adapters so provider details do not leak into every application.
 
 <div class="ff-iso" markdown="0">
-  <img class="ff-iso__light" src="/assets/isometrics/adapter-light.webp" alt="Adapter plugins between OpenPlatform and external systems" width="784" height="441" />
-  <img class="ff-iso__dark" src="/assets/isometrics/adapter-dark.webp" alt="Adapter plugins between OpenPlatform and external systems" width="784" height="441" />
+  <img class="ff-iso__light" src="/assets/isometrics/adapter-light.svg" alt="Adapter plugins between OpenPlatform and external systems" width="1600" height="900" />
+  <img class="ff-iso__dark" src="/assets/isometrics/adapter-dark.svg" alt="Adapter plugins between OpenPlatform and external systems" width="1600" height="900" />
   <p class="ff-iso__caption">Ports and adapters keep providers at the edge.</p>
 </div>
 
@@ -119,8 +119,8 @@ Worked adapter guides:
 APIs and events form the backbone between modules:
 
 <div class="ff-iso" markdown="0">
-  <img class="ff-iso__light" src="/assets/isometrics/apis-light.webp" alt="APIs and events backbone across OpenPlatform modules" width="784" height="441" />
-  <img class="ff-iso__dark" src="/assets/isometrics/apis-dark.webp" alt="APIs and events backbone across OpenPlatform modules" width="784" height="441" />
+  <img class="ff-iso__light" src="/assets/isometrics/apis-light.svg" alt="APIs and events backbone across OpenPlatform modules" width="1600" height="900" />
+  <img class="ff-iso__dark" src="/assets/isometrics/apis-dark.svg" alt="APIs and events backbone across OpenPlatform modules" width="1600" height="900" />
   <p class="ff-iso__caption">Contracts between services stay explicit.</p>
 </div>
 

@@ -4,8 +4,6 @@ OpenPlatform describes four insurance-oriented development areas on the public p
 
 Public anchor: <https://fireflysoftware.io/openplatform/#insurance-development>
 
-Source of titles and intent: `insuranceDevelopmentAreas` in the Firefly Software website platform data (aligned 2026-10-18/19).
-
 | Area | Intent | Page |
 |------|--------|------|
 | Policy lifecycle | Product, party, and agreement foundations extended to policies and renewals | [policy lifecycle](policy-lifecycle.md) |
@@ -15,15 +13,15 @@ Source of titles and intent: `insuranceDevelopmentAreas` in the Firefly Software
 
 ## What exists today
 
-- **Business modules** already support insurance-adjacent journeys (customers, products, agreements, distribution, payments, risk, and shared identity). See [catalogue](../modules/catalog.md).
+- **Business modules** already support insurance-adjacent journeys (customers, products, agreements, distribution, payments, risk, and shared identity). See the [catalogue](../modules/catalog.md).
 - **Dedicated insurance core / domain / experience repositories** for these four areas are **not** published as separate OpenPlatform module ids yet. Do not assume a `core-insurance-*` catalogue from this hub.
 - **OpenAPI / event packs** specific to insurance areas: [not published](../reference/events.md); use foundation module specs from the [OpenAPI index](../reference/openapi.md).
 
-Rating, policy administration, and claims systems that an institution already runs remain connected through adapters. OpenPlatform does not replace every specialist insurance core by default.
-
 ## How to read these pages
 
-Each area page states intent, what foundations it reuses, and what stays behind adapters. Treat dashed outlines on the product site as in development; solid pieces are available today in the business module catalogue.
+Each area page states why it exists, when to use it, which foundation modules to reuse, an honest layer map (usually empty for dedicated repos), how to start, and next links. Treat dashed outlines on the product site as in development; solid pieces are available today in the business module catalogue.
+
+Parent pin for new foundation work: Jafly **26.10.19** / Spring Boot **4.1.1** / Java **25**.
 
 ## Product experiences
 
@@ -34,3 +32,4 @@ Operating products such as PolicyOS, UnderwritingOS, and ClaimsOS compose these 
 - [Business modules catalogue](../modules/catalog.md)
 - [Adapters](../integrate/adapters.md)
 - [Architecture](../architecture/overview.md)
+- [Home](../index.md)

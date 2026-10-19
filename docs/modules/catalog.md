@@ -2,13 +2,13 @@
 
 Module ids and names align with the public OpenPlatform modules page at <https://fireflysoftware.io/openplatform/modules/> (`platformModules` / `businessModules` in the website sources).
 
-Each business module and the shared identity services have a dedicated page with purpose, coverage, key `firefly-oss` repositories, and maturity notes grounded in those repositories. This page is the map; open a module page when you need repositories and OpenAPI links.
+Each business module and the shared identity services have a dedicated page with purpose, when-to-use guidance, layer maps grounded in local `firefly-oss` repositories, OpenAPI links, and honest gaps. This page is the map.
 
 ## How to use this catalogue
 
 1. Match the journey step you are building (party, agreement, payment, loan, and so on) to a module id.
 2. Open that module page for repositories and layer prefixes (`core-*`, `domain-*`, `exp-*`).
-3. Confirm the parent pin on [Versioning and BOM](../versioning/bom.md) before you assume Boot or Java levels from a README badge.
+3. Confirm the parent pin on [Versioning and BOM](../versioning/bom.md) before you assume Boot or Java levels from a README badge (**26.10.19** / Boot **4.1.1** / Java **25**).
 4. Put anything outside Firefly behind an [adapter](../integrate/adapters.md).
 
 ## Browse by module
@@ -66,20 +66,31 @@ Each business module and the shared identity services have a dedicated page with
   </article>
 </div>
 
-## Business module ids (table)
+## Inventory (module, page, status)
 
-| Id | Title | Page |
-|----|-------|------|
-| `customers` | Customers and relationships | [customers](customers.md) |
-| `onboarding` | Onboarding and verification | [onboarding](onboarding.md) |
-| `products` | Products and commercial configuration | [products](products.md) |
-| `agreements` | Agreements and documents | [agreements](agreements.md) |
-| `distribution` | Distribution and partner channels | [distribution](distribution.md) |
-| `accounts` | Accounts and financial records | [accounts](accounts.md) |
-| `payments` | Payments and cards | [payments](payments.md) |
-| `lending` | The lending lifecycle | [lending](lending.md) |
-| `risk` | Risk and compliance operations | [risk](risk.md) |
-| `shared` | Identity and shared services | [shared](shared.md) |
+Status reflects documentation completeness for this hub as of 2026-10-18/19, not production readiness of the services.
+
+| Module id | Page | Repos linked (summary) | Doc status |
+|-----------|------|------------------------|------------|
+| `customers` | [customers](customers.md) | `core-common-customer-mgmt`, `domain-customer-people` | Complete |
+| `onboarding` | [onboarding](onboarding.md) | `exp-onboarding`, `domain-customer-kyc-kyb`, `core-common-kycb-mgmt` | Complete |
+| `products` | [products](products.md) | product + pricing core/domain set | Complete |
+| `agreements` | [agreements](agreements.md) | contract + document core/domain | Complete |
+| `distribution` | [distribution](distribution.md) | distributor core/domain + `exp-distributor` | Complete |
+| `accounts` | [accounts](accounts.md) | accounts/ledger/GL + `exp-accounts` | Complete |
+| `payments` | [payments](payments.md) | payments/cards/psdx/engine + libraries + `exp-cards` | Complete |
+| `lending` | [lending](lending.md) | origination/servicing/collateral/collections + product lines + `exp-lending` | Complete |
+| `risk` | [risk](risk.md) | scoring/provisioning/regulatory + bureau domain | Complete |
+| `shared` | [shared](shared.md) | identity, SCA, notifications, org, config, profile, channel | Complete |
+
+Insurance development areas (in IA, not separate module ids yet):
+
+| Area | Page | Dedicated `firefly-oss` repos | Doc status |
+|------|------|-------------------------------|------------|
+| Policy lifecycle | [policy-lifecycle](../insurance/policy-lifecycle.md) | None published yet — reuses foundations | Complete (honest gaps) |
+| Underwriting | [underwriting](../insurance/underwriting.md) | None published yet | Complete (honest gaps) |
+| Claims | [claims](../insurance/claims.md) | None published yet | Complete (honest gaps) |
+| Financial flows | [financial-flows](../insurance/financial-flows.md) | None published yet — uses payments | Complete (honest gaps) |
 
 ## Layer conventions in `firefly-oss`
 
@@ -88,22 +99,18 @@ Each business module and the shared identity services have a dedicated page with
 | `core-*` | Persistence and core APIs for a bounded context |
 | `domain-*` | Domain orchestration (commands, sagas, queries) |
 | `exp-*` | Experience / BFF journeys for channels |
-| `library-*` | Shared libraries (rails, PSP interfaces, …) |
+| `library-*` | Shared libraries (rails, PSP interfaces, batch utilities) |
+| `app-*` | Standalone applications (for example authenticator) |
 
 GitHub organisation: <https://github.com/firefly-oss>
 
-## Insurance development areas
+## Unmapped local repositories
 
-OpenPlatform also describes insurance-oriented development areas built on the same foundations. Dedicated pages:
+These exist under the local `firefly-oss` tree and are called out on module pages where relevant; they are not separate website module tiles:
 
-| Area | Page |
-|------|------|
-| Policy lifecycle | [policy lifecycle](../insurance/policy-lifecycle.md) |
-| Underwriting operations | [underwriting](../insurance/underwriting.md) |
-| Claims operations | [claims](../insurance/claims.md) |
-| Insurance financial flows | [financial flows](../insurance/financial-flows.md) |
-
-Overview: [Insurance development areas](../insurance/index.md) (aligned with <https://fireflysoftware.io/openplatform/#insurance-development>).
+- `core-common-modelhub`, `core-data-template`, `domain-data-business-intelligence` — supporting data platforms (see [shared](shared.md))
+- `library-common-batch` — batch utilities
+- `firefly-lending` — mock OpenAPI sample only (see [OpenAPI index](../reference/openapi.md))
 
 ## API and event reference
 
@@ -114,8 +121,10 @@ Overview: [Insurance development areas](../insurance/index.md) (aligned with <ht
 
 - [Architecture overview](../architecture/overview.md) — experience / domain / core bands, `firefly-oss` vs `firefly-serviceOS`, Jafly **26.10.19**
 - [Adapter pattern](../integrate/adapters.md) and library guides for `library-psps` and `library-rails`
+- [Start here — Prerequisites](../start/prerequisites.md) and [First service](../start/first-service.md)
 
 ## Still to deepen
 
 - Runtime ownership and deployment topology beyond the service-band map
 - Hosted OpenAPI / event packs for insurance development areas when repos exist
+- Filling domain-layer gaps where only core (or only exp) exists today

@@ -1,13 +1,13 @@
 {#
-  Firefly OpenPlatform footer.
+  Firefly OpenPlatform copyright line.
+  Slogan lives in the multi-column footer brand block (footer.html).
 #}
 <div class="md-copyright">
-  {% if config.copyright %}
-    <div class="md-copyright__highlight">
+  <div class="md-copyright__highlight">
+    {% if config.copyright %}
       {{ config.copyright }}
-    </div>
-  {% endif %}
-  <div class="ff-footer-tagline">
-    OpenPlatform · Attitude makes the difference.
+    {% else %}
+      Copyright 2026 Firefly Software Foundation &amp; Firefly Software Solutions Inc
+    {% endif %}
   </div>
 </div>

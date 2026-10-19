@@ -40,7 +40,7 @@ Rules that matter most for this hub:
 ## Images and theme
 
 - Diagrams live under `docs/diagrams/` (SVG)
-- Brand kit isometrics live under `docs/assets/isometrics/` (light/dark WebP)
+- Brand kit isometrics live under `docs/assets/isometrics/` (light/dark SVG plus high-resolution PNG exports; regenerate from `firefly-brand-kit-work` with `node scripts/export-op-docs-isometrics.mjs`)
 - Logos and Manrope live under `docs/assets/brand/` and `docs/assets/fonts/`
 - Header branding is logo + `|` + OpenPlatform via `theme/overrides/partials/header.html` (`site_name` is `OpenPlatform` only)
 

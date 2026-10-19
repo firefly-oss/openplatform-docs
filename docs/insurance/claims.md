@@ -2,47 +2,58 @@
 
 **Development area:** Claims operations (insurance)
 
-Claim notification, evidence, assessment, and authorized settlement,
-connected to provider services.
+Claim notification, evidence, assessment, and authorized settlement. Settlement payment execution reuses [payments](../modules/payments.md); authority for indemnity decisions stays with the insurer.
 
-Public description:
-<https://fireflysoftware.io/openplatform/#insurance-development>
+Public description: <https://fireflysoftware.io/openplatform/#insurance-development>
 
-## Intent
+## Why this area exists
 
-Receive notifications, gather evidence, support assessment, and settle
-only within authorized limits. Flagged or complex cases go to claims
-handlers with delegated authority. Provider services (repair networks,
-investigators, and similar) connect through adapters.
+Claims need a case lifecycle (notify, evidence, assess, settle) that is not the same as loan servicing or KYC onboarding, but can reuse party, document, and payment foundations. This area states that intent and the honest gap: no dedicated claims repositories are published yet.
+
+## When to use it
+
+Use this area when designing claim intake or settlement flows on OpenPlatform foundations. For payment rails and PSP boundaries, use [payments](../modules/payments.md) directly.
 
 ## Foundations already in OpenPlatform
 
 | Module | Why it matters for claims |
 |--------|---------------------------|
-| <a href="../modules/customers.md">Customers</a> | Claimants and related parties |
-| <a href="../modules/agreements.md">Agreements</a> | Policy and document references |
-| <a href="../modules/payments.md">Payments</a> | Authorized indemnity and expense payments |
-| <a href="../modules/shared.md">Shared services</a> | Notifications and access control |
+| [Customers](../modules/customers.md) | Claimant and insured party ids |
+| [Agreements](../modules/agreements.md) | Policy or contract document context |
+| [Payments](../modules/payments.md) | Indemnity and refund payment execution |
+| [Shared services](../modules/shared.md) | Notifications and identity |
+| [Onboarding](../modules/onboarding.md) | Patterns for evidence collection over time |
 
-## Repositories and APIs
+## Layer map
 
-There is **no dedicated** OpenPlatform claims module repository set
-published under `firefly-oss` for this development area yet.
+No dedicated claims repositories are published under `firefly-oss` for this area yet.
 
-Use foundation OpenAPI:
-<a href="../reference/openapi.md">OpenAPI index</a>.
+| Expected layer | Status (2026-10-18/19) |
+|----------------|------------------------|
+| Experience | Not published |
+| Domain | Not published |
+| Core | Not published |
+| Adapters | Claims systems and adjuster tools behind [adapters](../integrate/adapters.md) |
 
-Event contracts: **stub** —
-<a href="../reference/events.md">Event contracts</a>.
+## How to start
+
+1. Identify party and agreement ids from foundation modules.
+2. Plan settlement through [payments](../modules/payments.md) and adapters for rails/PSPs.
+3. Do not invent claim OpenAPI paths until a repository publishes them.
+4. Parent pin: **26.10.19** / Boot **4.1.1** / Java **25**.
+
+## OpenAPI and events
+
+Foundation specs: [OpenAPI index](../reference/openapi.md). Events: [stub](../reference/events.md).
 
 ## Maturity notes
 
-This page does not claim settlement SLAs, fraud-detection performance,
-or replacement of the insurer’s claims core.
+In development. Authorized settlement remains with the insurer’s delegated authority. This hub does not claim claims-system replacement.
 
-## Related areas
+## Related
 
-- <a href="policy-lifecycle.md">Policy lifecycle</a>
-- <a href="underwriting.md">Underwriting operations</a>
-- <a href="financial-flows.md">Insurance financial flows</a>
-- <a href="index.md">Insurance development areas</a>
+- [Policy lifecycle](policy-lifecycle.md)
+- [Underwriting operations](underwriting.md)
+- [Insurance financial flows](financial-flows.md)
+- [Payments](../modules/payments.md)
+- [Insurance development areas](index.md)

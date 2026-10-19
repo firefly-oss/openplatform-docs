@@ -2,66 +2,82 @@
 
 **Module id:** `products`
 
-Consistent product definitions, adapted to each channel.
+Durable product definitions, versions, catalogue relationships, and pricing simulation. Channel presentation stays in experience services; commercial truth lives here so agreements, distribution, and lending share the same product ids.
 
-Public product page:
-<https://fireflysoftware.io/openplatform/modules/>
+Public product page: <https://fireflysoftware.io/openplatform/modules/>
 
-## When you need this module
+## Why this module exists
 
-Use `products` when you need a durable catalogue entry, version, or pricing simulation that agreements, distribution, and lending can reference. Channel-specific presentation still belongs in experience services; commercial truth belongs here.
+Offers, contracts, and distributor catalogues all need a stable product identity. If each channel invents its own catalogue, pricing and reporting diverge. This module holds catalogue and pricing orchestration; journeys store the product id, not a private copy of the definition.
 
-## Coverage
+## When to use it
 
-- Catalogue, categories, versions, and product relationships
-- Configuration and required documentation
-- Lending pricing queries and instalment simulations
+Use `products` when you need a catalogue entry, version, required documentation set, or pricing/instalment simulation that other modules will reference.
 
-## How it is used
+Insurer rating engines and third-party pricing systems stay behind [adapters](../integrate/adapters.md).
 
-1. Domain or experience services query catalogue and pricing APIs.
-2. Core product persistence holds definitions and versions.
-3. Lending or agreement flows store the product id on offers and contracts.
-4. Insurer rating systems, when used, stay behind adapters.
+## Key concepts
 
-Compose a financing offer from catalogue and pricing, or connect to an
-insurer’s rating systems through adapters. Product identifiers feed
-agreements, distribution assignments, and lending offers.
+| Concept | Meaning in this module |
+|---------|------------------------|
+| Catalogue | Hierarchy of products, categories, and relationships |
+| Version | Published product configuration over time |
+| Pricing simulation | Query that returns fees or instalments for an offer |
+| Product id | Identifier stored on agreements, offers, and distributor assignments |
 
-## Key repositories
+## Layer map (repos that exist)
 
 | Repository | Layer | Role |
 |------------|-------|------|
-| <a href="https://github.com/firefly-oss/core-common-product-mgmt"><code>core-common-product-mgmt</code></a> | `core-*` | Product catalogue persistence and APIs |
-| <a href="https://github.com/firefly-oss/domain-product-catalog"><code>domain-product-catalog</code></a> | `domain-*` | Product catalogue domain orchestration |
-| <a href="https://github.com/firefly-oss/domain-core-pricing-engine"><code>domain-core-pricing-engine</code></a> | `domain-*` | Pricing queries and simulations |
+| [`core-common-product-mgmt`](https://github.com/firefly-oss/core-common-product-mgmt) | `core-*` | Product catalogue persistence and APIs |
+| [`core-common-pricing-mgmt`](https://github.com/firefly-oss/core-common-pricing-mgmt) | `core-*` | Pricing persistence (no published OpenAPI yet) |
+| [`domain-product-catalog`](https://github.com/firefly-oss/domain-product-catalog) | `domain-*` | Product catalogue domain orchestration |
+| [`domain-product-pricing`](https://github.com/firefly-oss/domain-product-pricing) | `domain-*` | Product pricing and fee orchestration |
+| [`domain-core-pricing-engine`](https://github.com/firefly-oss/domain-core-pricing-engine) | `domain-*` | Pricing queries and simulations |
 
-Also present under `firefly-oss` for related commercial configuration:
-<a href="https://github.com/firefly-oss/domain-product-pricing"><code>domain-product-pricing</code></a>,
-<a href="https://github.com/firefly-oss/core-common-pricing-mgmt"><code>core-common-pricing-mgmt</code></a>.
+**Experience:** no dedicated `exp-products` repository in the inventory. Distributor-facing catalogue views use [`domain-distributor-catalog`](https://github.com/firefly-oss/domain-distributor-catalog) and [`exp-distributor`](https://github.com/firefly-oss/exp-distributor) under [distribution](distribution.md). Lending simulation surfaces often go through [`exp-lending`](https://github.com/firefly-oss/exp-lending).
 
-## API and events
+## How a typical call path looks
 
-OpenAPI paths for this module:
-<a href="../reference/openapi.md#products-products">OpenAPI index — products</a>.
+1. A domain or experience service queries catalogue or pricing APIs.
+2. Core product (and pricing) services hold definitions and versions.
+3. Lending or agreement flows store the product id on offers and contracts.
+4. External rating systems, when used, sit behind adapters.
 
-Event contracts: <a href="../reference/events.md">stub until published</a>.
+## How to start
+
+1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**.
+2. Mirror `domain-product-catalog` for catalogue work or `domain-core-pricing-engine` for simulations ([First service](../start/first-service.md)).
+3. Open OpenAPI links below; treat `core-common-pricing-mgmt` as present but without a published OpenAPI file yet.
+4. Continue to [agreements](agreements.md) or [lending](lending.md) once you have a product id to attach.
+
+## OpenAPI
+
+| Repository | Spec |
+|------------|------|
+| `core-common-product-mgmt` | [`…/openapi.yml`](https://github.com/firefly-oss/core-common-product-mgmt/blob/main/core-common-product-mgmt-sdk/src/main/resources/openapi.yml) |
+| `domain-product-catalog` | [`…/openapi.yml`](https://github.com/firefly-oss/domain-product-catalog/blob/main/domain-product-catalog-sdk/src/main/resources/openapi.yml) |
+| `domain-core-pricing-engine` | [`…/openapi.yml`](https://github.com/firefly-oss/domain-core-pricing-engine/blob/main/domain-core-pricing-engine-sdk/src/main/resources/openapi.yml) |
+| `domain-product-pricing` | [`…/openapi.yml`](https://github.com/firefly-oss/domain-product-pricing/blob/main/domain-product-pricing-sdk/src/main/resources/openapi.yml) |
+| `core-common-pricing-mgmt` | — (no published OpenAPI yet) |
+
+Full index: [OpenAPI — products](../reference/openapi.md#products-products).
+
+## Events
+
+[Stub until published](../reference/events.md).
 
 ## Maturity notes
 
-Catalogue and pricing repositories exist as multi-module Maven projects.
-Use each README for runtime dependencies and OpenAPI locations. This hub
-does not publish coverage percentages or SLA claims.
-
-Parent pin for new work: Jafly **26.10.19** / Boot **4.1.1** / Java **25**.
+Catalogue and pricing repositories exist as multi-module Maven projects. This hub does not publish coverage percentages or SLA claims. Verify parent inheritance against **26.10.19** before trusting Boot badges in older READMEs.
 
 ## Related modules
 
-- <a href="agreements.md">Agreements and documents</a>
-- <a href="distribution.md">Distribution and partner channels</a>
-- <a href="lending.md">The lending lifecycle</a>
-- <a href="catalog.md">Business modules catalogue</a>
+- [Agreements and documents](agreements.md)
+- [Distribution and partner channels](distribution.md)
+- [The lending lifecycle](lending.md)
+- [Business modules catalogue](catalog.md)
 
-## What next
+## Next steps
 
-Open [Agreements](agreements.md) or [Lending](lending.md) next, depending on the journey. Confirm pins on [Versioning and BOM](../versioning/bom.md).
+Open [Agreements](agreements.md) when binding parties to a product, or [Lending](lending.md) when the product is a credit offer. Confirm pins on [Versioning and BOM](../versioning/bom.md).

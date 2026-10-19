@@ -2,57 +2,89 @@
 
 **Module id:** `payments`
 
-Payment and card operations without provider details in every application. Rails and payment-service-provider specifics stay in libraries and adapters.
+Payment orders, card records, and the libraries that keep rail and PSP details out of every application. Provider SDKs stay in adapters.
 
 Public product page: <https://fireflysoftware.io/openplatform/modules/>
 
-## When you need this module
+## Why this module exists
 
-Use `payments` for payment orders, beneficiaries, schedules, fees, card records, limits, transactions, and disputes. Prefer the [adapter pattern](../integrate/adapters.md) whenever a journey talks to a network or processor.
+Every product that moves money eventually talks to a network or processor. If each domain service embeds a vendor SDK, swapping a rail becomes a rewrite. Payments holds durable payment and card records; [`library-rails`](https://github.com/firefly-oss/library-rails) and [`library-psps`](https://github.com/firefly-oss/library-psps) define the ports; adapters implement them.
 
-## Coverage
+## When to use it
 
-- Payment orders, beneficiaries, schedules, and fees
-- Card records, limits, transactions, and disputes
-- Separate interfaces per payment rail
+Use `payments` for payment orders, beneficiaries, schedules, fees, card records, limits, transactions, and disputes.
+
+Prefer the [adapter pattern](../integrate/adapters.md) whenever a journey talks to a network or processor. Prefer category language for external networks in public docs unless an approved integration guide names them.
+
+## Key concepts
+
+| Concept | Meaning in this module |
+|---------|------------------------|
+| Payment order | Durable payment intent and lifecycle |
+| Card record | Card product data, limits, transactions, disputes |
+| Rail port | Interface in `library-rails` for a payment rail |
+| PSP port | Interface in `library-psps` for a payment-service provider |
+| Engine | Rail-agnostic orchestration (`core-payments-engine`) |
+
+## Layer map (repos that exist)
+
+| Repository | Layer | Role |
+|------------|-------|------|
+| [`core-banking-payments`](https://github.com/firefly-oss/core-banking-payments) | `core-*` | Payment data and lifecycle |
+| [`core-banking-cards`](https://github.com/firefly-oss/core-banking-cards) | `core-*` | Card records and operations |
+| [`core-banking-psdx`](https://github.com/firefly-oss/core-banking-psdx) | `core-*` | PSD2/PSD3-oriented compliance service |
+| [`core-payments-engine`](https://github.com/firefly-oss/core-payments-engine) | `core-*` | Provider-agnostic payment orchestration (no published OpenAPI yet) |
+| [`domain-banking-cards`](https://github.com/firefly-oss/domain-banking-cards) | `domain-*` | Card domain orchestration |
+| [`exp-cards`](https://github.com/firefly-oss/exp-cards) | `exp-*` | Card journeys for channels |
+| [`library-rails`](https://github.com/firefly-oss/library-rails) | library | Payment-rail interfaces |
+| [`library-psps`](https://github.com/firefly-oss/library-psps) | library | PSP interfaces |
+
+**Gap:** no `domain-banking-payments` or `exp-payments` repository in the inventory. Payment domain work may sit in the engine and card domain today; confirm in each README before assuming a missing layer.
 
 ## How a typical call path looks
 
 1. An experience or domain service accepts a payment or card command.
 2. Core services such as `core-banking-payments` or `core-banking-cards` hold durable records.
 3. Outbound network or processor calls go through `library-rails` or `library-psps` adapters.
-4. Results update payment or card state; other modules (accounts, agreements, lending) keep their own references.
+4. Results update payment or card state; accounts, agreements, and lending keep their own references.
 
-## Key repositories
+## How to start
 
-| Repository | Layer | Role |
-|------------|-------|------|
-| [`core-banking-payments`](https://github.com/firefly-oss/core-banking-payments) | `core-*` | Payment data and lifecycle |
-| [`core-banking-cards`](https://github.com/firefly-oss/core-banking-cards) | `core-*` | Card records and operations |
-| [`domain-banking-cards`](https://github.com/firefly-oss/domain-banking-cards) | `domain-*` | Card domain orchestration |
-| [`library-rails`](https://github.com/firefly-oss/library-rails) | library | Payment-rail interfaces |
-| [`library-psps`](https://github.com/firefly-oss/library-psps) | library | Payment-service-provider interfaces |
+1. Confirm pins: **26.10.19** / Boot **4.1.1** / Java **25**.
+2. Read the worked guides: [PSP library](../integrate/library-psps.md) and [Payment rails library](../integrate/library-rails.md).
+3. Mirror `core-banking-payments` or `exp-cards` depending on the surface ([First service](../start/first-service.md)).
+4. Keep vendor SDKs in adapter modules, not in domain services.
 
-Also present: [`core-payments-engine`](https://github.com/firefly-oss/core-payments-engine), [`exp-cards`](https://github.com/firefly-oss/exp-cards).
+## OpenAPI
 
-## Worked adapter guides
+| Repository | Spec |
+|------------|------|
+| `core-banking-payments` | [`…/openapi.yml`](https://github.com/firefly-oss/core-banking-payments/blob/main/core-banking-payments-sdk/src/main/resources/openapi.yml) |
+| `core-banking-cards` | [`…/openapi.yml`](https://github.com/firefly-oss/core-banking-cards/blob/main/core-banking-cards-sdk/src/main/resources/openapi.yml) |
+| `core-banking-psdx` | [`…/openapi.yml`](https://github.com/firefly-oss/core-banking-psdx/blob/main/core-banking-psdx-sdk/src/main/resources/openapi.yml) |
+| `domain-banking-cards` | [`…/openapi.yml`](https://github.com/firefly-oss/domain-banking-cards/blob/main/domain-banking-cards-sdk/src/main/resources/openapi.yml) |
+| `exp-cards` | [`…/openapi.yml`](https://github.com/firefly-oss/exp-cards/blob/main/exp-cards-sdk/src/main/resources/openapi.yml) |
+| `core-payments-engine` | — (no published OpenAPI yet) |
+| `library-rails` / `library-psps` | Java interfaces in-repo (not OpenAPI) |
 
-- [PSP library](../integrate/library-psps.md) — `PspAdapter` facade and operation ports
-- [Payment rails library](../integrate/library-rails.md) — `RailAdapter` and rail ports
+Full index: [OpenAPI — payments](../reference/openapi.md#payments-payments).
 
-## API and events
+## Events
 
-OpenAPI paths for this module: [OpenAPI index — payments](../reference/openapi.md#payments-payments).
-
-Event contracts: [stub until published](../reference/events.md).
+[Stub until published](../reference/events.md).
 
 ## Maturity notes
 
-Core payment and card repositories plus rail/PSP libraries are checked into `firefly-oss`. Prefer category language for external networks and processors in public docs unless a named integration guide is approved. Parent pin for new work: **26.10.19** / Boot **4.1.1** / Java **25**.
+Core payment and card repositories plus rail/PSP libraries are checked into `firefly-oss`. Prefer category language for external networks unless a named integration guide is approved. Parent pin for new work: **26.10.19** / Boot **4.1.1** / Java **25**.
 
 ## Related modules
 
 - [Accounts and financial records](accounts.md)
 - [Agreements and documents](agreements.md)
+- [Insurance financial flows](../insurance/financial-flows.md)
 - [Integrate — adapters](../integrate/adapters.md)
 - [Business modules catalogue](catalog.md)
+
+## Next steps
+
+Implement against [library-psps](../integrate/library-psps.md) or [library-rails](../integrate/library-rails.md), then open the core OpenAPI for the record shape you will persist.

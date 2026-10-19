@@ -22,8 +22,8 @@ hide:
   </div>
   <div class="ff-hero__visual">
     <div class="ff-iso">
-      <img class="ff-iso__light" src="/assets/isometrics/assembly-light.webp" alt="OpenPlatform modules assembled into an industry product" width="784" height="441" />
-      <img class="ff-iso__dark" src="/assets/isometrics/assembly-dark.webp" alt="OpenPlatform modules assembled into an industry product" width="784" height="441" />
+      <img class="ff-iso__light" src="/assets/isometrics/assembly-light.svg" alt="OpenPlatform modules assembled into an industry product" width="1600" height="900" />
+      <img class="ff-iso__dark" src="/assets/isometrics/assembly-dark.svg" alt="OpenPlatform modules assembled into an industry product" width="1600" height="900" />
     </div>
   </div>
 </div>
@@ -50,6 +50,8 @@ hide:
 ## What you will learn here
 
 OpenPlatform is the catalogue of business modules under **firefly-oss**: customers, onboarding, products, agreements, distribution, accounts, payments, lending, risk, and shared identity. Industry products such as **LendingOS** live under **firefly-serviceOS** and compose those modules. Both trains inherit Jafly **26.10.19** (Spring Boot **4.1.1**, Java **25**) from Maven Central.
+
+Each module page lists the repositories that exist today, OpenAPI links, honest gaps, and a start path. Begin at the [business modules catalogue](modules/catalog.md).
 
 This site is for people who build, integrate, and operate on that stack. Marketing narrative stays on [fireflysoftware.io/openplatform](https://fireflysoftware.io/openplatform/). Framework behaviour for security, ECM, notifications, and related SPI modules stays in the [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).
 
@@ -96,8 +98,8 @@ This site is for people who build, integrate, and operate on that stack. Marketi
   </div>
   <div class="ff-section__visual">
     <div class="ff-iso">
-      <img class="ff-iso__light" src="/assets/isometrics/layers-light.webp" alt="Layered OpenPlatform stack from channels to adapters" width="784" height="441" />
-      <img class="ff-iso__dark" src="/assets/isometrics/layers-dark.webp" alt="Layered OpenPlatform stack from channels to adapters" width="784" height="441" />
+      <img class="ff-iso__light" src="/assets/isometrics/layers-light.svg" alt="Layered OpenPlatform stack from channels to adapters" width="1600" height="900" />
+      <img class="ff-iso__dark" src="/assets/isometrics/layers-dark.svg" alt="Layered OpenPlatform stack from channels to adapters" width="1600" height="900" />
       <p class="ff-iso__caption">Service bands and adapter boundary (brand kit isometric).</p>
     </div>
   </div>

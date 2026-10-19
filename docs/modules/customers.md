@@ -2,45 +2,72 @@
 
 **Module id:** `customers`
 
-One consistent view of the people and businesses each journey serves. Other OpenPlatform modules reference party identifiers from this catalogue rather than duplicating party records.
+OpenPlatform’s durable party catalogue: people, legal entities, relationships, contact details, and consent. Other modules store party identifiers from here instead of inventing their own customer tables.
 
 Public product page: <https://fireflysoftware.io/openplatform/modules/>
 
-## When you need this module
+## Why this module exists
 
-Use `customers` when a journey needs a durable party record: a person opening an account, a legal entity applying for credit, or a policyholder already known to another product. If you only need temporary form data before a party exists, start in onboarding and register the party here when the case is ready.
+Journeys that open accounts, underwrite loans, or bind agreements all need the same notion of “who is this party?” Without a shared customers module, each service invents its own person or company record and you spend the rest of the programme reconciling duplicates. This module holds the party of record; onboarding, agreements, accounts, and lending reference it.
 
-## Coverage
+## When to use it
 
-- People, legal entities, and relationships
-- Contact details, identity records, and consent
-- Customer registration coordinated across services
+Use `customers` when you need a durable party record: a person opening an account, a legal entity applying for credit, or a policyholder already known to another product.
 
-## How a typical call path looks
+Stay in [onboarding](onboarding.md) while evidence is still temporary form data. Register or update the party here when the case is ready for a lasting identifier.
 
-1. An experience service (for example `exp-onboarding`) collects journey input.
-2. A domain service such as `domain-customer-people` coordinates registration commands.
-3. `core-common-customer-mgmt` persists party and relationship state.
-4. Downstream modules store the party id on agreements, accounts, or loans.
+## Key concepts
 
-## Key repositories
+| Concept | Meaning in this module |
+|---------|------------------------|
+| Party | Person or legal entity with a stable id |
+| Relationship | Link between parties (for example ownership or guardianship) |
+| Consent | Recorded permission attached to a party |
+| Registration | Domain command that creates or updates party state in core |
+
+## Layer map (repos that exist)
+
+Invented repository names are not listed. Every row below is present under `firefly-oss` on this workstation inventory (2026-10-18/19).
 
 | Repository | Layer | Role |
 |------------|-------|------|
 | [`core-common-customer-mgmt`](https://github.com/firefly-oss/core-common-customer-mgmt) | `core-*` | Persistent customer and party management |
 | [`domain-customer-people`](https://github.com/firefly-oss/domain-customer-people) | `domain-*` | Domain orchestration for people and legal entities |
 
-Related experience surfaces often call the domain SDK from journeys such as onboarding (`exp-onboarding`).
+**Experience:** there is no dedicated `exp-customers` repository. Channel journeys such as [`exp-onboarding`](https://github.com/firefly-oss/exp-onboarding) and [`exp-profile`](https://github.com/firefly-oss/exp-profile) call the domain SDK. Profile self-service is documented under [shared services](shared.md).
 
-## API and events
+**Gap:** organisation-centric party work may also touch [`core-common-org-mgmt`](https://github.com/firefly-oss/core-common-org-mgmt) (listed under shared). Confirm ownership in that repo’s README before treating it as part of `customers`.
 
-OpenAPI paths for this module: [OpenAPI index — customers](../reference/openapi.md#customers-customers).
+## How a typical call path looks
 
-Event contracts: [stub until published](../reference/events.md).
+1. An experience service (often `exp-onboarding` or `exp-profile`) collects journey input.
+2. `domain-customer-people` coordinates registration and relationship commands.
+3. `core-common-customer-mgmt` persists party and relationship state.
+4. Downstream modules (agreements, accounts, lending) store the party id on their own records.
+
+## How to start
+
+1. Confirm the parent pin on [Versioning and BOM](../versioning/bom.md): Jafly **26.10.19**, Spring Boot **4.1.1**, Java **25**.
+2. Clone a neighbour: prefer `domain-customer-people` for orchestration work, or `core-common-customer-mgmt` for persistence APIs.
+3. Follow [First service](../start/first-service.md) to mirror the Maven layout and rename packages.
+4. Open the OpenAPI files linked below before designing new endpoints.
+
+## OpenAPI
+
+| Repository | Spec |
+|------------|------|
+| `core-common-customer-mgmt` | [`…/openapi.yml`](https://github.com/firefly-oss/core-common-customer-mgmt/blob/main/core-common-customer-mgmt-sdk/src/main/resources/openapi.yml) |
+| `domain-customer-people` | [`…/openapi.yml`](https://github.com/firefly-oss/domain-customer-people/blob/main/domain-customer-people-sdk/src/main/resources/openapi.yml) |
+
+Full index: [OpenAPI — customers](../reference/openapi.md#customers-customers).
+
+## Events
+
+No shared event-contract pack is published for this module yet. See [Event contracts](../reference/events.md). Prefer each repository’s README for outbox or integration notes when present.
 
 ## Maturity notes
 
-Both repositories are present under `firefly-oss` with multi-module Maven layouts (`-core`, `-web`, `-sdk`, and related artifacts). Treat each repository README and OpenAPI as authoritative for endpoints and local run instructions. Do not infer production readiness from this hub alone. Parent pin for new work: Jafly **26.10.19** / Boot **4.1.1** / Java **25**.
+Both core and domain repositories are multi-module Maven projects (`-core`, `-web`, `-sdk`). Treat README and OpenAPI in each repo as authoritative. Do not infer production readiness from this hub alone. Several READMEs may still show older Boot badges; new work follows Boot **4.1.1** via parent **26.10.19**.
 
 ## Related modules
 
@@ -49,6 +76,6 @@ Both repositories are present under `firefly-oss` with multi-module Maven layout
 - [Identity and shared services](shared.md)
 - [Business modules catalogue](catalog.md)
 
-## What next
+## Next steps
 
-Mirror `domain-customer-people` or `core-common-customer-mgmt` when extending party behaviour. Confirm inheritance on [First service](../start/first-service.md).
+Mirror `domain-customer-people` or `core-common-customer-mgmt` when extending party behaviour. If the journey still collects KYC evidence, continue on [Onboarding](onboarding.md).
