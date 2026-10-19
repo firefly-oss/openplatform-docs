@@ -1,0 +1,133 @@
+# Firefly OpenPlatform developer documentation hub.
+# Theme pack: vendored from firefly-oss/brand-kit dist/Firefly-Brand-Kit/16-MkDocs/
+
+site_name: Firefly OpenPlatform
+site_description: Developer documentation for Firefly OpenPlatform — business modules, architecture, and how to build on the platform.
+site_author: Firefly Software
+site_url: https://docs.fireflysoftware.io/
+repo_url: https://github.com/firefly-oss/openplatform-docs
+repo_name: firefly-oss/openplatform-docs
+edit_uri: edit/main/docs/
+copyright: Copyright 2026 Firefly Software
+strict: true
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: en
+  font: false
+  logo: assets/brand/firefly-logo-primary-reversed.svg
+  favicon: assets/brand/favicon.svg
+  custom_dir: theme/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+
+plugins:
+  - search
+  - mike:
+      # Version selector aliases (e.g. 26.10.19 / latest) are created with
+      # `mike deploy` — see docs/versioning/mike.md. Canonical alias for
+      # the public train:
+      canonical_version: latest
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra_css:
+  - stylesheets/firefly-docs.css
+
+extra:
+  version:
+    provider: mike
+    default: latest
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/firefly-oss
+  firefly:
+    brand: Firefly
+    products:
+      - OpenPlatform
+      - LendingOS
+    slogan: Attitude makes the difference.
+
+nav:
+  - Home: index.md
+  - Ecosystem: ecosystem.md
+  - Start here:
+      - Prerequisites: start/prerequisites.md
+      - First service (Jafly): start/first-service.md
+  - Architecture: architecture/overview.md
+  - Business modules:
+      - Catalogue: modules/catalog.md
+      - Customers: modules/customers.md
+      - Onboarding: modules/onboarding.md
+      - Products: modules/products.md
+      - Agreements: modules/agreements.md
+      - Distribution: modules/distribution.md
+      - Accounts: modules/accounts.md
+      - Payments: modules/payments.md
+      - Lending: modules/lending.md
+      - Risk: modules/risk.md
+      - Shared services: modules/shared.md
+  - Insurance (in development):
+      - Overview: insurance/index.md
+      - Policy lifecycle: insurance/policy-lifecycle.md
+      - Underwriting operations: insurance/underwriting.md
+      - Claims operations: insurance/claims.md
+      - Insurance financial flows: insurance/financial-flows.md
+  - Reference:
+      - Overview: reference/index.md
+      - OpenAPI index: reference/openapi.md
+      - Event contracts: reference/events.md
+  - Integrate:
+      - Adapter pattern: integrate/adapters.md
+      - PSP library: integrate/library-psps.md
+      - Payment rails library: integrate/library-rails.md
+  - Versioning:
+      - BOM and pins: versioning/bom.md
+      - Publish with mike: versioning/mike.md
+  - Contribute: contribute/index.md

@@ -1,0 +1,7 @@
+/*
+Firefly Software — MkDocs Material brand stylesheet (alias of extra.css).
+
+Prefer `extra.css` in mkdocs.yml; this file exists so consumers can import
+`firefly-docs.css` by name when documenting the pack.
+*/
+@import url("extra.css");

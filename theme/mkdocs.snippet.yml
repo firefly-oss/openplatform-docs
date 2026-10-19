@@ -1,0 +1,86 @@
+# Firefly Software — reusable MkDocs Material theme sketch.
+# Copy the keys you need into your project's mkdocs.yml, or merge with
+# a YAML include workflow. Paths assume this pack is vendored under
+# `theme/` (or adjust logo/favicon/extra_css/custom_dir to match).
+#
+# Reference consumer: fireflyframework/firefly-weave
+# Target hub: docs.fireflysoftware.io (openplatform-docs)
+
+theme:
+  name: material
+  language: en
+  # Manrope is self-hosted in stylesheets/extra.css — disable Material CDN fonts.
+  font: false
+  logo: theme/assets/brand/firefly-logo-primary-reversed.svg
+  favicon: theme/assets/brand/favicon.svg
+  custom_dir: theme/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+    - toc.follow
+
+plugins:
+  - search
+  # Optional versioning (install mike separately):
+  # - mike:
+  #     alias_type: symlink
+  #     canonical_version: latest
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra_css:
+  - theme/stylesheets/extra.css
+  # Optional raw colour tokens from 03-Color:
+  # - theme/stylesheets/firefly-colors.css
+
+# Brand constants for templates / hooks (optional).
+extra:
+  firefly:
+    brand: Firefly
+    products:
+      - OpenPlatform
+      - LendingOS
+    slogan: Attitude makes the difference.
+    colors:
+      charcoal: "#10110F"
+      paper: "#F3F1EB"
+      amber: "#FFB34A"

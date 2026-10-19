@@ -1,0 +1,319 @@
+/*
+Firefly Software — MkDocs Material brand tokens.
+Maps Weave’s --md-* variables to the Firefly palette (charcoal, paper, amber)
+and Manrope. Dual light (default) and dark (slate) palettes.
+
+Author: Firefly Software
+SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
+*/
+
+/* Manrope (SIL Open Font License 1.1, ../assets/fonts/manrope/OFL.txt). */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("../assets/fonts/manrope/manrope-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("../assets/fonts/manrope/manrope-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Light palette — paper surfaces, charcoal ink. */
+:root,
+[data-md-color-scheme="default"] {
+  --md-text-font: "Manrope";
+  --md-code-font: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --md-primary-fg-color: #10110f;
+  --md-primary-fg-color--light: #1a1b17;
+  --md-primary-fg-color--dark: #10110f;
+  --md-primary-bg-color: #f3f1eb;
+  --md-primary-bg-color--light: rgb(243 241 235 / 0.7);
+  --md-default-bg-color: #f3f1eb;
+  --md-default-fg-color: #10110f;
+  --md-default-fg-color--light: #62645b;
+  --md-code-bg-color: #ebe7df;
+  --md-typeset-a-color: #855414;
+  --md-accent-fg-color: #ffb34a;
+  --md-accent-fg-color--transparent: rgb(255 179 74 / 0.12);
+  --md-typeset-mark-color: rgb(255 179 74 / 0.35);
+  --md-footer-bg-color: #10110f;
+  --md-footer-bg-color--dark: #10110f;
+  --md-footer-fg-color: #f3f1eb;
+}
+
+/* Dark palette — charcoal surfaces, paper ink (Weave default). */
+[data-md-color-scheme="slate"] {
+  --md-text-font: "Manrope";
+  --md-code-font: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --md-primary-fg-color: #10110f;
+  --md-primary-fg-color--light: #1a1b17;
+  --md-primary-fg-color--dark: #10110f;
+  --md-primary-bg-color: #f3f1eb;
+  --md-primary-bg-color--light: rgb(243 241 235 / 0.7);
+  --md-default-bg-color: #10110f;
+  --md-default-fg-color: #f3f1eb;
+  --md-default-fg-color--light: #bfb8ab;
+  --md-code-bg-color: #1a1b17;
+  --md-typeset-a-color: #facc8a;
+  --md-accent-fg-color: #ffb34a;
+  --md-accent-fg-color--transparent: rgb(255 179 74 / 0.1);
+  --md-typeset-mark-color: rgb(255 179 74 / 0.3);
+  --md-footer-bg-color: #10110f;
+  --md-footer-bg-color--dark: #10110f;
+  --md-footer-fg-color: #f3f1eb;
+}
+
+.md-header {
+  border-bottom: 1px solid #474a42;
+}
+
+[data-md-color-scheme="default"] .md-header {
+  border-bottom-color: #d8d4ca;
+}
+
+.md-header__button.md-logo img,
+.md-nav__title .md-nav__button.md-logo img {
+  height: 1.6rem;
+  width: auto;
+}
+
+.md-header__title {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.md-grid {
+  max-width: 76rem;
+}
+
+.md-typeset {
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.md-typeset h1 {
+  color: var(--md-default-fg-color);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.md-typeset h2 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.md-typeset h3 {
+  font-weight: 600;
+}
+
+.md-typeset p,
+.md-typeset ul,
+.md-typeset ol {
+  max-width: 78ch;
+}
+
+.md-typeset a {
+  text-underline-offset: 0.16em;
+}
+
+.md-typeset p a,
+.md-typeset li a {
+  text-decoration: underline;
+}
+
+.md-typeset a.headerlink {
+  text-decoration: none;
+}
+
+.md-typeset pre {
+  border: 1px solid #474a42;
+  border-radius: 0.2rem;
+}
+
+[data-md-color-scheme="default"] .md-typeset pre {
+  border-color: #d8d4ca;
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.74rem;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--md-code-bg-color);
+}
+
+.md-nav__link--active {
+  font-weight: 600;
+}
+
+:focus-visible {
+  outline: 3px solid var(--md-accent-fg-color);
+  outline-offset: 3px;
+}
+
+@media (max-width: 44.984375em) {
+  .md-typeset {
+    font-size: 0.8rem;
+  }
+
+  .md-typeset h1 {
+    font-size: 1.7em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* OpenPlatform topology diagrams (architecture pages). */
+.ff-topo {
+  --ff-topo-ink: var(--md-default-fg-color);
+  --ff-topo-muted: var(--md-default-fg-color--light);
+  --ff-topo-paper: var(--md-code-bg-color);
+  --ff-topo-line: #d8d4ca;
+  --ff-topo-amber: #ffb34a;
+  --ff-topo-steel: #62645b;
+  margin: 1.25rem 0 1.75rem;
+  max-width: 52rem;
+}
+
+[data-md-color-scheme="slate"] .ff-topo {
+  --ff-topo-line: #474a42;
+  --ff-topo-steel: #bfb8ab;
+}
+
+.ff-topo__caption {
+  margin: 0 0 0.65rem;
+  color: var(--ff-topo-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.ff-topo__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--ff-topo-line);
+  border-radius: 0.2rem;
+  background:
+    linear-gradient(180deg, rgb(255 179 74 / 0.08), transparent 42%),
+    var(--ff-topo-paper);
+}
+
+.ff-topo__band {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.7rem 0.8rem;
+  border-left: 3px solid var(--ff-topo-amber);
+  border-radius: 0.15rem;
+  background: var(--md-default-bg-color);
+}
+
+.ff-topo__band--steel {
+  border-left-color: var(--ff-topo-steel);
+}
+
+.ff-topo__band--core {
+  border-left-color: #855414;
+}
+
+.ff-topo__label {
+  margin: 0;
+  color: var(--ff-topo-ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ff-topo__meta {
+  margin: 0;
+  color: var(--ff-topo-muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  max-width: none;
+}
+
+.ff-topo__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.15rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ff-topo__chips li {
+  margin: 0;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid var(--ff-topo-line);
+  border-radius: 0.12rem;
+  background: var(--ff-topo-paper);
+  color: var(--ff-topo-ink);
+  font-family: var(--md-code-font);
+  font-size: 0.68rem;
+}
+
+.ff-topo__map {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: 1fr;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--ff-topo-line);
+  border-radius: 0.2rem;
+  background: var(--ff-topo-paper);
+}
+
+@media (min-width: 48em) {
+  .ff-topo__map {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ff-topo__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.75rem 0.8rem;
+  border-top: 3px solid var(--ff-topo-amber);
+  border-radius: 0.15rem;
+  background: var(--md-default-bg-color);
+}
+
+.ff-topo__card--oss {
+  border-top-color: #855414;
+}
+
+.ff-topo__card--svc {
+  border-top-color: var(--ff-topo-amber);
+}
+
+.ff-topo__card--fw {
+  border-top-color: var(--ff-topo-steel);
+  grid-column: 1 / -1;
+}
+
+.ff-topo__kicker {
+  margin: 0;
+  color: var(--ff-topo-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

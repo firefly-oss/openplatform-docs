@@ -1,0 +1,71 @@
+# Publishing docs with mike
+
+This hub uses **mike** so documentation versions can track OpenPlatform /
+Jafly BOM trains (for example `26.10.19`) with a `latest` alias.
+
+`mike` is already in `requirements.txt`. The MkDocs Material version
+selector is wired via the `mike` plugin and `extra.version.provider`.
+
+## Local aliases for the current train
+
+Prerequisites: a git commit on `main` (mike reads `HEAD`), virtualenv
+active, and `pip install -r requirements.txt`.
+
+```sh
+mkdocs build --strict
+```
+
+Deploy version **26.10.19** and update the **latest** alias on the local
+`gh-pages` branch (does not push anywhere by itself):
+
+```sh
+mike deploy --push --update-aliases 26.10.19 latest
+mike set-default --push latest
+```
+
+Omit `--push` if you only want to update the local `gh-pages` branch:
+
+```sh
+mike deploy --update-aliases 26.10.19 latest
+mike set-default latest
+```
+
+List versions:
+
+```sh
+mike list
+```
+
+Serve the versioned site from `gh-pages` (after a deploy):
+
+```sh
+mike serve
+```
+
+## CI and GitHub Pages
+
+- `.github/workflows/docs.yml` runs `mkdocs build --strict` (unversioned
+  build check) plus brand check.
+- `.github/workflows/publish-gh-pages.yml` remains a **manual** stub that
+  publishes a single `site/` tree. When the team is ready for versioned
+  Pages, replace that push with `mike deploy` / `mike set-default` on
+  `gh-pages` (and enable Pages on the branch).
+
+Do not add a `CNAME` or DNS for `docs.fireflysoftware.io` until that
+setup is approved.
+
+## Naming convention
+
+| Alias / version | Meaning |
+|-----------------|---------|
+| `26.10.19` | Docs set aligned with Jafly / OpenPlatform pin **26.10.19** |
+| `latest` | Alias pointing at the current public train |
+
+When the BOM pin moves, deploy a new version string and retarget
+`latest`. Keep <a href="bom.md">Versioning and BOM</a> in sync with the
+pin you advertise.
+
+## Related
+
+- <a href="bom.md">Versioning and BOM</a>
+- <a href="../contribute/index.md">Contribute</a>
