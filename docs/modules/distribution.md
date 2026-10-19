@@ -2,81 +2,58 @@
 
 **Module id:** `distribution`
 
-Product access, branding, territories, and operating context for distributors, agencies, and agents. Partner-led journeys read this context before offering a product.
+<p class="ff-lead">What a partner may sell, in which territory, and how that channel looks.</p>
 
-Public product page: <https://fireflysoftware.io/openplatform/modules/>
+Product definitions stay in [products](products.md). This module holds the partner, the assignment, and the branding.
 
-## Why this module exists
+<figure class="ff-figure">
+  <img src="/diagrams/module-distribution.svg?v=20261019b" alt="Distribution, read top to bottom: partner portal, then branding and catalogue, then distributor records" width="960" height="484" />
+  <figcaption>Read top to bottom. The partner portal is the channel. Branding and the partner catalogue sit in the domain. Distributor, agency, and agent records sit in the core.</figcaption>
+</figure>
 
-Direct-to-customer apps can skip distributor rules. Partner portals cannot. Without a distribution module, every experience service reimplements “which products may this agent sell?” and branding drifts per channel. This module holds distributor lifecycle, catalogue views, and branding; product definitions still come from [products](products.md).
+`exp-distributor` is the portal. `domain-distributor-branding` and `domain-distributor-catalog` shape what that portal shows. `core-common-distributor-mgmt` stores the distributor.
 
-## When to use it
+<div class="ff-split" markdown="0">
+  <section class="ff-panel">
+    <h3>What it owns</h3>
+    <ul>
+      <li>Distributors, agencies, agents, and agent roles</li>
+      <li>Territories and product assignments for a partner</li>
+      <li>Branding, terms templates, and channel configuration</li>
+      <li>Partner catalogue views and simulations for that partner</li>
+    </ul>
+  </section>
+  <section class="ff-panel">
+    <h3>What it does not own</h3>
+    <ul>
+      <li>The product master. That is <a href="/modules/products/">products</a>.</li>
+      <li>The party of record for a customer. That is <a href="/modules/customers/">customers</a>.</li>
+      <li>Direct-to-customer journeys that do not pass through a partner.</li>
+      <li>Channel init for a customer app. That is <code>exp-channel-management</code> under <a href="/modules/shared/">shared services</a>.</li>
+    </ul>
+  </section>
+</div>
 
-Use `distribution` when partners, agents, or brokers need constrained product access, branding, or operating permissions.
+## Repositories
 
-Direct-to-customer journeys may skip this module. Partner-led journeys should not hard-code distributor rules in every experience service.
+| Repository | Layer | What it holds | OpenAPI |
+|------------|-------|---------------|---------|
+| [`exp-distributor`](https://github.com/firefly-oss/exp-distributor) | Experience | Portal: profile, branding, agents, agencies, territories, products, catalogue, simulations | [openapi.yml](https://github.com/firefly-oss/exp-distributor/blob/main/exp-distributor-sdk/src/main/resources/openapi.yml) |
+| [`domain-distributor-branding`](https://github.com/firefly-oss/domain-distributor-branding) | Domain | Distributor, agency, agent, territory, operation, configuration | [openapi.yml](https://github.com/firefly-oss/domain-distributor-branding/blob/main/domain-distributor-branding-sdk/src/main/resources/openapi.yml) |
+| [`domain-distributor-catalog`](https://github.com/firefly-oss/domain-distributor-catalog) | Domain | Partner catalogue, simulations, shipment queries | [openapi.yml](https://github.com/firefly-oss/domain-distributor-catalog/blob/main/domain-distributor-catalog-sdk/src/main/resources/openapi.yml) |
+| [`core-common-distributor-mgmt`](https://github.com/firefly-oss/core-common-distributor-mgmt) | Core | Distributor lifecycle, agencies, agents, territories, assignments | [openapi.yml](https://github.com/firefly-oss/core-common-distributor-mgmt/blob/main/core-common-distributor-mgmt-sdk/src/main/resources/openapi.yml) |
 
-## Key concepts
+## How the pieces fit
 
-| Concept | Meaning in this module |
-|---------|------------------------|
-| Distributor | Partner organisation with assignments and permissions |
-| Assignment | Products, territories, or operating rights for a channel |
-| Branding | Channel look-and-feel configuration |
-| Distributor catalogue | Product view constrained for a distributor |
+`exp-distributor` is the BFF at `/api/v1/experience/distributors`. The portal asks it for profile, branding, agents, agencies, territories, products, catalogue, and simulations.
 
-## Layer map (repos that exist)
+`domain-distributor-branding` answers distributor, agency, agent, territory, and configuration. `domain-distributor-catalog` answers the constrained catalogue, simulations, and shipment queries. Those are domain queries over the partner's view, not a second product master.
 
-| Repository | Layer | Role |
-|------------|-------|------|
-| [`core-common-distributor-mgmt`](https://github.com/firefly-oss/core-common-distributor-mgmt) | `core-*` | Distributor lifecycle and assignments |
-| [`domain-distributor-branding`](https://github.com/firefly-oss/domain-distributor-branding) | `domain-*` | Channel branding configuration |
-| [`domain-distributor-catalog`](https://github.com/firefly-oss/domain-distributor-catalog) | `domain-*` | Distributor product catalogue views |
-| [`exp-distributor`](https://github.com/firefly-oss/exp-distributor) | `exp-*` | BFF for the distributor portal |
+`core-common-distributor-mgmt` persists distributors, agencies, agents, roles, territories, product assignments, terms templates, and configuration. The product id on an assignment points at [products](products.md).
 
-**Related:** [`exp-channel-management`](https://github.com/firefly-oss/exp-channel-management) initialises channel branding and reference data (documented under [shared](shared.md)).
+## Related
 
-## How a typical call path looks
-
-1. `exp-distributor` exposes portal operations.
-2. Domain services manage branding and distributor catalogue views.
-3. `core-common-distributor-mgmt` persists assignments and permissions.
-4. Product and onboarding flows read distributor context before offering a product.
-
-## How to start
-
-1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
-2. Open the repositories in the layer map above and read each README and OpenAPI.
-3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
-4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
-
-
-## OpenAPI
-
-| Repository | Spec |
-|------------|------|
-| `core-common-distributor-mgmt` | [`…/openapi.yml`](https://github.com/firefly-oss/core-common-distributor-mgmt/blob/main/core-common-distributor-mgmt-sdk/src/main/resources/openapi.yml) |
-| `domain-distributor-branding` | [`…/openapi.yml`](https://github.com/firefly-oss/domain-distributor-branding/blob/main/domain-distributor-branding-sdk/src/main/resources/openapi.yml) |
-| `domain-distributor-catalog` | [`…/openapi.yml`](https://github.com/firefly-oss/domain-distributor-catalog/blob/main/domain-distributor-catalog-sdk/src/main/resources/openapi.yml) |
-| `exp-distributor` | [`…/openapi.yml`](https://github.com/firefly-oss/exp-distributor/blob/main/exp-distributor-sdk/src/main/resources/openapi.yml) |
-
-Full index: [OpenAPI — distribution](../reference/openapi.md#distribution-distribution).
-
-## Events
-
-[Stub until published](../reference/events.md).
-
-## Maturity notes
-
-Core, domain, and experience repositories for this module id are present under `firefly-oss`. Treat README and OpenAPI in each repo as the source of truth. Parent pin for new work: **26.10.19**.
-
-## Related modules
-
-- [Products and commercial configuration](products.md)
-- [Onboarding and verification](onboarding.md)
-- [Customers and relationships](customers.md)
-- [Business modules catalogue](catalog.md)
-
-## Next steps
-
-Pair with [Products](products.md) and [Onboarding](onboarding.md). Start from `exp-distributor` for partner-channel surfaces.
+- [Products](products.md) for the definition being assigned
+- [Onboarding](onboarding.md) when a partner starts a customer journey
+- [Shared services](shared.md) for channel init outside the partner portal
+- [Catalogue](catalog.md)

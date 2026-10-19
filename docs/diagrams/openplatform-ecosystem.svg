@@ -1,43 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
-<title id="title">OpenPlatform in firefly-oss</title>
-<desc id="desc">OpenPlatform modules live in firefly-oss. Commercial products may compose those modules. Institution systems connect through adapters. Runtime train is Jafly 26.10.19.</desc>
-<style>
-  .t { font-family: Manrope, Arial, Helvetica, sans-serif; }
-  .title { font-size: 24px; font-weight: 700; fill: #F3F1EB; }
-  .sub { font-size: 14px; fill: #BFB8AB; }
-  .h { font-size: 15px; font-weight: 700; }
-  .k { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; }
-</style>
-<rect width="960" height="420" rx="16" fill="#10110F"/>
-<text class="t title" x="36" y="44">OpenPlatform = firefly-oss</text>
-<text class="t sub" x="36" y="70">Modules, libraries, parent BOM, and this documentation hub.</text>
-
-<rect x="36" y="110" width="230" height="160" rx="12" fill="#1A1B17" stroke="#474A42"/>
-<text class="t k" x="56" y="140" fill="#BFB8AB">BOUNDARY</text>
-<text class="t h" x="56" y="172" fill="#FFB34A">Adapters</text>
-<text class="t" x="56" y="204" fill="#F3F1EB" style="font-size:13px">Institution systems</text>
-<text class="t" x="56" y="226" fill="#F3F1EB" style="font-size:13px">and providers</text>
-
-<path d="M266 190 H292" stroke="#FFB34A" stroke-width="3"/>
-<polygon points="292,184 304,190 292,196" fill="#FFB34A"/>
-
-<rect x="312" y="100" width="336" height="180" rx="12" fill="#FFB34A"/>
-<text class="t k" x="332" y="130" fill="#10110F">THIS HUB</text>
-<text class="t h" x="332" y="162" fill="#10110F">firefly-oss / OpenPlatform</text>
-<text class="t" x="332" y="194" fill="#10110F" style="font-size:13px">core-* / domain-* / exp-*</text>
-<text class="t" x="332" y="216" fill="#10110F" style="font-size:13px">library-psps / library-rails</text>
-<text class="t" x="332" y="238" fill="#10110F" style="font-size:13px">docs.fireflysoftware.io</text>
-
-<path d="M648 190 H674" stroke="#FFB34A" stroke-width="3"/>
-<polygon points="674,184 686,190 674,196" fill="#FFB34A"/>
-
-<rect x="694" y="110" width="230" height="160" rx="12" fill="#1A1B17" stroke="#474A42"/>
-<text class="t k" x="714" y="140" fill="#BFB8AB">RUNTIME</text>
-<text class="t h" x="714" y="172" fill="#FFB34A">Jafly 26.10.19</text>
-<text class="t" x="714" y="204" fill="#F3F1EB" style="font-size:13px">Boot 4.1.1 / Java 25</text>
-<text class="t" x="714" y="226" fill="#F3F1EB" style="font-size:13px">fireflyframework</text>
-
-<text class="t sub" x="36" y="340">Commercial products may compose these modules; this hub documents the platform in firefly-oss.</text>
-<text class="t sub" x="36" y="368">Product narrative: fireflysoftware.io/openplatform</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="964" viewBox="0 0 960 964" role="img" aria-labelledby="title desc">
+<title id="title">firefly-oss module map</title>
+<desc id="desc">Ten OpenPlatform module ids published from repositories under firefly-oss.</desc>
+<style>text { font-family: Manrope, Arial, Helvetica, sans-serif; }</style>
+<rect width="960" height="964" fill="#F3F1EB"/>
+<rect x="0" y="0" width="960" height="964" fill="#F3F1EB"/>
+<text x="48" y="69" fill="#10110F" font-size="32" font-weight="700">firefly-oss module map</text>
+<text x="48" y="104" fill="#62645B" font-size="18" font-weight="400">Each card is one module id. Repository names sit on that module&#x27;s page.</text>
+<rect x="40" y="133" width="430" height="132" rx="14" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<text x="64" y="181.3" fill="#10110F" font-size="26" font-weight="700">customers</text>
+<text x="64" y="214.6" fill="#62645B" font-size="18" font-weight="400">Parties, relationships, and consent</text>
+<rect x="490" y="133" width="430" height="132" rx="14" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<text x="514" y="181.3" fill="#10110F" font-size="26" font-weight="700">onboarding</text>
+<text x="514" y="214.6" fill="#62645B" font-size="18" font-weight="400">KYC and KYB case lifecycle</text>
+<rect x="40" y="285" width="430" height="132" rx="14" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<text x="64" y="333.3" fill="#10110F" font-size="26" font-weight="700">products</text>
+<text x="64" y="366.6" fill="#62645B" font-size="18" font-weight="400">Catalogue, versions, and pricing</text>
+<rect x="490" y="285" width="430" height="132" rx="14" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<text x="514" y="333.3" fill="#10110F" font-size="26" font-weight="700">agreements</text>
+<text x="514" y="366.6" fill="#62645B" font-size="18" font-weight="400">Contracts, terms, and documents</text>
+<rect x="40" y="437" width="430" height="132" rx="14" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<text x="64" y="485.3" fill="#10110F" font-size="26" font-weight="700">distribution</text>
+<text x="64" y="518.6" fill="#62645B" font-size="18" font-weight="400">Partner access, branding, territories</text>
+<rect x="490" y="437" width="430" height="132" rx="14" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<text x="514" y="485.3" fill="#10110F" font-size="26" font-weight="700">accounts</text>
+<text x="514" y="518.6" fill="#62645B" font-size="18" font-weight="400">Relationships, ledger, and general ledger</text>
+<rect x="40" y="589" width="430" height="132" rx="14" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<text x="64" y="637.3" fill="#10110F" font-size="26" font-weight="700">payments</text>
+<text x="64" y="670.6" fill="#62645B" font-size="18" font-weight="400">Orders, cards, and adapter ports</text>
+<rect x="490" y="589" width="430" height="132" rx="14" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<text x="514" y="637.3" fill="#10110F" font-size="26" font-weight="700">lending</text>
+<text x="514" y="670.6" fill="#62645B" font-size="18" font-weight="400">Origination, servicing, collections</text>
+<rect x="40" y="741" width="430" height="132" rx="14" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<text x="64" y="789.3" fill="#10110F" font-size="26" font-weight="700">risk</text>
+<text x="64" y="822.6" fill="#62645B" font-size="18" font-weight="400">Scoring, provisioning, reporting records</text>
+<rect x="490" y="741" width="430" height="132" rx="14" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<text x="514" y="789.3" fill="#10110F" font-size="26" font-weight="700">shared</text>
+<text x="514" y="822.6" fill="#62645B" font-size="18" font-weight="400">Identity, notifications, reference data</text>
+<text x="48" y="915" fill="#62645B" font-size="18" font-weight="400">Insurance areas reuse these modules. No dedicated insurance repository is published.</text>
 </svg>

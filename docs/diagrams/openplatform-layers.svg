@@ -1,45 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
-<title id="title">OpenPlatform service bands</title>
-<desc id="desc">Channels sit above experience, domain, and core repositories in firefly-oss. Adapters and libraries connect institution systems and providers. Train pin 26.10.19 with Spring Boot 4.1.1.</desc>
-<style>
-  .t { font-family: Manrope, Arial, Helvetica, sans-serif; }
-  .title { font-size: 26px; font-weight: 700; fill: #F3F1EB; }
-  .sub { font-size: 14px; fill: #BFB8AB; }
-  .h { font-size: 16px; font-weight: 700; fill: #10110F; }
-  .on-dark { fill: #F3F1EB; }
-  .on-amber { fill: #10110F; }
-</style>
-<rect width="960" height="560" rx="16" fill="#10110F"/>
-<rect x="0" y="0" width="960" height="108" fill="#1A1B17"/>
-<text class="t title" x="36" y="48">OpenPlatform layers in firefly-oss</text>
-<text class="t sub" x="36" y="76">Experience, domain, and core repositories. Outside systems stay behind adapters.</text>
-
-<g transform="translate(48 132)">
-  <rect x="0" y="0" width="864" height="58" rx="8" fill="#2A2C26"/>
-  <text class="t on-dark" x="28" y="25" style="font-size:12px;font-weight:700;letter-spacing:0.08em">CHANNELS</text>
-  <text class="t on-dark" x="28" y="46" style="font-size:14px">Apps, portals, and partner surfaces</text>
-
-  <rect x="0" y="70" width="864" height="70" rx="8" fill="#FFB34A"/>
-  <text class="t on-amber" x="28" y="98" style="font-size:12px;font-weight:700;letter-spacing:0.08em">EXPERIENCE</text>
-  <text class="t on-amber" x="28" y="122" style="font-size:16px;font-weight:700">exp-* / channel and journey APIs</text>
-
-  <rect x="0" y="152" width="864" height="70" rx="8" fill="#F3F1EB"/>
-  <text class="t h" x="28" y="180" style="font-size:12px;letter-spacing:0.08em;fill:#855414">DOMAIN</text>
-  <text class="t h" x="28" y="204">domain-* / commands, queries, process coordination</text>
-
-  <rect x="0" y="234" width="864" height="70" rx="8" fill="#EBE7DF"/>
-  <text class="t h" x="28" y="262" style="font-size:12px;letter-spacing:0.08em;fill:#855414">CORE</text>
-  <text class="t h" x="28" y="286">core-* / persistence and core APIs</text>
-
-  <rect x="0" y="316" width="864" height="70" rx="8" fill="#62645B"/>
-  <text class="t on-dark" x="28" y="344" style="font-size:12px;font-weight:700;letter-spacing:0.08em">ADAPTERS</text>
-  <text class="t on-dark" x="28" y="368" style="font-size:15px;font-weight:700">library-psps / library-rails / institution systems</text>
-</g>
-
-<g transform="translate(48 468)">
-  <rect x="0" y="0" width="864" height="56" rx="8" fill="#1A1B17" stroke="#474A42"/>
-  <text class="t" x="24" y="24" fill="#BFB8AB" style="font-size:11px;font-weight:700;letter-spacing:0.08em">RUNTIME TRAIN</text>
-  <text class="t" x="24" y="44" fill="#F3F1EB" style="font-size:13px">firefly-parent via fireflyframework-parent 26.10.19 / Spring Boot 4.1.1 / Java 25</text>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="653" viewBox="0 0 960 653" role="img" aria-labelledby="title desc">
+<title id="title">OpenPlatform layers</title>
+<desc id="desc">Experience services call domain services. Domain services call core services. Adapters are a separate boundary.</desc>
+<style>text { font-family: Manrope, Arial, Helvetica, sans-serif; }</style>
+<rect width="960" height="653" fill="#F3F1EB"/>
+<rect x="0" y="0" width="960" height="653" fill="#F3F1EB"/>
+<text x="56" y="76.1" fill="#10110F" font-size="36" font-weight="700">OpenPlatform layers</text>
+<text x="56" y="117.3" fill="#62645B" font-size="22" font-weight="400">One direction. Experience calls domain. Domain calls core.</text>
+<rect x="40" y="151.5" width="880" height="103.2" rx="16" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<rect x="40" y="169.5" width="8" height="67.2" fill="#FFB34A"/>
+<text x="68" y="192.4" fill="#10110F" font-size="32" font-weight="700">Experience</text>
+<text x="68" y="232.6" fill="#272820" font-size="22" font-weight="400">Channel and journey APIs. A portal calls this band for one task.</text>
+<line x1="480" y1="262.7" x2="480" y2="308.7" stroke="#474A42" stroke-width="2"/>
+<polygon points="472,306.7 488,306.7 480,318.7" fill="#474A42"/>
+<rect x="40" y="326.7" width="880" height="103.2" rx="16" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<rect x="40" y="344.7" width="8" height="67.2" fill="#474A42"/>
+<text x="68" y="367.7" fill="#10110F" font-size="32" font-weight="700">Domain</text>
+<text x="68" y="407.8" fill="#272820" font-size="22" font-weight="400">Commands, queries, and process coordination for one bounded context.</text>
+<line x1="480" y1="438" x2="480" y2="484" stroke="#474A42" stroke-width="2"/>
+<polygon points="472,482 488,482 480,494" fill="#474A42"/>
+<rect x="40" y="502" width="880" height="103.2" rx="16" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<rect x="40" y="520" width="8" height="67.2" fill="#474A42"/>
+<text x="68" y="542.9" fill="#10110F" font-size="32" font-weight="700">Core</text>
+<text x="68" y="583" fill="#272820" font-size="22" font-weight="400">Persistence and the service APIs that hold the record.</text>
 </svg>

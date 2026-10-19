@@ -2,84 +2,63 @@
 
 **Module id:** `risk`
 
-Structured records of credit scoring, provisioning, screening cases, and regulatory reporting submissions. Actuarial and bureau systems integrate through adapters; they are not replaced by default.
+<p class="ff-lead">Records of scoring, provisioning, and reporting. The decision policy stays with the institution.</p>
 
-Public product page: <https://fireflysoftware.io/openplatform/modules/>
+Bureau systems connect through adapters. This module stores the case, not the provider toolkit.
 
-## Why this module exists
+<figure class="ff-figure">
+  <img src="/diagrams/module-risk.svg?v=20261019b" alt="Risk, read top to bottom: no separate channel, then scoring and bureau access, then scoring, provisioning, and reporting records" width="960" height="484" />
+  <figcaption>Read top to bottom. There is no risk channel. Lending and onboarding call in. The domain handles scoring requests and bureau access. The core stores the records.</figcaption>
+</figure>
 
-Lending and onboarding journeys need a place to store scoring results and reporting cases without embedding bureau SDKs in every service. Risk owns operational records; providers stay behind adapters. Where AI participates, it decides within approved limits, explained, recorded, and open to human review. Decisions with significant effects on people, or beyond delegated limits, go to people with delegated authority.
+There is no `exp-risk` repository. `domain-data-credit-bureaus` is on disk and has no published OpenAPI.
 
-## When to use it
+Where AI participates in a scoring journey, it decides within approved limits, explained, recorded, and open to human review. Decisions with significant effects on people, or beyond delegated limits, go to people with delegated authority.
 
-Use `risk` when you need structured records of credit scoring, provisioning, screening cases, or regulatory reporting submissions.
+<div class="ff-split" markdown="0">
+  <section class="ff-panel">
+    <h3>What it owns</h3>
+    <ul>
+      <li>Scoring cases, models, requests, and results</li>
+      <li>Records that a bureau was called, without embedding the provider toolkit</li>
+      <li>Provisioning cases, stage history, calculations, and journals</li>
+      <li>Reporting runs, submissions, and case records for reporting</li>
+    </ul>
+  </section>
+  <section class="ff-panel">
+    <h3>What it does not own</h3>
+    <ul>
+      <li>The loan application. That is <a href="/modules/lending/">lending</a>.</li>
+      <li>KYC and KYB evidence. That is <a href="/modules/onboarding/">onboarding</a>.</li>
+      <li>Credit policy and the final decision authority. Those stay with the institution.</li>
+      <li>A regulatory outcome for an institution. This hub does not claim one.</li>
+    </ul>
+  </section>
+</div>
 
-Do not claim regulatory outcomes for an institution from this hub. Compliance evidence stays with the institution.
+## Repositories
 
-## Key concepts
+| Repository | Layer | What it holds | OpenAPI |
+|------------|-------|---------------|---------|
+| [`domain-lending-credit-scoring`](https://github.com/firefly-oss/domain-lending-credit-scoring) | Domain | Scoring requests, cases, and models | [openapi.yml](https://github.com/firefly-oss/domain-lending-credit-scoring/blob/main/domain-lending-credit-scoring-sdk/src/main/resources/openapi.yml) |
+| [`domain-data-credit-bureaus`](https://github.com/firefly-oss/domain-data-credit-bureaus) | Domain | Bureau data access | No published OpenAPI yet |
+| [`core-lending-credit-scoring`](https://github.com/firefly-oss/core-lending-credit-scoring) | Core | Scoring cases, models, results, bureau-call records | [openapi.yml](https://github.com/firefly-oss/core-lending-credit-scoring/blob/main/core-lending-credit-scoring-sdk/src/main/resources/openapi.yml) |
+| [`core-lending-provisioning-risk`](https://github.com/firefly-oss/core-lending-provisioning-risk) | Core | Provisioning cases, stage history, calculations | [openapi.yml](https://github.com/firefly-oss/core-lending-provisioning-risk/blob/main/core-lending-provisioning-risk-sdk/src/main/resources/openapi.yml) |
+| [`core-lending-regulatory-compliance`](https://github.com/firefly-oss/core-lending-regulatory-compliance) | Core | Reporting runs, submissions, and related case records | [openapi.yml](https://github.com/firefly-oss/core-lending-regulatory-compliance/blob/main/core-lending-regulatory-compliance-sdk/src/main/resources/openapi.yml) |
 
-| Concept | Meaning in this module |
-|---------|------------------------|
-| Scoring case | Request, model reference, and result record |
-| Provisioning | Expected-credit-loss values and stage history |
-| Regulatory case | Submission and reporting case records |
-| Bureau boundary | External credit-data provider behind adapters |
+## How the pieces fit
 
-## Layer map (repos that exist)
+`domain-lending-credit-scoring` exposes scoring requests, cases, and models. A request is the domain command. The result is stored, not implied.
 
-| Repository | Layer | Role |
-|------------|-------|------|
-| [`core-lending-credit-scoring`](https://github.com/firefly-oss/core-lending-credit-scoring) | `core-*` | Scoring cases, models, and results |
-| [`domain-lending-credit-scoring`](https://github.com/firefly-oss/domain-lending-credit-scoring) | `domain-*` | Scoring domain orchestration |
-| [`core-lending-provisioning-risk`](https://github.com/firefly-oss/core-lending-provisioning-risk) | `core-*` | Provisioning and stage history |
-| [`core-lending-regulatory-compliance`](https://github.com/firefly-oss/core-lending-regulatory-compliance) | `core-*` | Regulatory reporting case records |
-| [`domain-data-credit-bureaus`](https://github.com/firefly-oss/domain-data-credit-bureaus) | `domain-*` | Bureau data access (no published OpenAPI yet) |
+`core-lending-credit-scoring` persists the case, the model reference, the result, and a record that a bureau was called. `domain-data-credit-bureaus` is the bureau-access repository. It has no checked-in OpenAPI, so this page does not describe its operations.
 
-**Gap:** no dedicated `exp-risk` repository. Journeys usually request scoring through lending or onboarding experience services. Prefer category language for named bureaus unless an approved integration guide lists them.
+`core-lending-provisioning-risk` persists provisioning cases, stage history, calculations, and journals. `core-lending-regulatory-compliance` persists reporting runs, submissions, and reporting records. Those are operational records. They are not a statement that an institution meets a regulation.
 
-## How a typical call path looks
+Lending journeys call these services. They do not embed a bureau toolkit in `exp-lending`.
 
-1. Lending or onboarding journeys request a scoring or screening case.
-2. Domain scoring services orchestrate the case.
-3. Core scoring, provisioning, or regulatory repositories store results and history.
-4. Bureau and screening providers stay behind adapters.
+## Related
 
-## How to start
-
-1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
-2. Open the repositories in the layer map above and read each README and OpenAPI.
-3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
-4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
-
-
-## OpenAPI
-
-| Repository | Spec |
-|------------|------|
-| `core-lending-credit-scoring` | [`…/openapi.yml`](https://github.com/firefly-oss/core-lending-credit-scoring/blob/main/core-lending-credit-scoring-sdk/src/main/resources/openapi.yml) |
-| `domain-lending-credit-scoring` | [`…/openapi.yml`](https://github.com/firefly-oss/domain-lending-credit-scoring/blob/main/domain-lending-credit-scoring-sdk/src/main/resources/openapi.yml) |
-| `core-lending-provisioning-risk` | [`…/openapi.yml`](https://github.com/firefly-oss/core-lending-provisioning-risk/blob/main/core-lending-provisioning-risk-sdk/src/main/resources/openapi.yml) |
-| `core-lending-regulatory-compliance` | [`…/openapi.yml`](https://github.com/firefly-oss/core-lending-regulatory-compliance/blob/main/core-lending-regulatory-compliance-sdk/src/main/resources/openapi.yml) |
-| `domain-data-credit-bureaus` | — (no published OpenAPI yet) |
-
-Full index: [OpenAPI — risk](../reference/openapi.md#risk-risk).
-
-## Events
-
-[Stub until published](../reference/events.md).
-
-## Maturity notes
-
-Scoring, provisioning, and regulatory-reporting repositories are present under `firefly-oss`. This page describes operational records and integration points; it does not claim regulatory outcomes. Parent pin for new work: **26.10.19**.
-
-## Related modules
-
-- [The lending lifecycle](lending.md)
-- [Onboarding and verification](onboarding.md)
-- [Customers and relationships](customers.md)
-- [Integrate — adapters](../integrate/adapters.md)
-- [Business modules catalogue](catalog.md)
-
-## Next steps
-
-Return to [Lending](lending.md) or [Onboarding](onboarding.md) for the journey that owns the case. Do not invent compliance outcomes in docs or READMEs.
+- [Lending](lending.md) for the application that asks for a score
+- [Onboarding](onboarding.md) for evidence that is not a scoring case
+- [Adapters](../integrate/adapters.md) for bureau boundaries
+- [Catalogue](catalog.md)

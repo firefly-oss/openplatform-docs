@@ -1,10 +1,10 @@
 # Firefly OpenPlatform developer documentation hub.
 # Theme pack: vendored from firefly-oss/brand-kit dist/Firefly-Brand-Kit/16-MkDocs/
 
-# site_name is the product only. The Firefly wordmark lives in theme.logo
-# so the header reads: [logo] | OpenPlatform (see overrides/partials/header.html).
-site_name: OpenPlatform
-site_description: Developer documentation for OpenPlatform — firefly-oss business modules, architecture, OpenAPI, and adapters.
+# site_name is the document title. The navbar lockup stays logo | OpenPlatform
+# (see overrides/partials/header.html). Do not shorten this to OpenPlatform.
+site_name: Firefly OpenPlatform Documentation Hub
+site_description: Firefly OpenPlatform Documentation Hub for firefly-oss business modules, architecture, OpenAPI, and adapters.
 site_author: Firefly Software
 site_url: https://docs.fireflysoftware.io/
 repo_url: https://github.com/firefly-oss/openplatform-docs

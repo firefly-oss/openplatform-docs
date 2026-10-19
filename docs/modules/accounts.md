@@ -2,83 +2,62 @@
 
 **Module id:** `accounts`
 
-Account relationships kept apart from financial movements. Account services hold relationships; ledger and general-ledger services hold postings and books.
+<p class="ff-lead">Who holds the account, kept apart from how money was posted.</p>
 
-Public product page: <https://fireflysoftware.io/openplatform/modules/>
+Account services hold relationships. Ledger and general-ledger services hold movements and books. An institution core that remains the book of record connects through an adapter.
 
-## Why this module exists
+<figure class="ff-figure">
+  <img src="/diagrams/module-accounts.svg?v=20261019b" alt="Accounts, read top to bottom: account opening, then relationships, then ledger and general ledger" width="960" height="484" />
+  <figcaption>Read top to bottom. The channel opens the account. The domain holds the relationship. The core holds the account record, the ledger, and the general ledger.</figcaption>
+</figure>
 
-Mixing “who owns the account” with “how money was posted” in one dump makes accounting changes dangerous. OpenPlatform splits relationship state from ledger and GL movements so teams can evolve posting rules without rewriting every channel journey. Institution cores that remain books of record connect through adapters rather than being replaced by default.
+`exp-accounts` is the channel. `domain-banking-accounts` coordinates the relationship. Three core services split the record: `core-banking-accounts`, `core-banking-ledger`, and `core-common-accounting-gl`. There is no `domain-banking-ledger` and no `exp-ledger`.
 
-## When to use it
+<div class="ff-split" markdown="0">
+  <section class="ff-panel">
+    <h3>What it owns</h3>
+    <ul>
+      <li>Account relationships, holders, spaces, balances, and restrictions</li>
+      <li>Account opening for a channel</li>
+      <li>Ledger transactions and the lines that make a posting</li>
+      <li>General-ledger accounts, journal batches, entries, and lines</li>
+    </ul>
+  </section>
+  <section class="ff-panel">
+    <h3>What it does not own</h3>
+    <ul>
+      <li>The party. That is <a href="/modules/customers/">customers</a>.</li>
+      <li>Payment orders and card records. Those are <a href="/modules/payments/">payments</a>.</li>
+      <li>Loan schedules. Those are <a href="/modules/lending/">lending</a>.</li>
+      <li>An institution core that remains the book of record. That stays behind an <a href="/integrate/adapters/">adapter</a>.</li>
+    </ul>
+  </section>
+</div>
 
-Use `accounts` when you need account relationships, balances, restrictions, or posting into ledger and general-ledger structures.
+## Repositories
 
-Keep relationship data and financial movements in the services that own them. Do not collapse everything into one table model.
+| Repository | Layer | What it holds | OpenAPI |
+|------------|-------|---------------|---------|
+| [`exp-accounts`](https://github.com/firefly-oss/exp-accounts) | Experience | Account opening journey and accounts by party | [openapi.yml](https://github.com/firefly-oss/exp-accounts/blob/main/exp-accounts-sdk/src/main/resources/openapi.yml) |
+| [`domain-banking-accounts`](https://github.com/firefly-oss/domain-banking-accounts) | Domain | Holders, accounts, spaces, restrictions, back office | [openapi.yml](https://github.com/firefly-oss/domain-banking-accounts/blob/main/domain-banking-accounts-sdk/src/main/resources/openapi.yml) |
+| [`core-banking-accounts`](https://github.com/firefly-oss/core-banking-accounts) | Core | Account relationships, balances, restrictions, spaces | [openapi.yml](https://github.com/firefly-oss/core-banking-accounts/blob/main/core-banking-accounts-sdk/src/main/resources/openapi.yml) |
+| [`core-banking-ledger`](https://github.com/firefly-oss/core-banking-ledger) | Core | Transactions, lines, statements | [openapi.yml](https://github.com/firefly-oss/core-banking-ledger/blob/main/core-banking-ledger-sdk/src/main/resources/openapi.yml) |
+| [`core-common-accounting-gl`](https://github.com/firefly-oss/core-common-accounting-gl) | Core | GL accounts and journal batches | [openapi.yml](https://github.com/firefly-oss/core-common-accounting-gl/blob/main/core-common-accounting-gl-sdk/src/main/resources/openapi.yml) |
 
-## Key concepts
+## How the pieces fit
 
-| Concept | Meaning in this module |
-|---------|------------------------|
-| Account relationship | Party-linked account record, balances, restrictions |
-| Ledger movement | Posting and status history for financial events |
-| General ledger | GL accounts, journal batches, and entries |
-| Book-of-record boundary | Institution core reached through adapters when it stays authoritative |
+`exp-accounts` exposes the account-opening journey and accounts for a party. That is the channel edge.
 
-## Layer map (repos that exist)
+`domain-banking-accounts` coordinates holders, accounts, spaces, and restrictions, including a back-office view. It does not post the ledger.
 
-| Repository | Layer | Role |
-|------------|-------|------|
-| [`core-banking-accounts`](https://github.com/firefly-oss/core-banking-accounts) | `core-*` | Account relationship persistence |
-| [`domain-banking-accounts`](https://github.com/firefly-oss/domain-banking-accounts) | `domain-*` | Account domain orchestration |
-| [`exp-accounts`](https://github.com/firefly-oss/exp-accounts) | `exp-*` | Account journeys for channels |
-| [`core-banking-ledger`](https://github.com/firefly-oss/core-banking-ledger) | `core-*` | Ledger movements and posting |
-| [`core-common-accounting-gl`](https://github.com/firefly-oss/core-common-accounting-gl) | `core-*` | General-ledger accounts and journals |
+`core-banking-accounts` persists the relationship: accounts, spaces, balances, restrictions, parameters, and status. `core-banking-ledger` persists transactions and typed lines (transfers, fees, interest, deposits, withdrawals, and scheme-specific lines listed in that spec). `core-common-accounting-gl` persists GL accounts, journal batches, entries, and lines.
 
-**Gap:** there is no `domain-banking-ledger` or `exp-ledger` in the inventory. Ledger and GL are core-facing today; experience work goes through `exp-accounts` or adjacent payment/lending journeys.
+A payment or a loan keeps its own record and posts here when the movement belongs on the books. The three cores are not one table.
 
-## How a typical call path looks
+## Related
 
-1. Experience or domain account services open or update relationships.
-2. `core-banking-accounts` holds account state.
-3. Ledger and GL cores post movements according to the institution’s accounting model.
-4. Institution cores that remain books of record connect through adapters.
-
-## How to start
-
-1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
-2. Open the repositories in the layer map above and read each README and OpenAPI.
-3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
-4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
-
-
-## OpenAPI
-
-| Repository | Spec |
-|------------|------|
-| `core-banking-accounts` | [`…/openapi.yml`](https://github.com/firefly-oss/core-banking-accounts/blob/main/core-banking-accounts-sdk/src/main/resources/openapi.yml) |
-| `domain-banking-accounts` | [`…/openapi.yml`](https://github.com/firefly-oss/domain-banking-accounts/blob/main/domain-banking-accounts-sdk/src/main/resources/openapi.yml) |
-| `exp-accounts` | [`…/openapi.yml`](https://github.com/firefly-oss/exp-accounts/blob/main/exp-accounts-sdk/src/main/resources/openapi.yml) |
-| `core-banking-ledger` | [`…/openapi.yml`](https://github.com/firefly-oss/core-banking-ledger/blob/main/core-banking-ledger-sdk/src/main/resources/openapi.yml) |
-| `core-common-accounting-gl` | [`…/openapi.yml`](https://github.com/firefly-oss/core-common-accounting-gl/blob/main/core-common-accounting-gl-sdk/src/main/resources/openapi.yml) |
-
-Full index: [OpenAPI — accounts](../reference/openapi.md#accounts-accounts).
-
-## Events
-
-[Stub until published](../reference/events.md).
-
-## Maturity notes
-
-Banking account, ledger, and GL repositories are present under `firefly-oss`. Institution cores that remain authoritative connect through adapters. Parent pin for new work: **26.10.19**.
-
-## Related modules
-
-- [Customers and relationships](customers.md)
-- [Payments and cards](payments.md)
-- [The lending lifecycle](lending.md)
-- [Business modules catalogue](catalog.md)
-
-## Next steps
-
-See [Payments](payments.md) for rail and PSP boundaries, and [Customers](customers.md) for party ids on account relationships.
+- [Customers](customers.md) for the party on the account
+- [Payments](payments.md) for orders that may post
+- [Lending](lending.md) for servicing movements
+- [Adapters](../integrate/adapters.md)
+- [Catalogue](catalog.md)

@@ -2,7 +2,12 @@
 
 This page places **OpenPlatform** (`firefly-oss`) next to the framework train and the adapter boundary so you know what this hub documents before you clone a repository.
 
-<img src="/diagrams/openplatform-ecosystem.svg?v=20261019" alt="OpenPlatform in firefly-oss on the Jafly train with adapters at the boundary" width="960" height="420" />
+<figure class="ff-figure">
+  <img src="/diagrams/openplatform-ecosystem.svg?v=20261019b" alt="Map of the ten OpenPlatform module ids in firefly-oss" width="960" height="964" />
+  <figcaption>Read the grid left to right, then down. Each card is one module id. Repository names are on that module's page.</figcaption>
+</figure>
+
+This hub documents those ten ids under firefly-oss. The framework train is a pin for accuracy, not a second product drawn here.
 
 ## What this hub owns
 

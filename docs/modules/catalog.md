@@ -2,7 +2,12 @@
 
 Module ids and names align with the public OpenPlatform modules page at <https://fireflysoftware.io/openplatform/modules/> (`platformModules` / `businessModules` in the website sources).
 
-Each business module and the shared identity services have a dedicated page with purpose, when-to-use guidance, layer maps grounded in local `firefly-oss` repositories, OpenAPI links, and honest gaps. This page is the map.
+Each business module and the shared identity services have a dedicated page with purpose, what the module owns, the repositories on disk, and OpenAPI links. This page is the map.
+
+<figure class="ff-figure">
+  <img src="/diagrams/openplatform-ecosystem.svg?v=20261019b" alt="Map of the ten OpenPlatform module ids in firefly-oss" width="960" height="964" />
+  <figcaption>Read the grid left to right, then down. Each card is one module id. The page for that id lists the repositories.</figcaption>
+</figure>
 
 ## How to use this catalogue
 

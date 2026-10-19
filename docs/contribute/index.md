@@ -42,7 +42,7 @@ Rules that matter most for this hub:
 - Diagrams live under `docs/diagrams/` (SVG)
 - OpenPlatform diagrams live under `docs/diagrams/` as purpose-built SVGs (layers, ecosystem, adapters). Do not vendor LendingOS product-assembly slides or other brand-kit presentation isometrics into this hub.
 - Logos and Manrope live under `docs/assets/brand/` and `docs/assets/fonts/`
-- Header branding is logo + `|` + OpenPlatform via `theme/overrides/partials/header.html` (`site_name` is `OpenPlatform` only)
+- Header lockup is logo + `|` + OpenPlatform. The document title is Firefly OpenPlatform Documentation Hub (`site_name`).
 
 Prefer root-absolute `/diagrams/...` and `/assets/...` paths so images resolve on localhost and on `docs.fireflysoftware.io`.
 

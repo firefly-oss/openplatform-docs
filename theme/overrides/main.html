@@ -10,13 +10,13 @@
 
 {% block htmltitle %}
   {% if page and page.is_homepage %}
-    <title>OpenPlatform</title>
+    <title>Firefly OpenPlatform Documentation Hub</title>
   {% elif page and page.meta and page.meta.title %}
-    <title>{{ page.meta.title }} — OpenPlatform</title>
+    <title>{{ page.meta.title }} — Firefly OpenPlatform Documentation Hub</title>
   {% elif page and page.title and not page.is_homepage %}
-    <title>{{ page.title | striptags }} — OpenPlatform</title>
+    <title>{{ page.title | striptags }} — Firefly OpenPlatform Documentation Hub</title>
   {% else %}
-    <title>{{ config.site_name }}</title>
+    <title>Firefly OpenPlatform Documentation Hub</title>
   {% endif %}
 {% endblock %}
 

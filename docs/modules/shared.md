@@ -2,105 +2,101 @@
 
 **Module id:** `shared`
 
-Access, authentication, notifications, organisation and configuration, and reference data reused across applications. Business modules should depend on these services instead of embedding separate identity stores.
+<p class="ff-lead">Users, messages, organisation, and the reference data every other module reuses.</p>
 
-This id is part of the public OpenPlatform module set on <https://fireflysoftware.io/openplatform/modules/> even though it is not one of the nine business-module tiles drawn in architecture figures.
+Business modules call these services. They do not keep a private user store or a private list of countries.
 
-## Why this module exists
+<figure class="ff-figure">
+  <img src="/diagrams/module-shared.svg?v=20261019b" alt="Shared services in four groups: identity, notifications, organisation, and reference data" width="960" height="592" />
+  <figcaption>Read top to bottom. Identity, then notifications, then organisation, then reference data. Repository names for each group are in the tables below.</figcaption>
+</figure>
 
-Every journey needs users, sessions, notifications, and reference codes. Duplicating that per business module creates inconsistent security and noisy ops. Shared services provide common access and communication; identity providers and notification channels remain adapter concerns.
+The picture names the four jobs. It does not list every repository. Those are below, including experience, domain, and core services, plus a few supporting repositories that are on disk but are not a fifth job.
 
-## When to use it
+<div class="ff-split" markdown="0">
+  <section class="ff-panel">
+    <h3>What it owns</h3>
+    <ul>
+      <li>Users, roles, permissions, and external identities</li>
+      <li>Sessions, sign-in, and strong-authentication operations</li>
+      <li>Credentials and encryption keys</li>
+      <li>Notification send and preferences</li>
+      <li>Banks, branches, calendars, and tenant configuration</li>
+      <li>Reference data: countries, currencies, legal forms, and shared codes</li>
+    </ul>
+  </section>
+  <section class="ff-panel">
+    <h3>What it does not own</h3>
+    <ul>
+      <li>The customer party. That is <a href="/modules/customers/">customers</a>.</li>
+      <li>KYC and KYB cases. Those are <a href="/modules/onboarding/">onboarding</a>.</li>
+      <li>Identity-provider toolkits and notification-channel vendors. Those stay behind adapters.</li>
+      <li>Product, agreement, and account records.</li>
+    </ul>
+  </section>
+</div>
 
-Use `shared` for users, roles, sessions, SCA, notifications, organisation structure, configuration, channel init, and reference/master data.
+## Identity
 
-Business modules should call these APIs rather than inventing parallel stores.
+| Repository | Layer | What it holds | OpenAPI |
+|------------|-------|---------------|---------|
+| [`exp-security`](https://github.com/firefly-oss/exp-security) | Experience | Channel security at `/api/v1/experience/security` | [openapi.yml](https://github.com/firefly-oss/exp-security/blob/main/exp-security-sdk/src/main/resources/openapi.yml) |
+| [`domain-core-security-center`](https://github.com/firefly-oss/domain-core-security-center) | Domain | Sign-in, sessions, users, permission checks | [openapi.yml](https://github.com/firefly-oss/domain-core-security-center/blob/main/domain-core-security-center-sdk/src/main/resources/openapi.yml) |
+| [`domain-common-sca`](https://github.com/firefly-oss/domain-common-sca) | Domain | Strong-authentication operations | [openapi.yml](https://github.com/firefly-oss/domain-common-sca/blob/main/domain-common-sca-sdk/src/main/resources/openapi.yml) |
+| [`core-common-user-mgmt`](https://github.com/firefly-oss/core-common-user-mgmt) | Core | Users, roles, permissions, external identities | [openapi.yml](https://github.com/firefly-oss/core-common-user-mgmt/blob/main/core-common-user-mgmt-sdk/src/main/resources/openapi.yml) |
+| [`core-common-sca-mgmt`](https://github.com/firefly-oss/core-common-sca-mgmt) | Core | Strong-authentication operation records | [openapi.yml](https://github.com/firefly-oss/core-common-sca-mgmt/blob/main/core-common-sca-mgmt-sdk/src/main/resources/openapi.yml) |
+| [`core-common-security-vault`](https://github.com/firefly-oss/core-common-security-vault) | Core | Credentials, versions, and encryption keys | [openapi.yml](https://github.com/firefly-oss/core-common-security-vault/blob/main/core-common-security-vault-sdk/src/main/resources/openapi.yml) |
+| [`app-authenticator`](https://github.com/firefly-oss/app-authenticator) | Application | Authenticator application | No published OpenAPI |
 
-## Key concepts
+Sign-in and session queries live on `domain-core-security-center` (`/api/v1/auth/login`, logout, refresh, introspect, and session checks). The core stores the user. The experience service is the channel face.
 
-| Concept | Meaning in this module |
-|---------|------------------------|
-| User / role | Access principals and permissions |
-| SCA | Strong customer authentication challenges and results |
-| Notification | Multi-channel message orchestration and preferences |
-| Reference data | Shared codes and master data used across modules |
-| Channel init | Branding and reference bootstrap for a channel |
+## Notifications
 
-## Layer map (repos that exist)
+| Repository | Layer | What it holds | OpenAPI |
+|------------|-------|---------------|---------|
+| [`exp-notifications`](https://github.com/firefly-oss/exp-notifications) | Experience | Notification centre at `/api/v1/experience/notifications` | [openapi.yml](https://github.com/firefly-oss/exp-notifications/blob/main/exp-notifications-sdk/src/main/resources/openapi.yml) |
+| [`domain-common-notifications`](https://github.com/firefly-oss/domain-common-notifications) | Domain | Send, bulk send, and preferences | [openapi.yml](https://github.com/firefly-oss/domain-common-notifications/blob/main/domain-common-notifications-sdk/src/main/resources/openapi.yml) |
+| [`core-common-notification-services`](https://github.com/firefly-oss/core-common-notification-services) | Core | Email, SMS, and push send | [openapi.yml](https://github.com/firefly-oss/core-common-notification-services/blob/main/core-common-notification-services-sdk/src/main/resources/openapi.yml) |
 
-### Identity and security
+The domain decides what to send and stores preferences. The core performs the channel send. The vendor connection is an adapter concern, not a field on the business module.
 
-| Repository | Layer | Role |
-|------------|-------|------|
-| [`core-common-user-mgmt`](https://github.com/firefly-oss/core-common-user-mgmt) | `core-*` | Users, roles, and permissions |
-| [`core-common-security-vault`](https://github.com/firefly-oss/core-common-security-vault) | `core-*` | Secrets and vault-backed operations |
-| [`core-common-sca-mgmt`](https://github.com/firefly-oss/core-common-sca-mgmt) | `core-*` | SCA persistence |
-| [`domain-core-security-center`](https://github.com/firefly-oss/domain-core-security-center) | `domain-*` | Security-centre domain APIs |
-| [`domain-common-sca`](https://github.com/firefly-oss/domain-common-sca) | `domain-*` | SCA domain orchestration |
-| [`exp-security`](https://github.com/firefly-oss/exp-security) | `exp-*` | Auth, SCA, and session BFF |
-| [`app-authenticator`](https://github.com/firefly-oss/app-authenticator) | app | Authenticator application (no published OpenAPI yet) |
+## Organisation and reference data
 
-### Notifications
+| Repository | Layer | What it holds | OpenAPI |
+|------------|-------|---------------|---------|
+| [`exp-profile`](https://github.com/firefly-oss/exp-profile) | Experience | Profile self-service at `/api/v1/experience/profile` | [openapi.yml](https://github.com/firefly-oss/exp-profile/blob/main/exp-profile-sdk/src/main/resources/openapi.yml) |
+| [`exp-channel-management`](https://github.com/firefly-oss/exp-channel-management) | Experience | Channel init at `/api/v1/experience/channel` | [openapi.yml](https://github.com/firefly-oss/exp-channel-management/blob/main/exp-channel-management-sdk/src/main/resources/openapi.yml) |
+| [`domain-core-configuration`](https://github.com/firefly-oss/domain-core-configuration) | Domain | Tenant branding, languages, and lookup queries | [openapi.yml](https://github.com/firefly-oss/domain-core-configuration/blob/main/domain-core-configuration-sdk/src/main/resources/openapi.yml) |
+| [`core-common-org-mgmt`](https://github.com/firefly-oss/core-common-org-mgmt) | Core | Banks, branches, divisions, regions, calendars | [openapi.yml](https://github.com/firefly-oss/core-common-org-mgmt/blob/main/core-common-org-mgmt-sdk/src/main/resources/openapi.yml) |
+| [`core-common-config-mgmt`](https://github.com/firefly-oss/core-common-config-mgmt) | Core | Tenants, feature flags, provider parameters, webhooks | [openapi.yml](https://github.com/firefly-oss/core-common-config-mgmt/blob/main/core-common-config-mgmt-sdk/src/main/resources/openapi.yml) |
+| [`core-common-reference-master-data`](https://github.com/firefly-oss/core-common-reference-master-data) | Core | Countries, currencies, legal forms, lookups, and related codes | [openapi.yml](https://github.com/firefly-oss/core-common-reference-master-data/blob/main/core-common-reference-master-data-sdk/src/main/resources/openapi.yml) |
 
-| Repository | Layer | Role |
-|------------|-------|------|
-| [`core-common-notification-services`](https://github.com/firefly-oss/core-common-notification-services) | `core-*` | Email, SMS, and related send APIs |
-| [`domain-common-notifications`](https://github.com/firefly-oss/domain-common-notifications) | `domain-*` | Notification domain orchestration |
-| [`exp-notifications`](https://github.com/firefly-oss/exp-notifications) | `exp-*` | In-app notification centre BFF |
+Profile self-service is an experience over the party and the user. It is not a second customer core. Channel init loads branding and reference data for a channel. The product catalogue itself stays in [products](products.md).
 
-### Organisation, configuration, profile, channel
+## Also on disk
 
-| Repository | Layer | Role |
-|------------|-------|------|
-| [`core-common-org-mgmt`](https://github.com/firefly-oss/core-common-org-mgmt) | `core-*` | Organisation structure |
-| [`core-common-config-mgmt`](https://github.com/firefly-oss/core-common-config-mgmt) | `core-*` | Multi-tenant configuration |
-| [`domain-core-configuration`](https://github.com/firefly-oss/domain-core-configuration) | `domain-*` | Configuration domain orchestration |
-| [`core-common-reference-master-data`](https://github.com/firefly-oss/core-common-reference-master-data) | `core-*` | Reference and master data |
-| [`exp-profile`](https://github.com/firefly-oss/exp-profile) | `exp-*` | Customer profile self-service BFF |
-| [`exp-channel-management`](https://github.com/firefly-oss/exp-channel-management) | `exp-*` | Channel init, branding, reference bootstrap |
+These repositories are in the tree. They are not a separate module id.
 
-### Also present (supporting)
+| Repository | What it is | OpenAPI |
+|------------|------------|---------|
+| [`core-common-modelhub`](https://github.com/firefly-oss/core-common-modelhub) | Dynamic entity definitions | [openapi.yml](https://github.com/firefly-oss/core-common-modelhub/blob/main/core-common-modelhub-sdk/src/main/resources/openapi.yml) |
+| [`core-data-template`](https://github.com/firefly-oss/core-data-template) | Template application with sample job-control paths | [api-spec/openapi.yml](https://github.com/firefly-oss/core-data-template/blob/main/core-data-template-sdk/src/main/resources/api-spec/openapi.yml) |
+| [`domain-data-business-intelligence`](https://github.com/firefly-oss/domain-data-business-intelligence) | Repository present. README is a title only. | No published OpenAPI |
+| [`library-common-batch`](https://github.com/firefly-oss/library-common-batch) | Batch scheduling utilities. No HTTP contract. | No published OpenAPI |
 
-| Repository | Notes |
-|------------|-------|
-| [`core-common-modelhub`](https://github.com/firefly-oss/core-common-modelhub) | Dynamic data modelling platform (OpenAPI in SDK) |
-| [`core-data-template`](https://github.com/firefly-oss/core-data-template) | Template service (no published OpenAPI yet) |
-| [`domain-data-business-intelligence`](https://github.com/firefly-oss/domain-data-business-intelligence) | BI domain stub (no published OpenAPI yet) |
-| [`library-common-batch`](https://github.com/firefly-oss/library-common-batch) | Batch scheduling utilities |
+The template spec is a sample for job control. It is not a business-module contract.
 
-## How a typical call path looks
+## How the pieces fit
 
-1. Experience security or notification APIs expose channel operations.
-2. Domain security-centre and notification services coordinate behaviour.
-3. Core user, SCA, notification, org, config, and reference-data services persist state.
-4. Identity providers and notification channels are adapter concerns.
+A channel calls `exp-security`, `exp-notifications`, `exp-profile`, or `exp-channel-management`.
 
-## How to start
+Identity commands and queries go through the security-centre domain into user, vault, and strong-authentication cores. Notification preferences and send requests go through the notification domain into the email, SMS, and push core. Organisation and reference data are core records that configuration queries read.
 
-1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
-2. Open the repositories in the layer map above and read each README and OpenAPI.
-3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
-4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
+Full spec paths are also indexed under [OpenAPI, shared services](../reference/openapi.md#shared-services-shared).
 
+## Related
 
-## OpenAPI
-
-See the full table under [OpenAPI — shared](../reference/openapi.md#shared-services-shared). Specs exist for the listed core/domain/exp services except where marked “no published OpenAPI yet” (`app-authenticator`, and some data templates).
-
-## Events
-
-[Stub until published](../reference/events.md).
-
-## Maturity notes
-
-Shared identity and notification repositories are present under `firefly-oss`. Identity-provider choices and notification channels are adapter concerns. Parent pin for new work: **26.10.19** / Boot **4.1.1** / Java **25**.
-
-## Related modules
-
-- [Customers and relationships](customers.md)
-- [Onboarding and verification](onboarding.md)
-- [Business modules catalogue](catalog.md)
-
-## Next steps
-
-See [Adapters](../integrate/adapters.md) for identity-provider boundaries. Most module pages assume shared identity is available to the journey.
+- [Customers](customers.md) for the party, not the user
+- [Onboarding](onboarding.md) for evidence cases
+- [Adapters](../integrate/adapters.md) for identity providers and message channels
+- [Catalogue](catalog.md)

@@ -2,7 +2,12 @@
 
 OpenPlatform keeps provider and institution-system details behind **adapters** so business modules stay portable. This page teaches the pattern; the PSP and rails guides are worked examples from public repositories.
 
-<img src="/diagrams/openplatform-adapters.svg?v=20261019" alt="Adapter boundary between firefly-oss services and external systems" width="960" height="360" />
+<figure class="ff-figure">
+  <img src="/diagrams/openplatform-adapters.svg?v=20261019b" alt="Adapter ports: OpenPlatform services call a payment-provider port or a payment-rail port, which reach outside systems" width="960" height="817" />
+  <figcaption>Read top to bottom. OpenPlatform services call a port. Payment providers and payment rails are the two ports drawn here. The outside system is reached only by an adapter.</figcaption>
+</figure>
+
+`library-psps` defines the provider port (`PspAdapter`): payments, refunds, payouts, and further operations such as disputes, subscriptions, checkout, and reconciliation. `library-rails` defines the rail port (`RailAdapter`): payments, settlement, mandates, and further operations such as status, bulk payments, scheduled payments, and a screening port. The picture shows the first three of each so the shape stays readable. The libraries are the full list.
 
 ## Intent
 
@@ -90,7 +95,7 @@ Framework-level adapter modules (security SPI, ECM storage and e-signature, noti
   </li>
 </ol>
 
-Until a BOM registration recipe is published for every OpenPlatform module, mirror an existing adapter module in `fireflyframework-jafly` or the payment libraries above, and confirm the parent pin in [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1**).
+Confirm the parent pin in [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1**) before you wire a new adapter. Follow `library-psps` or `library-rails` for the port shape. This page does not teach framework bootstrap.
 
 ## What next
 

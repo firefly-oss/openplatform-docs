@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="484" viewBox="0 0 960 484" role="img" aria-labelledby="title desc">
+<title id="title">Products</title>
+<desc id="desc">The commercial definition other modules point at.</desc>
+<style>text { font-family: Manrope, Arial, Helvetica, sans-serif; }</style>
+<rect width="960" height="484" fill="#F3F1EB"/>
+<rect x="0" y="0" width="960" height="484" fill="#F3F1EB"/>
+<text x="48" y="67.4" fill="#10110F" font-size="30" font-weight="700">Products</text>
+<text x="48" y="101.8" fill="#62645B" font-size="18" font-weight="400">The commercial definition other modules point at.</text>
+<rect x="40" y="130.9" width="880" height="88.5" rx="16" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<rect x="40" y="148.9" width="8" height="52.5" fill="#FFB34A"/>
+<text x="68" y="164" fill="#855414" font-size="22" font-weight="700">Experience</text>
+<text x="68" y="197.8" fill="#272820" font-size="20" font-weight="400">No separate products channel. Partners use distribution.</text>
+<rect x="40" y="239.4" width="880" height="88.5" rx="16" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<rect x="40" y="257.4" width="8" height="52.5" fill="#474A42"/>
+<text x="68" y="272.6" fill="#855414" font-size="22" font-weight="700">Domain</text>
+<text x="68" y="306.3" fill="#272820" font-size="20" font-weight="400">Catalogue, price, and eligibility.</text>
+<rect x="40" y="347.9" width="880" height="88.5" rx="16" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<rect x="40" y="365.9" width="8" height="52.5" fill="#474A42"/>
+<text x="68" y="381.1" fill="#855414" font-size="22" font-weight="700">Core</text>
+<text x="68" y="414.8" fill="#272820" font-size="20" font-weight="400">The product record and its versions.</text>
+</svg>

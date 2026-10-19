@@ -2,83 +2,62 @@
 
 **Module id:** `onboarding`
 
-Long-running collection of personal or business data, KYC/KYB evidence, and journey status. The institution keeps approval policy and provider choice; OpenPlatform holds the case shape and coordinates pauses and resumes.
+<p class="ff-lead">The case that gathers personal or business evidence over time, before the party record is the durable one.</p>
 
-Public product page: <https://fireflysoftware.io/openplatform/modules/>
+The institution keeps approval policy and the choice of identity provider. OpenPlatform holds the case and the evidence attached to it.
 
-## Why this module exists
+<figure class="ff-figure">
+  <img src="/diagrams/module-onboarding.svg?v=20261019b" alt="Onboarding, read top to bottom: the journey, then the KYC or KYB case, then the evidence record" width="960" height="484" />
+  <figcaption>Read top to bottom. The channel runs the journey. The domain moves the KYC or KYB case. The core stores the evidence.</figcaption>
+</figure>
 
-Registration is rarely a single POST. Channels gather documents over days, pause for manual review, and resume when evidence arrives. Putting that state only in the frontend or only in a customer core makes recovery hard. Onboarding owns the case lifecycle; [customers](customers.md) owns the durable party once you are ready to register one.
+`exp-onboarding` is the channel API. `domain-customer-kyc-kyb` moves the case. `core-common-kycb-mgmt` stores evidence. When a durable party is required, registration goes to [customers](customers.md).
 
-## When to use it
+<div class="ff-split" markdown="0">
+  <section class="ff-panel">
+    <h3>What it owns</h3>
+    <ul>
+      <li>Individual and business onboarding journeys</li>
+      <li>KYC cases and KYB cases, including status</li>
+      <li>Verification documents, corporate documents, and powers of attorney</li>
+      <li>Beneficial-owner records, source of funds, and expected activity</li>
+      <li>Sanctions questionnaire answers and screening matches stored on the case</li>
+      <li>Business profile and location records gathered for the case</li>
+    </ul>
+  </section>
+  <section class="ff-panel">
+    <h3>What it does not own</h3>
+    <ul>
+      <li>The durable party. That is <a href="/modules/customers/">customers</a>, after the case is ready.</li>
+      <li>The identity provider or screening vendor. Those stay behind an <a href="/integrate/adapters/">adapter</a>.</li>
+      <li>Scoring cases and reporting submissions. Those are <a href="/modules/risk/">risk</a>.</li>
+      <li>Sign-in and sessions. Those are <a href="/modules/shared/">shared services</a>.</li>
+    </ul>
+  </section>
+</div>
 
-Use `onboarding` when a channel must gather evidence over time before a customer or agreement is fully ready.
+## Repositories
 
-Short, instantaneous registrations may stay closer to `customers`. Identity-provider SDKs and screening vendors stay behind [adapters](../integrate/adapters.md).
+| Repository | Layer | What it holds | OpenAPI |
+|------------|-------|---------------|---------|
+| [`exp-onboarding`](https://github.com/firefly-oss/exp-onboarding) | Experience | Individual onboarding, business onboarding, business search | [openapi.yml](https://github.com/firefly-oss/exp-onboarding/blob/main/exp-onboarding-sdk/src/main/resources/openapi.yml) |
+| [`domain-customer-kyc-kyb`](https://github.com/firefly-oss/domain-customer-kyc-kyb) | Domain | KYC cases and KYB cases | [openapi.yml](https://github.com/firefly-oss/domain-customer-kyc-kyb/blob/main/domain-customer-kyc-kyb-sdk/src/main/resources/openapi.yml) |
+| [`core-common-kycb-mgmt`](https://github.com/firefly-oss/core-common-kycb-mgmt) | Core | Evidence, corporate profile, and case records | [openapi.yml](https://github.com/firefly-oss/core-common-kycb-mgmt/blob/main/core-common-kycb-mgmt-sdk/src/main/resources/openapi.yml) |
 
-## Key concepts
+## How the pieces fit
 
-| Concept | Meaning in this module |
-|---------|------------------------|
-| Journey | Channel-facing onboarding flow (individual or business) |
-| Case | Durable KYC/KYB case with status and evidence |
-| Evidence | Documents and checks attached to a case |
-| Provider boundary | External identity or screening system, reached through adapters |
+`exp-onboarding` exposes `/api/v1/onboarding/individuals` and `/api/v1/onboarding/businesses`. That is the journey the channel calls.
 
-## Layer map (repos that exist)
+`domain-customer-kyc-kyb` exposes KYC cases and KYB cases. The repository README states that the KYB track is the implemented flow: create the case, collect corporate documents and beneficial owners, request verification, then evaluate the result. The KYC track exposes a lifecycle API, and the README states that the service implementation is still incomplete. Confirm that file before planning a KYC-only cutover.
 
-| Repository | Layer | Role |
-|------------|-------|------|
-| [`exp-onboarding`](https://github.com/firefly-oss/exp-onboarding) | `exp-*` | BFF for individual and business onboarding journeys |
-| [`domain-customer-kyc-kyb`](https://github.com/firefly-oss/domain-customer-kyc-kyb) | `domain-*` | KYC/KYB domain workflows and APIs |
-| [`core-common-kycb-mgmt`](https://github.com/firefly-oss/core-common-kycb-mgmt) | `core-*` | Case and evidence persistence |
+`core-common-kycb-mgmt` stores what the case collects: verification documents, corporate documents, beneficial owners, source of funds, sanctions questionnaire answers, screening matches, and the business profile. Identity providers are not imported here. They sit behind an adapter.
 
-**Upstream party registration:** [`domain-customer-people`](https://github.com/firefly-oss/domain-customer-people) and [`core-common-customer-mgmt`](https://github.com/firefly-oss/core-common-customer-mgmt) from [customers](customers.md).
+Channel branding and reference data for the first screen live in `exp-channel-management`, documented under [shared services](shared.md).
 
-**Related channel setup:** [`exp-channel-management`](https://github.com/firefly-oss/exp-channel-management) (branding and reference data for channel init) is listed under [shared](shared.md).
+## Related
 
-## How a typical call path looks
-
-1. `exp-onboarding` exposes the journey API for the channel.
-2. `domain-customer-kyc-kyb` moves the case through evidence and review steps.
-3. `core-common-kycb-mgmt` stores case and evidence state.
-4. Adapters reach identity or screening providers.
-5. When a durable party is required, registration commands go to the customers module.
-
-## How to start
-
-1. Confirm the current pin on [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
-2. Open the repositories in the layer map above and read each README and OpenAPI.
-3. Follow related module pages for upstream identifiers and [adapters](../integrate/adapters.md) for outside systems.
-4. Framework bootstrap: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) (outbound).
-
-
-## OpenAPI
-
-| Repository | Spec |
-|------------|------|
-| `exp-onboarding` | [`…/openapi.yml`](https://github.com/firefly-oss/exp-onboarding/blob/main/exp-onboarding-sdk/src/main/resources/openapi.yml) |
-| `domain-customer-kyc-kyb` | [`…/openapi.yml`](https://github.com/firefly-oss/domain-customer-kyc-kyb/blob/main/domain-customer-kyc-kyb-sdk/src/main/resources/openapi.yml) |
-| `core-common-kycb-mgmt` | [`…/openapi.yml`](https://github.com/firefly-oss/core-common-kycb-mgmt/blob/main/core-common-kycb-mgmt-sdk/src/main/resources/openapi.yml) |
-
-Full index: [OpenAPI — onboarding](../reference/openapi.md#onboarding-onboarding).
-
-## Events
-
-Shared event packs: [stub](../reference/events.md). Check each repository README for published event names when present.
-
-## Maturity notes
-
-Per the `domain-customer-kyc-kyb` README, the KYB track is the primary implemented flow; the KYC track exposes a lifecycle API with implementation still incomplete in places. Confirm current behaviour in that repository before planning a KYC-only cutover. Parent pin for new work remains **26.10.19** / Boot **4.1.1**.
-
-## Related modules
-
-- [Customers and relationships](customers.md)
-- [Distribution and partner channels](distribution.md)
-- [Risk and compliance operations](risk.md)
-- [Identity and shared services](shared.md)
-- [Business modules catalogue](catalog.md)
-
-## Next steps
-
-Read [Adapters](../integrate/adapters.md) before wiring an identity provider. Browse `exp-onboarding` OpenAPI from the [OpenAPI index](../reference/openapi.md).
+- [Customers](customers.md) when the case becomes a party
+- [Distribution](distribution.md) when a partner starts the journey
+- [Risk](risk.md) for scoring records, which are not this case
+- [Adapters](../integrate/adapters.md)
+- [Catalogue](catalog.md)
