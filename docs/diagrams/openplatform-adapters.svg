@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
 <title id="title">OpenPlatform adapter boundary</title>
 <desc id="desc">Domain and experience services in firefly-oss call ports. library-psps and library-rails define interfaces. Adapters reach providers and institution systems.</desc>
@@ -15,7 +16,7 @@
 
 <rect x="36" y="100" width="260" height="180" rx="12" fill="#FFB34A"/>
 <text class="t k" x="56" y="128" fill="#10110F">FIREFLY-OSS</text>
-<text class="t h" x="56" y="158" fill="#10110F">exp-* · domain-* · core-*</text>
+<text class="t h" x="56" y="158" fill="#10110F">exp-* / domain-* / core-*</text>
 <text class="t" x="56" y="188" fill="#10110F" style="font-size:13px">Business modules call</text>
 <text class="t" x="56" y="210" fill="#10110F" style="font-size:13px">ports, not vendor SDKs</text>
 

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
 <title id="title">OpenPlatform in firefly-oss</title>
 <desc id="desc">OpenPlatform modules live in firefly-oss. Commercial products may compose those modules. Institution systems connect through adapters. Runtime train is Jafly 26.10.19.</desc>
@@ -23,9 +24,9 @@
 
 <rect x="312" y="100" width="336" height="180" rx="12" fill="#FFB34A"/>
 <text class="t k" x="332" y="130" fill="#10110F">THIS HUB</text>
-<text class="t h" x="332" y="162" fill="#10110F">firefly-oss · OpenPlatform</text>
-<text class="t" x="332" y="194" fill="#10110F" style="font-size:13px">core-* · domain-* · exp-*</text>
-<text class="t" x="332" y="216" fill="#10110F" style="font-size:13px">library-psps · library-rails</text>
+<text class="t h" x="332" y="162" fill="#10110F">firefly-oss / OpenPlatform</text>
+<text class="t" x="332" y="194" fill="#10110F" style="font-size:13px">core-* / domain-* / exp-*</text>
+<text class="t" x="332" y="216" fill="#10110F" style="font-size:13px">library-psps / library-rails</text>
 <text class="t" x="332" y="238" fill="#10110F" style="font-size:13px">docs.fireflysoftware.io</text>
 
 <path d="M648 190 H674" stroke="#FFB34A" stroke-width="3"/>
@@ -34,7 +35,7 @@
 <rect x="694" y="110" width="230" height="160" rx="12" fill="#1A1B17" stroke="#474A42"/>
 <text class="t k" x="714" y="140" fill="#BFB8AB">RUNTIME</text>
 <text class="t h" x="714" y="172" fill="#FFB34A">Jafly 26.10.19</text>
-<text class="t" x="714" y="204" fill="#F3F1EB" style="font-size:13px">Boot 4.1.1 · Java 25</text>
+<text class="t" x="714" y="204" fill="#F3F1EB" style="font-size:13px">Boot 4.1.1 / Java 25</text>
 <text class="t" x="714" y="226" fill="#F3F1EB" style="font-size:13px">fireflyframework</text>
 
 <text class="t sub" x="36" y="340">Commercial products may compose these modules; this hub documents the platform in firefly-oss.</text>
