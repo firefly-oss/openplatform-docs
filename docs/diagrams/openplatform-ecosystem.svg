@@ -1,53 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
-<title id="title">OpenPlatform in the Firefly landscape</title>
-<desc id="desc">Industry solutions in firefly-serviceOS sit on OpenPlatform modules in firefly-oss, which run on the Jafly framework train. Institution systems connect through adapters.</desc>
+<title id="title">OpenPlatform in firefly-oss</title>
+<desc id="desc">OpenPlatform modules live in firefly-oss on the Jafly train. Commercial products in firefly-serviceOS may compose those modules. Institution systems connect through adapters.</desc>
 <style>
   .t { font-family: Manrope, Arial, Helvetica, sans-serif; fill: #10110F; }
   .title { font-size: 24px; font-weight: 700; }
   .sub { font-size: 14px; fill: #62645B; }
   .h { font-size: 15px; font-weight: 700; }
-  .p { font-size: 12px; fill: #62645B; }
   .k { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; fill: #62645B; }
 </style>
 <rect width="960" height="420" rx="18" fill="#F3F1EB"/>
-<text class="t title" x="36" y="44">Where OpenPlatform sits</text>
-<text class="t sub" x="36" y="70">One foundation for modules, products, and frameworks.</text>
+<text class="t title" x="36" y="44">OpenPlatform = firefly-oss</text>
+<text class="t sub" x="36" y="70">Modules, libraries, parent BOM, and this documentation hub.</text>
 
-<!-- serviceOS -->
-<rect x="36" y="100" width="280" height="160" rx="12" fill="#10110F"/>
-<text class="t k" x="56" y="128" fill="#BFB8AB">INDUSTRY SOLUTIONS</text>
-<text class="t h" x="56" y="158" fill="#FFB34A">firefly-serviceOS</text>
-<text class="t" x="56" y="188" fill="#F3F1EB" style="font-size:13px">LendingOS and peer OS</text>
-<text class="t" x="56" y="210" fill="#F3F1EB" style="font-size:13px">applications for banking</text>
-<text class="t" x="56" y="232" fill="#F3F1EB" style="font-size:13px">and insurance operations</text>
+<!-- center: openplatform -->
+<rect x="300" y="100" width="360" height="180" rx="12" fill="#FFB34A"/>
+<text class="t k" x="320" y="128">THIS HUB</text>
+<text class="t h" x="320" y="158">firefly-oss · OpenPlatform</text>
+<text class="t" x="320" y="188" style="font-size:13px">core-* · domain-* · exp-*</text>
+<text class="t" x="320" y="210" style="font-size:13px">library-psps · library-rails</text>
+<text class="t" x="320" y="232" style="font-size:13px">firefly-parent · OpenAPI · modules</text>
+<text class="t" x="320" y="254" style="font-size:13px">docs.fireflysoftware.io</text>
 
-<!-- arrow -->
-<path d="M330 180 H360" stroke="#855414" stroke-width="3"/>
-<polygon points="360,174 372,180 360,186" fill="#855414"/>
+<!-- left: adapters -->
+<rect x="36" y="120" width="230" height="140" rx="12" fill="#10110F"/>
+<text class="t k" x="56" y="148" fill="#BFB8AB">BOUNDARY</text>
+<text class="t h" x="56" y="178" fill="#FFB34A">Adapters</text>
+<text class="t" x="56" y="208" fill="#F3F1EB" style="font-size:13px">Institution systems</text>
+<text class="t" x="56" y="230" fill="#F3F1EB" style="font-size:13px">and providers</text>
 
-<!-- openplatform -->
-<rect x="380" y="100" width="280" height="160" rx="12" fill="#FFB34A"/>
-<text class="t k" x="400" y="128">OPENPLATFORM</text>
-<text class="t h" x="400" y="158">firefly-oss</text>
-<text class="t" x="400" y="188" style="font-size:13px">Business modules, shared</text>
-<text class="t" x="400" y="210" style="font-size:13px">services, adapter libraries,</text>
-<text class="t" x="400" y="232" style="font-size:13px">and this documentation hub</text>
+<path d="M266 190 H292" stroke="#855414" stroke-width="3"/>
+<polygon points="292,184 304,190 292,196" fill="#855414"/>
 
-<!-- arrow -->
-<path d="M674 180 H704" stroke="#855414" stroke-width="3"/>
-<polygon points="704,174 716,180 704,186" fill="#855414"/>
+<!-- right: jafly -->
+<path d="M668 190 H694" stroke="#855414" stroke-width="3"/>
+<polygon points="694,184 706,190 694,196" fill="#855414"/>
 
-<!-- jafly -->
-<rect x="724" y="100" width="200" height="160" rx="12" fill="#EBE7DF" stroke="#D8D4CA"/>
-<text class="t k" x="744" y="128">FRAMEWORK</text>
-<text class="t h" x="744" y="158">Jafly</text>
-<text class="t" x="744" y="188" style="font-size:13px">26.10.19</text>
-<text class="t" x="744" y="210" style="font-size:13px">Boot 4.1.1</text>
-<text class="t" x="744" y="232" style="font-size:13px">Java 25</text>
+<rect x="714" y="120" width="210" height="140" rx="12" fill="#10110F"/>
+<text class="t k" x="734" y="148" fill="#BFB8AB">RUNTIME</text>
+<text class="t h" x="734" y="178" fill="#FFB34A">Jafly 26.10.19</text>
+<text class="t" x="734" y="208" fill="#F3F1EB" style="font-size:13px">Boot 4.1.1 · Java 25</text>
+<text class="t" x="734" y="230" fill="#F3F1EB" style="font-size:13px">fireflyframework</text>
 
-<!-- bottom adapters bar -->
-<rect x="36" y="290" width="888" height="90" rx="12" fill="#EBE7DF" stroke="#62645B" stroke-dasharray="4 3"/>
-<text class="t k" x="56" y="322">ADAPTERS</text>
-<text class="t h" x="56" y="350">Institution systems and providers</text>
-<text class="t p" x="56" y="374">Cores, ledgers, channels, payment rails, and PSPs connect at the boundary  not inside every module.</text>
+<text class="t sub" x="36" y="340">Commercial products under firefly-serviceOS may compose these modules; this hub documents the platform in firefly-oss.</text>
+<text class="t sub" x="36" y="368">Product narrative: fireflysoftware.io/openplatform</text>
 </svg>

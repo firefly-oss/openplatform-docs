@@ -2,7 +2,7 @@
 
 **Module id:** `lending`
 
-From application, offer, and decision records through servicing, collateral, and collections. Credit policy and final decisions stay with the institution. Product experiences such as LendingOS compose this module with customers, products, agreements, and risk.
+From application, offer, and decision records through servicing, collateral, and collections. Credit policy and final decisions stay with the institution. Journeys usually compose this module with customers, products, agreements, and risk.
 
 Public product page: <https://fireflysoftware.io/openplatform/modules/>
 

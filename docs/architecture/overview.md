@@ -1,14 +1,8 @@
 # Architecture overview
 
-OpenPlatform keeps business modules composable, shared services reusable, and systems outside Firefly behind adapters. The picture below is the shape you will see across `firefly-oss` repositories.
+OpenPlatform keeps business modules composable, shared services reusable, and systems outside Firefly behind adapters. The shape below is what you will see across `firefly-oss` repositories.
 
-<div class="ff-iso" markdown="0">
-  <img class="ff-iso__light" src="/assets/isometrics/layers-light.svg" alt="OpenPlatform service bands from experience to adapters" width="1600" height="900" />
-  <img class="ff-iso__dark" src="/assets/isometrics/layers-dark.svg" alt="OpenPlatform service bands from experience to adapters" width="1600" height="900" />
-  <p class="ff-iso__caption">Experience, domain, core, and adapter planes.</p>
-</div>
-
-<img src="/diagrams/openplatform-layers.svg" alt="OpenPlatform service bands on the current Jafly train" width="960" />
+<img src="/diagrams/openplatform-layers.svg" alt="OpenPlatform service bands on the current Jafly train" width="960" height="560" />
 
 ## Why the bands exist
 
@@ -18,10 +12,10 @@ Adapters sit at the edge. Provider SDKs and institution cores stay out of domain
 
 ## Service bands
 
-Channels and products sit above; institution systems and providers sit behind adapters.
+Channels sit above; institution systems and providers sit behind adapters.
 
 <div class="ff-topo" role="img" aria-label="OpenPlatform layers from experience to core, with adapters at the boundary">
-  <p class="ff-topo__caption">OpenPlatform service bands</p>
+  <p class="ff-topo__caption">OpenPlatform service bands (firefly-oss)</p>
   <div class="ff-topo__stack">
     <div class="ff-topo__band">
       <p class="ff-topo__label">Experience (<code>exp-*</code>)</p>
@@ -67,30 +61,27 @@ Around those bands:
 
 Repository naming for the service bands is summarised in the [business modules catalogue](../modules/catalog.md).
 
-## Topology: organisations and products
+## Where the code lives
 
-Public OpenPlatform modules live under **firefly-oss**. Commercial industry applications and packaged services are published under **firefly-serviceOS**. Both sit on the same Jafly runtime train.
+Public OpenPlatform modules, adapter libraries, `firefly-parent`, and this documentation hub live under **firefly-oss**.
 
-<div class="ff-topo" role="img" aria-label="firefly-serviceOS industry solutions on OpenPlatform modules in firefly-oss, on Jafly">
-  <p class="ff-topo__caption">Where code and products live</p>
+<div class="ff-topo" role="img" aria-label="firefly-oss OpenPlatform modules on the Jafly train">
+  <p class="ff-topo__caption">OpenPlatform runtime and ownership</p>
   <div class="ff-topo__map">
-    <div class="ff-topo__card ff-topo__card--svc">
-      <p class="ff-topo__kicker">GitHub org</p>
-      <p class="ff-topo__label">firefly-serviceOS</p>
-      <p class="ff-topo__meta">Commercial OS applications and Firefly services for banking and insurance operations (for example LendingOS). Built on OpenPlatform.</p>
-    </div>
     <div class="ff-topo__card ff-topo__card--oss">
       <p class="ff-topo__kicker">GitHub org</p>
       <p class="ff-topo__label">firefly-oss</p>
-      <p class="ff-topo__meta">Public OpenPlatform business modules, shared services, adapter libraries, and this documentation hub.</p>
+      <p class="ff-topo__meta">Business modules, shared services, adapter libraries, firefly-parent, and this documentation hub.</p>
     </div>
     <div class="ff-topo__card ff-topo__card--fw">
       <p class="ff-topo__kicker">Framework train</p>
       <p class="ff-topo__label">Jafly <code>26.10.19</code> (Spring Boot <code>4.1.1</code>)</p>
-      <p class="ff-topo__meta"><code>org.fireflyframework:fireflyframework-parent</code> via <code>com.firefly:firefly-parent</code>. Security SPI, ECM ports, notifications, and related adapter modules ship in the Jafly reactor.</p>
+      <p class="ff-topo__meta"><code>org.fireflyframework:fireflyframework-parent</code> via <code>com.firefly:firefly-parent</code>. Security SPI, ECM ports, and related adapter modules ship in the Jafly reactor.</p>
     </div>
   </div>
 </div>
+
+Commercial applications that compose these modules are published under other organisations; see the short cross-link on the [ecosystem](../ecosystem.md) page. This architecture page stays on firefly-oss.
 
 ## Business module ids
 
@@ -104,11 +95,7 @@ See the [business modules catalogue](../modules/catalog.md) for purpose, coverag
 
 A journey step may touch several layers (channel, process, modules, core, third party). Third parties and legacy cores stay behind adapters so provider details do not leak into every application.
 
-<div class="ff-iso" markdown="0">
-  <img class="ff-iso__light" src="/assets/isometrics/adapter-light.svg" alt="Adapter plugins between OpenPlatform and external systems" width="1600" height="900" />
-  <img class="ff-iso__dark" src="/assets/isometrics/adapter-dark.svg" alt="Adapter plugins between OpenPlatform and external systems" width="1600" height="900" />
-  <p class="ff-iso__caption">Ports and adapters keep providers at the edge.</p>
-</div>
+<img src="/diagrams/openplatform-adapters.svg" alt="Adapter boundary between firefly-oss services and external systems" width="960" height="360" />
 
 Worked adapter guides:
 
@@ -116,13 +103,7 @@ Worked adapter guides:
 - [PSP library (`library-psps`)](../integrate/library-psps.md)
 - [Payment rails library (`library-rails`)](../integrate/library-rails.md)
 
-APIs and events form the backbone between modules:
-
-<div class="ff-iso" markdown="0">
-  <img class="ff-iso__light" src="/assets/isometrics/apis-light.svg" alt="APIs and events backbone across OpenPlatform modules" width="1600" height="900" />
-  <img class="ff-iso__dark" src="/assets/isometrics/apis-dark.svg" alt="APIs and events backbone across OpenPlatform modules" width="1600" height="900" />
-  <p class="ff-iso__caption">Contracts between services stay explicit.</p>
-</div>
+APIs and events form the backbone between modules. See the [OpenAPI index](../reference/openapi.md) and [Event contracts](../reference/events.md).
 
 ## AI stance
 

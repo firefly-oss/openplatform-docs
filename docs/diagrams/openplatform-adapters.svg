@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+<title id="title">OpenPlatform adapter boundary</title>
+<desc id="desc">Domain and experience services in firefly-oss call ports. library-psps and library-rails define interfaces. Adapters reach providers and institution systems.</desc>
+<style>
+  .t { font-family: Manrope, Arial, Helvetica, sans-serif; fill: #10110F; }
+  .title { font-size: 22px; font-weight: 700; }
+  .sub { font-size: 14px; fill: #62645B; }
+  .h { font-size: 14px; font-weight: 700; }
+  .p { font-size: 12px; fill: #62645B; }
+  .k { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; fill: #62645B; }
+</style>
+<rect width="960" height="360" rx="18" fill="#F3F1EB"/>
+<text class="t title" x="36" y="42">Adapter boundary</text>
+<text class="t sub" x="36" y="68">Keep provider SDKs out of domain services.</text>
+
+<rect x="36" y="100" width="260" height="180" rx="12" fill="#FFB34A"/>
+<text class="t k" x="56" y="128">FIREFLY-OSS</text>
+<text class="t h" x="56" y="158">exp-* · domain-* · core-*</text>
+<text class="t" x="56" y="188" style="font-size:13px">Business modules call</text>
+<text class="t" x="56" y="210" style="font-size:13px">ports, not vendor SDKs</text>
+
+<rect x="350" y="120" width="260" height="140" rx="12" fill="#10110F"/>
+<text class="t k" x="370" y="148" fill="#BFB8AB">LIBRARIES</text>
+<text class="t h" x="370" y="178" fill="#FFB34A">library-psps</text>
+<text class="t h" x="370" y="202" fill="#FFB34A">library-rails</text>
+<text class="t" x="370" y="232" fill="#F3F1EB" style="font-size:13px">Port interfaces</text>
+
+<rect x="664" y="100" width="260" height="180" rx="12" fill="#EBE7DF" stroke="#D8D4CA"/>
+<text class="t k" x="684" y="128">OUTSIDE</text>
+<text class="t h" x="684" y="158">Providers</text>
+<text class="t p" x="684" y="188">Payment rails, PSPs,</text>
+<text class="t p" x="684" y="210">identity, ECM, cores</text>
+<text class="t p" x="684" y="232">behind adapters</text>
+
+<path d="M296 190 H342" stroke="#855414" stroke-width="3"/>
+<polygon points="342,184 354,190 342,196" fill="#855414"/>
+<path d="M610 190 H656" stroke="#855414" stroke-width="3"/>
+<polygon points="656,184 668,190 656,196" fill="#855414"/>
+</svg>

@@ -119,7 +119,7 @@ These exist under the local `firefly-oss` tree and are called out on module page
 
 ## Architecture and adapters
 
-- [Architecture overview](../architecture/overview.md) — experience / domain / core bands, `firefly-oss` vs `firefly-serviceOS`, Jafly **26.10.19**
+- [Architecture overview](../architecture/overview.md) — experience / domain / core bands in `firefly-oss`, Jafly **26.10.19**
 - [Adapter pattern](../integrate/adapters.md) and library guides for `library-psps` and `library-rails`
 - [Start here — Prerequisites](../start/prerequisites.md) and [First service](../start/first-service.md)
 

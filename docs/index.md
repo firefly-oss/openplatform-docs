@@ -10,8 +10,8 @@ hide:
   <div class="ff-hero__copy">
     <p class="ff-hero__kicker">Firefly Software · Developer hub</p>
     <p class="ff-hero__brand">OpenPlatform</p>
-    <p class="ff-hero__lede">Composable banking and insurance modules on one open foundation.</p>
-    <p class="ff-hero__body">This hub teaches you how the platform is shaped, how services inherit the current Java train, and how to extend a module without dragging provider details into every application. Start with the pin strip, pick a path that matches your job, then follow the worked pages.</p>
+    <p class="ff-hero__lede">Business modules in firefly-oss on the Jafly train.</p>
+    <p class="ff-hero__body">This hub documents core-*, domain-*, and exp-* repositories, firefly-parent consumption, the module catalogue, OpenAPI indexes, and the adapter libraries. Start with the pin strip, then pick a path that matches your job.</p>
     <p class="ff-hero__slogan">Attitude makes the difference.</p>
     <ul class="ff-hero__actions">
       <li><a class="ff-hero__primary" href="start/prerequisites/">Start here</a></li>
@@ -21,10 +21,7 @@ hide:
     </ul>
   </div>
   <div class="ff-hero__visual">
-    <div class="ff-iso">
-      <img class="ff-iso__light" src="/assets/isometrics/assembly-light.svg" alt="OpenPlatform modules assembled into an industry product" width="1600" height="900" />
-      <img class="ff-iso__dark" src="/assets/isometrics/assembly-dark.svg" alt="OpenPlatform modules assembled into an industry product" width="1600" height="900" />
-    </div>
+    <img src="/diagrams/openplatform-layers.svg" alt="OpenPlatform layers: experience, domain, core, and adapters in firefly-oss" width="960" height="560" />
   </div>
 </div>
 
@@ -47,13 +44,13 @@ hide:
   </li>
 </ul>
 
-## What you will learn here
+## What this hub is
 
-OpenPlatform is the catalogue of business modules under **firefly-oss**: customers, onboarding, products, agreements, distribution, accounts, payments, lending, risk, and shared identity. Industry products such as **LendingOS** live under **firefly-serviceOS** and compose those modules. Both trains inherit Jafly **26.10.19** (Spring Boot **4.1.1**, Java **25**) from Maven Central.
+OpenPlatform is the platform catalogue under **firefly-oss**: customers, onboarding, products, agreements, distribution, accounts, payments, lending, risk, and shared identity. Services inherit Jafly **26.10.19** (Spring Boot **4.1.1**, Java **25**) through `com.firefly:firefly-parent`.
 
-Each module page lists the repositories that exist today, OpenAPI links, honest gaps, and a start path. Begin at the [business modules catalogue](modules/catalog.md).
+Each module page lists repositories that exist today, OpenAPI links, honest gaps, and a start path. Begin at the [business modules catalogue](modules/catalog.md).
 
-This site is for people who build, integrate, and operate on that stack. Marketing narrative stays on [fireflysoftware.io/openplatform](https://fireflysoftware.io/openplatform/). Framework behaviour for security, ECM, notifications, and related SPI modules stays in the [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).
+Marketing narrative stays on [fireflysoftware.io/openplatform](https://fireflysoftware.io/openplatform/). Framework SPI details stay in the [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/). Commercial product assemblies under firefly-serviceOS are out of scope here except as a one-line cross-link on the [ecosystem](ecosystem.md) page.
 
 ## Choose a path by role
 
@@ -61,72 +58,61 @@ This site is for people who build, integrate, and operate on that stack. Marketi
   <article class="ff-path">
     <p class="ff-path__kicker">New to the stack</p>
     <p class="ff-path__title"><a href="start/prerequisites/">Start here</a></p>
-    <p class="ff-path__meta">Confirm JDK 25, resolve the parent chain from Central, then mirror a neighbour repository for your first Jafly service.</p>
+    <p class="ff-path__meta">Confirm JDK 25, resolve firefly-parent from Central, then mirror a core, domain, or exp neighbour.</p>
   </article>
   <article class="ff-path">
     <p class="ff-path__kicker">Platform engineer</p>
     <p class="ff-path__title"><a href="architecture/overview/">Architecture</a></p>
-    <p class="ff-path__meta">Experience, domain, and core bands; adapters at the boundary; how firefly-oss and firefly-serviceOS relate.</p>
+    <p class="ff-path__meta">exp-*, domain-*, and core-* bands and the adapter boundary in firefly-oss.</p>
   </article>
   <article class="ff-path">
     <p class="ff-path__kicker">Domain developer</p>
     <p class="ff-path__title"><a href="modules/catalog/">Business modules</a></p>
-    <p class="ff-path__meta">Purpose, coverage, and key repositories for each module id, with honest maturity notes from the repos.</p>
+    <p class="ff-path__meta">Purpose, repository maps, and OpenAPI links for each module id.</p>
   </article>
   <article class="ff-path">
     <p class="ff-path__kicker">Integration engineer</p>
     <p class="ff-path__title"><a href="integrate/adapters/">Adapters and libraries</a></p>
-    <p class="ff-path__meta">Port and adapter pattern, plus worked guides for library-psps and library-rails.</p>
+    <p class="ff-path__meta">Port and adapter pattern, library-psps, and library-rails.</p>
   </article>
   <article class="ff-path">
     <p class="ff-path__kicker">API consumer</p>
     <p class="ff-path__title"><a href="reference/">Reference</a></p>
-    <p class="ff-path__meta">OpenAPI and event-contract indexes drawn from repositories. No invented endpoints.</p>
+    <p class="ff-path__meta">OpenAPI and event-contract indexes drawn from repositories.</p>
   </article>
   <article class="ff-path">
     <p class="ff-path__kicker">Release owner</p>
     <p class="ff-path__title"><a href="versioning/bom/">Versioning and BOM</a></p>
-    <p class="ff-path__meta">Authoritative 26.10.19 / Boot 4.1.1 pins, Central preference, and mike aliases for this hub.</p>
+    <p class="ff-path__meta">Authoritative 26.10.19 / Boot 4.1.1 pins and mike aliases.</p>
   </article>
 </div>
 
-## How the pieces fit
+## How an OpenPlatform service is layered
 
-<div class="ff-section ff-section--split" markdown="0">
-  <div class="ff-section__copy">
-    <p>Industry solutions sit on OpenPlatform modules, which run on the Jafly train. Institution systems and providers connect through adapters so business services stay portable.</p>
-  </div>
-  <div class="ff-section__visual">
-    <div class="ff-iso">
-      <img class="ff-iso__light" src="/assets/isometrics/layers-light.svg" alt="Layered OpenPlatform stack from channels to adapters" width="1600" height="900" />
-      <img class="ff-iso__dark" src="/assets/isometrics/layers-dark.svg" alt="Layered OpenPlatform stack from channels to adapters" width="1600" height="900" />
-      <p class="ff-iso__caption">Service bands and adapter boundary (brand kit isometric).</p>
-    </div>
-  </div>
-</div>
+Channels call experience services. Domain services coordinate commands. Core services persist state. Providers and institution systems sit behind adapters (`library-psps`, `library-rails`, and related ports).
 
-<img src="/diagrams/openplatform-ecosystem.svg" alt="OpenPlatform among Firefly products and frameworks" width="960" />
+<img src="/diagrams/openplatform-layers.svg" alt="OpenPlatform layers: experience, domain, core, and adapters" width="960" height="560" />
 
-As of 2026-10-18/19 the OpenPlatform Java train inherits Spring Boot **4.1.1** through `com.firefly:firefly-parent` and `org.fireflyframework:fireflyframework-parent` version **26.10.19**. That release is on Maven Central (and GitHub Packages). Prefer Central; use `-Pjafly-packages` only when Central is unreachable.
+As of 2026-10-18/19 the train inherits Spring Boot **4.1.1** through `com.firefly:firefly-parent` and `org.fireflyframework:fireflyframework-parent` version **26.10.19**. Prefer Maven Central; use `-Pjafly-packages` only when Central is unreachable.
 
 ## Suggested reading order
 
 <ol class="ff-steps" markdown="0">
   <li class="ff-step">
     <p class="ff-step__title"><a href="ecosystem/">Ecosystem map</a></p>
-    <p class="ff-step__meta">Place OpenPlatform next to firefly-serviceOS, Jafly, and Weave before you open a repository.</p>
+    <p class="ff-step__meta">Place firefly-oss next to Jafly and the adapter boundary before you open a repository.</p>
   </li>
   <li class="ff-step">
     <p class="ff-step__title"><a href="start/prerequisites/">Prerequisites</a> then <a href="start/first-service/">First service</a></p>
-    <p class="ff-step__meta">Tooling, parent inheritance, and a checklist for mirroring a core, domain, or experience neighbour.</p>
+    <p class="ff-step__meta">Tooling, parent inheritance, and a checklist for mirroring a neighbour.</p>
   </li>
   <li class="ff-step">
     <p class="ff-step__title"><a href="architecture/overview/">Architecture overview</a></p>
-    <p class="ff-step__meta">Bands, topology, and the integration grammar you will reuse on every module.</p>
+    <p class="ff-step__meta">Bands, topology, and the integration grammar reused on every module.</p>
   </li>
   <li class="ff-step">
     <p class="ff-step__title"><a href="modules/catalog/">Module catalogue</a></p>
-    <p class="ff-step__meta">Pick the bounded context you own, then open its page for repositories and OpenAPI links.</p>
+    <p class="ff-step__meta">Pick the bounded context you own, then open its page for repositories and OpenAPI.</p>
   </li>
 </ol>
 
@@ -134,7 +120,6 @@ As of 2026-10-18/19 the OpenPlatform Java train inherits Spring Boot **4.1.1** t
 
 - This hub: <https://docs.fireflysoftware.io/>
 - Product site: <https://fireflysoftware.io/openplatform/>
-- Brand kit: <https://github.com/firefly-oss/brand-kit>
-- Framework reactor: <https://github.com/fireflyframework/fireflyframework-jafly>
+- GitHub org: <https://github.com/firefly-oss>
 - Jafly docs: <https://fireflyframework.github.io/fireflyframework-jafly/>
 - Improve these pages: [Contribute](contribute/index.md)

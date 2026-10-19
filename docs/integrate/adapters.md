@@ -2,11 +2,7 @@
 
 OpenPlatform keeps provider and institution-system details behind **adapters** so business modules stay portable. This page teaches the pattern; the PSP and rails guides are worked examples from public repositories.
 
-<div class="ff-iso" markdown="0">
-  <img class="ff-iso__light" src="/assets/isometrics/adapter-light.svg" alt="Adapter plugins between domain ports and external systems" width="1600" height="900" />
-  <img class="ff-iso__dark" src="/assets/isometrics/adapter-dark.svg" alt="Adapter plugins between domain ports and external systems" width="1600" height="900" />
-  <p class="ff-iso__caption">Domain code depends on ports; adapters speak to providers.</p>
-</div>
+<img src="/diagrams/openplatform-adapters.svg" alt="Adapter boundary between firefly-oss services and external systems" width="960" height="360" />
 
 ## Intent
 
