@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+<title id="title">OpenPlatform service bands</title>
+<desc id="desc">Channels and products sit above experience, domain, and core services. Adapters and libraries connect institution systems and providers at the boundary. Jafly 26.10.19 with Spring Boot 4.1.1 underpins the stack.</desc>
+<defs>
+  <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#F3F1EB"/>
+    <stop offset="100%" stop-color="#EBE7DF"/>
+  </linearGradient>
+  <linearGradient id="amberWash" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#FFB34A" stop-opacity="0.22"/>
+    <stop offset="100%" stop-color="#FFB34A" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+<style>
+  .t { font-family: Manrope, Arial, Helvetica, sans-serif; fill: #10110F; }
+  .title { font-size: 26px; font-weight: 700; }
+  .sub { font-size: 15px; fill: #62645B; }
+  .h { font-size: 16px; font-weight: 700; }
+  .p { font-size: 13px; fill: #62645B; }
+  .chip { font-family: SFMono-Regular, Consolas, monospace; font-size: 11px; fill: #10110F; }
+  .label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; fill: #62645B; text-transform: uppercase; }
+</style>
+<rect width="960" height="560" rx="18" fill="url(#paper)"/>
+<rect x="0" y="0" width="960" height="120" fill="url(#amberWash)"/>
+<text class="t title" x="36" y="48">How an OpenPlatform service is layered</text>
+<text class="t sub" x="36" y="76">Experience, domain, and core stay composable. Outside systems stay behind adapters.</text>
+
+<!-- isometric-ish stacked planes -->
+<g transform="translate(56 130)">
+  <!-- top: channels -->
+  <path d="M80 40 L420 10 L760 40 L420 70 Z" fill="#10110F"/>
+  <text class="t" x="360" y="48" fill="#F3F1EB" style="font-size:14px;font-weight:700">Channels and products</text>
+  <text class="t" x="300" y="66" fill="#BFB8AB" style="font-size:12px">Apps, portals, LendingOS journeys</text>
+
+  <!-- exp -->
+  <path d="M100 96 L420 66 L740 96 L420 126 Z" fill="#FFB34A"/>
+  <text class="t h" x="360" y="100">Experience · exp-*</text>
+  <text class="t" x="300" y="118" style="font-size:12px">Channel and journey APIs (BFF)</text>
+
+  <!-- domain -->
+  <path d="M120 152 L420 122 L720 152 L420 182 Z" fill="#EBE7DF" stroke="#D8D4CA"/>
+  <text class="t h" x="360" y="156">Domain · domain-*</text>
+  <text class="t p" x="290" y="174">Commands, queries, process coordination</text>
+
+  <!-- core -->
+  <path d="M140 208 L420 178 L700 208 L420 238 Z" fill="#F3F1EB" stroke="#855414" stroke-width="2"/>
+  <text class="t h" x="360" y="212">Core · core-*</text>
+  <text class="t p" x="310" y="230">Persistence and core APIs</text>
+
+  <!-- adapters -->
+  <path d="M160 264 L420 234 L680 264 L420 294 Z" fill="#62645B"/>
+  <text class="t" x="340" y="268" fill="#F3F1EB" style="font-size:14px;font-weight:700">Adapters and libraries</text>
+  <text class="t" x="290" y="286" fill="#D8D4CA" style="font-size:12px">library-rails · library-psps · institution ports</text>
+</g>
+
+<!-- side pin -->
+<g transform="translate(700 360)">
+  <rect width="220" height="150" rx="10" fill="#10110F"/>
+  <text class="t label" x="18" y="28" fill="#BFB8AB">Current train</text>
+  <text class="t" x="18" y="58" fill="#FFB34A" style="font-size:18px;font-weight:700">Jafly 26.10.19</text>
+  <text class="t" x="18" y="86" fill="#F3F1EB" style="font-size:14px">Spring Boot 4.1.1</text>
+  <text class="t" x="18" y="112" fill="#F3F1EB" style="font-size:14px">Java 25</text>
+  <text class="t" x="18" y="138" fill="#BFB8AB" style="font-size:12px">Maven Central</text>
+</g>
+
+<text class="t chip" x="56" y="520">firefly-oss modules inherit via com.firefly:firefly-parent</text>
+</svg>

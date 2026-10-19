@@ -46,19 +46,19 @@ mike serve
 
 - `.github/workflows/docs.yml` runs `mkdocs build --strict` (unversioned
   build check) plus brand check.
-- `.github/workflows/publish-gh-pages.yml` remains a **manual** stub that
-  publishes a single `site/` tree. When the team is ready for versioned
-  Pages, replace that push with `mike deploy` / `mike set-default` on
-  `gh-pages` (and enable Pages on the branch).
+- `.github/workflows/publish-gh-pages.yml` publishes a single `site/` tree
+  to `gh-pages` (custom domain `docs.fireflysoftware.io`). When the team
+  is ready for versioned Pages, replace that push with `mike deploy` /
+  `mike set-default` on `gh-pages`.
 
-Do not add a `CNAME` or DNS for `docs.fireflysoftware.io` until that
-setup is approved.
+DNS and HTTPS for `docs.fireflysoftware.io` are owned by the publish
+track. Do not edit GoDaddy or Pages domain settings from docs-only work.
 
 ## Naming convention
 
 | Alias / version | Meaning |
 |-----------------|---------|
-| `26.10.19` | Docs set aligned with Jafly / OpenPlatform pin **26.10.19** |
+| `26.10.19` | Docs set aligned with Jafly / OpenPlatform pin **26.10.19** (Boot **4.1.1**, Java **25**) |
 | `latest` | Alias pointing at the current public train |
 
 When the BOM pin moves, deploy a new version string and retarget

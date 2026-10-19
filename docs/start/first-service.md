@@ -3,15 +3,29 @@
 How a new Java service fits the Firefly stack when OpenPlatform is pinned
 to Jafly **26.10.19** / Spring Boot **4.1.1** / Java **25**.
 
-## Current train
-
-| Coordinate | Version | Spring Boot | Role |
-|------------|---------|-------------|------|
-| `org.fireflyframework:fireflyframework-parent` | **26.10.19** | **4.1.1** | Framework parent on Maven Central |
-| `com.firefly:firefly-parent` | platform SNAPSHOT | inherits **26.10.19** | OpenPlatform module parent |
+<ul class="ff-pins" markdown="0">
+  <li class="ff-pin">
+    <span class="ff-pin__label">fireflyframework-parent</span>
+    <span class="ff-pin__value">26.10.19</span>
+  </li>
+  <li class="ff-pin">
+    <span class="ff-pin__label">Spring Boot</span>
+    <span class="ff-pin__value">4.1.1</span>
+  </li>
+  <li class="ff-pin">
+    <span class="ff-pin__label">Java</span>
+    <span class="ff-pin__value">25</span>
+  </li>
+  <li class="ff-pin">
+    <span class="ff-pin__label">Module parent</span>
+    <span class="ff-pin__value">firefly-parent</span>
+  </li>
+</ul>
 
 Prefer Maven Central. Use `-Pjafly-packages` only when Central is
 unreachable (see <a href="../versioning/bom.md">Versioning and BOM</a>).
+`com.firefly:firefly-parent` inherits **26.10.19** for OpenPlatform
+modules.
 
 ## Inheritance chain
 

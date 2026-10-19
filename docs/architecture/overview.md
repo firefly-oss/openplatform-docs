@@ -1,14 +1,16 @@
 # Architecture overview
 
-OpenPlatform is organised so business modules stay composable, shared
-services stay reusable, and systems outside Firefly connect through
+OpenPlatform keeps business modules composable, shared services reusable,
+and systems outside Firefly behind adapters. The picture below is the
+shape you will see across `firefly-oss` repositories.
+
+<img src="../diagrams/openplatform-layers.svg" alt="OpenPlatform service bands on the current Jafly train" width="960" />
+
+## Service bands
+
+OpenPlatform services follow a three-band repository convention. Channels
+and products sit above; institution systems and providers sit behind
 adapters.
-
-## Layers
-
-OpenPlatform services in `firefly-oss` follow a three-band repository
-convention. Channels sit above; institution systems and providers sit
-behind adapters.
 
 <div class="ff-topo" role="img" aria-label="OpenPlatform layers from experience to core, with adapters at the boundary">
   <p class="ff-topo__caption">OpenPlatform service bands</p>
@@ -49,13 +51,11 @@ behind adapters.
   </div>
 </div>
 
-| Layer | Responsibility |
-|-------|----------------|
-| Channels | Apps, portals, and partner surfaces that start a journey |
-| Process | Coordination across modules (orchestration, workflows such as Weave) |
-| Experience / domain / core | OpenPlatform service bands (`exp-*`, `domain-*`, `core-*`) |
-| Shared / identity | Users, notifications, reference data, and related common services |
-| Adapters | Boundaries to institution systems and third-party providers |
+Around those bands:
+
+- **Channels** start a journey (apps, portals, partner surfaces).
+- **Process** coordinates across modules (orchestration, workflows such as Weave).
+- **Shared / identity** covers users, notifications, reference data, and related common services.
 
 Repository naming for the service bands is summarised in the
 <a href="../modules/catalog.md">business modules catalogue</a>.
@@ -120,8 +120,9 @@ autonomous replacement of staff.
 
 Module services are Java Spring applications on the framework train
 pinned by OpenPlatform (Boot **4.1.1** via
-`fireflyframework-parent` **26.10.19**). Workflow coordination may use
-Firefly Weave. Treat each runtime’s docs as authoritative for that layer.
+`fireflyframework-parent` **26.10.19**, Java **25**). Workflow
+coordination may use Firefly Weave. Treat each runtime’s docs as
+authoritative for that layer.
 
 See <a href="../versioning/bom.md">Versioning and BOM</a> and
 <a href="../ecosystem.md">Ecosystem</a>.

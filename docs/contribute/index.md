@@ -4,8 +4,11 @@ How to improve this documentation hub.
 
 ## Repository
 
-`firefly-oss/openplatform-docs`. Target site: `docs.fireflysoftware.io`
-(DNS and Pages custom domain not wired yet; see the publish workflow stub).
+`firefly-oss/openplatform-docs`. Public site:
+<https://docs.fireflysoftware.io/> (GitHub Pages on the `gh-pages`
+branch with that custom domain). DNS and HTTPS enforcement are owned by
+the publish track; do not change GoDaddy or Pages domain settings from
+docs-only work.
 
 ## Editing docs
 
@@ -37,15 +40,15 @@ Rules that matter most for this hub:
 - Do not invent metrics, certifications, or client names
 - Prefer calm, precise tone (avoid exclamation marks)
 
-## CI
+## CI and publish
 
 Pull requests and pushes run `.github/workflows/docs.yml`
-(`mkdocs build --strict` and brand check). To publish a snapshot to the
-`gh-pages` branch, run **Publish (GitHub Pages stub)** via
-`workflow_dispatch` with confirm set to `publish`. Prefer
+(`mkdocs build --strict` and brand check). To refresh the live site, run
+**Publish (GitHub Pages stub)** via `workflow_dispatch` with confirm set
+to `publish`, or push commits that the publish track deploys. Prefer
 <a href="../versioning/mike.md">mike</a> for versioned aliases
-(`26.10.19` / `latest`) when Pages go live. Do not add a CNAME until DNS
-for `docs.fireflysoftware.io` is approved.
+(`26.10.19` / `latest`) when moving from the single-tree snapshot to
+versioned Pages.
 
 ## Theme pack
 
@@ -53,12 +56,14 @@ Visual tokens come from brand-kit `16-MkDocs/`. When refreshing logos or
 CSS, copy from
 `dist/Firefly-Brand-Kit/16-MkDocs/` into this repo’s `theme/` and
 `docs/assets` / `docs/stylesheets` as described in `theme/PACK.md`.
+Hub helpers (`.ff-hero`, `.ff-paths`, `.ff-pins`, `.ff-topo`) ship in that
+pack.
 
 ## What not to do
 
 - Do not invent a second BOM train in these pages; the current pin is
   **26.10.19** / Boot **4.1.1** (see Versioning and BOM)
-- Do not publish DNS or force-push Pages from local experiments without
-  team agreement
+- Do not change DNS, CNAME, or force-push Pages from local experiments
+  without team agreement
 - Do not touch the firefly-builderOS organisation or `firefly-parent`
   bumps from this docs work (owned by other tracks)

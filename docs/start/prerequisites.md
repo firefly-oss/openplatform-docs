@@ -1,6 +1,26 @@
 # Prerequisites
 
-What you need before creating or extending an OpenPlatform Java service.
+What you need before creating or extending an OpenPlatform Java service
+on the current train.
+
+<ul class="ff-pins" markdown="0">
+  <li class="ff-pin">
+    <span class="ff-pin__label">Framework parent</span>
+    <span class="ff-pin__value">26.10.19</span>
+  </li>
+  <li class="ff-pin">
+    <span class="ff-pin__label">Spring Boot</span>
+    <span class="ff-pin__value">4.1.1</span>
+  </li>
+  <li class="ff-pin">
+    <span class="ff-pin__label">Java</span>
+    <span class="ff-pin__value">25</span>
+  </li>
+  <li class="ff-pin">
+    <span class="ff-pin__label">Resolve from</span>
+    <span class="ff-pin__value">Maven Central</span>
+  </li>
+</ul>
 
 ## People and access
 
@@ -15,12 +35,11 @@ What you need before creating or extending an OpenPlatform Java service.
 OpenPlatform services inherit from `com.firefly:firefly-parent`, which
 pins `fireflyframework.bom.version` to **26.10.19**. That train uses:
 
-| Concern | Current OpenPlatform expectation |
-|---------|----------------------------------|
-| Framework parent | `org.fireflyframework:fireflyframework-parent:26.10.19` |
-| Spring Boot | **4.1.1** |
-| Java | **25** |
-| Build | Maven, matching the parent’s plugin management |
+- Framework parent:
+  `org.fireflyframework:fireflyframework-parent:26.10.19`
+- Spring Boot **4.1.1**
+- Java **25**
+- Maven, matching the parent’s plugin management
 
 Confirm exact compiler and plugin versions in
 `firefly-oss/firefly-parent` and the published

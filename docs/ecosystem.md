@@ -3,23 +3,45 @@
 Firefly Software ships an open platform, industry products, and shared
 frameworks. This page places **OpenPlatform** in that landscape.
 
-## Map
+<img src="diagrams/openplatform-ecosystem.svg" alt="OpenPlatform among Firefly products and frameworks" width="960" />
 
-| Layer | What it is | Examples |
-|-------|------------|----------|
-| Brand and company | Firefly Software | fireflysoftware.io, brand kit |
-| Industry solutions | Packaged journeys on OpenPlatform | LendingOS and peers under `firefly-serviceOS` |
-| OpenPlatform | Business modules, shared services, adapters | Customers, lending, payments, risk under `firefly-oss` |
-| Frameworks | Language and runtime foundations | Jafly **26.10.19**, Weave (workflows), other Firefly frameworks |
-| Institution systems | Core, ledger, channels, providers | Connected through adapters, not replaced by default |
+## Layers at a glance
+
+<div class="ff-paths" markdown="0">
+  <article class="ff-path">
+    <p class="ff-path__kicker">Brand and company</p>
+    <p class="ff-path__title">Firefly Software</p>
+    <p class="ff-path__meta">fireflysoftware.io and the brand kit set the visual and content rules for every public surface.</p>
+  </article>
+  <article class="ff-path">
+    <p class="ff-path__kicker">Industry solutions</p>
+    <p class="ff-path__title">firefly-serviceOS</p>
+    <p class="ff-path__meta">Packaged journeys on OpenPlatform — LendingOS and peers for banking and insurance operations.</p>
+  </article>
+  <article class="ff-path">
+    <p class="ff-path__kicker">OpenPlatform</p>
+    <p class="ff-path__title">firefly-oss</p>
+    <p class="ff-path__meta">Business modules, shared services, and adapter libraries: customers, lending, payments, risk, and more.</p>
+  </article>
+  <article class="ff-path">
+    <p class="ff-path__kicker">Frameworks</p>
+    <p class="ff-path__title">Jafly and Weave</p>
+    <p class="ff-path__meta">Jafly <strong>26.10.19</strong> (Boot <strong>4.1.1</strong>) for Java services; Weave for durable workflow coordination.</p>
+  </article>
+</div>
+
+Institution systems (core, ledger, channels, providers) connect through
+adapters. OpenPlatform does not assume those systems are replaced by
+default.
 
 ## Organisations
 
-| GitHub org | Role |
-|------------|------|
-| <a href="https://github.com/firefly-oss">firefly-oss</a> | Public OpenPlatform modules, libraries, and this docs hub |
-| <a href="https://github.com/firefly-serviceOS">firefly-serviceOS</a> | Commercial OS applications and Firefly services built on OpenPlatform |
-| <a href="https://github.com/fireflyframework">fireflyframework</a> | Jafly and peer framework reactors |
+- <a href="https://github.com/firefly-oss">firefly-oss</a> — public
+  OpenPlatform modules, libraries, and this docs hub
+- <a href="https://github.com/firefly-serviceOS">firefly-serviceOS</a> —
+  commercial OS applications and Firefly services built on OpenPlatform
+- <a href="https://github.com/fireflyframework">fireflyframework</a> —
+  Jafly and peer framework reactors
 
 ## OpenPlatform in one sentence
 
@@ -41,13 +63,11 @@ Topology diagrams:
 
 ## Where documentation lives today
 
-| Surface | Role |
-|---------|------|
-| This hub (`docs.fireflysoftware.io`) | Developer portal for OpenPlatform |
-| fireflysoftware.io | Marketing and product narrative |
-| Jafly docs | Framework modules and Boot train |
-| firefly-weave docs | Weave workflow platform |
-| Module repositories under `firefly-oss` | Service-level README and OpenAPI |
+- This hub (`docs.fireflysoftware.io`) — developer portal for OpenPlatform
+- fireflysoftware.io — marketing and product narrative
+- Jafly docs — framework modules and Boot train
+- firefly-weave docs — Weave workflow platform
+- Module repositories under `firefly-oss` — service-level README and OpenAPI
 
 Jafly docs: <https://fireflyframework.github.io/fireflyframework-jafly/>
 

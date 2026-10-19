@@ -74,9 +74,11 @@ work.
 ## Mike / docs versions
 
 This hub uses **mike** so doc sets can track BOM trains. Current pin to
-advertise when publishing versions: **26.10.19** (with `latest` alias).
+advertise when publishing versions: **26.10.19** (Boot **4.1.1**, Java
+**25**, with `latest` alias).
 
 See <a href="mike.md">Publish with mike</a> for local
-`mike deploy --update-aliases 26.10.19 latest` steps. CI still builds a
-single unversioned site for pull-request checks; the GitHub Pages
-workflow remains a manual stub until versioned deploy is enabled.
+`mike deploy --update-aliases 26.10.19 latest` steps. CI builds a single
+unversioned site for pull-request checks; the live hub at
+`docs.fireflysoftware.io` is refreshed from the `gh-pages` publish
+workflow until versioned mike deploy is enabled.

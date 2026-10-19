@@ -181,7 +181,246 @@ SPDX-License-Identifier: LicenseRef-Firefly-Brand-Kit
   }
 }
 
-/* OpenPlatform topology diagrams (architecture pages). */
+/* Diagrams stay light on their own paper panel (Weave pattern). */
+.md-typeset img[src*="diagrams/"] {
+  background: #f3f1eb;
+  border-radius: 0.35rem;
+  width: 100%;
+  height: auto;
+  max-width: 52rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Hub composition helpers (OpenPlatform / docs.fireflysoftware.io)   */
+/* ------------------------------------------------------------------ */
+
+.ff-hero {
+  --ff-hero-ink: var(--md-default-fg-color);
+  --ff-hero-muted: var(--md-default-fg-color--light);
+  --ff-hero-line: #d8d4ca;
+  --ff-hero-amber: #ffb34a;
+  margin: 0 0 1.75rem;
+  max-width: 52rem;
+  padding: 1.35rem 1.25rem 1.4rem;
+  border: 1px solid var(--ff-hero-line);
+  border-radius: 0.25rem;
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgb(255 179 74 / 0.16), transparent 55%),
+    linear-gradient(165deg, var(--md-code-bg-color) 0%, var(--md-default-bg-color) 72%);
+}
+
+[data-md-color-scheme="slate"] .ff-hero {
+  --ff-hero-line: #474a42;
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgb(255 179 74 / 0.12), transparent 55%),
+    linear-gradient(165deg, #1a1b17 0%, #10110f 72%);
+}
+
+.ff-hero__kicker {
+  margin: 0 0 0.55rem;
+  color: var(--ff-hero-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ff-hero__brand {
+  margin: 0 0 0.45rem;
+  color: var(--ff-hero-ink);
+  font-size: clamp(1.85rem, 4.2vw, 2.55rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.ff-hero__lede {
+  margin: 0 0 0.85rem;
+  color: var(--ff-hero-ink);
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.45;
+  max-width: 42ch;
+}
+
+.ff-hero__body {
+  margin: 0 0 1rem;
+  color: var(--ff-hero-muted);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  max-width: 58ch;
+}
+
+.ff-hero__slogan {
+  margin: 0 0 1.1rem;
+  color: var(--ff-hero-ink);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.ff-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ff-hero__actions a {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--ff-hero-line);
+  border-radius: 0.15rem;
+  background: var(--md-default-bg-color);
+  color: var(--ff-hero-ink) !important;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none !important;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.ff-hero__actions a:hover {
+  border-color: var(--ff-hero-amber);
+  background: rgb(255 179 74 / 0.12);
+}
+
+.ff-hero__actions a.ff-hero__primary {
+  border-color: var(--ff-hero-amber);
+  background: var(--ff-hero-amber);
+  color: #10110f !important;
+}
+
+.ff-hero__actions a.ff-hero__primary:hover {
+  background: #facc8a;
+}
+
+.ff-pins {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+  max-width: 52rem;
+}
+
+.ff-pin {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 7.5rem;
+  margin: 0;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #d8d4ca;
+  border-top: 3px solid #ffb34a;
+  border-radius: 0.15rem;
+  background: var(--md-code-bg-color);
+}
+
+[data-md-color-scheme="slate"] .ff-pin {
+  border-color: #474a42;
+}
+
+.ff-pin__label {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ff-pin__value {
+  color: var(--md-default-fg-color);
+  font-family: var(--md-code-font);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ff-paths {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.85rem 0 1.75rem;
+  max-width: 52rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 48em) {
+  .ff-paths {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ff-path {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid #d8d4ca;
+  border-radius: 0.2rem;
+  background: var(--md-default-bg-color);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+[data-md-color-scheme="slate"] .ff-path {
+  border-color: #474a42;
+}
+
+.ff-path:hover {
+  border-color: #ffb34a;
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ff-path:hover {
+    transform: none;
+  }
+}
+
+.ff-path__kicker {
+  margin: 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ff-path__title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.ff-path__title a {
+  color: var(--md-default-fg-color) !important;
+  text-decoration: none !important;
+}
+
+.ff-path__title a:hover {
+  color: #855414 !important;
+}
+
+[data-md-color-scheme="slate"] .ff-path__title a:hover {
+  color: #facc8a !important;
+}
+
+.ff-path__meta {
+  margin: 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  max-width: none;
+}
+
+/* Topology / layer diagrams */
 .ff-topo {
   --ff-topo-ink: var(--md-default-fg-color);
   --ff-topo-muted: var(--md-default-fg-color--light);

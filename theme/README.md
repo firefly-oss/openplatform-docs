@@ -12,7 +12,7 @@ used by Firefly Weave
 | Path | Purpose |
 |------|---------|
 | `mkdocs.snippet.yml` | Theme, plugins, markdown extensions, dual light/dark palettes |
-| `stylesheets/extra.css` | Manrope `@font-face`, `--md-*` tokens, typography |
+| `stylesheets/extra.css` | Manrope `@font-face`, `--md-*` tokens, typography, hub helpers (`.ff-hero`, `.ff-paths`, `.ff-pins`, `.ff-topo`) |
 | `stylesheets/firefly-docs.css` | Alias that imports `extra.css` |
 | `stylesheets/firefly-colors.css` | Raw `--firefly-*` tokens from `03-Color/` |
 | `assets/brand/` | Logo lockups, icon, favicons (from `02-Logo/`) |
@@ -79,10 +79,24 @@ repo stays self-contained.
 See `firefly-weave/mkdocs.yml` and `docs/stylesheets/weave.css` for a
 production consumer of the same tokens.
 
+## Hub composition helpers
+
+Use these classes from Markdown (`md_in_html`) for premium landing and
+architecture pages. Colours follow charcoal / paper / amber.
+
+| Class | Role |
+|-------|------|
+| `.ff-hero` | First-viewport brand block (kicker, brand name, lede, actions) |
+| `.ff-pins` / `.ff-pin` | Version strip (BOM, Boot, Java) |
+| `.ff-paths` / `.ff-path` | Illustrated path cards instead of dense tables |
+| `.ff-topo` | Layer stacks and org topology cards |
+| `img[src*="diagrams/"]` | Paper-panel treatment for SVG diagrams |
+
 ## Requirements
 
 - Python 3.11+ with `mkdocs-material` (see the consuming repo’s `requirements.txt`)
 - Optional: `mike` (<https://github.com/jimporter/mike>) for versioned docs
+- Enable `md_in_html` in `markdown_extensions` when using the hub helpers
 
 ## Brand rules for docs copy
 
