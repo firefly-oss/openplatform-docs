@@ -43,7 +43,7 @@ It does **not** teach how to scaffold or build Java services on the framework tr
 
 ## Version pin (brief)
 
-OpenPlatform modules currently consume framework train **26.10.20** (Spring Boot **4.1.1**, Java **25**) through `com.firefly:firefly-parent`. Details and publish notes: [Versioning and BOM](../versioning/bom.md). Framework how-to: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).
+OpenPlatform modules currently consume framework train **26.10.20** (Spring Boot **4.1.1**, Java **25**) through `io.fireflysoftware:firefly-parent`. Details and publish notes: [Versioning and BOM](../versioning/bom.md). Framework how-to: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).
 
 ## Next
 

@@ -14,7 +14,7 @@ This hub documents those ten ids under firefly-oss. The framework train is a pin
 | Surface | Organisation | What you will find here |
 |---------|--------------|-------------------------|
 | OpenPlatform modules | [firefly-oss](https://github.com/firefly-oss) | `core-*`, `domain-*`, `exp-*`, `library-*`, this docs hub |
-| Parent BOM | firefly-oss / fireflyframework | `com.firefly:firefly-parent` pins Jafly **26.10.20** / Boot **4.1.1** / Java **25** |
+| Parent BOM | firefly-oss / fireflyframework | `io.fireflysoftware:firefly-parent` pins Jafly **26.10.20** / Boot **4.1.1** / Java **25** |
 | Adapter libraries | firefly-oss | `library-psps`, `library-rails`, and related ports |
 | Framework details | [fireflyframework](https://github.com/fireflyframework) | Jafly SPI modules — see [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) |
 

@@ -9,7 +9,7 @@ Repository:
 ## What it is
 
 `library-rails` is a hexagonal **banking payment rails** abstraction.
-Application code depends on `com.firefly.rails.adapter.RailAdapter` and
+Application code depends on `io.fireflysoftware.rails.adapter.RailAdapter` and
 its operation ports. Each rail implementation (domestic batch, real-time,
 cross-border schemes, and similar) plugs in behind that facade.
 
@@ -19,7 +19,7 @@ Related OpenPlatform module page:
 ## Ports on the facade
 
 `RailAdapter` exposes operation ports (package
-`com.firefly.rails.adapter.ports`), including:
+`io.fireflysoftware.rails.adapter.ports`), including:
 
 | Port accessor | Concern |
 |---------------|---------|

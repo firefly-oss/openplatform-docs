@@ -6,12 +6,12 @@ OpenPlatform modules in firefly-oss currently consume the published framework tr
 
 | Coordinate | Version | Notes |
 |------------|---------|-------|
-| `org.fireflyframework:fireflyframework-parent` | **26.10.20** | Parent of `com.firefly:firefly-parent` |
+| `org.fireflyframework:fireflyframework-parent` | **26.10.20** | Parent of `io.fireflysoftware:firefly-parent` |
 | `org.fireflyframework:fireflyframework-bom` | **26.10.20** | Imported by `firefly-parent` |
 | `fireflyframework.bom.version` (in `firefly-parent`) | **26.10.20** | Pin inherited by OpenPlatform modules |
 | Spring Boot (via that parent) | **4.1.1** | Runtime line for OpenPlatform Java services |
 | Java (via that parent) | **25** | Language level for the train |
-| `com.firefly:*` (parent, BOM, and every module) | **26.10.2** | OpenPlatform release. Scheme is `YY.MM.PATCH`: year, month, and the patch within that month. |
+| `io.fireflysoftware:*` (parent, BOM, and every module) | **26.10.3** | OpenPlatform release. Scheme is `YY.MM.PATCH`: year, month, and the patch within that month. |
 
 Jafly is published on Maven Central. OpenPlatform modules are published to GitHub Packages by the release workflow when the tag `vYY.MM.PATCH` is pushed. Prefer Central for the framework pin **26.10.20** and later.
 
@@ -22,9 +22,9 @@ Source: `firefly-oss/firefly-parent` as of 2026-10-18/19.
 ```text
 org.fireflyframework:fireflyframework-parent:26.10.20
         ^
-com.firefly:firefly-parent
+io.fireflysoftware:firefly-parent
         ^
-OpenPlatform modules (com.firefly:*)
+OpenPlatform modules (io.fireflysoftware:*)
 ```
 
 ## Framework how-to

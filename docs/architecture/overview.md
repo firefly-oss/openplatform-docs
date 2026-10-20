@@ -82,7 +82,7 @@ Public OpenPlatform modules, adapter libraries, `firefly-parent`, and this docum
     <div class="ff-topo__card ff-topo__card--fw">
       <p class="ff-topo__kicker">Framework train</p>
       <p class="ff-topo__label">Jafly <code>26.10.20</code> (Spring Boot <code>4.1.1</code>)</p>
-      <p class="ff-topo__meta"><code>org.fireflyframework:fireflyframework-parent</code> via <code>com.firefly:firefly-parent</code>. Security SPI, ECM ports, and related adapter modules ship in the Jafly reactor.</p>
+      <p class="ff-topo__meta"><code>org.fireflyframework:fireflyframework-parent</code> via <code>io.fireflysoftware:firefly-parent</code>. Security SPI, ECM ports, and related adapter modules ship in the Jafly reactor.</p>
     </div>
   </div>
 </div>

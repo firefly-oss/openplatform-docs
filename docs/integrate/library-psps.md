@@ -9,7 +9,7 @@ Repository:
 ## What it is
 
 `library-psps` is a hexagonal **payment service provider** abstraction.
-Application code depends on `com.firefly.psps.adapter.PspAdapter` and its
+Application code depends on `io.fireflysoftware.psps.adapter.PspAdapter` and its
 operation ports. Concrete providers implement that facade; swapping a
 processor changes the adapter bean, not payment domain services.
 
@@ -19,7 +19,7 @@ Related OpenPlatform module page:
 ## Ports on the facade
 
 `PspAdapter` exposes operation ports (package
-`com.firefly.psps.adapter.ports`), including:
+`io.fireflysoftware.psps.adapter.ports`), including:
 
 | Port accessor | Concern |
 |---------------|---------|
