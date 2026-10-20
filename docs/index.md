@@ -95,7 +95,7 @@ Channels call experience services. Domain services coordinate commands. Core ser
 
 <figure class="ff-figure">
   <img src="/diagrams/openplatform-ecosystem.svg?v=20261019b" alt="Map of the ten OpenPlatform module ids in firefly-oss" width="960" height="964" />
-  <figcaption>Ten module ids. Open a card's page for the repositories behind it. Insurance areas reuse these modules; no dedicated insurance repository is published.</figcaption>
+  <figcaption>Ten shared module ids. Open a card's page for the repositories behind it. Insurance cores are published separately under the insurance section; domain and experience services for those areas are not.</figcaption>
 </figure>
 
 Pin for consumption accuracy: Spring Boot **4.1.1** via `com.firefly:firefly-parent` and framework parent **26.10.19**. See [Versioning and BOM](versioning/bom.md). Framework tooling: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).

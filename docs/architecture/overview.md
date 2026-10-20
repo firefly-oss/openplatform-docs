@@ -45,6 +45,7 @@ Channels sit above; institution systems and providers sit behind adapters.
       <ul class="ff-topo__chips">
         <li>core-common-customer-mgmt</li>
         <li>core-banking-ledger</li>
+        <li>core-insurance-policies</li>
       </ul>
     </div>
     <div class="ff-topo__band ff-topo__band--steel">

@@ -1,35 +1,37 @@
-# Insurance development areas
+# Insurance cores
 
-OpenPlatform describes four insurance-oriented development areas on the public product site. They extend the same foundations as the banking modules; they are **in development** and agreed before inclusion in an implementation.
+OpenPlatform now publishes the insurance **core** repositories. They store policy, underwriting, claims, financial, delegated-authority, reinsurance, and reserving records. Domain and experience services for these areas are not published. Parties stay in [customers](../modules/customers.md). Agreements stay in [agreements](../modules/agreements.md). Payment execution stays in [payments](../modules/payments.md).
 
 Public anchor: <https://fireflysoftware.io/openplatform/#insurance-development>
 
-| Area | Intent | Page |
-|------|--------|------|
-| Policy lifecycle | Product, party, and agreement foundations extended to policies and renewals | [policy lifecycle](policy-lifecycle.md) |
-| Underwriting operations | Evidence, underwriting rules, referrals, and decisions under the insurer’s authority | [underwriting](underwriting.md) |
-| Claims operations | Claim notification, evidence, assessment, and authorized settlement | [claims](claims.md) |
-| Insurance financial flows | Premiums, commissions, refunds, and indemnity payments via payment services | [financial flows](financial-flows.md) |
+| Area | Core repository | Page |
+|------|-----------------|------|
+| Policy lifecycle | `core-insurance-policies` | [policy lifecycle](policy-lifecycle.md) |
+| Underwriting operations | `core-insurance-underwriting` | [underwriting](underwriting.md) |
+| Claims operations | `core-insurance-claims` | [claims](claims.md) |
+| Insurance financial flows | `core-insurance-financials` | [financial flows](financial-flows.md) |
+| Delegated authority | `core-insurance-delegated-authority` | [delegated authority](delegated-authority.md) |
+| Reinsurance records | `core-insurance-reinsurance` | [reinsurance](reinsurance.md) |
+| Reserving data | `core-insurance-reserving` | [reserving](reserving.md) |
 
-## What exists today
+## What a core service is
 
-- **Business modules** already support insurance-adjacent journeys (customers, products, agreements, distribution, payments, risk, and shared identity). See the [catalogue](../modules/catalog.md).
-- **Dedicated insurance core / domain / experience repositories** for these four areas are **not** published as separate OpenPlatform module ids yet. Do not assume a `core-insurance-*` catalogue from this hub.
-- **OpenAPI / event packs** specific to insurance areas: [not published](../reference/events.md); use foundation module specs from the [OpenAPI index](../reference/openapi.md).
+Each repository follows the same shape as the banking cores: `interfaces`, `models`, `core`, `web`, and `sdk`. It owns its PostgreSQL tables and exposes `/api/v1` through Spring WebFlux. It does not call another core service. Cross-service links are UUID columns without a database foreign key.
 
-## How to read these pages
+Developed by Firefly Software Foundation. Development contact: `dev@fireflysoftware.io`. Platform host: <https://openplatform.fireflysoftware.io>.
 
-Each area page states why it exists, when to use it, which foundation modules to reuse, an honest layer map (usually empty for dedicated repos), how to start, and next links. Treat dashed outlines on the product site as in development; solid pieces are available today in the business module catalogue.
+## What is not in these repositories
 
-Parent pin for new foundation work: Jafly **26.10.19** / Spring Boot **4.1.1** / Java **25**.
+- Domain orchestration and experience journeys.
+- Rating, rules execution, and actuarial calculation.
+- A regulatory filing. Reserving extracts are stored data, not a certified return.
+- The person, the contract, the product definition, or the payment order. Those remain in the shared and banking cores.
 
-## Product experiences
-
-Operating products such as PolicyOS, UnderwritingOS, and ClaimsOS compose these areas with OpenPlatform modules. Product pages live on fireflysoftware.io under Services; this hub stays at the platform and module layer.
+Parent pin: Jafly **26.10.19** / Spring Boot **4.1.1** / Java **25**. OpenPlatform artifact train: `com.firefly` **1.1.0-SNAPSHOT**.
 
 ## Related
 
 - [Business modules catalogue](../modules/catalog.md)
-- [Adapters](../integrate/adapters.md)
+- [OpenAPI index](../reference/openapi.md)
+- [Event contracts](../reference/events.md)
 - [Architecture](../architecture/overview.md)
-- [Home](../index.md)

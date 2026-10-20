@@ -88,14 +88,17 @@ Status reflects documentation completeness for this hub as of 2026-10-18/19, not
 | `risk` | [risk](risk.md) | scoring/provisioning/regulatory + bureau domain | Complete |
 | `shared` | [shared](shared.md) | identity, SCA, notifications, org, config, profile, channel | Complete |
 
-Insurance development areas (in IA, not separate module ids yet):
+Insurance cores are published. Domain and experience services for these areas are not. Parties stay in customers. Agreements stay in agreements. Payment execution stays in payments.
 
-| Area | Page | Dedicated `firefly-oss` repos | Doc status |
-|------|------|-------------------------------|------------|
-| Policy lifecycle | [policy-lifecycle](../insurance/policy-lifecycle.md) | None published yet — reuses foundations | Complete (honest gaps) |
-| Underwriting | [underwriting](../insurance/underwriting.md) | None published yet | Complete (honest gaps) |
-| Claims | [claims](../insurance/claims.md) | None published yet | Complete (honest gaps) |
-| Financial flows | [financial-flows](../insurance/financial-flows.md) | None published yet — uses payments | Complete (honest gaps) |
+| Area | Page | Core repository | Doc status |
+|------|------|-----------------|------------|
+| Policy lifecycle | [policy-lifecycle](../insurance/policy-lifecycle.md) | `core-insurance-policies` | Complete |
+| Underwriting | [underwriting](../insurance/underwriting.md) | `core-insurance-underwriting` | Complete |
+| Claims | [claims](../insurance/claims.md) | `core-insurance-claims` | Complete |
+| Financial flows | [financial-flows](../insurance/financial-flows.md) | `core-insurance-financials` | Complete |
+| Delegated authority | [delegated-authority](../insurance/delegated-authority.md) | `core-insurance-delegated-authority` | Complete |
+| Reinsurance | [reinsurance](../insurance/reinsurance.md) | `core-insurance-reinsurance` | Complete |
+| Reserving data | [reserving](../insurance/reserving.md) | `core-insurance-reserving` | Complete |
 
 ## Layer conventions in `firefly-oss`
 

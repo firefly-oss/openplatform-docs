@@ -11,6 +11,7 @@ OpenPlatform modules in firefly-oss currently consume the published framework tr
 | `fireflyframework.bom.version` (in `firefly-parent`) | **26.10.19** | Pin inherited by OpenPlatform modules |
 | Spring Boot (via that parent) | **4.1.1** | Runtime line for OpenPlatform Java services |
 | Java (via that parent) | **25** | Language level for the train |
+| `com.firefly:firefly-parent` and `com.firefly:firefly-bom` | **1.1.0-SNAPSHOT** | OpenPlatform train that includes the insurance cores |
 
 Published on Maven Central (and GitHub Packages). Prefer Central for **26.10.19** and later.
 

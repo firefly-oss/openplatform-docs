@@ -23,7 +23,7 @@ Framework guidance for event-driven integration on Jafly:
 | Lending | **Stub** | Same |
 | Risk | **Stub** | Same |
 | Shared | **Stub** | Same |
-| Insurance development areas | **Stub** | No dedicated insurance event packs yet |
+| Insurance cores | **Stub** | Core HTTP APIs are published. No shared event pack yet |
 
 No AsyncAPI files or shared Avro / JSON Schema event packs were found
 under the usual OpenPlatform module roots at the time of this index.

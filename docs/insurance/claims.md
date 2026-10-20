@@ -1,59 +1,22 @@
 # Claims operations
 
-**Development area:** Claims operations (insurance)
+**Core repository:** [`core-insurance-claims`](https://github.com/firefly-oss/core-insurance-claims)
 
-Claim notification, evidence, assessment, and authorized settlement. Settlement payment execution reuses [payments](../modules/payments.md); authority for indemnity decisions stays with the insurer.
+Records for a specific claim: notification, parties, coverage references, coverage checks, triage, adjuster assignment, reserves, assessments, evidence references, fraud indicators, SIU referrals, settlements, denials, recoveries (subrogation, salvage, contribution), and status history.
 
-Public description: <https://fireflysoftware.io/openplatform/#insurance-development>
+`policyId` points at `core-insurance-policies`. `paymentOrderId` on a settlement points at [payments](../modules/payments.md). Paying the order is not this service.
 
-## Why this area exists
+## What it does not own
 
-Claims need a case lifecycle (notify, evidence, assess, settle) that is not the same as loan servicing or KYC onboarding, but can reuse party, document, and payment foundations. This area states that intent and the honest gap: no dedicated claims repositories are published yet.
+Coverage determinations and settlement authority. Those stay with the insurer. Case reserves here are operational. Actuarial snapshots are [reserving](reserving.md).
 
-## When to use it
+## API
 
-Use this area when designing claim intake or settlement flows on OpenPlatform foundations. For payment rails and PSP boundaries, use [payments](../modules/payments.md) directly.
+Base path `/api/v1/claims`.
 
-## Foundations already in OpenPlatform
-
-| Module | Why it matters for claims |
-|--------|---------------------------|
-| [Customers](../modules/customers.md) | Claimant and insured party ids |
-| [Agreements](../modules/agreements.md) | Policy or contract document context |
-| [Payments](../modules/payments.md) | Indemnity and refund payment execution |
-| [Shared services](../modules/shared.md) | Notifications and identity |
-| [Onboarding](../modules/onboarding.md) | Patterns for evidence collection over time |
-
-## Layer map
-
-No dedicated claims repositories are published under `firefly-oss` for this area yet.
-
-| Expected layer | Status (2026-10-18/19) |
-|----------------|------------------------|
-| Experience | Not published |
-| Domain | Not published |
-| Core | Not published |
-| Adapters | Claims systems and adjuster tools behind [adapters](../integrate/adapters.md) |
-
-## How to start
-
-1. Identify party and agreement ids from foundation modules.
-2. Plan settlement through [payments](../modules/payments.md) and adapters for rails/PSPs.
-3. Do not invent claim OpenAPI paths until a repository publishes them.
-4. Parent pin: **26.10.19** / Boot **4.1.1** / Java **25**.
-
-## OpenAPI and events
-
-Foundation specs: [OpenAPI index](../reference/openapi.md). Events: [stub](../reference/events.md).
-
-## Maturity notes
-
-In development. Authorized settlement remains with the insurer’s delegated authority. This hub does not claim claims-system replacement.
+OpenAPI: [openapi.yml](https://github.com/firefly-oss/core-insurance-claims/blob/main/core-insurance-claims-sdk/src/main/resources/openapi.yml)
 
 ## Related
 
-- [Policy lifecycle](policy-lifecycle.md)
-- [Underwriting operations](underwriting.md)
-- [Insurance financial flows](financial-flows.md)
-- [Payments](../modules/payments.md)
-- [Insurance development areas](index.md)
+- [Financial flows](financial-flows.md)
+- [Insurance cores](index.md)

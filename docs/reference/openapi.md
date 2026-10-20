@@ -151,12 +151,21 @@ Module page: <a href="../modules/shared.md">shared</a>
 | <a href="https://github.com/firefly-oss/exp-channel-management"><code>exp-channel-management</code></a> | <a href="https://github.com/firefly-oss/exp-channel-management/blob/main/exp-channel-management-sdk/src/main/resources/openapi.yml"><code>…/openapi.yml</code></a> | Spec in repo |
 | <a href="https://github.com/firefly-oss/app-authenticator"><code>app-authenticator</code></a> | — | No published OpenAPI yet |
 
-## Insurance development areas
+## Insurance cores
 
-Insurance-specific OpenAPI surfaces are **not published** as dedicated
-`firefly-oss` repositories yet. Foundation APIs live under the business
-modules above. See <a href="../insurance/index.md">Insurance development
-areas</a>.
+Domain and experience services for these areas are not published. The core contracts are.
+
+| Repository | OpenAPI | Status |
+|------------|---------|--------|
+| <a href="https://github.com/firefly-oss/core-insurance-policies"><code>core-insurance-policies</code></a> | <a href="https://github.com/firefly-oss/core-insurance-policies/blob/main/core-insurance-policies-sdk/src/main/resources/openapi.yml"><code>…/openapi.yml</code></a> | Spec in repo |
+| <a href="https://github.com/firefly-oss/core-insurance-underwriting"><code>core-insurance-underwriting</code></a> | <a href="https://github.com/firefly-oss/core-insurance-underwriting/blob/main/core-insurance-underwriting-sdk/src/main/resources/openapi.yml"><code>…/openapi.yml</code></a> | Spec in repo |
+| <a href="https://github.com/firefly-oss/core-insurance-claims"><code>core-insurance-claims</code></a> | <a href="https://github.com/firefly-oss/core-insurance-claims/blob/main/core-insurance-claims-sdk/src/main/resources/openapi.yml"><code>…/openapi.yml</code></a> | Spec in repo |
+| <a href="https://github.com/firefly-oss/core-insurance-financials"><code>core-insurance-financials</code></a> | <a href="https://github.com/firefly-oss/core-insurance-financials/blob/main/core-insurance-financials-sdk/src/main/resources/openapi.yml"><code>…/openapi.yml</code></a> | Spec in repo |
+| <a href="https://github.com/firefly-oss/core-insurance-delegated-authority"><code>core-insurance-delegated-authority</code></a> | <a href="https://github.com/firefly-oss/core-insurance-delegated-authority/blob/main/core-insurance-delegated-authority-sdk/src/main/resources/openapi.yml"><code>…/openapi.yml</code></a> | Spec in repo |
+| <a href="https://github.com/firefly-oss/core-insurance-reinsurance"><code>core-insurance-reinsurance</code></a> | <a href="https://github.com/firefly-oss/core-insurance-reinsurance/blob/main/core-insurance-reinsurance-sdk/src/main/resources/openapi.yml"><code>…/openapi.yml</code></a> | Spec in repo |
+| <a href="https://github.com/firefly-oss/core-insurance-reserving"><code>core-insurance-reserving</code></a> | <a href="https://github.com/firefly-oss/core-insurance-reserving/blob/main/core-insurance-reserving-sdk/src/main/resources/openapi.yml"><code>…/openapi.yml</code></a> | Spec in repo |
+
+See <a href="../insurance/index.md">Insurance cores</a>. Foundation parties, contracts, products, documents, and payment orders stay in the business modules above.
 
 ## Keeping this index honest
 
