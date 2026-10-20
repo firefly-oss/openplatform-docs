@@ -27,7 +27,7 @@ Developed by Firefly Software Foundation. Development contact: `dev@fireflysoftw
 - A regulatory filing. Reserving extracts are stored data, not a certified return.
 - The person, the contract, the product definition, or the payment order. Those remain in the shared and banking cores.
 
-Parent pin: Jafly **26.10.19** / Spring Boot **4.1.1** / Java **25**. OpenPlatform artifact train: `com.firefly` **1.1.0-SNAPSHOT**.
+Parent pin: Jafly **26.10.20** / Spring Boot **4.1.1** / Java **25**. OpenPlatform artifact train: `com.firefly` **1.2.0-SNAPSHOT**.
 
 ## Related
 

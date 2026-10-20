@@ -68,7 +68,7 @@ claims beyond what those files state.
 - Prefer category language for networks and schemes on marketing
   surfaces; use this guide for engineering boundaries.
 - Align dependency versions with
-  <a href="../versioning/bom.md">Versioning and BOM</a> (**26.10.19** /
+  <a href="../versioning/bom.md">Versioning and BOM</a> (**26.10.20** /
   Boot **4.1.1**) when wiring into OpenPlatform services.
 
 ## Related

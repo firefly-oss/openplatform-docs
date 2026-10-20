@@ -44,4 +44,4 @@ this hub.
 
 - [OpenAPI index](openapi.md)
 - [Architecture overview](../architecture/overview.md)
-- [Versioning and BOM](../versioning/bom.md) (Jafly **26.10.19**)
+- [Versioning and BOM](../versioning/bom.md) (Jafly **26.10.20**)

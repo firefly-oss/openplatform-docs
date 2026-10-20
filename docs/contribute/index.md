@@ -13,7 +13,7 @@ How to improve this documentation hub.
 3. Build with `mkdocs build --strict`
 4. Run brand check before opening a pull request
 
-Prefer clear teaching prose: say what to do, why it matters, and what to open next. Keep version pins honest (**26.10.19** / Boot **4.1.1** / Java **25**). Do not invent endpoints, metrics, or compliance claims.
+Prefer clear teaching prose: say what to do, why it matters, and what to open next. Keep version pins honest (**26.10.20** / Boot **4.1.1** / Java **25**). Do not invent endpoints, metrics, or compliance claims.
 
 ## Brand check
 
@@ -48,7 +48,7 @@ Prefer root-absolute `/diagrams/...` and `/assets/...` paths so images resolve o
 
 ## CI and publish
 
-Pull requests and pushes run `.github/workflows/docs.yml` (`mkdocs build --strict` and brand check). To refresh the live site, run **Publish (GitHub Pages stub)** via `workflow_dispatch` with confirm set to `publish`. Prefer [mike](../versioning/mike.md) for versioned aliases (`26.10.19` / `latest`) when moving from the single-tree snapshot to versioned Pages.
+Pull requests and pushes run `.github/workflows/docs.yml` (`mkdocs build --strict` and brand check). To refresh the live site, run **Publish (GitHub Pages stub)** via `workflow_dispatch` with confirm set to `publish`. Prefer [mike](../versioning/mike.md) for versioned aliases (`26.10.20` / `latest`) when moving from the single-tree snapshot to versioned Pages.
 
 ## Theme pack
 
@@ -56,6 +56,6 @@ Visual tokens come from brand-kit `16-MkDocs/`. When refreshing logos or CSS, co
 
 ## What not to do
 
-- Do not invent a second BOM train in these pages; the current pin is **26.10.19** / Boot **4.1.1** (see Versioning and BOM)
+- Do not invent a second BOM train in these pages; the current pin is **26.10.20** / Boot **4.1.1** (see Versioning and BOM)
 - Do not change DNS, CNAME, or force-push Pages from local experiments without team agreement
 - Do not touch the firefly-builderOS organisation or `firefly-parent` bumps from this docs work (owned by other tracks)

@@ -127,7 +127,7 @@ These exist under the local `firefly-oss` tree and are called out on module page
 
 ## Architecture and adapters
 
-- [Architecture overview](../architecture/overview.md) — experience / domain / core bands in `firefly-oss`, Jafly **26.10.19**
+- [Architecture overview](../architecture/overview.md) — experience / domain / core bands in `firefly-oss`, Jafly **26.10.20**
 - [Adapter pattern](../integrate/adapters.md) and library guides for `library-psps` and `library-rails`
 - [Start here](../start/index.md) — how to navigate this hub
 

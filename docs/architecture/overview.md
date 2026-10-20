@@ -81,7 +81,7 @@ Public OpenPlatform modules, adapter libraries, `firefly-parent`, and this docum
     </div>
     <div class="ff-topo__card ff-topo__card--fw">
       <p class="ff-topo__kicker">Framework train</p>
-      <p class="ff-topo__label">Jafly <code>26.10.19</code> (Spring Boot <code>4.1.1</code>)</p>
+      <p class="ff-topo__label">Jafly <code>26.10.20</code> (Spring Boot <code>4.1.1</code>)</p>
       <p class="ff-topo__meta"><code>org.fireflyframework:fireflyframework-parent</code> via <code>com.firefly:firefly-parent</code>. Security SPI, ECM ports, and related adapter modules ship in the Jafly reactor.</p>
     </div>
   </div>
@@ -122,7 +122,7 @@ Where AI participates in a journey, it decides within approved limits, explained
 
 ## Runtime pin (brief)
 
-OpenPlatform modules currently consume Boot **4.1.1** via `fireflyframework-parent` **26.10.19** (Java **25**). See [Versioning and BOM](../versioning/bom.md). Framework bootstrap and SPI usage: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).
+OpenPlatform modules currently consume Boot **4.1.1** via `fireflyframework-parent` **26.10.20** (Java **25**). See [Versioning and BOM](../versioning/bom.md). Framework bootstrap and SPI usage: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).
 
 ## What next
 

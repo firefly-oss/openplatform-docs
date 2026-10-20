@@ -32,7 +32,7 @@ hide:
 <ul class="ff-pins" markdown="0">
   <li class="ff-pin">
     <span class="ff-pin__label">Train pin</span>
-    <span class="ff-pin__value">26.10.19</span>
+    <span class="ff-pin__value">26.10.20</span>
   </li>
   <li class="ff-pin">
     <span class="ff-pin__label">Spring Boot</span>
@@ -85,7 +85,7 @@ Each module page maps real repositories (`core-*`, `domain-*`, `exp-*`), links O
   <article class="ff-path">
     <p class="ff-path__kicker">Release</p>
     <p class="ff-path__title"><a href="/versioning/bom/">Versioning and BOM</a></p>
-    <p class="ff-path__meta">Current train pin 26.10.19 / Boot 4.1.1 for accuracy.</p>
+    <p class="ff-path__meta">Current train pin 26.10.20 / Boot 4.1.1 for accuracy.</p>
   </article>
 </div>
 
@@ -98,7 +98,7 @@ Channels call experience services. Domain services coordinate commands. Core ser
   <figcaption>Ten shared module ids. Open a card's page for the repositories behind it. Insurance cores are published separately under the insurance section; domain and experience services for those areas are not.</figcaption>
 </figure>
 
-Pin for consumption accuracy: Spring Boot **4.1.1** via `com.firefly:firefly-parent` and framework parent **26.10.19**. See [Versioning and BOM](versioning/bom.md). Framework tooling: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).
+Pin for consumption accuracy: Spring Boot **4.1.1** via `com.firefly:firefly-parent` and framework parent **26.10.20**. See [Versioning and BOM](versioning/bom.md). Framework tooling: [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/).
 
 ## Elsewhere
 

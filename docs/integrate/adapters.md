@@ -95,7 +95,7 @@ Framework-level adapter modules (security SPI, ECM storage and e-signature, noti
   </li>
 </ol>
 
-Confirm the parent pin in [Versioning and BOM](../versioning/bom.md) (**26.10.19** / Boot **4.1.1**) before you wire a new adapter. Follow `library-psps` or `library-rails` for the port shape. This page does not teach framework bootstrap.
+Confirm the parent pin in [Versioning and BOM](../versioning/bom.md) (**26.10.20** / Boot **4.1.1**) before you wire a new adapter. Follow `library-psps` or `library-rails` for the port shape. This page does not teach framework bootstrap.
 
 ## What next
 

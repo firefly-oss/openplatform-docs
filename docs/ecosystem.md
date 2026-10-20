@@ -14,7 +14,7 @@ This hub documents those ten ids under firefly-oss. The framework train is a pin
 | Surface | Organisation | What you will find here |
 |---------|--------------|-------------------------|
 | OpenPlatform modules | [firefly-oss](https://github.com/firefly-oss) | `core-*`, `domain-*`, `exp-*`, `library-*`, this docs hub |
-| Parent BOM | firefly-oss / fireflyframework | `com.firefly:firefly-parent` pins Jafly **26.10.19** / Boot **4.1.1** / Java **25** |
+| Parent BOM | firefly-oss / fireflyframework | `com.firefly:firefly-parent` pins Jafly **26.10.20** / Boot **4.1.1** / Java **25** |
 | Adapter libraries | firefly-oss | `library-psps`, `library-rails`, and related ports |
 | Framework details | [fireflyframework](https://github.com/fireflyframework) | Jafly SPI modules — see [Jafly docs](https://fireflyframework.github.io/fireflyframework-jafly/) |
 
@@ -34,7 +34,7 @@ Composable business modules on one open foundation, with a backbone of APIs and 
   </article>
   <article class="ff-path">
     <p class="ff-path__kicker">Runtime</p>
-    <p class="ff-path__title">Jafly 26.10.19</p>
+    <p class="ff-path__title">Jafly 26.10.20</p>
     <p class="ff-path__meta">Spring Boot 4.1.1 and Java 25 for OpenPlatform Java services. Weave for durable workflow when needed.</p>
   </article>
   <article class="ff-path">
@@ -59,6 +59,6 @@ Industry applications under [firefly-serviceOS](https://github.com/firefly-servi
 
 ## What next
 
-1. Confirm the current pin on [Versioning and BOM](versioning/bom.md) (**26.10.19** / Boot **4.1.1** / Java **25**).
+1. Confirm the current pin on [Versioning and BOM](versioning/bom.md) (**26.10.20** / Boot **4.1.1** / Java **25**).
 2. Skim [Architecture](architecture/overview.md) so band prefixes (`exp-*`, `domain-*`, `core-*`) make sense.
 3. Open [Start here](start/index.md) to navigate the module catalogue.

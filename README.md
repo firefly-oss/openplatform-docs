@@ -19,7 +19,7 @@ Public site: <https://docs.fireflysoftware.io/>.
 CI builds the site on every push and pull request. GitHub Pages publish is
 via `workflow_dispatch` (confirm=`publish`) to the `gh-pages` branch with
 CNAME `docs.fireflysoftware.io`. Versioned deploys use **mike**
-(`26.10.19` / `latest`); see `docs/versioning/mike.md`.
+(`26.10.20` / `latest`); see `docs/versioning/mike.md`.
 
 Attitude makes the difference.
 
@@ -58,7 +58,7 @@ python3 scripts/brand_check.py README.md docs/index.md docs/ecosystem.md \
 ## Mike versioning
 
 ```sh
-mike deploy --update-aliases 26.10.19 latest
+mike deploy --update-aliases 26.10.20 latest
 mike set-default latest
 mike list
 ```
@@ -88,5 +88,5 @@ cp -R theme/assets/brand/. docs/assets/brand/
 cp -R theme/assets/fonts/. docs/assets/fonts/
 ```
 
-Current train documented in these pages: Jafly / Central **26.10.19**,
+Current train documented in these pages: Jafly / Central **26.10.20**,
 Spring Boot **4.1.1**, Java **25**.

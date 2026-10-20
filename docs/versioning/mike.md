@@ -1,7 +1,7 @@
 # Publishing docs with mike
 
 This hub uses **mike** so documentation versions can track OpenPlatform /
-Jafly BOM trains (for example `26.10.19`) with a `latest` alias.
+Jafly BOM trains (for example `26.10.20`) with a `latest` alias.
 
 `mike` is already in `requirements.txt`. The MkDocs Material version
 selector is wired via the `mike` plugin and `extra.version.provider`.
@@ -15,18 +15,18 @@ active, and `pip install -r requirements.txt`.
 mkdocs build --strict
 ```
 
-Deploy version **26.10.19** and update the **latest** alias on the local
+Deploy version **26.10.20** and update the **latest** alias on the local
 `gh-pages` branch (does not push anywhere by itself):
 
 ```sh
-mike deploy --push --update-aliases 26.10.19 latest
+mike deploy --push --update-aliases 26.10.20 latest
 mike set-default --push latest
 ```
 
 Omit `--push` if you only want to update the local `gh-pages` branch:
 
 ```sh
-mike deploy --update-aliases 26.10.19 latest
+mike deploy --update-aliases 26.10.20 latest
 mike set-default latest
 ```
 
@@ -58,7 +58,7 @@ track. Do not edit GoDaddy or Pages domain settings from docs-only work.
 
 | Alias / version | Meaning |
 |-----------------|---------|
-| `26.10.19` | Docs set aligned with Jafly / OpenPlatform pin **26.10.19** (Boot **4.1.1**, Java **25**) |
+| `26.10.20` | Docs set aligned with Jafly / OpenPlatform pin **26.10.20** (Boot **4.1.1**, Java **25**) |
 | `latest` | Alias pointing at the current public train |
 
 When the BOM pin moves, deploy a new version string and retarget

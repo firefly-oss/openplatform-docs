@@ -70,7 +70,7 @@ hooks.
   claim production readiness for any named provider.
 - Confirm the Java / Spring Boot train against
   <a href="../versioning/bom.md">Versioning and BOM</a> before adopting
-  the artifact in an OpenPlatform service on pin **26.10.19**.
+  the artifact in an OpenPlatform service on pin **26.10.20**.
 
 ## Related
 
