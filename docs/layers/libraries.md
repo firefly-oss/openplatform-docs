@@ -4,7 +4,7 @@ Libraries are not experience, domain, or core. They are code that those services
 
 `library-psps` is the port for a payment service provider. `library-rails` is the port for a payment rail. The service calls the port. A deployment supplies the adapter that talks to the outside system. `library-common-batch` schedules jobs inside a service. It is not a business port.
 
-`firefly-parent` and `firefly-bom` pin version 26.10.3. They are platform artifacts, documented here so the layer list matches the release list. Version detail is on [Version](../release/train.md).
+`firefly-parent` and `firefly-bom` pin version 26.10.4. They are platform artifacts, documented here so the layer list matches the release list. Version detail is on [Version](../release/train.md).
 
 ## Libraries
 

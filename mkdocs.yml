@@ -4,7 +4,7 @@
 # site_name is the document title. The navbar lockup stays logo | OpenPlatform
 # (see overrides/partials/header.html). Do not shorten this to OpenPlatform.
 site_name: Firefly OpenPlatform Documentation
-site_description: Open-source corporate systems for banking and insurance. Firefly OpenPlatform, version 26.10.3.
+site_description: Open-source corporate systems for banking and insurance. Firefly OpenPlatform, version 26.10.4.
 site_author: Firefly Software Foundation
 site_url: https://docs.fireflysoftware.io/
 repo_url: https://github.com/fireflysoftwaresolutions/openplatform-docs

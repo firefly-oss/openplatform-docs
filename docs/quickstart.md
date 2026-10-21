@@ -2,7 +2,7 @@
 
 <p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
 
-This is one path through the sandbox, for OpenPlatform 26.10.3. The person is Ada Lovelace the whole way. You sign her in, you ask whether she may act, and you ask for a decision only when the step creates a record. The sandbox does not start an identity provider and it does not call a credit bureau. Jafly supplies the rules and the identity adapters. Their versions come from framework parent 26.10.20, imported by `firefly-parent` 26.10.3.
+This is one path through the sandbox, for OpenPlatform 26.10.4. The person is Ada Lovelace the whole way. You sign her in, you ask whether she may act, and you ask for a decision only when the step creates a record. The sandbox does not start an identity provider and it does not call a credit bureau. Jafly supplies the rules and the identity adapters. Their versions come from framework parent 26.10.20, imported by `firefly-parent` 26.10.4.
 
 Her username is `sample-journey`. Her actor id is `11111111-1111-4111-8111-111111111111`. The agreement you will see printed, and the agreement a payment or a policy can name, is `10000000-0000-4000-8000-000000000021`. The product on that agreement is the Horizon Personal Loan, `10000000-0000-4000-8000-000000000202`.
 

@@ -6,7 +6,7 @@ Jafly is the Java framework in [Firefly Framework](https://fireflyframework.org)
 
 On the framework site, Jafly is the layer between Spring Boot and the business rules. Requests stay on Spring Boot and WebFlux. A service adds the modules it needs: command and query buses, orchestration for compensating steps and for try-confirm-cancel, reactive transactions, and observability. The framework release described there uses Java 25 and Spring Boot 4.1.1. The team still owns the business rules, who may act, and what a failed step undoes. The framework does not make a command exactly once.
 
-OpenPlatform 26.10.3 sits on that foundation. `firefly-parent` 26.10.3 extends `org.fireflyframework:fireflyframework-parent` 26.10.20 and imports `org.fireflyframework:fireflyframework-bom` 26.10.20. Every OpenPlatform module inherits that pin. The module guide is at [fireflyframework.org/frameworks/java](https://fireflyframework.org/frameworks/java/).
+OpenPlatform 26.10.4 sits on that foundation. `firefly-parent` 26.10.4 extends `org.fireflyframework:fireflyframework-parent` 26.10.20 and imports `org.fireflyframework:fireflyframework-bom` 26.10.20. Every OpenPlatform module inherits that pin. The module guide is at [fireflyframework.org/frameworks/java](https://fireflyframework.org/frameworks/java/).
 
 ## What Ada meets
 
@@ -38,7 +38,7 @@ The sandbox identity answer is not a row in an identity-provider database. The d
 
 | Piece | Where it sits |
 | --- | --- |
-| Parent | `io.fireflysoftware:firefly-parent` 26.10.3 |
+| Parent | `io.fireflysoftware:firefly-parent` 26.10.4 |
 | Framework parent and bill of materials | `org.fireflyframework` 26.10.20 |
 | Sign-in | `POST /api/v1/identity/subjects` |
 | Decision | `POST /api/v1/decisions` |

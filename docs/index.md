@@ -12,7 +12,7 @@ OpenPlatform is the open-source project of the Firefly Software Foundation and F
 
 It is a set of corporate systems for enterprise industries. Banking and insurance come first. Another industry can use the same shape later: a journey a person follows, a domain port that does one job, and a core that stores the rows. The institution runs the software. The data stays in the cores. A process engine, a payment rail, a card provider, or an identity service replaces an adapter. The journey does not change when that adapter changes.
 
-Jafly is the framework the services are built with. It is the Java framework from Firefly Framework. OpenPlatform does not ship a second copy of it. The published documentation is version 26.10.3.
+Jafly is the framework the services are built with. It is the Java framework from Firefly Framework. OpenPlatform does not ship a second copy of it. The published documentation is version 26.10.4.
 
 ## One afternoon with Ada
 

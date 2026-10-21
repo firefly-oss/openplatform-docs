@@ -1,12 +1,12 @@
 # Firefly OpenPlatform Documentation
 
-Developer documentation for OpenPlatform 26.10.3.
+Developer documentation for OpenPlatform 26.10.4.
 
 Developed by the Firefly Software Foundation. [dev@fireflysoftware.io](mailto:dev@fireflysoftware.io)
 
 [Website](https://fireflysoftware.io/) · [Service host](https://openplatform.fireflysoftware.io) · [Published site](https://docs.fireflysoftware.io/)
 
-The site is the guide for OpenPlatform 26.10.3: presentation, quickstart, architecture, journeys, and one entry for every repository in the release list. Insurance is seven domain services and seven cores. `core-lending-credit-cards` has no domain orchestrator. The published decision call is `POST /api/v1/decisions` on `domain-lending-credit-scoring`.
+The site is the guide for OpenPlatform 26.10.4: presentation, quickstart, architecture, journeys, and one entry for every repository in the release list. Insurance is seven domain services and seven cores. `core-lending-credit-cards` has no domain orchestrator. The published decision call is `POST /api/v1/decisions` on `domain-lending-credit-scoring`.
 
 GitHub organization: [fireflysoftwaresolutions](https://github.com/fireflysoftwaresolutions).
 
@@ -34,4 +34,4 @@ mkdocs build --strict
 
 The published site is <https://docs.fireflysoftware.io/>. Pushing `main` does not deploy Pages. Do not force-push.
 
-Published version in these pages: OpenPlatform **26.10.3**, Jafly BOM **26.10.20**, Spring Boot **4.1.1**, Java **25**.
+Published version in these pages: OpenPlatform **26.10.4**, Jafly BOM **26.10.20**, Spring Boot **4.1.1**, Java **25**.

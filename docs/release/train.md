@@ -2,12 +2,12 @@
 
 <p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
 
-The published OpenPlatform version is **26.10.3**.
+The published OpenPlatform version is **26.10.4**.
 
 | Coordinate | Version | Role |
 | --- | --- | --- |
-| `io.fireflysoftware:firefly-bom` | 26.10.3 | Pins every OpenPlatform module in the release list |
-| `io.fireflysoftware:firefly-parent` | 26.10.3 | Parent POM used by those modules |
+| `io.fireflysoftware:firefly-bom` | 26.10.4 | Pins every OpenPlatform module in the release list |
+| `io.fireflysoftware:firefly-parent` | 26.10.4 | Parent POM used by those modules |
 | `org.fireflyframework:fireflyframework-parent` | 26.10.20 | Framework parent, extended by `firefly-parent` |
 | `org.fireflyframework:fireflyframework-bom` | 26.10.20 | Jafly bill of materials, including the rules engine |
 | Java | 25 | Language level on the framework parent |

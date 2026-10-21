@@ -290,7 +290,7 @@ Service host pattern: `https://openplatform.fireflysoftware.io/{service}`. Publi
     Domain. Owns the saga for a distributor product catalog, through `core-common-distributor-mgmt`.
 
 - [firefly-bom](shared.md#firefly-bom)
-    Platform. Bill of materials for version 26.10.3.
+    Platform. Bill of materials for version 26.10.4.
 
 - [firefly-parent](shared.md#firefly-parent)
     Platform. Parent POM for OpenPlatform modules.

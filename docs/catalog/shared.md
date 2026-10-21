@@ -201,7 +201,7 @@ Port library for payment rails. Domain and experience code call the port. A depl
 
 ### firefly-bom
 
-Bill of materials for version 26.10.3. Import it to pin every published `io.fireflysoftware` library, core, domain, experience service, and application to that version.
+Bill of materials for version 26.10.4. Import it to pin every published `io.fireflysoftware` library, core, domain, experience service, and application to that version.
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/firefly-bom">github.com/fireflysoftwaresolutions/firefly-bom</a></p>
 
@@ -212,7 +212,7 @@ Bill of materials for version 26.10.3. Import it to pin every published `io.fire
 
 ### firefly-parent
 
-Parent POM for OpenPlatform modules. It extends `org.fireflyframework:fireflyframework-parent` 26.10.20 and imports `firefly-bom` 26.10.3. Banking, lending, and insurance use this parent.
+Parent POM for OpenPlatform modules. It extends `org.fireflyframework:fireflyframework-parent` 26.10.20 and imports `firefly-bom` 26.10.4. Banking, lending, and insurance use this parent.
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/firefly-parent">github.com/fireflysoftwaresolutions/firefly-parent</a></p>
 
