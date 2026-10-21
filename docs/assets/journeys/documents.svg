@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 552" width="896" height="552" role="img">
+<style>
+text { font-family: Manrope, system-ui, sans-serif; fill: #10110f; }
+.box { fill: #ffffff; stroke: #10110f; stroke-width: 1.5; }
+.life { stroke: #c8c4ba; stroke-width: 1.4; }
+.arr { stroke: #855414; stroke-width: 1.8; fill: none; }
+.dash { stroke: #62645b; stroke-width: 1.8; fill: none; stroke-dasharray: 7 4; }
+.name { font-size: 15px; font-weight: 700; }
+.lab { font-size: 14px; }
+</style>
+<defs>
+<marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#855414"/></marker>
+<marker id="dh" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#62645b"/></marker>
+</defs>
+<rect class="box" x="28" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="102.0" y="49.0" text-anchor="middle">Ada</text>
+<line class="life" x1="102.0" y1="70" x2="102.0" y2="540"/>
+<rect class="box" x="196" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="270.0" y="49.0" text-anchor="middle">Documents</text>
+<line class="life" x1="270.0" y1="70" x2="270.0" y2="540"/>
+<rect class="box" x="364" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="438.0" y="49.0" text-anchor="middle">Catalog</text>
+<line class="life" x1="438.0" y1="70" x2="438.0" y2="540"/>
+<rect class="box" x="532" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="606.0" y="49.0" text-anchor="middle">Page</text>
+<line class="life" x1="606.0" y1="70" x2="606.0" y2="540"/>
+<rect class="box" x="700" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="774.0" y="49.0" text-anchor="middle">Store</text>
+<line class="life" x1="774.0" y1="70" x2="774.0" y2="540"/>
+<text class="lab" x="112.0" y="112">Issue the contract for agreement 021</text>
+<line class="arr" x1="104.0" y1="120" x2="258.0" y2="120" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="160">Look up template contract, English, lending</text>
+<line class="arr" x1="272.0" y1="168" x2="426.0" y2="168" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="208">A missing row stores nothing</text>
+<line class="dash" x1="436.0" y1="216" x2="282.0" y2="216" marker-end="url(#dh)"/>
+<text class="lab" x="280.0" y="256">Render the cover, the contents, each part, and</text>
+<text class="lab" x="280.0" y="274">the back</text>
+<line class="arr" x1="272.0" y1="282" x2="594.0" y2="282" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="322">Each part is its own A4 sheet. The kit</text>
+<text class="lab" x="280.0" y="340">stylesheet is inlined.</text>
+<line class="arr" x1="604.0" y1="348" x2="282.0" y2="348" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="388">Store the HTML</text>
+<line class="arr" x1="272.0" y1="396" x2="762.0" y2="396" marker-end="url(#ah)"/>
+<text class="lab" x="112.0" y="436">Horizon Personal Loan, 250,000.00 EUR, five</text>
+<text class="lab" x="112.0" y="454">years, two lines</text>
+<line class="arr" x1="772.0" y1="462" x2="114.0" y2="462" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="502">If the store fails, that id is removed</text>
+<line class="dash" x1="272.0" y1="510" x2="762.0" y2="510" marker-end="url(#dh)"/>
+</svg>

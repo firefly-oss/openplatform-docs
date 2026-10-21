@@ -1,76 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 618" role="img">
-<style>text{font-family:Manrope,system-ui,sans-serif}</style>
-<rect x="32.81081081081079" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="32.81081081081079" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="90.81081081081079" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Person</text>
-<line x1="90.81081081081079" y1="60" x2="90.81081081081079" y2="606" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<rect x="162.5405405405405" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="162.5405405405405" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="220.5405405405405" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Experience</text>
-<line x1="220.5405405405405" y1="60" x2="220.5405405405405" y2="606" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<rect x="292.27027027027026" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="292.27027027027026" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="350.27027027027026" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Access</text>
-<line x1="350.27027027027026" y1="60" x2="350.27027027027026" y2="606" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<rect x="421.99999999999994" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="421.99999999999994" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="479.99999999999994" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Report</text>
-<line x1="479.99999999999994" y1="60" x2="479.99999999999994" y2="606" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<rect x="551.7297297297297" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="551.7297297297297" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="609.7297297297297" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Decision</text>
-<line x1="609.7297297297297" y1="60" x2="609.7297297297297" y2="606" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<rect x="681.4594594594594" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="681.4594594594594" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="739.4594594594594" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Domain</text>
-<line x1="739.4594594594594" y1="60" x2="739.4594594594594" y2="606" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<rect x="811.189189189189" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="811.189189189189" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="869.189189189189" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Core</text>
-<line x1="869.189189189189" y1="60" x2="869.189189189189" y2="606" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<line x1="90.81081081081079" y1="86" x2="220.5405405405405" y2="86" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="220.5405405405405,86 213.5405405405405,82 213.5405405405405,90" fill="#10110f"/>
-<text x="155.67567567567565" y="80" fill="#10110f" font-size="12" text-anchor="middle">start onboarding</text>
-<line x1="220.5405405405405" y1="120" x2="350.27027027027026" y2="120" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="350.27027027027026,120 343.27027027027026,116 343.27027027027026,124" fill="#10110f"/>
-<text x="285.40540540540536" y="114" fill="#10110f" font-size="12" text-anchor="middle">check CREATE PARTY</text>
-<line x1="350.27027027027026" y1="154" x2="220.5405405405405" y2="154" stroke="#10110f" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="220.5405405405405,154 227.5405405405405,150 227.5405405405405,158" fill="#10110f"/>
-<text x="285.40540540540536" y="148" fill="#10110f" font-size="12" text-anchor="middle">allowed</text>
-<line x1="220.5405405405405" y1="188" x2="479.99999999999994" y2="188" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="479.99999999999994,188 472.99999999999994,184 472.99999999999994,192" fill="#10110f"/>
-<text x="350.2702702702702" y="182" fill="#10110f" font-size="12" text-anchor="middle">read credit report</text>
-<line x1="479.99999999999994" y1="222" x2="220.5405405405405" y2="222" stroke="#10110f" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="220.5405405405405,222 227.5405405405405,218 227.5405405405405,226" fill="#10110f"/>
-<text x="350.2702702702702" y="216" fill="#10110f" font-size="12" text-anchor="middle">sandbox report</text>
-<line x1="220.5405405405405" y1="256" x2="609.7297297297297" y2="256" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="609.7297297297297,256 602.7297297297297,252 602.7297297297297,260" fill="#10110f"/>
-<text x="415.1351351351351" y="250" fill="#10110f" font-size="12" text-anchor="middle">decide ONBOARDING</text>
-<line x1="609.7297297297297" y1="290" x2="220.5405405405405" y2="290" stroke="#10110f" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="220.5405405405405,290 227.5405405405405,286 227.5405405405405,294" fill="#10110f"/>
-<text x="415.1351351351351" y="284" fill="#10110f" font-size="12" text-anchor="middle">APPROVE</text>
-<line x1="220.5405405405405" y1="324" x2="739.4594594594594" y2="324" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="739.4594594594594,324 732.4594594594594,320 732.4594594594594,328" fill="#10110f"/>
-<text x="479.99999999999994" y="318" fill="#10110f" font-size="12" text-anchor="middle">registerParty</text>
-<line x1="739.4594594594594" y1="358" x2="869.189189189189" y2="358" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="869.189189189189,358 862.189189189189,354 862.189189189189,362" fill="#10110f"/>
-<text x="804.3243243243242" y="352" fill="#10110f" font-size="12" text-anchor="middle">create party</text>
-<line x1="869.189189189189" y1="392" x2="739.4594594594594" y2="392" stroke="#10110f" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="739.4594594594594,392 746.4594594594594,388 746.4594594594594,396" fill="#10110f"/>
-<text x="804.3243243243242" y="386" fill="#10110f" font-size="12" text-anchor="middle">party id</text>
-<line x1="739.4594594594594" y1="426" x2="869.189189189189" y2="426" stroke="#855414" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="869.189189189189,426 862.189189189189,422 862.189189189189,430" fill="#855414"/>
-<text x="804.3243243243242" y="420" fill="#10110f" font-size="12" text-anchor="middle">compensate: removeParty</text>
-<line x1="220.5405405405405" y1="460" x2="739.4594594594594" y2="460" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="739.4594594594594,460 732.4594594594594,456 732.4594594594594,464" fill="#10110f"/>
-<text x="479.99999999999994" y="454" fill="#10110f" font-size="12" text-anchor="middle">open KYC case</text>
-<line x1="739.4594594594594" y1="494" x2="869.189189189189" y2="494" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="869.189189189189,494 862.189189189189,490 862.189189189189,498" fill="#10110f"/>
-<text x="804.3243243243242" y="488" fill="#10110f" font-size="12" text-anchor="middle">createCase</text>
-<line x1="869.189189189189" y1="528" x2="739.4594594594594" y2="528" stroke="#10110f" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="739.4594594594594,528 746.4594594594594,524 746.4594594594594,532" fill="#10110f"/>
-<text x="804.3243243243242" y="522" fill="#10110f" font-size="12" text-anchor="middle">case id</text>
-<line x1="739.4594594594594" y1="562" x2="869.189189189189" y2="562" stroke="#855414" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="869.189189189189,562 862.189189189189,558 862.189189189189,566" fill="#855414"/>
-<text x="804.3243243243242" y="556" fill="#10110f" font-size="12" text-anchor="middle">compensate: cancelCase</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1064 564" width="1064" height="564" role="img">
+<style>
+text { font-family: Manrope, system-ui, sans-serif; fill: #10110f; }
+.box { fill: #ffffff; stroke: #10110f; stroke-width: 1.5; }
+.life { stroke: #c8c4ba; stroke-width: 1.4; }
+.arr { stroke: #855414; stroke-width: 1.8; fill: none; }
+.dash { stroke: #62645b; stroke-width: 1.8; fill: none; stroke-dasharray: 7 4; }
+.name { font-size: 15px; font-weight: 700; }
+.lab { font-size: 14px; }
+</style>
+<defs>
+<marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#855414"/></marker>
+<marker id="dh" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#62645b"/></marker>
+</defs>
+<rect class="box" x="28" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="102.0" y="49.0" text-anchor="middle">Ada</text>
+<line class="life" x1="102.0" y1="70" x2="102.0" y2="552"/>
+<rect class="box" x="196" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="270.0" y="49.0" text-anchor="middle">Onboarding</text>
+<line class="life" x1="270.0" y1="70" x2="270.0" y2="552"/>
+<rect class="box" x="364" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="438.0" y="49.0" text-anchor="middle">Access</text>
+<line class="life" x1="438.0" y1="70" x2="438.0" y2="552"/>
+<rect class="box" x="532" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="606.0" y="49.0" text-anchor="middle">Decision</text>
+<line class="life" x1="606.0" y1="70" x2="606.0" y2="552"/>
+<rect class="box" x="700" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="774.0" y="49.0" text-anchor="middle">Catalog</text>
+<line class="life" x1="774.0" y1="70" x2="774.0" y2="552"/>
+<rect class="box" x="868" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="942.0" y="49.0" text-anchor="middle">Next record</text>
+<line class="life" x1="942.0" y1="70" x2="942.0" y2="552"/>
+<text class="lab" x="112.0" y="112">Start, and name a product family</text>
+<line class="arr" x1="104.0" y1="120" x2="258.0" y2="120" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="160">May the sample customer create a party?</text>
+<line class="arr" x1="272.0" y1="168" x2="426.0" y2="168" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="208">If access is refused, stop</text>
+<line class="arr" x1="436.0" y1="216" x2="282.0" y2="216" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="256">Ask for an onboarding decision</text>
+<line class="arr" x1="272.0" y1="264" x2="594.0" y2="264" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="304">A decline stops. A referral continues.</text>
+<line class="arr" x1="604.0" y1="312" x2="282.0" y2="312" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="352">Insurance is not a regulated family</text>
+<line class="arr" x1="272.0" y1="360" x2="762.0" y2="360" marker-end="url(#ah)"/>
+<text class="lab" x="784.0" y="400">Insurance opens a contract and stops</text>
+<line class="arr" x1="776.0" y1="408" x2="930.0" y2="408" marker-end="url(#ah)"/>
+<text class="lab" x="784.0" y="448">A deposit registers her and opens verification</text>
+<line class="arr" x1="776.0" y1="456" x2="930.0" y2="456" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="496">A later failure closes her and cancels the</text>
+<text class="lab" x="280.0" y="514">case</text>
+<line class="dash" x1="940.0" y1="522" x2="282.0" y2="522" marker-end="url(#dh)"/>
 </svg>

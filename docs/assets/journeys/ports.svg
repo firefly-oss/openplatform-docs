@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420" role="img">
+<style>
+text { font-family: Manrope, system-ui, sans-serif; fill: #10110f; }
+.box { fill: #ffffff; stroke: #10110f; stroke-width: 1.4; }
+.life { stroke: #d8d4ca; stroke-width: 1.5; }
+.arr { stroke: #855414; stroke-width: 1.7; fill: none; }
+.dash { stroke: #62645b; stroke-width: 1.7; fill: none; stroke-dasharray: 6 4; }
+.name { font-size: 14px; font-weight: 700; }
+.lab { font-size: 13px; }
+</style>
+<defs>
+<marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#855414"/></marker>
+<marker id="dh" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#62645b"/></marker>
+</defs>
+<rect class="box" x="24" y="16" width="150" height="56" rx="3"/><text class="name" x="99" y="48" text-anchor="middle">Installer</text>
+<rect class="box" x="250" y="16" width="150" height="56" rx="3"/><text class="name" x="325" y="40" text-anchor="middle">Property</text><text class="name" x="325" y="58" text-anchor="middle">file</text>
+<rect class="box" x="476" y="16" width="150" height="56" rx="3"/><text class="name" x="551" y="40" text-anchor="middle">The port</text><text class="name" x="551" y="58" text-anchor="middle">Ada calls</text>
+<rect class="box" x="702" y="16" width="170" height="56" rx="3"/><text class="name" x="787" y="40" text-anchor="middle">Who answers</text><text class="name" x="787" y="58" text-anchor="middle">today</text>
+<line class="life" x1="99" y1="72" x2="99" y2="400"/>
+<line class="life" x1="325" y1="72" x2="325" y2="400"/>
+<line class="life" x1="551" y1="72" x2="551" y2="400"/>
+<line class="life" x1="787" y1="72" x2="787" y2="400"/>
+<text class="lab" x="110" y="110">Leave payments mode unset</text>
+<line class="arr" x1="101" y1="124" x2="315" y2="124" marker-end="url(#ah)"/>
+<text class="lab" x="340" y="160">Sandbox answers the ledger, the rail, and the card provider</text>
+<line class="arr" x1="335" y1="174" x2="777" y2="174" marker-end="url(#ah)"/>
+<text class="lab" x="110" y="220">Set payments mode to live</text>
+<line class="arr" x1="101" y1="234" x2="315" y2="234" marker-end="url(#ah)"/>
+<text class="lab" x="340" y="270">The same call now posts core-banking-ledger</text>
+<line class="arr" x1="335" y1="284" x2="777" y2="284" marker-end="url(#ah)"/>
+<text class="lab" x="340" y="320">The rail is library-rails. A card uses library-psps.</text>
+<line class="arr" x1="335" y1="334" x2="777" y2="334" marker-end="url(#ah)"/>
+<text class="lab" x="110" y="376">The journey Ada calls does not change</text>
+<line class="dash" x1="541" y1="388" x2="109" y2="388" marker-end="url(#dh)"/>
+</svg>

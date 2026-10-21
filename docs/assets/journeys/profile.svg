@@ -1,56 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 482" role="img">
-<style>text{font-family:Manrope,system-ui,sans-serif}</style>
-<rect x="66.44444444444443" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="66.44444444444443" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="124.44444444444443" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Person</text>
-<line x1="124.44444444444443" y1="60" x2="124.44444444444443" y2="470" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<rect x="244.22222222222223" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="244.22222222222223" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="302.22222222222223" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Experience</text>
-<line x1="302.22222222222223" y1="60" x2="302.22222222222223" y2="470" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<rect x="422.0" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="422.0" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="480.0" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Access</text>
-<line x1="480.0" y1="60" x2="480.0" y2="470" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<rect x="599.7777777777778" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="599.7777777777778" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="657.7777777777778" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Domain</text>
-<line x1="657.7777777777778" y1="60" x2="657.7777777777778" y2="470" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<rect x="777.5555555555555" y="16" width="116" height="44" rx="6" fill="#f3f1eb" stroke="#10110f" stroke-width="1.25"/>
-<rect x="777.5555555555555" y="16" width="116" height="3" fill="#ffb34a"/>
-<text x="835.5555555555555" y="43" fill="#10110f" font-size="13" font-weight="700" text-anchor="middle">Core</text>
-<line x1="835.5555555555555" y1="60" x2="835.5555555555555" y2="470" stroke="#62645b" stroke-width="1" stroke-dasharray="3 4"/>
-<line x1="124.44444444444443" y1="86" x2="302.22222222222223" y2="86" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="302.22222222222223,86 295.22222222222223,82 295.22222222222223,90" fill="#10110f"/>
-<text x="213.33333333333331" y="80" fill="#10110f" font-size="12" text-anchor="middle">open profile</text>
-<line x1="302.22222222222223" y1="120" x2="480.0" y2="120" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="480.0,120 473.0,116 473.0,124" fill="#10110f"/>
-<text x="391.1111111111111" y="114" fill="#10110f" font-size="12" text-anchor="middle">check READ PARTY</text>
-<line x1="480.0" y1="154" x2="302.22222222222223" y2="154" stroke="#10110f" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="302.22222222222223,154 309.22222222222223,150 309.22222222222223,158" fill="#10110f"/>
-<text x="391.1111111111111" y="148" fill="#10110f" font-size="12" text-anchor="middle">allowed</text>
-<line x1="302.22222222222223" y1="188" x2="657.7777777777778" y2="188" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="657.7777777777778,188 650.7777777777778,184 650.7777777777778,192" fill="#10110f"/>
-<text x="480.0" y="182" fill="#10110f" font-size="12" text-anchor="middle">getProfile</text>
-<line x1="657.7777777777778" y1="222" x2="835.5555555555555" y2="222" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="835.5555555555555,222 828.5555555555555,218 828.5555555555555,226" fill="#10110f"/>
-<text x="746.6666666666667" y="216" fill="#10110f" font-size="12" text-anchor="middle">read party</text>
-<line x1="835.5555555555555" y1="256" x2="657.7777777777778" y2="256" stroke="#10110f" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="657.7777777777778,256 664.7777777777778,252 664.7777777777778,260" fill="#10110f"/>
-<text x="746.6666666666667" y="250" fill="#10110f" font-size="12" text-anchor="middle">party</text>
-<line x1="657.7777777777778" y1="290" x2="302.22222222222223" y2="290" stroke="#10110f" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="302.22222222222223,290 309.22222222222223,286 309.22222222222223,294" fill="#10110f"/>
-<text x="480.0" y="284" fill="#10110f" font-size="12" text-anchor="middle">profile</text>
-<line x1="302.22222222222223" y1="324" x2="657.7777777777778" y2="324" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="657.7777777777778,324 650.7777777777778,320 650.7777777777778,328" fill="#10110f"/>
-<text x="480.0" y="318" fill="#10110f" font-size="12" text-anchor="middle">update personal data</text>
-<line x1="657.7777777777778" y1="358" x2="835.5555555555555" y2="358" stroke="#10110f" stroke-width="1.4"/>
-<polygon points="835.5555555555555,358 828.5555555555555,354 828.5555555555555,362" fill="#10110f"/>
-<text x="746.6666666666667" y="352" fill="#10110f" font-size="12" text-anchor="middle">update customer</text>
-<line x1="835.5555555555555" y1="392" x2="657.7777777777778" y2="392" stroke="#10110f" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="657.7777777777778,392 664.7777777777778,388 664.7777777777778,396" fill="#10110f"/>
-<text x="746.6666666666667" y="386" fill="#10110f" font-size="12" text-anchor="middle">saved</text>
-<line x1="657.7777777777778" y1="426" x2="835.5555555555555" y2="426" stroke="#855414" stroke-width="1.4" stroke-dasharray="5 4"/>
-<polygon points="835.5555555555555,426 828.5555555555555,422 828.5555555555555,430" fill="#855414"/>
-<text x="746.6666666666667" y="420" fill="#10110f" font-size="12" text-anchor="middle">compensate: restoreCustomer</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 564" width="896" height="564" role="img">
+<style>
+text { font-family: Manrope, system-ui, sans-serif; fill: #10110f; }
+.box { fill: #ffffff; stroke: #10110f; stroke-width: 1.5; }
+.life { stroke: #c8c4ba; stroke-width: 1.4; }
+.arr { stroke: #855414; stroke-width: 1.8; fill: none; }
+.dash { stroke: #62645b; stroke-width: 1.8; fill: none; stroke-dasharray: 7 4; }
+.name { font-size: 15px; font-weight: 700; }
+.lab { font-size: 14px; }
+</style>
+<defs>
+<marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#855414"/></marker>
+<marker id="dh" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#62645b"/></marker>
+</defs>
+<rect class="box" x="28" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="102.0" y="49.0" text-anchor="middle">Ada</text>
+<line class="life" x1="102.0" y1="70" x2="102.0" y2="552"/>
+<rect class="box" x="196" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="270.0" y="49.0" text-anchor="middle">Profile</text>
+<line class="life" x1="270.0" y1="70" x2="270.0" y2="552"/>
+<rect class="box" x="364" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="438.0" y="49.0" text-anchor="middle">Access</text>
+<line class="life" x1="438.0" y1="70" x2="438.0" y2="552"/>
+<rect class="box" x="532" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="606.0" y="49.0" text-anchor="middle">Person record</text>
+<line class="life" x1="606.0" y1="70" x2="606.0" y2="552"/>
+<rect class="box" x="700" y="18" width="148" height="52" rx="3"/>
+<text class="name" x="774.0" y="49.0" text-anchor="middle">Agreements</text>
+<line class="life" x1="774.0" y1="70" x2="774.0" y2="552"/>
+<text class="lab" x="112.0" y="112">Open her profile</text>
+<line class="arr" x1="104.0" y1="120" x2="258.0" y2="120" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="160">May the sample customer read this party?</text>
+<line class="arr" x1="272.0" y1="168" x2="426.0" y2="168" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="208">If access is refused, return nothing</text>
+<line class="arr" x1="436.0" y1="216" x2="282.0" y2="216" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="256">Read her name, contacts, and consents</text>
+<line class="arr" x1="272.0" y1="264" x2="594.0" y2="264" marker-end="url(#ah)"/>
+<text class="lab" x="112.0" y="304">Ask which agreements she holds</text>
+<line class="arr" x1="104.0" y1="312" x2="258.0" y2="312" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="352">List each agreement and the product on it</text>
+<line class="arr" x1="272.0" y1="360" x2="762.0" y2="360" marker-end="url(#ah)"/>
+<text class="lab" x="112.0" y="400">Number, status, product name, and product code</text>
+<line class="arr" x1="772.0" y1="408" x2="114.0" y2="408" marker-end="url(#ah)"/>
+<text class="lab" x="112.0" y="448">Change a name or an address</text>
+<line class="arr" x1="104.0" y1="456" x2="258.0" y2="456" marker-end="url(#ah)"/>
+<text class="lab" x="280.0" y="496">If the change fails, write the previous row</text>
+<text class="lab" x="280.0" y="514">back</text>
+<line class="dash" x1="604.0" y1="522" x2="282.0" y2="522" marker-end="url(#dh)"/>
 </svg>

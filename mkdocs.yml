@@ -41,7 +41,6 @@ theme:
         name: Switch to light mode
   features:
     - navigation.sections
-    - navigation.indexes
     - navigation.top
     - navigation.footer
     - navigation.tracking
@@ -88,6 +87,18 @@ markdown_extensions:
 extra_css:
   - stylesheets/firefly-docs.css
 
+extra_javascript:
+  - javascripts/nav.js
+
+hooks:
+  - hooks/swagger_ui.py
+
+validation:
+  omitted_files: info
+  absolute_links: info
+  unrecognized_links: info
+  anchors: info
+
 extra:
   # mike version selector stays off until `mike deploy` publishes versions.json
   # (flat gh-pages snapshot today). Re-enable with:
@@ -108,26 +119,26 @@ nav:
   - Start here: quickstart.md
   - Jafly: jafly.md
   - Architecture:
-      - layers/index.md
+      - Journey: layers/index.md
       - Domain: layers/domain.md
       - Core: layers/core.md
       - Libraries: layers/libraries.md
       - Replace an adapter: adapters/index.md
-      - Version: release/train.md
+      - Service landscape: layers/bian.md
   - Banking:
-      - Journeys: experience/index.md
       - Open and close an account: experience/public/accounts.md
       - Cards: experience/public/cards.md
       - Lending: experience/public/lending.md
+      - Payments: experience/public/payments.md
       - Administration:
           - Finance terminal: experience/administration/finance.md
       - Accounts and cards: catalog/banking.md
       - Lending catalog: catalog/lending.md
   - Insurance:
       - Journey: experience/public/insurance.md
-      - Administration:
-          - Insurance terminal: experience/administration/insurance.md
-      - Insurance catalog: catalog/insurance.md
+      - Insurance terminal: experience/administration/insurance.md
+      - Standards: layers/acord.md
+      - Domains and cores: catalog/insurance.md
   - Shared:
       - Onboarding: experience/public/onboarding.md
       - Profile: experience/public/profile.md
@@ -153,10 +164,11 @@ nav:
           - Product: models/product.md
       - Security and access: catalog/security.md
       - Decision: catalog/decision.md
-      - Data and external systems: catalog/data.md
+      - Reference data: catalog/data.md
+      - Documents: shared/documents.md
       - Shared platform: catalog/shared.md
   - API:
-      - api/index.md
+      - How to read a call: api/index.md
       - Onboarding: api/onboarding.md
       - Profile: api/profile.md
       - Accounts: api/accounts.md

@@ -1,34 +1,74 @@
 # Lending
 
-Lending is one journey, `exp-lending`. The person simulates a product, applies, and later looks at the loan. The product kind chooses the saga. A personal loan, a lease, and a loan that is already disbursed are not three experience services.
+A borrower asks for credit, and later lives with the loan that was granted. Applying is one step. Servicing is what she can do after the loan exists: change the rate, close it, take a payment holiday or end one, and ask for the money to be paid out or for an installment to be paid. The product she names chooses which record is opened. A personal loan, a mortgage, asset finance, and supply-chain finance are not four different sittings. They are routes on this one journey. There is no separate experience for a syndicated loan.
 
-The picture follows one loan through origination and then a servicing read. The same experience service also opens a lease or personal-loan terms. Those are other calls from this journey, listed under the picture, not other experience services.
+Ada Lovelace is the sandbox customer, party `11111111-1111-4111-8111-111111111111`. The product on the sandbox agreement `10000000-0000-4000-8000-000000000021` is Horizon Personal Loan, product `10000000-0000-4000-8000-000000000202`. In the lending catalog that product is a personal loan. She applies for it: the product, an amount, and a term in months. The printed agreement is five years, so the application that matches that document asks for that amount over 60 months.
+Source: the sandbox sample is 250,000.00 EUR.
+
+The journey checks access as `sample-journey` before anything else. If she is not allowed to create an application, nothing is written.
+
+It then reads the parameter `journey.lending.min-credit-score` and sends that number with the decision, under the name `minCreditScore`. In the sandbox that parameter is 680. She does not send a credit score. The decision service fills 640 from its own sandbox report when the score is omitted. 640 is below 680, so the sample rules refer her. A referral does not stop the application. High risk is a decline, and a decline does not open a record.
+
+The catalog then chooses the domain from the product. Product `...202` is a personal loan, so the personal-loan domain opens the agreement. A mortgage product opens a mortgage. An asset-finance product opens asset finance, as a lease or as a rental. A supply-chain product opens that agreement. A product the catalog does not list uses the default route, which in the sandbox is loan origination.
 
 <div class="ff-journey" markdown="0">
-<img src="../../../assets/journeys/lending.svg" alt="Sequence: person, experience, access, credit report, decision, domain, core. The application write is compensated by removing it.">
+<img src="../../../assets/journeys/lending.svg" alt="Sequence: Ada applies for the Horizon Personal Loan. Access is checked. The decision is sent with the threshold 680. A decline stops. Product 202 opens a personal loan. Later she changes the rate, closes, or takes a holiday on the loan. Disbursement and an installment try, then confirm, through the payments port. The sandbox does not post the ledger.">
 </div>
 
-## Steps
+## After the loan exists
 
-1. The person calls `POST /api/v1/experience/lending/applications` on `exp-lending`.
-2. `AccessPort` must allow `CREATE` on `APPLICATION`. A denial does not continue.
-3. `CreditReportPort` returns the sandbox report. It does not call a bureau.
-4. The journey reads `journey.lending.min-credit-score` from `BusinessParameterPort` and sends that value with the decision. `DecisionPort` asks for `LENDING_APPLICATION`. A `DECLINE` does not call a domain.
-5. The catalog selects the domain from the product kind. `LOAN_ORIGINATION` calls `LoanApplicationPort` on `domain-lending-loan-origination`. `PERSONAL_LOAN`, `MORTGAGE`, `ASSET_FINANCE`, and `SUPPLY_CHAIN_FINANCE` call `CreditProductPort`. `RegisterApplicationSaga` creates a loan application on `core-lending-loan-origination`. Compensation removes that application.
-6. After the loan exists, the same journey reads it at `GET /api/v1/experience/lending/loans/{id}`. That call goes through `LoanServicingPort` to `domain-lending-loan-servicing` and `core-lending-loan-servicing`. A repayment on that domain is `AllocateRepaymentSaga`: `allocateRepayment`, compensation `restoreAllocation`.
+She can change the interest rate. She sends the old rate, the new rate, the date it takes effect, and a reason: an index adjustment, a renegotiation, a penalty, or a promotion. She can close the loan and say why. She can take a payment holiday, and she can end it. Those four calls stay on the loan. They do not try a payment.
 
-A lease uses `POST /api/v1/experience/lending/asset-finance` and `domain-lending-asset-finance`. Personal-loan terms use `domain-lending-personal-loans`.
+Asking for the money to be paid out, or paying one installment, does try and then confirm, through the payments port, in the same call. The sandbox adapter is the default. It keeps the try until confirm, and it does not post the ledger and does not run a challenge for this internal movement. Set `firefly.experience.payments.adapter` to `hub` and the same try and confirm go through the domain payments SDK. That live adapter does not invent a code, and it does not accept the word `sandbox` as one.
 
-## Domain sagas and cores
+If the loan is syndicated, she can read the facility. The response is the facility id, the loan id, the currency, the commitment amount, and the status. The participant register is not on that response. There is no `exp-syndicated-loans`. This journey only shows her the facility.
 
-| Product kind or task | Saga | Core |
-| --- | --- | --- |
-| Application | `RegisterApplicationSaga` in `domain-lending-loan-origination` | `core-lending-loan-origination` |
-| Servicing, including a repayment | `AllocateRepaymentSaga` in `domain-lending-loan-servicing` | `core-lending-loan-servicing` |
-| Lease or rental (`LEASING`, `RENTING`) | `RegisterAssetFinanceAgreementSaga` in `domain-lending-asset-finance` | `core-lending-asset-finance` |
-| Personal-loan terms | personal-loan agreement saga in `domain-lending-personal-loans` | `core-lending-personal-loans` |
-| Decision | `DecisionPort` in `domain-lending-credit-scoring`, not a lending aggregate | scoring rows stay on `core-lending-credit-scoring` |
+## What a refusal does
 
-## Technical port
+When access is not allowed, the application is not created, the rate is not changed, the loan is not closed, and no payment is tried.
 
-[exp-lending](https://github.com/fireflysoftwaresolutions/exp-lending), port 8102. The decision HTTP call, when the sandbox adapter is replaced, is `POST /api/v1/decisions` with `journeyStep` `LENDING_APPLICATION`.
+A decline stops before the personal-loan domain, the mortgage domain, asset finance, supply-chain finance, or origination. The sample decline is high risk.
+
+A servicing operation the catalog has switched off answers HTTP 409 and does not call the loan. In the file shipped here, rate change, close, both holiday calls, disbursement, and installment payment are enabled.
+
+Confirming a payment the sandbox does not know, or confirming an outbound try with the wrong code, does not complete the payment. On the live adapter, the word `sandbox` is rejected before confirm is sent.
+
+## Reference
+
+The service listens on port 8102.
+
+| What she does | Call |
+| --- | --- |
+| Apply | `POST /api/v1/experience/lending/applications` |
+| Change the rate | `POST /api/v1/experience/lending/loans/{loanId}/rate` |
+| Close | `POST /api/v1/experience/lending/loans/{loanId}/close` |
+| Take a payment holiday | `POST /api/v1/experience/lending/loans/{loanId}/payment-holiday` |
+| End the holiday | `POST /api/v1/experience/lending/loans/{loanId}/payment-holiday/end` |
+| Disburse | `POST /api/v1/experience/lending/loans/{loanId}/disbursements` |
+| Pay an installment | `POST /api/v1/experience/lending/loans/{loanId}/installments/{installmentId}/payments` |
+| Read a syndicated facility | `GET /api/v1/experience/lending/loans/{loanId}/syndicated-facility` |
+
+```text
+// POST /api/v1/experience/lending/applications
+{
+  // partyId: 11111111-1111-4111-8111-111111111111
+  // productId: 10000000-0000-4000-8000-000000000202
+  // requestedAmount: 250000.00
+  // term: 60
+  // purpose: optional
+}
+// The catalog routes product ...202 to a personal loan.
+// A product that is not listed uses loan origination.
+
+// GET .../loans/{loanId}/syndicated-facility
+{
+  // facilityId
+  // loanId
+  // currency
+  // commitmentAmount
+  // status
+  // no participant register
+}
+```
+
+The threshold parameter is `journey.lending.min-credit-score`. The sandbox value is 680. The product routes are `PERSONAL_LOAN`, `MORTGAGE`, `ASSET_FINANCE`, `SUPPLY_CHAIN_FINANCE`, and `LOAN_ORIGINATION`. The payments property is `firefly.experience.payments.adapter`, default `sandbox`, live value `hub`. The calls are also on the [lending API](../../api/lending.md).
