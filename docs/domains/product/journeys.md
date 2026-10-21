@@ -1,6 +1,6 @@
 # Product journeys
 
-There is no `exp-product` repository. Journeys that show a product call the product domain, not the product core.
+Journeys that show a product call the product domain, not the product core.
 
 | Journey | Port |
 | --- | --- |

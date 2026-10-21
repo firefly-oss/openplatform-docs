@@ -13,7 +13,7 @@ The person issues a card, activates it, and can block or cancel it. That is one 
 3. `CardOperations` calls `domain-banking-cards`. `IssueCardSaga` runs `createCard` on `core-banking-cards`. Compensation deletes that card.
 4. Activate, block, and cancel are later calls on the same port, each behind its own access check.
 
-`domain-banking-cards` also calls `core-lending-credit-cards` when the card is a credit card. There is no `domain-lending-credit-cards` repository, and there is no separate credit-card experience service.
+`domain-banking-cards` also calls `core-lending-credit-cards` when the card is a credit card.
 
 ## Domain sagas and cores
 

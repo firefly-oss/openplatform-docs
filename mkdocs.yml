@@ -108,7 +108,6 @@ nav:
   - Quickstart: quickstart.md
   - Architecture:
       - layers/index.md
-      - Jafly: jafly.md
       - Domain: layers/domain.md
       - Core: layers/core.md
       - Libraries: layers/libraries.md
@@ -135,8 +134,9 @@ nav:
           - Open and close an account: experience/public/accounts.md
           - Cards: experience/public/cards.md
           - Lending: experience/public/lending.md
-          - Insurance: experience/public/insurance.md
-      - Administration: experience/administration/index.md
+      - Administration:
+          - Finance terminal: experience/administration/finance.md
+          - Insurance terminal: experience/administration/insurance.md
   - Families:
       - catalog/index.md
       - Customer and party: catalog/customer.md

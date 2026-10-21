@@ -1,5 +1,8 @@
 # Families
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 The OpenPlatform release list contains 90 repositories. This catalog documents all 90. Each entry names the repository, the layer, and what that repository owns. Links go to `github.com/fireflysoftwaresolutions`.
 
 Insurance is one of the families, with seven domain services and seven cores. A lending core with no `domain-lending-*` repository is described as a core without a domain orchestrator.

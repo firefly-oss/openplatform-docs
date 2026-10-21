@@ -1,5 +1,8 @@
 # Contract
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 A contract is the agreement: who is on it, which products, in which currency, and whether it amends or renews an earlier agreement.
 
 ## What it owns

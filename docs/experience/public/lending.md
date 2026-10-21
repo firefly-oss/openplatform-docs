@@ -2,7 +2,7 @@
 
 Lending is one journey, `exp-lending`. The person simulates a product, applies, and later looks at the loan. The product kind chooses the saga. A personal loan, a lease, and a loan that is already disbursed are not three experience services.
 
-The picture is the application path, which is the path that also asks for a decision. The other sagas in the table are the same journey calling a different domain.
+The picture follows one loan through origination and then a servicing read. The same experience service also opens a lease or personal-loan terms. Those are other calls from this journey, listed under the picture, not other experience services.
 
 <div class="ff-journey" markdown="0">
 <img src="../../../assets/journeys/lending.svg" alt="Sequence: person, experience, access, credit report, decision, domain, core. The application write is compensated by removing it.">
@@ -15,15 +15,16 @@ The picture is the application path, which is the path that also asks for a deci
 3. `CreditReportPort` returns the sandbox report. It does not call a bureau.
 4. `DecisionPort` asks for `LENDING_APPLICATION`. A `DECLINE` does not call origination.
 5. `LoanApplicationPort` calls `domain-lending-loan-origination`. `RegisterApplicationSaga` creates the application on `core-lending-loan-origination`. Compensation removes that application.
+6. After the loan exists, the same journey reads it at `GET /api/v1/experience/lending/loans/{id}`. That call goes through `LoanServicingPort` to `domain-lending-loan-servicing` and `core-lending-loan-servicing`. A repayment on that domain is `AllocateRepaymentSaga`: `allocateRepayment`, compensation `restoreAllocation`.
 
-A lease uses `POST /api/v1/experience/lending/asset-finance` and `domain-lending-asset-finance`. Servicing uses `POST /api/v1/experience/lending/loans` and `domain-lending-loan-servicing`. Personal-loan terms use `domain-lending-personal-loans`. Trade finance is not on this journey. `domain-lending-supply-chain-finance` is not a dependency of `exp-lending`.
+A lease uses `POST /api/v1/experience/lending/asset-finance` and `domain-lending-asset-finance`. Personal-loan terms use `domain-lending-personal-loans`.
 
 ## Domain sagas and cores
 
 | Product kind or task | Saga | Core |
 | --- | --- | --- |
 | Application | `RegisterApplicationSaga` in `domain-lending-loan-origination` | `core-lending-loan-origination` |
-| After disbursement | servicing sagas in `domain-lending-loan-servicing` | `core-lending-loan-servicing` |
+| Servicing, including a repayment | `AllocateRepaymentSaga` in `domain-lending-loan-servicing` | `core-lending-loan-servicing` |
 | Lease or rental (`LEASING`, `RENTING`) | `RegisterAssetFinanceAgreementSaga` in `domain-lending-asset-finance` | `core-lending-asset-finance` |
 | Personal-loan terms | personal-loan agreement saga in `domain-lending-personal-loans` | `core-lending-personal-loans` |
 | Decision | `DecisionPort` in `domain-lending-credit-scoring`, not a lending aggregate | scoring rows stay on `core-lending-credit-scoring` |

@@ -1,6 +1,6 @@
 # Contract journeys
 
-There is no `exp-contract` repository. Other journeys call the contract domain when they need an agreement. They do not call `core-common-contract-mgmt` directly.
+Other journeys call the contract domain when they need an agreement. They do not call `core-common-contract-mgmt` directly.
 
 | Journey | How it uses the contract |
 | --- | --- |

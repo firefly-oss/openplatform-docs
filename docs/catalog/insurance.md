@@ -1,12 +1,13 @@
 # Insurance
 
-Insurance is a full family: seven cores and seven domain services, one pair for each subject. There is no insurance experience service in the release list. A channel calls a domain, or a later experience service can call the same port.
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
+Insurance is a full family: seven cores and seven domain services, one pair for each subject.
 
 Each domain orchestrates its own core. The saga is create, update, status change, and close, with compensation, and only when the core allows the close. A domain calls that core's SDK and does not import the core's internals.
 
 These domains do not move money and do not certify IFRS 17 or Solvency II. Premium schedules, commissions, refunds, bordereaux, and credit control are records on the financials core. Moving cash is outside this family.
-
-The journey view is [Insurance](../experience/public/insurance.md).
 
 
 

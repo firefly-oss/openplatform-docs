@@ -1,5 +1,8 @@
 # Security and access
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 Sign-in is `exp-security`, in front of `domain-core-security-center` and `domain-common-sca`. The authenticator application routes to the security center and does not own sessions.
 
 On main, the security center depends on the Jafly identity modules, including `org.fireflyframework:fireflyframework-security-idp-keycloak` (BOM 26.10.20). The journey does not call Keycloak. The published properties `firefly.idp.provider` and `firefly.security-center.idp.provider` are `cognito`.

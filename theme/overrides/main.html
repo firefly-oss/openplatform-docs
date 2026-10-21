@@ -24,6 +24,7 @@
   {{ super() }}
   {% if page and page.is_homepage %}
   <meta name="ff-page" content="home" />
+  <script>document.documentElement.classList.add("ff-home")</script>
   {% endif %}
 {% endblock %}
 

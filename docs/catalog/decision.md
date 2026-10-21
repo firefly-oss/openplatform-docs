@@ -1,6 +1,9 @@
 # Decision
 
-There is no separate decision repository. `domain-lending-credit-scoring` is the decision service for every journey, and it is also the scoring domain. It is listed with [Lending](lending.md).
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
+`domain-lending-credit-scoring` is the decision service for every journey, and it is also the scoring domain. It is listed with [Lending](lending.md).
 
 ## DecisionPort
 

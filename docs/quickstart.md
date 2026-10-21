@@ -1,5 +1,8 @@
 # Quickstart
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 This is the sandbox for OpenPlatform, not a tour of one module. You run an experience journey. That journey asks who you are, whether you may touch a resource, and, when the step needs it, what decision to record. The domain saga writes the core. Jafly supplies the rules engine and the identity adapters. The sandbox starts neither Keycloak nor a credit bureau.
 
 Train 26.10.3. Jafly BOM 26.10.20.
@@ -14,8 +17,6 @@ The call order on a journey that creates something is:
 4. Decision. `DecisionPort`, HTTP `POST /api/v1/decisions` on `domain-lending-credit-scoring`. The outcome is `APPROVE`, `REFER`, or `DECLINE`, plus reason codes. A `DECLINE` does not continue into the saga.
 5. Domain saga. `domain-customer-people` for the party, `domain-banking-accounts` for the account, `domain-lending-loan-origination` for the application.
 6. Core. The system of record for that context. The domain calls the core SDK. The experience service does not.
-
-There is no experience service for an insurance quote or a claim. Those domains exist. This chapter does not pretend an experience journey calls them.
 
 ## Jafly underneath
 
@@ -39,7 +40,7 @@ Each service is its own process. Ports below are the defaults in the published c
 | `exp-accounts` | 8100 | Open an account |
 | `exp-lending` | 8102 | Start a lending application |
 
-The published security-center file expects Redis on `localhost:6379`. The published decision service expects Kafka on `localhost:9092` because other endpoints publish events. The three HTTP calls in the next section do not call Keycloak and do not call a bureau.
+The published security-center file expects a cache on `localhost:6379`. The published decision service expects an event broker on `localhost:9092` because other endpoints publish events. The three HTTP calls in the next section do not call Keycloak and do not call a bureau.
 
 ## One public path
 
@@ -116,9 +117,7 @@ Or start a lending application:
 
 `POST http://localhost:8102/api/v1/experience/lending/applications`
 
-`exp-lending` checks access, reads the sandbox credit report, calls `POST /api/v1/decisions` with `journeyStep` `LENDING_APPLICATION`, and only then calls `LoanApplicationPort` (`domain-lending-loan-origination`). A `DECLINE` does not create the application.
-
-There is no experience service that quotes a policy or registers a claim. `domain-insurance-policies`, `domain-insurance-underwriting`, and `domain-insurance-claims` are on main. A channel can call those domains. This sandbox path does not.
+`exp-lending` checks access, reads the sandbox credit report, calls `POST /api/v1/decisions` with `journeyStep` `LENDING_APPLICATION`, and only then calls `LoanApplicationPort` (`domain-lending-loan-origination`). A `DECLINE` does not create the application. The same service later reads the loan through `domain-lending-loan-servicing`.
 
 ## Sample actors
 
@@ -132,7 +131,7 @@ Sign the employee in with the same identity call and `"username": "sample-employ
 
 ## Staff terminals
 
-No finance staff terminal and no insurance staff terminal is on disk. This chapter does not impersonate a customer through a terminal, because that repository does not exist. The employee subject and the `IMPERSONATE` grant live only in the security center, so a later terminal can call the same identity and access ports.
+`exp-finance-terminal` and `exp-insurance-terminal` are the employee paths. Sign in as `sample-employee`, then `POST /api/v1/staff/sessions`. Each terminal checks `ADMINISTER`, and a customer-scoped change checks `IMPERSONATE` before `StaffRecordPort`. The steps are on the [finance terminal](experience/administration/finance.md) and [insurance terminal](experience/administration/insurance.md) pages. The sandbox identity call still does not start Keycloak.
 
 ## What an installer replaces
 

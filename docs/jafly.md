@@ -1,5 +1,8 @@
 # Jafly is the foundation
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 OpenPlatform is implemented on Jafly. Jafly is the framework under `org.fireflyframework`. OpenPlatform does not ship a second copy of that framework, and it does not fork the rules engine or the identity adapters.
 
 `io.fireflysoftware:firefly-parent` at train **26.10.3** extends `org.fireflyframework:fireflyframework-parent` **26.10.20** and imports `org.fireflyframework:fireflyframework-bom` **26.10.20**. Every OpenPlatform module inherits that pin. The published OpenPlatform train stays 26.10.3.

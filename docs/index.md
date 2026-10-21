@@ -1,9 +1,7 @@
 # Overview
 
-<div class="ff-cover" markdown="0">
-<img class="ff-cover__img ff-cover__img--light" src="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-light.svg" alt="Firefly OpenPlatform">
-<img class="ff-cover__img ff-cover__img--dark" src="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-dark.svg" alt="">
-</div>
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
 
 <p class="ff-lead">OpenPlatform is the business software behind customer, contract, product, banking, lending, insurance, and distribution. Train 26.10.3 is the published set.</p>
 
@@ -20,7 +18,7 @@ Attitude makes the difference.
 - [Product](domains/product/context.md). Catalog and pricing.
 - [Banking](catalog/banking.md). Accounts, cards, payments, ledger.
 - [Lending](experience/public/lending.md). One journey. The product kind chooses the saga.
-- [Insurance](experience/public/insurance.md). One journey. Quote, bind, or claim.
+- [Insurance](catalog/insurance.md). Policies, claims, and the other insurance cores.
 - [Distribution](catalog/shared.md). Brokers, agencies, and collaborators live with the distributor services.
 - [Decision and external data](catalog/decision.md). Approve, refer, or decline. Credit report and company lookup.
 - [Access and identity](catalog/security.md). Sessions, strong customer authentication, users, and the vault.

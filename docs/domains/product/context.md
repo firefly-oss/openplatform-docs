@@ -1,5 +1,8 @@
 # Product
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 The product domain is the catalog. Pricing is optional configuration on a product. It is not a second catalog and not a chain of separate fee, bundle, feature, and limit aggregates.
 
 ## What it owns

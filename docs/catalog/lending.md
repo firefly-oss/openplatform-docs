@@ -1,8 +1,11 @@
 # Lending
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 Eleven lending domains orchestrate eleven cores. Each domain calls that core's SDK only and does not import the core's internals.
 
-`core-lending-credit-cards` is the lending core without a domain orchestrator. There is no `domain-lending-credit-cards` repository. `domain-banking-cards` calls the credit-cards core from the banking family.
+`core-lending-credit-cards` is a lending core without a domain orchestrator. `domain-banking-cards` calls that core from the banking family.
 
 [exp-lending](journeys.md#exp-lending) currently calls five of the lending domains: origination, servicing, credit scoring, asset finance, and personal loans. The other six domains are in this train and are not on that experience classpath yet.
 
@@ -163,7 +166,7 @@ Owns collateral assets, cases, liens, valuations, and monitoring. `domain-lendin
 
 ### core-lending-credit-cards
 
-Owns revolving credit lines, billing cycles, statements, and amounts posted to the credit line. This is a core without a domain orchestrator. `domain-banking-cards` calls this core. There is no `domain-lending-credit-cards` repository.
+Owns revolving credit lines, billing cycles, statements, and amounts posted to the credit line. This is a core without a domain orchestrator. `domain-banking-cards` calls this core.
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/core-lending-credit-cards">github.com/fireflysoftwaresolutions/core-lending-credit-cards</a></p>
 

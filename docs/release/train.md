@@ -1,5 +1,8 @@
 # Train
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 The published OpenPlatform train is **26.10.3**.
 
 | Coordinate | Version | Role |

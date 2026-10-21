@@ -1,8 +1,11 @@
 # Experience
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 An experience microservice is a journey. It is not a second copy of a domain. One journey can call several domain sagas. The product kind, or the task the person is doing, chooses which saga runs.
 
-Customer, account, and card journeys stay separate. A person does those as different tasks. Lending is one journey. Insurance is one journey.
+Customer profile, accounts, and cards stay separate. A person does those as different tasks. Lending is one journey: origination and, once the loan exists, servicing.
 
 ## Public
 
@@ -11,10 +14,8 @@ Customer, account, and card journeys stay separate. A person does those as diffe
 - [Open and close an account](public/accounts.md)
 - [Cards](public/cards.md)
 - [Lending](public/lending.md)
-- [Insurance](public/insurance.md)
 
 ## Administration
 
-- [Staff terminals](administration/index.md)
-
-There is no finance staff terminal and no insurance staff terminal repository on disk. The administration page shows the sign-in and `IMPERSONATE` check that such a terminal would start with, and it does not invent the operation that would follow.
+- [Finance terminal](administration/finance.md). An employee signs in, impersonates the customer, and then updates a record.
+- [Insurance terminal](administration/insurance.md). An employee signs in, impersonates the customer, and then updates a policy, a claim, or an underwriting submission.

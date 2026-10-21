@@ -8,7 +8,7 @@ A few domain builds still declare an extra core SDK. That is a dependency, not p
 
 Insurance domains follow the same saga shape. They do not move money and do not certify IFRS 17 or Solvency II.
 
-There is no domain repository for decision, and none for the credit-bureau or company-lookup ports beyond `domain-data-credit-bureaus` and `domain-data-business-intelligence`. Those two own the port. They do not own a core database in this release list.
+Decision lives in `domain-lending-credit-scoring`. The credit-bureau and company-lookup ports live in `domain-data-credit-bureaus` and `domain-data-business-intelligence`. Those two own the port. They do not own a core database in this release list.
 
 ## Repositories
 

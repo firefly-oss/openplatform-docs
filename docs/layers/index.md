@@ -1,6 +1,17 @@
 # Architecture
 
-A customer action moves in one direction. Experience owns the journey. Domain owns the saga. Core owns the database. Libraries are shared code, not a fourth place where records live.
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
+OpenPlatform is a banking core and an insurance core. Products and the processes around them are built on those cores. A deposit account, a loan, and a policy are records in a core. The journey that opens them does not own the tables.
+
+Insurance records policies, claims, premium schedules, and reserves. It does not move money and it does not certify IFRS 17 or Solvency II.
+
+Each process is a port. The journey calls the port. The adapter that answers today is the domain saga: create, update, change status, and close, with compensation, through that context's core. A later process engine can implement the same port. The journey stays. A later payment rail, payment provider, or identity adapter is the same kind of replacement. The journey does not learn the new system.
+
+Identity and the rules engine are Jafly, from Firefly Framework, `org.fireflyframework`, BOM 26.10.20. OpenPlatform does not fork them. The sandbox identity adapter does not start Keycloak. The sandbox credit report does not call a bureau.
+
+A customer journey runs a product through its life. Origination starts it. Servicing continues it. Both live in `exp-lending`. Account and card tasks stay their own journeys, because a person does those as separate work. The finance staff terminal and the insurance staff terminal are the matching journeys for an employee: sign in, impersonate the customer, then run an operation on the same kind of record, and also run back-office work the customer does not run.
 
 <div class="ff-topo" markdown="0">
 <p class="ff-topo__caption">Layers inside a business domain</p>

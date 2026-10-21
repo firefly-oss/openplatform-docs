@@ -1,5 +1,8 @@
 # Models
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 Three records sit under most journeys. Each has a core that owns the tables and a domain that owns the saga.
 
 - [Party](party.md). Person or company, industry scheme, attributes, ownership graph.

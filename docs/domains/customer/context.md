@@ -1,5 +1,8 @@
 # Customer
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 The customer domain is the party. A party is either a natural person or a legal entity. Ownership and the other relationships are edges on that party, not a separate customer database.
 
 ## What it owns
@@ -14,7 +17,7 @@ The customer domain is the party. A party is either a natural person or a legal 
 
 It does not own the contract, the product, the account, or the decision. Those contexts store a party identifier. They do not join the party tables.
 
-`AccessPort` is not part of this context. It is not published on main. See [Access and identity](../../catalog/security.md).
+`AccessPort` is not part of this context. It lives in the security center. See [Access and identity](../../catalog/security.md).
 
 ## Ubiquitous language
 

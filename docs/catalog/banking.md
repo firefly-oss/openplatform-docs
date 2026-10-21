@@ -1,5 +1,8 @@
 # Banking
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 Banking covers accounts, cards, the ledger, payments, and open-banking access. Experience services exist for accounts and for cards. Ledger, payments, and open-banking access are cores without a domain orchestrator.
 
 Accounts, cards, the ledger, and payments do not hard-delete an open record. Ledger party columns are `initiating_party_identifier` and `card_merchant_tax_id`, not NIF or CIF.
@@ -24,7 +27,7 @@ Owns the account saga: open, update, and close, with compensation, through `core
 
 ### domain-banking-cards
 
-Owns the card saga: issue, activate, block, replace, and cancel, with compensation, through `core-banking-cards`. It also calls `core-lending-credit-cards`. The build includes the ledger SDK. There is no credit-card domain repository.
+Owns the card saga: issue, activate, block, replace, and cancel, with compensation, through `core-banking-cards`. It also calls `core-lending-credit-cards`. The build includes the ledger SDK.
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/domain-banking-cards">github.com/fireflysoftwaresolutions/domain-banking-cards</a></p>
 

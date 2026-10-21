@@ -1,5 +1,8 @@
 # Replace an adapter
 
+<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+
+
 Replace data and adapters. Do not fork the rules engine, and do not edit a core's tables from another service.
 
 ## Ruleset
