@@ -44,4 +44,4 @@ Two more Jafly artifacts are declared directly by OpenPlatform modules. Their ve
 
 OpenPlatform repositories do not declare an artifact named `fireflyframework-data`. This page does not list one.
 
-The parent import is the foundation. Individual modules then declare the Jafly libraries they call. The [architecture](layers/index.md) shows where a journey step sits on top of that foundation.
+The parent import is the foundation. Individual modules then declare the Jafly libraries they call. The [architecture](layers/index.md) says how a business domain sits on top of that foundation.

@@ -5,22 +5,25 @@
 <img class="ff-cover__img ff-cover__img--dark" src="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-dark.svg" alt="">
 </div>
 
-<p class="ff-lead">OpenPlatform is the set of services a bank or an insurer runs for customers, accounts, lending, and insurance. It is implemented on Jafly. Train 26.10.3 is the published set.</p>
+<p class="ff-lead">OpenPlatform is the business software behind customer, contract, product, banking, lending, insurance, and distribution. Train 26.10.3 is the published set.</p>
 
-It is for engineers who build or operate those services. Experience services own the journey. Domain services own the saga. Core services own the database. Read [Jafly is the foundation](jafly.md) before treating the framework as a library footnote. Then use the [quickstart](quickstart.md), the [architecture](layers/index.md), and the family that matches the work.
+It is for engineers who change a bounded context or run a journey. Start with the [architecture](layers/index.md). A business domain is not a Maven module. Experience, domain, and core are layers inside the domain. Then open the domain you are working in. Each one is read from the bounded context down to the core.
 
-The release list has 90 repositories. Every one is in the [families](catalog/index.md), with the layer it sits in and a link to `github.com/fireflysoftwaresolutions`.
+[Jafly](jafly.md) is the framework under every module (`org.fireflyframework`, BOM 26.10.20). [Quickstart](quickstart.md) is the decision call you can make without a bureau. [Replace an adapter](adapters/index.md) is how an installer swaps the ruleset, the credit report, and the identity provider.
 
 Attitude makes the difference.
 
-## Read next
+## Business domains
 
-- [Jafly is the foundation](jafly.md). Parent import of `fireflyframework-bom` 26.10.20, the rules engine, and the identity adapters.
-- [Quickstart](quickstart.md). Call `POST /api/v1/decisions` on the published decision sandbox. No bureau process.
-- [Architecture](layers/index.md). Access, external data, decision, saga, core. A process engine is a later replacement of the domain adapter.
-- [Journeys](journeys/index.md). Onboarding, customer, accounts and cards, lending, insurance.
-- [Families](catalog/index.md). Customer, contract, product, banking, lending, insurance, data, security, and decision.
-- [Replace an adapter](adapters/index.md). Ruleset, credit report, and the identity provider the security center already depends on.
+- [Customer](domains/customer/context.md). Party, person, company, ownership.
+- [Contract](domains/contract/context.md). Agreement, lines, amendment and renewal.
+- [Product](domains/product/context.md). Catalog and pricing.
+- [Banking](catalog/banking.md). Accounts, cards, payments, ledger.
+- [Lending](experience/public/lending.md). One journey. The product kind chooses the saga.
+- [Insurance](experience/public/insurance.md). One journey. Quote, bind, or claim.
+- [Distribution](catalog/shared.md). Brokers, agencies, and collaborators live with the distributor services.
+- [Decision and external data](catalog/decision.md). Approve, refer, or decline. Credit report and company lookup.
+- [Access and identity](catalog/security.md). Sessions, strong customer authentication, users, and the vault.
 
 <ul class="ff-pins" markdown="0">
 <li class="ff-pin"><span class="ff-pin__label">OpenPlatform</span><span class="ff-pin__value">26.10.3</span></li>
@@ -30,5 +33,3 @@ Attitude makes the difference.
 </ul>
 
 Published by the Firefly Software Foundation. [dev@fireflysoftware.io](mailto:dev@fireflysoftware.io). Organization: [fireflysoftwaresolutions](https://github.com/fireflysoftwaresolutions). Service host: `https://openplatform.fireflysoftware.io/{service}`. Product site: [fireflysoftware.io](https://fireflysoftware.io/).
-
-Source: `io.fireflysoftware:firefly-parent` and `io.fireflysoftware:firefly-bom` at 26.10.3. Java 25 and Spring Boot 4.1.1 come from `org.fireflyframework:fireflyframework-parent` 26.10.20.

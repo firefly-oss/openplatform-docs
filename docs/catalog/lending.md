@@ -6,7 +6,7 @@ Eleven lending domains orchestrate eleven cores. Each domain calls that core's S
 
 [exp-lending](journeys.md#exp-lending) currently calls five of the lending domains: origination, servicing, credit scoring, asset finance, and personal loans. The other six domains are in this train and are not on that experience classpath yet.
 
-The lending journey page is [Lending](../journeys/lending.md). `DecisionPort` is documented under [Decision](decision.md). It is not a lending repository.
+The lending journey page is [Lending](../experience/public/lending.md). `DecisionPort` is documented under [Decision](decision.md). It is not a lending repository.
 
 
 

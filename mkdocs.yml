@@ -38,8 +38,6 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
   features:
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.indexes
@@ -111,17 +109,34 @@ nav:
   - Architecture:
       - layers/index.md
       - Jafly: jafly.md
-      - Experience: layers/experience.md
       - Domain: layers/domain.md
       - Core: layers/core.md
       - Libraries: layers/libraries.md
-  - Journeys:
-      - journeys/index.md
-      - Onboarding: journeys/onboarding.md
-      - Customer: journeys/customer.md
-      - Accounts and cards: journeys/accounts-cards.md
-      - Lending: journeys/lending.md
-      - Insurance: journeys/insurance.md
+  - Customer:
+      - Bounded context: domains/customer/context.md
+      - Journeys: domains/customer/journeys.md
+      - Domain: domains/customer/domain.md
+      - Core: domains/customer/core.md
+  - Contract:
+      - Bounded context: domains/contract/context.md
+      - Journeys: domains/contract/journeys.md
+      - Domain: domains/contract/domain.md
+      - Core: domains/contract/core.md
+  - Product:
+      - Bounded context: domains/product/context.md
+      - Journeys: domains/product/journeys.md
+      - Domain: domains/product/domain.md
+      - Core: domains/product/core.md
+  - Experience:
+      - experience/index.md
+      - Public:
+          - Onboarding: experience/public/onboarding.md
+          - Customer profile: experience/public/profile.md
+          - Open and close an account: experience/public/accounts.md
+          - Cards: experience/public/cards.md
+          - Lending: experience/public/lending.md
+          - Insurance: experience/public/insurance.md
+      - Administration: experience/administration/index.md
   - Families:
       - catalog/index.md
       - Customer and party: catalog/customer.md

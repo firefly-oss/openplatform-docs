@@ -6,7 +6,7 @@ Each domain orchestrates its own core. The saga is create, update, status change
 
 These domains do not move money and do not certify IFRS 17 or Solvency II. Premium schedules, commissions, refunds, bordereaux, and credit control are records on the financials core. Moving cash is outside this family.
 
-The journey view is [Insurance](../journeys/insurance.md).
+The journey view is [Insurance](../experience/public/insurance.md).
 
 
 

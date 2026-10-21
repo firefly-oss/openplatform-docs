@@ -2,7 +2,7 @@
 
 Experience services own journeys. Each step calls a port. The default adapter calls a domain service. A later process engine can implement the same port. Nothing on this page says that engine is already running.
 
-`exp-security` is listed with [Security and access](security.md) because it is the sign-in journey. The journey narratives are under [Journeys](../journeys/index.md).
+`exp-security` is listed with [Security and access](security.md) because it is the sign-in journey. The journey narratives are under [Experience](../experience/index.md).
 
 
 

@@ -2,20 +2,29 @@
 
 A customer action moves in one direction. Experience owns the journey. Domain owns the saga. Core owns the database. Libraries are shared code, not a fourth place where records live.
 
-```mermaid
-flowchart TD
-  step["Journey step"] --> access["AccessPort"]
-  access --> report["CreditReportPort"]
-  report --> decision["DecisionPort"]
-  decision --> saga["Domain saga"]
-  saga --> core["Core database"]
-```
+<div class="ff-topo" markdown="0">
+<p class="ff-topo__caption">Layers inside a business domain</p>
+<div class="ff-topo__stack">
+<div class="ff-topo__band">
+<p class="ff-topo__label">Experience</p>
+<p class="ff-topo__meta">A journey. One service can call several domain sagas. It does not own the database.</p>
+</div>
+<div class="ff-topo__band">
+<p class="ff-topo__label">Domain</p>
+<p class="ff-topo__meta">The saga for one bounded context. Create, update, status, and close, with compensation.</p>
+</div>
+<div class="ff-topo__band ff-topo__band--core">
+<p class="ff-topo__label">Core</p>
+<p class="ff-topo__meta">The system of record. Other contexts keep an identifier, not a foreign key into these tables.</p>
+</div>
+</div>
+</div>
 
-Read the boxes against what main actually contains.
+Journeys are sequence diagrams under [Experience](../experience/index.md). This picture is only the layer stack.
 
-`DecisionPort`, `CreditReportPort`, and `JaflyRulesEngineAdapter` are in `domain-lending-credit-scoring` on main. `POST /api/v1/decisions` is the HTTP adapter. `SandboxCreditReportAdapter` supplies the report and does not call a bureau. The rules engine is Jafly's `org.fireflyframework.rules.core.dsl.evaluation.ASTRulesEvaluationEngine`, from BOM `26.10.20`. OpenPlatform does not ship a forked engine.
+`DecisionPort` and `SandboxCreditReportAdapter` are in `domain-lending-credit-scoring`. `POST /api/v1/decisions` is the HTTP adapter. The rules engine is Jafly's, BOM 26.10.20. OpenPlatform does not ship a forked engine.
 
-`AccessPort` is not in the published experience modules and not in the published security center. Do not call a sandbox access endpoint. The diagram shows where that check belongs when it is published: before the report and the decision. A denied check must not call the domain.
+`AccessPort` runs before a journey changes a resource. A denial does not call the domain. The HTTP check is `POST /api/v1/access/checks` on `domain-core-security-center`.
 
 The domain saga then writes one core through that core's SDK. It does not import another core's internals. Cross-service links are UUIDs. Child rows inside one core cascade on delete. Currency is `VARCHAR(3)`.
 
@@ -31,7 +40,7 @@ Jafly (`org.fireflyframework`, BOM 26.10.20) is the framework under this train. 
 
 ## Open a layer
 
-- [Experience](experience.md). The nine `exp-*` services.
+- [Experience](../experience/index.md). The journeys, not a list of domains.
 - [Domain](domain.md). The saga rule and every `domain-*` service.
 - [Core](core.md). Persistence rules and every `core-*` service.
 - [Libraries](libraries.md). Payment ports, batch jobs, the parent, and the bill of materials.
