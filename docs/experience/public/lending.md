@@ -23,6 +23,8 @@ Asking for the money to be paid out, or paying one installment, does try and the
 
 If the loan is syndicated, she can read the facility. The response is the facility id, the loan id, the currency, the commitment amount, and the status. The participant register is not on that response. There is no `exp-syndicated-loans`. This journey only shows her the facility.
 
+She can also read the amortization calendar at `GET /api/v1/experience/lending/loans/{id}/calendar`. Each row is one installment: its due date, principal, interest, and remaining balance. The read goes through the loan-servicing domain SDK. Restructuring and end of day are not on this call. The participant register is not on this response either. The OpenAPI file for this journey does not list the path, so the API panel has no operation for it.
+
 ## The schedule, the cash, and the day
 
 Once the loan exists, the servicing record keeps a schedule. Each installment stores its due date, the principal due, the interest due, and the balance that remains after that installment. The rate on that schedule is not one number for every loan. It is read from the product's pricing: the interest bracket that matches the product and the amount. A personal loan and a lease do not share a bracket. The sandbox price is the default. It reads that configuration and does not open a network connection. A live price is selected with `firefly.lending.price.adapter=engine`.
@@ -57,6 +59,7 @@ The service listens on port 8102.
 | Disburse | `POST /api/v1/experience/lending/loans/{loanId}/disbursements` |
 | Pay an installment | `POST /api/v1/experience/lending/loans/{loanId}/installments/{installmentId}/payments` |
 | Read a syndicated facility | `GET /api/v1/experience/lending/loans/{loanId}/syndicated-facility` |
+| Read the amortization calendar | `GET /api/v1/experience/lending/loans/{id}/calendar` |
 
 ```text
 // POST /api/v1/experience/lending/applications
@@ -69,6 +72,17 @@ The service listens on port 8102.
 }
 // The catalog routes product ...202 to a personal loan.
 // A product that is not listed uses loan origination.
+
+// GET /api/v1/experience/lending/loans/{id}/calendar
+// Not in the OpenAPI file. Each row:
+{
+  // installmentNumber
+  // dueDate
+  // principal
+  // interest
+  // remainingBalance
+  // no participant register
+}
 
 // GET .../loans/{loanId}/syndicated-facility
 {

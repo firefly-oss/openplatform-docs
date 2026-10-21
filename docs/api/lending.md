@@ -51,6 +51,6 @@ The service listens on port 8102. If access is not allowed, nothing is written. 
 }
 ```
 
-The panel is `exp-lending-sdk/src/main/resources/openapi.yml`. Read the example, then open an operation.
+The panel is `exp-lending-sdk/src/main/resources/openapi.yml` at commit `0229c95`. That file does not list `GET /api/v1/experience/lending/loans/{id}/calendar`, so the panel has no operation for the amortization calendar. The journey still serves that read. Read the example, then open an operation.
 
 <swagger-ui src="specs/lending/openapi.yml"></swagger-ui>
