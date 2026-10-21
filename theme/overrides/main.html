@@ -10,13 +10,13 @@
 
 {% block htmltitle %}
   {% if page and page.is_homepage %}
-    <title>Firefly OpenPlatform Documentation Hub</title>
+    <title>Firefly OpenPlatform Documentation</title>
   {% elif page and page.meta and page.meta.title %}
-    <title>{{ page.meta.title }} — Firefly OpenPlatform Documentation Hub</title>
+    <title>{{ page.meta.title }} — Firefly OpenPlatform Documentation</title>
   {% elif page and page.title and not page.is_homepage %}
-    <title>{{ page.title | striptags }} — Firefly OpenPlatform Documentation Hub</title>
+    <title>{{ page.title | striptags }} — Firefly OpenPlatform Documentation</title>
   {% else %}
-    <title>Firefly OpenPlatform Documentation Hub</title>
+    <title>Firefly OpenPlatform Documentation</title>
   {% endif %}
 {% endblock %}
 
@@ -28,11 +28,5 @@
 {% endblock %}
 
 {% block content %}
-  {% if page and page.is_homepage %}
-  <div class="ff-home">
-    {{ super() }}
-  </div>
-  {% else %}
-    {{ super() }}
-  {% endif %}
+  {{ super() }}
 {% endblock %}

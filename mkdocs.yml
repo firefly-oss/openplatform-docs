@@ -3,12 +3,12 @@
 
 # site_name is the document title. The navbar lockup stays logo | OpenPlatform
 # (see overrides/partials/header.html). Do not shorten this to OpenPlatform.
-site_name: Firefly OpenPlatform Documentation Hub
-site_description: Firefly OpenPlatform Documentation Hub for firefly-oss business modules, architecture, OpenAPI, and adapters.
-site_author: Firefly Software
+site_name: Firefly OpenPlatform Documentation
+site_description: Architecture, journeys, and the service catalog for Firefly OpenPlatform train 26.10.3.
+site_author: Firefly Software Foundation
 site_url: https://docs.fireflysoftware.io/
-repo_url: https://github.com/firefly-oss/openplatform-docs
-repo_name: firefly-oss/openplatform-docs
+repo_url: https://github.com/fireflysoftwaresolutions/openplatform-docs
+repo_name: fireflysoftwaresolutions/openplatform-docs
 edit_uri: edit/main/docs/
 copyright: Copyright 2026 Firefly Software Foundation & Firefly Software Solutions Inc
 strict: true
@@ -97,7 +97,7 @@ extra:
   #     default: latest
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/firefly-oss
+      link: https://github.com/fireflysoftwaresolutions
   firefly:
     brand: Firefly
     products:
@@ -105,41 +105,42 @@ extra:
     slogan: Attitude makes the difference.
 
 nav:
-  - Home: index.md
-  - Start:
-      - Navigate: start/index.md
-      - Ecosystem: ecosystem.md
-  - Architecture: architecture/overview.md
-  - Modules:
-      - Catalogue: modules/catalog.md
-      - Customers: modules/customers.md
-      - Onboarding: modules/onboarding.md
-      - Products: modules/products.md
-      - Agreements: modules/agreements.md
-      - Distribution: modules/distribution.md
-      - Accounts: modules/accounts.md
-      - Payments: modules/payments.md
-      - Lending: modules/lending.md
-      - Risk: modules/risk.md
-      - Shared services: modules/shared.md
-  - Insurance:
-      - Overview: insurance/index.md
-      - Policy lifecycle: insurance/policy-lifecycle.md
-      - Underwriting: insurance/underwriting.md
-      - Claims: insurance/claims.md
-      - Financial flows: insurance/financial-flows.md
-      - Delegated authority: insurance/delegated-authority.md
-      - Reinsurance: insurance/reinsurance.md
-      - Reserving: insurance/reserving.md
-  - Reference:
-      - Overview: reference/index.md
-      - OpenAPI index: reference/openapi.md
-      - Event contracts: reference/events.md
-  - Integrate:
-      - Adapter pattern: integrate/adapters.md
-      - PSP library: integrate/library-psps.md
-      - Payment rails: integrate/library-rails.md
-  - Versioning:
-      - BOM and pins: versioning/bom.md
-      - Publish with mike: versioning/mike.md
-  - Contribute: contribute/index.md
+  - Overview: index.md
+  - Jafly is the foundation: jafly.md
+  - Quickstart: quickstart.md
+  - Architecture:
+      - layers/index.md
+      - Jafly: jafly.md
+      - Experience: layers/experience.md
+      - Domain: layers/domain.md
+      - Core: layers/core.md
+      - Libraries: layers/libraries.md
+  - Journeys:
+      - journeys/index.md
+      - Onboarding: journeys/onboarding.md
+      - Customer: journeys/customer.md
+      - Accounts and cards: journeys/accounts-cards.md
+      - Lending: journeys/lending.md
+      - Insurance: journeys/insurance.md
+  - Families:
+      - catalog/index.md
+      - Customer and party: catalog/customer.md
+      - Contract: catalog/contract.md
+      - Product: catalog/product.md
+      - Banking: catalog/banking.md
+      - Lending: catalog/lending.md
+      - Insurance: catalog/insurance.md
+      - Data and external systems: catalog/data.md
+      - Security and access: catalog/security.md
+      - Decision: catalog/decision.md
+      - Onboarding and other journeys: catalog/journeys.md
+      - Shared platform: catalog/shared.md
+  - Models:
+      - models/index.md
+      - Party: models/party.md
+      - Contract: models/contract.md
+      - Product: models/product.md
+  - Replace an adapter: adapters/index.md
+  - Release:
+      - Train: release/train.md
+      - Edit these docs: release/edit.md
