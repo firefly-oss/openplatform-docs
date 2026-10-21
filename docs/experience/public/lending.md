@@ -23,7 +23,7 @@ Asking for the money to be paid out, or paying one installment, does try and the
 
 If the loan is syndicated, she can read the facility. The response is the facility id, the loan id, the currency, the commitment amount, and the status. The participant register is not on that response. There is no `exp-syndicated-loans`. This journey only shows her the facility.
 
-She can also read the amortization calendar at `GET /api/v1/experience/lending/loans/{id}/calendar`. Each row is one installment: its due date, principal, interest, and remaining balance. The read goes through the loan-servicing domain SDK. Restructuring and end of day are not on this call. The participant register is not on this response either. The OpenAPI file for this journey does not list the path, so the API panel has no operation for it.
+She can also read the amortization calendar at `GET /api/v1/experience/lending/loans/{id}/calendar`. Each row is one installment: its due date, principal, interest, and remaining balance. The read goes through the loan-servicing domain SDK. Restructuring and end of day are not on this call. The participant register is not on this response either. The OpenAPI spec includes this path as `readAmortizationCalendar`.
 
 ## The schedule, the cash, and the day
 
@@ -74,7 +74,7 @@ The service listens on port 8102.
 // A product that is not listed uses loan origination.
 
 // GET /api/v1/experience/lending/loans/{id}/calendar
-// Not in the OpenAPI file. Each row:
+// operationId: readAmortizationCalendar. The spec includes this path. Each row:
 {
   // installmentNumber
   // dueDate
