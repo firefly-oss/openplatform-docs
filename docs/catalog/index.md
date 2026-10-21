@@ -1,5 +1,10 @@
 # Families
 
+<div class="ff-banner" markdown="0">
+<img class="ff-banner__light" src="../assets/brand/banner-light.svg" alt="Firefly OpenPlatform">
+<img class="ff-banner__dark" src="../assets/brand/banner-dark.svg" alt="">
+</div>
+
 <p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
 
 

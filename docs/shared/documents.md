@@ -15,6 +15,16 @@ Issuing the contract starts with the catalog. The request asks for template `con
 
 The stored result is HTML, media type `text/html;charset=UTF-8`. A later read returns the document id, the template code, that media type, and the HTML. The sample file for the contract is the rendered contract in the document module. This page does not paste it.
 
+Three journeys ask the document domain SDK to issue a page. They do not render it themselves. Finishing onboarding issues `welcome` for Ada's new party. Creating the Horizon Personal Loan application issues `contract` for that application. Binding a policy issues `letter` for that policy. The SDK is the contracts domain client `KitDocumentsApi`.
+
+## What she sees
+
+On the contract she sees a cover, then contents, then a sheet for the parties, the product Horizon Personal Loan, the amount, the five-year term, and the two lines. The first line is the principal and it is primary. The second line is credit protection and it is not. Her name is Ada Lovelace, her role is account holder, and the agreement id is `10000000-0000-4000-8000-000000000021`. The status on the sample is Issued. The dates run from November 1, 2026 through November 1, 2031. An amendment also names predecessor `10000000-0000-4000-8000-000000000020` and the sentence that the term now ends on November 1, 2031. A letter and a welcome are shorter and still name her and that agreement.
+
+## Where the page is stored
+
+The agreement itself stays in the contract core. This call stores HTML. The sandbox store is the default and does not open a network connection. `firefly.documents.storage=core` writes that HTML into the document core. The kit stylesheet is inside the file. It is not a separate download.
+
 ## What can go wrong
 
 A template the catalog does not have, or a row that is not active, or a row whose language, product family, regulated flag, or template code does not match the request, fails before anything is stored. The caller is told that nothing was stored.

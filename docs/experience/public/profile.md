@@ -12,6 +12,14 @@ A change of personal data reads the current row, writes the new one, and keeps t
 <img src="../../../assets/journeys/profile.svg" alt="Sequence: Ada opens her profile. Access must allow the read. The person record and then her agreements are returned. A denied caller gets nothing. A failed change writes the previous row back.">
 </div>
 
+## What she sees
+
+A profile read shows her name and the contact facts the person record holds. An agreements read, when the contract service has agreement `10000000-0000-4000-8000-000000000021` for her, shows that contract id, the contract number, the status, when it was signed, and the product id, name, and code. The product on the sample is the Horizon Personal Loan. The profile does not show the printed pages and does not show the amount. Those are on the document.
+
+## Where the records go
+
+The person row is in the customer core. Each agreement row is in the contract core. The product name is read from the product catalog. The profile does not keep a copy of those tables. A corrected name is written back to the person row. Money is not posted here.
+
 ## What a refusal does
 
 When access is not allowed, the call returns no profile and no agreements. An update is not attempted.

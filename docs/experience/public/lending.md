@@ -9,7 +9,11 @@ The journey checks access as `sample-journey` before anything else. If she is no
 
 It then reads the parameter `journey.lending.min-credit-score` and sends that number with the decision, under the name `minCreditScore`. In the sandbox that parameter is 680. She does not send a credit score. The decision service fills 640 from its own sandbox report when the score is omitted. 640 is below 680, so the sample rules refer her. A referral does not stop the application. High risk is a decline, and a decline does not open a record.
 
-The catalog then chooses the domain from the product. Product `...202` is a personal loan, so the personal-loan domain opens the agreement. A mortgage product opens a mortgage. An asset-finance product opens asset finance, as a lease or as a rental. A supply-chain product opens that agreement. A product the catalog does not list uses the default route, which in the sandbox is loan origination.
+The catalog then chooses the domain from the product. Product `...202` is a personal loan, so the personal-loan domain opens the agreement. A mortgage product opens a mortgage. An asset-finance product opens asset finance, as a lease or as a rental. A supply-chain product opens that agreement. A product the catalog does not list uses the default route, which in the sandbox is loan origination. Creating that loan application also issues the contract document through the document domain SDK. The application row, when the route is origination, is stored by the origination domain in the origination core. The personal-loan agreement is stored by the personal-loan domain. The servicing case, once the loan exists, is stored by the loan-servicing domain. Cash, when a disbursement or an installment confirms, is a ledger posting. The sandbox payments adapter does not post that ledger.
+
+## What she sees on the calendar
+
+`GET /api/v1/experience/lending/loans/{id}/calendar` returns one row per installment. She sees the installment number, the due date, the principal, the interest, and the remaining balance. She does not see a participant register. Restructuring and the end-of-day accrual are not this read. The OpenAPI spec includes the path as `readAmortizationCalendar`.
 
 <div class="ff-journey" markdown="0">
 <img src="../../../assets/journeys/lending.svg" alt="Sequence: Ada applies for the Horizon Personal Loan. Access is checked. The decision is sent with the threshold 680. A decline stops. Product 202 opens a personal loan. Later she changes the rate, closes, or takes a holiday on the loan. Disbursement and an installment try, then confirm, through the payments port. The sandbox does not post the ledger.">
@@ -22,8 +26,6 @@ She can change the interest rate. She sends the old rate, the new rate, the date
 Asking for the money to be paid out, or paying one installment, does try and then confirm, through the payments port, in the same call. The sandbox adapter is the default. It keeps the try until confirm, and it does not post the ledger and does not run a challenge for this internal movement. Set `firefly.experience.payments.adapter` to `hub` and the same try and confirm go through the domain payments SDK. That live adapter does not invent a code, and it does not accept the word `sandbox` as one.
 
 If the loan is syndicated, she can read the facility. The response is the facility id, the loan id, the currency, the commitment amount, and the status. The participant register is not on that response. There is no `exp-syndicated-loans`. This journey only shows her the facility.
-
-She can also read the amortization calendar at `GET /api/v1/experience/lending/loans/{id}/calendar`. Each row is one installment: its due date, principal, interest, and remaining balance. The read goes through the loan-servicing domain SDK. Restructuring and end of day are not on this call. The participant register is not on this response either. The OpenAPI spec includes this path as `readAmortizationCalendar`.
 
 ## The schedule, the cash, and the day
 

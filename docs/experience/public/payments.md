@@ -33,6 +33,14 @@ A third party can credit her account `10000000-0000-4000-8000-000000000012`. A d
 
 There is no separate international inbound scheme. An inbound domestic credit is the arrival the router registers.
 
+## What she sees
+
+On try she sees HTTP 201, a payment id, and phase `TRYING`. An outbound transfer or a card payout also shows a challenge id and a numeric code. An internal transfer, a space move, and an inbound credit do not show a code. On confirm with that code she sees phase `CONFIRMED` and the ledger posting. On cancel of a reserved payment she sees phase `CANCELLED` and no posting. A second confirm of the same payment does not add a second posting. The word `sandbox` does not confirm.
+
+## Where the money goes
+
+The book is `core-banking-ledger`. Try only holds. Confirm posts. An outbound credit debits her account `10000000-0000-4000-8000-000000000011` and credits the outbound clearing account, then the rail is asked. An inbound credit debits the inbound clearing account and credits her account `10000000-0000-4000-8000-000000000012`. An internal transfer debits one account and credits the other. A space move debits one space and credits another space of the same account. Insurance does not use this posting.
+
 ## What a refusal does
 
 `denied-actor`, or any caller the sandbox does not entitle, is HTTP 403. The ledger is not touched.

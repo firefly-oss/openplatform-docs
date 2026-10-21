@@ -20,6 +20,16 @@ If a later step of the regulated path fails after she has been registered, the j
 
 A family the catalog does not know does not open a contract and does not start verification.
 
+## What she sees
+
+On the insurance start she sees an onboarding id that is a new contract id, phase `NON_REGULATED`, and next step `INSURANCE`. She does not see a person id created by this call, and she does not see an identity case. Agreement `10000000-0000-4000-8000-000000000021` is not that new id.
+
+On the deposit start she sees a person id, a phase that is waiting for personal data, and a welcome notification. She then sends personal data, economic data, and identity documents. After verification and completion she sees the journey move forward, and finishing onboarding issues the welcome document through the document domain SDK. The same email sent again does not create a second person.
+
+## Where the records go
+
+A regulated registration writes the person in the customer core and the identity case in the verification core. A non-regulated start writes a contract in the contract core and stops. Neither path posts money. The Horizon Personal Loan document is a later reading copy, not this call.
+
 ## What a refusal does
 
 When access is not allowed, the workflow does not start and no contract is opened.
