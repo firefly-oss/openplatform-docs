@@ -23,6 +23,16 @@ Asking for the money to be paid out, or paying one installment, does try and the
 
 If the loan is syndicated, she can read the facility. The response is the facility id, the loan id, the currency, the commitment amount, and the status. The participant register is not on that response. There is no `exp-syndicated-loans`. This journey only shows her the facility.
 
+## The schedule, the cash, and the day
+
+Once the loan exists, the servicing record keeps a schedule. Each installment stores its due date, the principal due, the interest due, and the balance that remains after that installment. The rate on that schedule is not one number for every loan. It is read from the product's pricing: the interest bracket that matches the product and the amount. A personal loan and a lease do not share a bracket. The sandbox price is the default. It reads that configuration and does not open a network connection. A live price is selected with `firefly.lending.price.adapter=engine`.
+
+A repayment marks the earliest unpaid installment paid, with the payment date and the amount, and posts the cash on the ledger. The sandbox ledger is the default. `firefly.lending.ledger.adapter=sdk` posts through the ledger instead. If that posting fails, the installment is put back and the repayment record is removed. If the balance update fails after the cash has posted, that posting is reversed.
+
+A restructure does not throw the old schedule away. The unpaid rows that are still current are marked superseded and stay on the same loan. New rows are stored on that same loan, priced again from the product. Paid rows are left as they are. If the restructure has to be undone, the previous rows can be made current again and the replacement rows removed.
+
+At the end of a business day, interest is accrued once for each open loan that does not already have an interest accrual on that date. Those amounts are posted as one general-ledger journal for the date and the currency. A second run for the same date finds the journal that is already there and does not post another. The sandbox general ledger is the default. `firefly.lending.accounting.adapter` left unset keeps that sandbox. The live adapter asks accounting to store the journal.
+
 ## What a refusal does
 
 When access is not allowed, the application is not created, the rate is not changed, the loan is not closed, and no payment is tried.
@@ -71,4 +81,15 @@ The service listens on port 8102.
 }
 ```
 
-The threshold parameter is `journey.lending.min-credit-score`. The sandbox value is 680. The product routes are `PERSONAL_LOAN`, `MORTGAGE`, `ASSET_FINANCE`, `SUPPLY_CHAIN_FINANCE`, and `LOAN_ORIGINATION`. The payments property is `firefly.experience.payments.adapter`, default `sandbox`, live value `hub`. The calls are also on the [lending API](../../api/lending.md).
+The threshold parameter is `journey.lending.min-credit-score`. The sandbox value is 680. The product routes are `PERSONAL_LOAN`, `MORTGAGE`, `ASSET_FINANCE`, `SUPPLY_CHAIN_FINANCE`, and `LOAN_ORIGINATION`. The payments property is `firefly.experience.payments.adapter`, default `sandbox`, live value `hub`.
+
+The schedule, repayment, restructure, and end of day are on the loan servicing service, not on the experience call Ada uses to apply.
+
+| What the servicing record does | Call |
+| --- | --- |
+| Build the schedule | `POST /api/v1/loans/{loanId}/schedule` |
+| Take a repayment | `POST /api/v1/loans/{loanId}/repayments` |
+| Replace the remaining schedule | `POST /api/v1/loans/{loanId}/restructure` |
+| Accrue the day | `POST /api/v1/loans/end-of-day` |
+
+Each stored installment has `dueDate`, `principalDue`, `interestDue`, and `remainingBalance`. The calls Ada makes from the experience are also on the [lending API](../../api/lending.md).
