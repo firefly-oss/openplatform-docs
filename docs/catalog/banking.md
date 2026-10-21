@@ -3,7 +3,7 @@
 <p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
 
 
-Banking covers accounts, cards, the ledger, payments, and open-banking access. Experience services exist for accounts and for cards. Ledger, payments, and open-banking access are cores without a domain orchestrator.
+Banking covers accounts, cards, the ledger, and open-banking access. Payments are a separate journey. They are not a step inside the account journey. The ledger posts money the institution holds. Ledger and open-banking access have no domain orchestrator.
 
 Accounts, cards, the ledger, and payments do not hard-delete an open record. Ledger party columns are `initiating_party_identifier` and `card_merchant_tax_id`, not NIF or CIF.
 

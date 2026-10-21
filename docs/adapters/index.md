@@ -2,41 +2,40 @@
 
 <p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
 
+Each external edge is a port. The repository ships a sandbox adapter. A property switches the live adapter. One adapter per port per deployment. The choice lives in configuration. The saga does not import the vendor. Secrets stay out of the repository.
 
-Replace data and adapters. Do not fork the rules engine, and do not edit a core's tables from another service.
+Jafly, from Firefly Framework, is the identity and the rules engine we ship. Sandbox adapters are the default. A future BPM replaces the domain-saga adapter behind the journey port. The journey stays.
 
-## Ruleset
+## Ports an organization replaces
 
-`JaflyRulesEngineAdapter` reads `rulesets/openplatform-journey.yaml` from the classpath of `domain-lending-credit-scoring`. Outcomes are `APPROVE`, `REFER`, and `DECLINE`, with reason codes. Thresholds live in that file (`MIN_CREDIT_SCORE`), not in Java.
+| Port | Sandbox class | Property | Live adapter calls |
+| --- | --- | --- | --- |
+| `IdentityPort` | `SandboxIdentityAdapter` | `firefly.security-center.identity.adapter` unset or `sandbox`. Set `keycloak`, `cognito`, or `internal-db`. | The matching Jafly `IdpAdapter` through `JaflyIdentityAdapter`. |
+| `AccessPort` | `SandboxPolicyAccessAdapter` | `firefly.security-center.access.adapter` unset or `sandbox`. Set `session-grants`. | Role scopes on the party session, through `SessionGrantAccessAdapter`. |
+| `CreditReportPort` | `SandboxCreditReportAdapter` | `firefly.decision.credit-report` unset or `sandbox`. Any other value selects the replacement bean. | The `CreditReportPort` the installer registers. The sandbox does not call a bureau. |
+| `RulesEnginePort` | `JaflyRulesEngineAdapter` | `firefly.decision.ruleset` defaults to `openplatform-journey`. `firefly.decision.rulesets-directory` points at a directory of `{name}.yaml` files. | Jafly `ASTRulesEvaluationEngine`. The installer replaces the ruleset file, not the engine. |
+| `BusinessParameterPort` | `SandboxBusinessParameterAdapter` | `firefly.configuration.parameters.adapter=core` | `ConfigMgmtBusinessParameterAdapter` calls `core-common-config-mgmt`. |
+| `ReferenceCatalogPort` | `SandboxReferenceCatalogAdapter` | `firefly.reference-data.catalog.adapter=core` | `MastersReferenceCatalogAdapter` calls `core-common-reference-master-data`. |
+| `CardJourneyParameterPort` | `SandboxCardJourneyParameterAdapter` | `firefly.cards.parameters.adapter=configuration` | `ConfigurationCardJourneyParameterAdapter` reads `domain-core-configuration`. |
 
-An installer either replaces that file or sets `firefly.decision.rulesets-directory` to a directory that contains `{ruleset}.yaml`. The ruleset name is `firefly.decision.ruleset`, default `openplatform-journey`.
+`library-rails` and `library-psps` are the external payment edges. The ledger and the account core are ours. International credit transfer uses `library-rails` (SWIFT). A card uses `library-psps`.
 
-Replace `JaflyRulesEngineAdapter` only when a deployment must call stored rules through Jafly `RulesEvaluationService` instead of a file. The class calls `org.fireflyframework.rules.core.dsl.evaluation.ASTRulesEvaluationEngine`. The Maven artifact is `org.fireflyframework:fireflyframework-rule-engine-core`, versioned by `org.fireflyframework:fireflyframework-bom` `26.10.20`.
+## Sandbox defaults
 
-## Credit report
+When the property is unset, the classes above are the ones that run.
 
-`CreditReportPort` is implemented by `SandboxCreditReportAdapter` when `firefly.decision.credit-report` is `sandbox` or unset. The class returns one fixed report and does not open a network connection.
+People in `sandbox-access-policy.json`, not accounts:
 
-Set `firefly.decision.credit-report` to another value only after you register your own `CreditReportPort`. `domain-data-credit-bureaus` does not publish an HTTP API this decision service calls. The sandbox value does not require that process.
+| Label | Actor id |
+| --- | --- |
+| `sample-journey` | `11111111-1111-4111-8111-111111111111` |
+| `denied-actor` | `22222222-2222-4222-8222-222222222222` |
+| `sample-employee` | `33333333-3333-4333-8333-333333333333` |
 
-## Decision HTTP
+`SandboxCreditReportAdapter` returns score 640 and `highRisk` false.
 
-`DecisionController` adapts HTTP onto `DecisionPort` (`io.fireflysoftware.domain.lending.creditscoring.core.decision.DecisionPort`).
+`SandboxBusinessParameterAdapter` includes `journey.lending.min-credit-score` = 680.
 
-`POST /api/v1/decisions`
+`SandboxReferenceCatalogAdapter` publishes `CURRENCY`, `COUNTRY`, `TRANSFER_TYPE`, `RAIL_SCHEME`, `ACCOUNT_SPACE_TYPE`, and `PRODUCT_FAMILY`. In `PRODUCT_FAMILY`, deposits, payments, lending, and cards are regulated banking. Insurance is non-regulated.
 
-The body is `partyId`, optional `productId`, `journeyStep`, and `attributes`. Experience modules on main do not contain their own `DecisionPort`. They are expected to call this endpoint, or the same fields, when that wiring is published.
-
-## Identity provider
-
-The published security center does not ship a sandbox identity class. On main, both `firefly.idp.provider` and `firefly.security-center.idp.provider` are `cognito`. Keycloak settings sit under `firefly.security-center.idp.keycloak`.
-
-The Keycloak client is `org.fireflyframework:fireflyframework-security-idp-keycloak`, BOM `26.10.20`. `domain-core-security-center` depends on it. A journey does not call Keycloak. Changing the provider property does not change `POST /api/v1/decisions`.
-
-## Access policy
-
-No access-policy file is on the published main of `domain-core-security-center`. Do not configure a sandbox access adapter until that code is on main. When `AccessPort` is published, it belongs in front of the decision call. A denial must not call the domain.
-
-## Payments
-
-`library-psps` is the provider port. `library-rails` is the rail port. Callers depend on the port. The deployment supplies the adapter. Payment rows, where they exist, are `core-banking-payments`, which has no domain orchestrator.
+`SandboxCardJourneyParameterAdapter` returns currency `EUR` and a tenure of 4 years, the same values as `journey.cards.default-currency` and `journey.cards.tenure-years`.

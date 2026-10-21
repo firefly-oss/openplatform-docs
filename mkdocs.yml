@@ -4,7 +4,7 @@
 # site_name is the document title. The navbar lockup stays logo | OpenPlatform
 # (see overrides/partials/header.html). Do not shorten this to OpenPlatform.
 site_name: Firefly OpenPlatform Documentation
-site_description: Architecture, journeys, and the service catalog for Firefly OpenPlatform train 26.10.3.
+site_description: Open-source corporate systems for banking and insurance. Firefly OpenPlatform, version 26.10.3.
 site_author: Firefly Software Foundation
 site_url: https://docs.fireflysoftware.io/
 repo_url: https://github.com/fireflysoftwaresolutions/openplatform-docs
@@ -22,6 +22,8 @@ theme:
   logo: assets/brand/firefly-logo-compact-reversed.svg
   favicon: assets/brand/favicon.svg
   custom_dir: theme/overrides
+  icon:
+    repo: fontawesome/brands/github
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -39,7 +41,6 @@ theme:
         name: Switch to light mode
   features:
     - navigation.sections
-    - navigation.expand
     - navigation.indexes
     - navigation.top
     - navigation.footer
@@ -103,59 +104,73 @@ extra:
     slogan: Attitude makes the difference.
 
 nav:
-  - Overview: index.md
-  - Jafly is the foundation: jafly.md
-  - Quickstart: quickstart.md
+  - Presentation: index.md
+  - Start here: quickstart.md
+  - Jafly: jafly.md
   - Architecture:
       - layers/index.md
       - Domain: layers/domain.md
       - Core: layers/core.md
       - Libraries: layers/libraries.md
-  - Customer:
-      - Bounded context: domains/customer/context.md
-      - Journeys: domains/customer/journeys.md
-      - Domain: domains/customer/domain.md
-      - Core: domains/customer/core.md
-  - Contract:
-      - Bounded context: domains/contract/context.md
-      - Journeys: domains/contract/journeys.md
-      - Domain: domains/contract/domain.md
-      - Core: domains/contract/core.md
-  - Product:
-      - Bounded context: domains/product/context.md
-      - Journeys: domains/product/journeys.md
-      - Domain: domains/product/domain.md
-      - Core: domains/product/core.md
-  - Experience:
-      - experience/index.md
-      - Public:
-          - Onboarding: experience/public/onboarding.md
-          - Customer profile: experience/public/profile.md
-          - Open and close an account: experience/public/accounts.md
-          - Cards: experience/public/cards.md
-          - Lending: experience/public/lending.md
+      - Replace an adapter: adapters/index.md
+      - Version: release/train.md
+  - Banking:
+      - Journeys: experience/index.md
+      - Open and close an account: experience/public/accounts.md
+      - Cards: experience/public/cards.md
+      - Lending: experience/public/lending.md
       - Administration:
           - Finance terminal: experience/administration/finance.md
+      - Accounts and cards: catalog/banking.md
+      - Lending catalog: catalog/lending.md
+  - Insurance:
+      - Journey: experience/public/insurance.md
+      - Administration:
           - Insurance terminal: experience/administration/insurance.md
-  - Families:
+      - Insurance catalog: catalog/insurance.md
+  - Shared:
+      - Onboarding: experience/public/onboarding.md
+      - Profile: experience/public/profile.md
+      - Customer:
+          - Bounded context: domains/customer/context.md
+          - Journeys: domains/customer/journeys.md
+          - Domain: domains/customer/domain.md
+          - Core: domains/customer/core.md
+      - Contract:
+          - Bounded context: domains/contract/context.md
+          - Journeys: domains/contract/journeys.md
+          - Domain: domains/contract/domain.md
+          - Core: domains/contract/core.md
+      - Product:
+          - Bounded context: domains/product/context.md
+          - Journeys: domains/product/journeys.md
+          - Domain: domains/product/domain.md
+          - Core: domains/product/core.md
+      - Models:
+          - models/index.md
+          - Party: models/party.md
+          - Contract: models/contract.md
+          - Product: models/product.md
+      - Security and access: catalog/security.md
+      - Decision: catalog/decision.md
+      - Data and external systems: catalog/data.md
+      - Shared platform: catalog/shared.md
+  - API:
+      - api/index.md
+      - Onboarding: api/onboarding.md
+      - Profile: api/profile.md
+      - Accounts: api/accounts.md
+      - Cards: api/cards.md
+      - Lending: api/lending.md
+      - Insurance: api/insurance.md
+      - Distributor: api/distributor.md
+      - Notifications: api/notifications.md
+      - Security: api/security.md
+      - Channel: api/channel.md
+  - Catalog:
       - catalog/index.md
       - Customer and party: catalog/customer.md
       - Contract: catalog/contract.md
       - Product: catalog/product.md
-      - Banking: catalog/banking.md
-      - Lending: catalog/lending.md
-      - Insurance: catalog/insurance.md
-      - Data and external systems: catalog/data.md
-      - Security and access: catalog/security.md
-      - Decision: catalog/decision.md
       - Onboarding and other journeys: catalog/journeys.md
-      - Shared platform: catalog/shared.md
-  - Models:
-      - models/index.md
-      - Party: models/party.md
-      - Contract: models/contract.md
-      - Product: models/product.md
-  - Replace an adapter: adapters/index.md
-  - Release:
-      - Train: release/train.md
       - Edit these docs: release/edit.md

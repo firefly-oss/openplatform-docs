@@ -13,7 +13,7 @@ The signed-in person reads who they are and changes a fact: a name, a phone, an 
 3. `PartyProfilePort` reads the party through `domain-customer-people` and `core-common-customer-mgmt`.
 4. A change of personal data calls the update saga. Compensation is `restoreCustomer`, which writes the previous row back.
 
-Reading contracts is the same access check, then `domain-common-contracts`. The profile service does not open the contract tables itself.
+Reading contracts is the same access check, then `domain-common-contracts`. Each contract comes back with `contractId`, contract number, status, `productId`, `productName`, and `productCode`. The profile service does not open the contract tables itself.
 
 ## Domain sagas and cores
 

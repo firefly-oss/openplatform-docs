@@ -13,8 +13,8 @@ The picture follows one loan through origination and then a servicing read. The 
 1. The person calls `POST /api/v1/experience/lending/applications` on `exp-lending`.
 2. `AccessPort` must allow `CREATE` on `APPLICATION`. A denial does not continue.
 3. `CreditReportPort` returns the sandbox report. It does not call a bureau.
-4. `DecisionPort` asks for `LENDING_APPLICATION`. A `DECLINE` does not call origination.
-5. `LoanApplicationPort` calls `domain-lending-loan-origination`. `RegisterApplicationSaga` creates the application on `core-lending-loan-origination`. Compensation removes that application.
+4. The journey reads `journey.lending.min-credit-score` from `BusinessParameterPort` and sends that value with the decision. `DecisionPort` asks for `LENDING_APPLICATION`. A `DECLINE` does not call a domain.
+5. The catalog selects the domain from the product kind. `LOAN_ORIGINATION` calls `LoanApplicationPort` on `domain-lending-loan-origination`. `PERSONAL_LOAN`, `MORTGAGE`, `ASSET_FINANCE`, and `SUPPLY_CHAIN_FINANCE` call `CreditProductPort`. `RegisterApplicationSaga` creates a loan application on `core-lending-loan-origination`. Compensation removes that application.
 6. After the loan exists, the same journey reads it at `GET /api/v1/experience/lending/loans/{id}`. That call goes through `LoanServicingPort` to `domain-lending-loan-servicing` and `core-lending-loan-servicing`. A repayment on that domain is `AllocateRepaymentSaga`: `allocateRepayment`, compensation `restoreAllocation`.
 
 A lease uses `POST /api/v1/experience/lending/asset-finance` and `domain-lending-asset-finance`. Personal-loan terms use `domain-lending-personal-loans`.

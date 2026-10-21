@@ -1,9 +1,8 @@
-# Train
+# Version
 
 <p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
 
-
-The published OpenPlatform train is **26.10.3**.
+The published OpenPlatform version is **26.10.3**.
 
 | Coordinate | Version | Role |
 | --- | --- | --- |
@@ -14,12 +13,8 @@ The published OpenPlatform train is **26.10.3**.
 | Java | 25 | Language level on the framework parent |
 | Spring Boot | 4.1.1 | Runtime on the framework parent |
 
-The rules engine, the identity adapters, and the parent import are explained in [Jafly is the foundation](../jafly.md). OpenPlatform does not fork that engine.
+The rules engine and the identity adapters are Jafly, from Firefly Framework. OpenPlatform does not fork them. See [Jafly](../jafly.md).
 
 Service host: `https://openplatform.fireflysoftware.io/{service}`.
 
-This documentation site is [docs.fireflysoftware.io](https://docs.fireflysoftware.io/). The product site is [fireflysoftware.io](https://fireflysoftware.io/). Publisher: Firefly Software Foundation. [dev@fireflysoftware.io](mailto:dev@fireflysoftware.io).
-
-Source: `firefly-parent` and `firefly-bom` at 26.10.3, and `org.fireflyframework:fireflyframework-parent` 26.10.20 for Java 25 and Spring Boot 4.1.1.
-
-The documentation site is one snapshot on the `gh-pages` branch. The publish workflow builds that snapshot. It does not publish a second train.
+This documentation site is [docs.fireflysoftware.io](https://docs.fireflysoftware.io/). The product site is [fireflysoftware.io](https://fireflysoftware.io/). The Firefly Software Foundation stewards the project. Firefly Software Solutions Inc. stands behind it. They stay two bodies. [dev@fireflysoftware.io](mailto:dev@fireflysoftware.io).

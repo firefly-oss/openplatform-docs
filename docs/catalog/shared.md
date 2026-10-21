@@ -2,7 +2,7 @@
 
 These repositories are in the release list and do not sit inside one business family. They include the parent, the bill of materials, the libraries, reference data, documents, notifications, distributors, organization structure, configuration, the general ledger, and the model hub.
 
-Libraries are shared code. They are not a fourth business layer. The layer page is [Libraries](../layers/libraries.md). The train pin is [Train](../release/train.md).
+Libraries are shared code. They are not a fourth business layer. The layer page is [Libraries](../layers/libraries.md). The version pin is [Version](../release/train.md).
 
 
 
@@ -201,7 +201,7 @@ Port library for payment rails. Domain and experience code call the port. A depl
 
 ### firefly-bom
 
-Bill of materials for train 26.10.3. Import it to pin every published `io.fireflysoftware` library, core, domain, experience service, and application to that train.
+Bill of materials for version 26.10.3. Import it to pin every published `io.fireflysoftware` library, core, domain, experience service, and application to that version.
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/firefly-bom">github.com/fireflysoftwaresolutions/firefly-bom</a></p>
 

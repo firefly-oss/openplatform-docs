@@ -12,8 +12,8 @@ A person, or a company, becomes a party. The person gives a name and an identity
 2. `IdentityPort` resolves `sample-journey`. `AccessPort` must allow `CREATE` on `PARTY`. A denial does not start the workflow.
 3. `CreditReportPort` returns the sandbox report. It does not call a bureau.
 4. `DecisionPort` asks for `ONBOARDING`. A `DECLINE` does not register the party.
-5. The workflow calls `domain-customer-people`. `RegisterCustomerSaga` runs `registerParty` on `core-common-customer-mgmt`. If a later step fails, compensation calls `removeParty`.
-6. It then opens the case on `domain-customer-kyc-kyb`. A person uses KYC. A company uses KYB. `StartKybSaga` creates the case and compensation calls `cancelCase`.
+5. `ReferenceCatalogPort` reads `PRODUCT_FAMILY`. `REGULATED` keeps the banking path: KYC for a person, KYB for a company. `NON_REGULATED` opens the contract and leaves quote, bind, and claim on the [insurance journey](insurance.md).
+6. On the regulated path the workflow calls `domain-customer-people`. `RegisterCustomerSaga` runs `registerParty` on `core-common-customer-mgmt`. If a later step fails, compensation calls `removeParty`. It then opens the case on `domain-customer-kyc-kyb`. `StartKybSaga` creates the case and compensation calls `cancelCase`.
 
 After that, the person journey accepts personal data, economic data, identity documents, a KYC signal, and completion. The company journey accepts company data, beneficial owners, documents, authorized signers, a KYB signal, and completion.
 

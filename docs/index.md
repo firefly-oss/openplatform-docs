@@ -1,33 +1,23 @@
-# Overview
+# Presentation
 
-<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+<img class="ff-mark ff-mark--light" src="assets/brand/firefly-logo-primary-colour.svg" alt="Firefly" width="160" height="40">
+<img class="ff-mark ff-mark--dark" src="assets/brand/firefly-logo-primary-reversed.svg" alt="" width="160" height="40">
 
+OpenPlatform is the open-source project of the Firefly Software Foundation and Firefly Software Solutions Inc. They stay two bodies. The Foundation stewards the project. The company stands behind it. Contact remains the Firefly Software Foundation, [dev@fireflysoftware.io](mailto:dev@fireflysoftware.io).
 
-<p class="ff-lead">OpenPlatform is the business software behind customer, contract, product, banking, lending, insurance, and distribution. Train 26.10.3 is the published set.</p>
+It is a set of corporate systems for enterprise industries. Banking and insurance come first. Another industry uses the same shape later: a journey, a domain port, a core.
 
-It is for engineers who change a bounded context or run a journey. Start with the [architecture](layers/index.md). A business domain is not a Maven module. Experience, domain, and core are layers inside the domain. Then open the domain you are working in. Each one is read from the bounded context down to the core.
+A new institution can start on these cores. An existing institution can modernize and digitize and still control what it has. The institution runs the software. The data stays in the cores. A BPM, a rail, a PSP, or an IAM replaces an adapter.
 
-[Jafly](jafly.md) is the framework under every module (`org.fireflyframework`, BOM 26.10.20). [Quickstart](quickstart.md) is the decision call you can make without a bureau. [Replace an adapter](adapters/index.md) is how an installer swaps the ruleset, the credit report, and the identity provider.
+A journey is what a person or an employee does. It is not a copy of a domain. Onboarding takes a regulated banking product or a non-regulated product such as insurance. Profile reads the person and the contracts and products they hold. Accounts, cards, and lending stay separate: lending is where a person applies and, once the loan exists, where servicing continues. Payments are their own journey: an internal transfer or a movement between account spaces, a domestic or international transfer by rail, and a card movement by PSP. Insurance is its own journey: quote, bind, service the policy, and claim. Staff terminals administer and impersonate. Impersonation stores the employee id and the customer id.
 
-Attitude makes the difference.
+We are the bank. The ledger posts every movement of money we hold. An internal transfer or a movement between account spaces stays on the ledger. Domestic and international transfers use `library-rails`, and international is SWIFT. A card uses `library-psps`. Insurance does not move money and does not certify IFRS 17 or Solvency II.
 
-## Business domains
+Each external edge is a port. The repository ships a sandbox adapter, and a property switches the live adapter. Jafly, from [Firefly Framework](https://fireflyframework.org), is the identity and the rules engine we ship. Sandbox adapters are the default. The [adapter page](adapters/index.md) lists the ports.
 
-- [Customer](domains/customer/context.md). Party, person, company, ownership.
-- [Contract](domains/contract/context.md). Agreement, lines, amendment and renewal.
-- [Product](domains/product/context.md). Catalog and pricing.
-- [Banking](catalog/banking.md). Accounts, cards, payments, ledger.
-- [Lending](experience/public/lending.md). One journey. The product kind chooses the saga.
-- [Insurance](catalog/insurance.md). Policies, claims, and the other insurance cores.
-- [Distribution](catalog/shared.md). Brokers, agencies, and collaborators live with the distributor services.
-- [Decision and external data](catalog/decision.md). Approve, refer, or decline. Credit report and company lookup.
-- [Access and identity](catalog/security.md). Sessions, strong customer authentication, users, and the vault.
+## Where to go next
 
-<ul class="ff-pins" markdown="0">
-<li class="ff-pin"><span class="ff-pin__label">OpenPlatform</span><span class="ff-pin__value">26.10.3</span></li>
-<li class="ff-pin"><span class="ff-pin__label">Jafly BOM</span><span class="ff-pin__value">26.10.20</span></li>
-<li class="ff-pin"><span class="ff-pin__label">Java</span><span class="ff-pin__value">25</span></li>
-<li class="ff-pin"><span class="ff-pin__label">Spring Boot</span><span class="ff-pin__value">4.1.1</span></li>
-</ul>
-
-Published by the Firefly Software Foundation. [dev@fireflysoftware.io](mailto:dev@fireflysoftware.io). Organization: [fireflysoftwaresolutions](https://github.com/fireflysoftwaresolutions). Service host: `https://openplatform.fireflysoftware.io/{service}`. Product site: [fireflysoftware.io](https://fireflysoftware.io/).
+- [Start here](quickstart.md)
+- [Jafly](jafly.md)
+- [Banking](catalog/banking.md)
+- [Insurance](experience/public/insurance.md)

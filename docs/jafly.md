@@ -5,7 +5,7 @@
 
 OpenPlatform is implemented on Jafly. Jafly is the framework under `org.fireflyframework`. OpenPlatform does not ship a second copy of that framework, and it does not fork the rules engine or the identity adapters.
 
-`io.fireflysoftware:firefly-parent` at train **26.10.3** extends `org.fireflyframework:fireflyframework-parent` **26.10.20** and imports `org.fireflyframework:fireflyframework-bom` **26.10.20**. Every OpenPlatform module inherits that pin. The published OpenPlatform train stays 26.10.3.
+`io.fireflysoftware:firefly-parent` **26.10.3** extends `org.fireflyframework:fireflyframework-parent` **26.10.20** and imports `org.fireflyframework:fireflyframework-bom` **26.10.20**. Every OpenPlatform module inherits that pin. The published version stays 26.10.3.
 
 Source: `firefly-parent` `pom.xml` on main.
 
@@ -27,7 +27,7 @@ The call, the sandbox credit report, and the properties are on the [quickstart](
 
 Identity is also Jafly's. `domain-core-security-center` declares these modules, and the versions come from the same BOM:
 
-| Artifact | Role in this train |
+| Artifact | Role |
 | --- | --- |
 | `org.fireflyframework:fireflyframework-security-idp` | Shared IDP port |
 | `org.fireflyframework:fireflyframework-security-idp-keycloak` | Keycloak, the reference provider |

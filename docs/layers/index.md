@@ -41,13 +41,13 @@ The domain saga then writes one core through that core's SDK. It does not import
 
 ## A process engine later
 
-An experience step calls a port. The default adapter calls a domain service. A later process engine can implement that same port. This train does not run that engine. No diagram here shows one in the call path.
+An experience step calls a port. The default adapter calls a domain service. A later process engine can implement that same port. This version does not run that engine. No diagram here shows one in the call path.
 
 ## Keycloak is not a journey call
 
-`domain-core-security-center` depends on `org.fireflyframework:fireflyframework-security-idp-keycloak`. That module is a Jafly identity-provider adapter, BOM `26.10.20`. The journey does not construct a Keycloak client. On main, `firefly.idp.provider` and `firefly.security-center.idp.provider` are `cognito`. An installer changes those properties. The decision call does not read them.
+`domain-core-security-center` depends on `org.fireflyframework:fireflyframework-security-idp-keycloak`. That module is a Jafly identity-provider adapter, BOM `26.10.20`. The journey does not construct a Keycloak client. The default is `firefly.security-center.identity.adapter=sandbox`. An installer sets `keycloak`, `cognito`, or `internal-db`. The decision call does not read that property.
 
-Jafly (`org.fireflyframework`, BOM 26.10.20) is the framework under this train. OpenPlatform does not fork it. See [Jafly](../jafly.md).
+Jafly (`org.fireflyframework`, BOM 26.10.20) is the identity and the rules engine, from Firefly Framework. OpenPlatform does not fork it. See [Jafly](../jafly.md).
 
 ## Open a layer
 
