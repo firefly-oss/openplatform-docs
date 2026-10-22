@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img">
+<title>Quickstart</title>
+<rect width="1280" height="640" fill="#10110F"/>
+<rect x="80" y="80" width="72" height="4" fill="#FFB34A"/>
+<g transform="translate(80 88) scale(1.15)"><circle cx="15.55" cy="28" r="4.55" fill="#ffb34a"/><path d="M27.95 12.66L45 28L37.82 28L20.77 12.66Z" fill="#ffb34a" opacity="0.7"/><path d="M45 28L27.95 43.34L20.77 43.34L37.82 28Z" fill="#ffb34a"/></g>
+<text x="168" y="128" fill="#F3F1EB" font-family="Manrope, system-ui, sans-serif" font-size="28" font-weight="700">Firefly</text>
+<text x="278" y="128" fill="#BFB8AB" font-family="Manrope, system-ui, sans-serif" font-size="28" font-weight="400">OpenPlatform</text>
+<text x="80" y="280" fill="#F3F1EB" font-family="Manrope, system-ui, sans-serif" font-size="72" font-weight="700">Quickstart</text>
+<text x="80" y="360" fill="#BFB8AB" font-family="Manrope, system-ui, sans-serif" font-size="24">Firefly Software Foundation</text>
+<text x="80" y="420" fill="#FFB34A" font-family="Manrope, system-ui, sans-serif" font-size="20" font-weight="650">Attitude makes the difference.</text>
+</svg>

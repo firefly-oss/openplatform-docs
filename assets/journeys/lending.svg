@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1008 640" width="1008" height="640" role="img">
+<style>
+text { font-family: Manrope, system-ui, sans-serif; fill: #10110f; }
+.box { fill: #ffffff; stroke: #10110f; stroke-width: 1.5; }
+.life { stroke: #c8c4ba; stroke-width: 1.4; }
+.arr { stroke: #855414; stroke-width: 1.8; fill: none; }
+.dash { stroke: #62645b; stroke-width: 1.8; fill: none; stroke-dasharray: 7 4; }
+.name { font-size: 15px; font-weight: 700; }
+.lab { font-size: 14px; }
+</style>
+<defs>
+<marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#855414"/></marker>
+<marker id="dh" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#62645b"/></marker>
+</defs>
+<rect class="box" x="20" y="16" width="148" height="52" rx="3"/><text class="name" x="94" y="46" text-anchor="middle">Ada</text>
+<rect class="box" x="188" y="16" width="148" height="52" rx="3"/><text class="name" x="262" y="46" text-anchor="middle">Lending</text>
+<rect class="box" x="356" y="16" width="148" height="52" rx="3"/><text class="name" x="430" y="46" text-anchor="middle">Access</text>
+<rect class="box" x="524" y="16" width="148" height="52" rx="3"/><text class="name" x="598" y="38" text-anchor="middle">Decision</text><text class="name" x="598" y="56" text-anchor="middle">threshold</text>
+<rect class="box" x="692" y="16" width="148" height="52" rx="3"/><text class="name" x="766" y="38" text-anchor="middle">Personal</text><text class="name" x="766" y="56" text-anchor="middle">loan</text>
+<rect class="box" x="860" y="16" width="128" height="52" rx="3"/><text class="name" x="924" y="46" text-anchor="middle">Payments</text>
+<line class="life" x1="94" y1="68" x2="94" y2="624"/>
+<line class="life" x1="262" y1="68" x2="262" y2="624"/>
+<line class="life" x1="430" y1="68" x2="430" y2="624"/>
+<line class="life" x1="598" y1="68" x2="598" y2="624"/>
+<line class="life" x1="766" y1="68" x2="766" y2="624"/>
+<line class="life" x1="924" y1="68" x2="924" y2="624"/>
+<text class="lab" x="104" y="100">Apply for the Horizon Personal Loan</text>
+<line class="arr" x1="96" y1="114" x2="250" y2="114" marker-end="url(#ah)"/>
+<text class="lab" x="272" y="148">May the sample customer create an application?</text>
+<line class="arr" x1="264" y1="162" x2="418" y2="162" marker-end="url(#ah)"/>
+<text class="lab" x="440" y="196">If access is refused, stop</text>
+<line class="dash" x1="418" y1="210" x2="274" y2="210" marker-end="url(#dh)"/>
+<text class="lab" x="272" y="244">Send the threshold 680 with the decision</text>
+<line class="arr" x1="264" y1="258" x2="586" y2="258" marker-end="url(#ah)"/>
+<text class="lab" x="272" y="292">A decline stops. A referral continues.</text>
+<line class="arr" x1="586" y1="306" x2="274" y2="306" marker-end="url(#ah)"/>
+<text class="lab" x="272" y="340">Product 202 is a personal loan, so open that domain</text>
+<line class="arr" x1="264" y1="354" x2="754" y2="354" marker-end="url(#ah)"/>
+<text class="lab" x="104" y="388">After the loan exists, change the rate, close it, or take a holiday</text>
+<line class="arr" x1="96" y1="402" x2="250" y2="402" marker-end="url(#ah)"/>
+<text class="lab" x="272" y="436">Those three stay on the loan, not on payments</text>
+<line class="arr" x1="264" y1="450" x2="754" y2="450" marker-end="url(#ah)"/>
+<text class="lab" x="104" y="484">Disburse, or pay an installment</text>
+<line class="arr" x1="96" y1="498" x2="250" y2="498" marker-end="url(#ah)"/>
+<text class="lab" x="272" y="532">Try, then confirm, through the payments port</text>
+<line class="arr" x1="264" y1="546" x2="912" y2="546" marker-end="url(#ah)"/>
+<text class="lab" x="272" y="580">The sandbox is the default and does not post the ledger</text>
+<line class="dash" x1="912" y1="594" x2="274" y2="594" marker-end="url(#dh)"/>
+</svg>

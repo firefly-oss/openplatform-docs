@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 898 610" width="898" height="610" role="img">
+<style>text{font-family:Manrope,system-ui,sans-serif;fill:#10110f}.box{fill:#fff;stroke:#10110f;stroke-width:1.5}.life{stroke:#c8c4ba;stroke-width:1.4}.arr{stroke:#855414;stroke-width:1.8;fill:none}.dash{stroke:#62645b;stroke-width:1.8;fill:none;stroke-dasharray:7 4}.name{font-size:15px;font-weight:700}.lab{font-size:14px}</style>
+<defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#855414"/></marker>
+<marker id="dh" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#62645b"/></marker></defs>
+<rect class="box" x="24" y="16" width="150" height="52" rx="3"/>
+<text class="name" x="99.0" y="47.0" text-anchor="middle">Ada</text>
+<line class="life" x1="99.0" y1="68" x2="99.0" y2="600"/>
+<rect class="box" x="194" y="16" width="150" height="52" rx="3"/>
+<text class="name" x="269.0" y="47.0" text-anchor="middle">Accounts</text>
+<line class="life" x1="269.0" y1="68" x2="269.0" y2="600"/>
+<rect class="box" x="364" y="16" width="150" height="52" rx="3"/>
+<text class="name" x="439.0" y="47.0" text-anchor="middle">Access</text>
+<line class="life" x1="439.0" y1="68" x2="439.0" y2="600"/>
+<rect class="box" x="534" y="16" width="150" height="52" rx="3"/>
+<text class="name" x="609.0" y="47.0" text-anchor="middle">Account record</text>
+<line class="life" x1="609.0" y1="68" x2="609.0" y2="600"/>
+<rect class="box" x="704" y="16" width="150" height="52" rx="3"/>
+<text class="name" x="779.0" y="47.0" text-anchor="middle">Ledger</text>
+<line class="life" x1="779.0" y1="68" x2="779.0" y2="600"/>
+<text class="lab" x="107.0" y="108">Open a savings account in EUR</text>
+<line class="arr" x1="101.0" y1="116" x2="257.0" y2="116" marker-end="url(#ah)"/>
+<text class="lab" x="277.0" y="154">May the sample customer create an account?</text>
+<line class="arr" x1="271.0" y1="162" x2="427.0" y2="162" marker-end="url(#ah)"/>
+<text class="lab" x="277.0" y="200">If access is refused, nothing is opened</text>
+<line class="dash" x1="437.0" y1="208" x2="281.0" y2="208" marker-end="url(#dh)"/>
+<text class="lab" x="277.0" y="246">Write the agreement, Ada on it, and the</text>
+<text class="lab" x="277.0" y="264">account</text>
+<line class="arr" x1="271.0" y1="272" x2="597.0" y2="272" marker-end="url(#ah)"/>
+<text class="lab" x="617.0" y="310">Post the opening entry and the main</text>
+<text class="lab" x="617.0" y="328">balance space</text>
+<line class="arr" x1="611.0" y1="336" x2="767.0" y2="336" marker-end="url(#ah)"/>
+<text class="lab" x="107.0" y="374">She receives the account id and the new</text>
+<text class="lab" x="107.0" y="392">agreement id</text>
+<line class="arr" x1="777.0" y1="400" x2="111.0" y2="400" marker-end="url(#ah)"/>
+<text class="lab" x="107.0" y="438">Later she closes the account</text>
+<line class="arr" x1="101.0" y1="446" x2="257.0" y2="446" marker-end="url(#ah)"/>
+<text class="lab" x="277.0" y="484">Close checks access, then marks the</text>
+<text class="lab" x="277.0" y="502">account closed</text>
+<line class="arr" x1="271.0" y1="510" x2="597.0" y2="510" marker-end="url(#ah)"/>
+<text class="lab" x="617.0" y="548">A failed open closes the account and</text>
+<text class="lab" x="617.0" y="566">reverses the entry</text>
+<line class="dash" x1="611.0" y1="574" x2="767.0" y2="574" marker-end="url(#dh)"/>
+</svg>

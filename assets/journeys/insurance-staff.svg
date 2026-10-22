@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 898 574" width="898" height="574" role="img">
+<style>text{font-family:Manrope,system-ui,sans-serif;fill:#10110f}.box{fill:#fff;stroke:#10110f;stroke-width:1.5}.life{stroke:#c8c4ba;stroke-width:1.4}.arr{stroke:#855414;stroke-width:1.8;fill:none}.dash{stroke:#62645b;stroke-width:1.8;fill:none;stroke-dasharray:7 4}.name{font-size:15px;font-weight:700}.lab{font-size:14px}</style>
+<defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#855414"/></marker>
+<marker id="dh" markerWidth="9" markerHeight="9" refX="8" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 Z" fill="#62645b"/></marker></defs>
+<rect class="box" x="24" y="16" width="150" height="52" rx="3"/>
+<text class="name" x="99.0" y="47.0" text-anchor="middle">Employee</text>
+<line class="life" x1="99.0" y1="68" x2="99.0" y2="564"/>
+<rect class="box" x="194" y="16" width="150" height="52" rx="3"/>
+<text class="name" x="269.0" y="38.0" text-anchor="middle">Insurance</text>
+<text class="name" x="269.0" y="56.0" text-anchor="middle">terminal</text>
+<line class="life" x1="269.0" y1="68" x2="269.0" y2="564"/>
+<rect class="box" x="364" y="16" width="150" height="52" rx="3"/>
+<text class="name" x="439.0" y="47.0" text-anchor="middle">Access</text>
+<line class="life" x1="439.0" y1="68" x2="439.0" y2="564"/>
+<rect class="box" x="534" y="16" width="150" height="52" rx="3"/>
+<text class="name" x="609.0" y="47.0" text-anchor="middle">Audit</text>
+<line class="life" x1="609.0" y1="68" x2="609.0" y2="564"/>
+<rect class="box" x="704" y="16" width="150" height="52" rx="3"/>
+<text class="name" x="779.0" y="47.0" text-anchor="middle">Policy</text>
+<line class="life" x1="779.0" y1="68" x2="779.0" y2="564"/>
+<text class="lab" x="107.0" y="108">Sign in as sample-employee</text>
+<line class="arr" x1="101.0" y1="116" x2="257.0" y2="116" marker-end="url(#ah)"/>
+<text class="lab" x="277.0" y="154">May this employee administer policies?</text>
+<line class="arr" x1="271.0" y1="162" x2="427.0" y2="162" marker-end="url(#ah)"/>
+<text class="lab" x="277.0" y="200">If administer is refused, no list is</text>
+<text class="lab" x="277.0" y="218">returned</text>
+<line class="dash" x1="437.0" y1="226" x2="281.0" y2="226" marker-end="url(#dh)"/>
+<text class="lab" x="107.0" y="264">Update Ada's policy and give a reason</text>
+<line class="arr" x1="101.0" y1="272" x2="257.0" y2="272" marker-end="url(#ah)"/>
+<text class="lab" x="277.0" y="310">Ask whether the employee may impersonate</text>
+<text class="lab" x="277.0" y="328">Ada</text>
+<line class="arr" x1="271.0" y1="336" x2="427.0" y2="336" marker-end="url(#ah)"/>
+<text class="lab" x="447.0" y="374">Store both ids, then update the policy</text>
+<line class="arr" x1="441.0" y1="382" x2="597.0" y2="382" marker-end="url(#ah)"/>
+<text class="lab" x="617.0" y="420">The policy record changes. No money moves.</text>
+<line class="arr" x1="611.0" y1="428" x2="767.0" y2="428" marker-end="url(#ah)"/>
+<text class="lab" x="107.0" y="466">Deny a claim, or withdraw a quote</text>
+<line class="arr" x1="101.0" y1="474" x2="257.0" y2="474" marker-end="url(#ah)"/>
+<text class="lab" x="277.0" y="512">Close and decide use the status configured</text>
+<text class="lab" x="277.0" y="530">for that area</text>
+<line class="arr" x1="777.0" y1="538" x2="281.0" y2="538" marker-end="url(#ah)"/>
+</svg>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="817" viewBox="0 0 960 817" role="img" aria-labelledby="title desc">
+<title id="title">OpenPlatform adapter ports</title>
+<desc id="desc">OpenPlatform services call a payment-provider port or a payment-rail port. The adapter talks to the outside system.</desc>
+<style>text { font-family: Manrope, Arial, Helvetica, sans-serif; }</style>
+<rect width="960" height="817" fill="#F3F1EB"/>
+<rect x="0" y="0" width="960" height="817" fill="#F3F1EB"/>
+<text x="48" y="69" fill="#10110F" font-size="32" font-weight="700">Adapter ports</text>
+<text x="48" y="104" fill="#62645B" font-size="18" font-weight="400">Services depend on a port. Provider SDKs stay outside the domain.</text>
+<rect x="40" y="133" width="880" height="155.7" rx="16" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<rect x="40" y="151" width="8" height="119.7" fill="#FFB34A"/>
+<text x="68" y="169.3" fill="#10110F" font-size="26" font-weight="700">OpenPlatform services</text>
+<text x="68" y="200.6" fill="#272820" font-size="18" font-weight="400">Experience, domain, and core call a port. They do not import a provider toolkit.</text>
+<rect x="68" y="221.6" width="128.4" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="84" y="251.7" fill="#10110F" font-size="18" font-weight="600">Experience</text>
+<rect x="208.4" y="221.6" width="97.4" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="224.4" y="251.7" fill="#10110F" font-size="18" font-weight="600">Domain</text>
+<rect x="317.8" y="221.6" width="73.8" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="333.8" y="251.7" fill="#10110F" font-size="18" font-weight="600">Core</text>
+<line x1="480" y1="296.7" x2="480" y2="326.7" stroke="#474A42" stroke-width="2"/>
+<polygon points="472,324.7 488,324.7 480,336.7" fill="#474A42"/>
+<rect x="40" y="344.7" width="428" height="216.8" rx="16" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<rect x="40" y="362.7" width="8" height="180.8" fill="#FFB34A"/>
+<text x="68" y="381" fill="#10110F" font-size="26" font-weight="700">Payment providers</text>
+<text x="68" y="410.3" fill="#855414" font-size="18" font-weight="600">Provider port</text>
+<rect x="64" y="431.4" width="118.3" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="80" y="461.4" fill="#10110F" font-size="18" font-weight="600">Payments</text>
+<rect x="194.3" y="431.4" width="103.9" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="210.3" y="461.4" fill="#10110F" font-size="18" font-weight="600">Refunds</text>
+<rect x="310.2" y="431.4" width="102.7" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="326.2" y="461.4" fill="#10110F" font-size="18" font-weight="600">Payouts</text>
+<rect x="492" y="344.7" width="428" height="216.8" rx="16" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<rect x="492" y="362.7" width="8" height="180.8" fill="#FFB34A"/>
+<text x="520" y="381" fill="#10110F" font-size="26" font-weight="700">Payment rails</text>
+<text x="520" y="410.3" fill="#855414" font-size="18" font-weight="600">Rail port</text>
+<rect x="516" y="431.4" width="118.3" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="532" y="461.4" fill="#10110F" font-size="18" font-weight="600">Payments</text>
+<rect x="646.3" y="431.4" width="130.3" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="662.3" y="461.4" fill="#10110F" font-size="18" font-weight="600">Settlement</text>
+<rect x="516" y="494.4" width="117.8" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="532" y="524.5" fill="#10110F" font-size="18" font-weight="600">Mandates</text>
+<line x1="480" y1="569.5" x2="480" y2="599.5" stroke="#474A42" stroke-width="2"/>
+<polygon points="472,597.5 488,597.5 480,609.5" fill="#474A42"/>
+<rect x="40" y="617.5" width="880" height="155.7" rx="16" fill="#FFFFFF" stroke="#D8D4CA" stroke-width="1.5"/>
+<rect x="40" y="635.5" width="8" height="119.7" fill="#474A42"/>
+<text x="68" y="653.8" fill="#10110F" font-size="26" font-weight="700">Outside the platform</text>
+<text x="68" y="685.1" fill="#272820" font-size="18" font-weight="400">Adapters implement the port for one external system.</text>
+<rect x="68" y="706.2" width="193.9" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="84" y="736.2" fill="#10110F" font-size="18" font-weight="600">Payment providers</text>
+<rect x="273.9" y="706.2" width="148.7" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="289.9" y="736.2" fill="#10110F" font-size="18" font-weight="600">Payment rails</text>
+<rect x="434.6" y="706.2" width="237" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="450.6" y="736.2" fill="#10110F" font-size="18" font-weight="600">Identity and documents</text>
+<rect x="683.6" y="706.2" width="175.1" height="51.1" rx="10" fill="#F3F1EB" stroke="#D8D4CA" stroke-width="1.25"/>
+<text x="699.6" y="736.2" fill="#10110F" font-size="18" font-weight="600">Institution cores</text>
+</svg>

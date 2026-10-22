@@ -1,0 +1,16 @@
+/* Firefly Software color tokens. Screen colors in sRGB. */
+:root {
+  --firefly-charcoal: #10110f;
+  --firefly-paper: #f3f1eb;
+  --firefly-amber: #ffb34a;
+  --firefly-ink: #272820;
+  --firefly-muted: #62645b;
+  --firefly-gold: #855414;
+  --firefly-white: #ffffff;
+  --firefly-stone: #bfb8ab;
+  --firefly-line: #d8d4ca;
+  --firefly-graphite: #474a42;
+  --firefly-steel: #b4bdb8;
+  --firefly-slate: #6b8795;
+  --firefly-olive: #7a8460;
+}
