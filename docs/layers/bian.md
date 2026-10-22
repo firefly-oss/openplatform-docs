@@ -271,7 +271,7 @@ Insurance capabilities that have no BIAN service domain are in [Outside BIAN](#o
 | Account Recovery | absent | — | — | Loan restructuring is available on a live loan, and no service recovers an account after ordinary collection has ended. |
 | Archive Services | absent | — | — | No service archives bank records. |
 | Custody Administration | absent | — | — | No service administers safekeeping of customer assets. |
-| Collateral Allocation Management | partial | `core-lending-collateral-management` | core | Stores collateral cases, assets, and guarantees. The collateral domain opens a case and changes its status. |
+| Collateral Allocation Management | partial | `core-lending-collateral-management` | core | Stores collateral cases and assets, and collateral and guarantees. The collateral domain opens a case and changes its status. |
 | Collections | absent | — | — | No service liquidates collateral to offset a loss. |
 | Document Directory | partial | `core-common-document-mgmt` | core | Stores documents in folders with tags, metadata, and permissions. |
 | Investment Account | absent | — | — | An account type named investment exists, and no service keeps an investment holding. |
@@ -334,7 +334,7 @@ Insurance capabilities that have no BIAN service domain are in [Outside BIAN](#o
 | Recruitment | absent | — | — | No service recruits employees. |
 | Employee Assignment | absent | — | — | No service assigns employees to roles or units. |
 | Employee Evaluation | absent | — | — | No service evaluates employees. |
-| Employee Certification | absent | — | — | No service certifies employees. |
+| Employee Certification | absent | — | — | No certification of employees. |
 | Employee and Contractor Contract | absent | — | — | No service stores employment or contractor contracts. |
 | Employee Data Management | absent | — | — | No service keeps an employee master file. |
 | Employee Payroll And Incentives | absent | — | — | No service pays the bank's own employees. |
