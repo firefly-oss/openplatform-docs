@@ -184,9 +184,11 @@ nav:
       - Insurance terminal identity and SDK: reference/service-guides/insurance-terminal-authentication.md
       - Libraries and dependency ownership: layers/libraries.md
       - Managed accounts and funds: shared/managed-funds.md
+      - Governed product definitions: shared/product-definition-governance.md
       - Currency representation and policy: reference/service-guides/currency-execution-policies.md
       - Card credentials and processor boundary: reference/service-guides/card-authentication-data.md
       - Durable internal payments: shared/managed-payments.md
+      - Atomic journal admission: shared/atomic-accounting-admission.md
       - Documents: shared/documents.md
       - Governed contract issuance: reference/service-guides/governed-contract-domain.md
       - Configure document templates: shared/template-configuration.md
