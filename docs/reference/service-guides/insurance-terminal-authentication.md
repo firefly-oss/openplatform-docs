@@ -21,6 +21,14 @@ sequenceDiagram
 
 Authentication, the current policy decision and legacy staff checks all apply. An unavailable identity/access dependency cannot create a synthetic success. The terminal's business record/configuration adapters may still be selected as sandbox implementations; this does not select or bypass employee authentication.
 
+## Header tokens, retained sessions, and CSRF
+
+Staff APIs authenticate through an explicit signed `Authorization: Bearer <token>` header. The terminal's own security chain does not load or save authentication through a WebSession. A session containing an authenticated context from another server component cannot authorize staff reads or writes. The business session lookup is not a browser login and adds no token-delivery endpoint.
+
+The chain retains native Spring Security CSRF protection and its header-bearer exemption. Properly signed bearer POST, PUT, PATCH and DELETE requests do not require a CSRF token; token validation and current staff/resource policy still apply. A conflicting authenticated session does not change the bearer identity, and an invalid bearer cannot fall back to that session.
+
+Unsafe non-bearer requests without a valid native CSRF token return 403 before staff authentication or business effects. This intentionally changes the earlier anonymous-POST 401 response. A safe protected request without a valid bearer remains 401; even a valid CSRF token does not make a session an API identity. The configured public routes are GET health/OpenAPI only. Keep browser/session-login flows in an explicitly designed application chain with appropriate CSRF controls.
+
 ## Configure issuer trust and current policy
 
 Supply these properties in the selected environment. The placeholders below are deployment inputs, not built-in credentials or a runnable institution policy:
@@ -90,7 +98,7 @@ The generated `staffBearer` authentication supplies the bearer header. `username
 `mvn -B verify` includes signed-JWT/current-policy HTTP tests, generated public-signature regression tests and an ordinary `java -jar` startup check. The packaged check starts an owned random-port process using only its embedded runtime dependencies, reads health and both JSON/YAML OpenAPI, checks unauthenticated denial, then stops that process. It catches dependencies accidentally available only to test classes. It does not contact a live identity provider or prove a financial journey.
 
 - **401:** missing/invalid signature, issuer, audience, expiration, actor/tenant claims or trust configuration. Do not substitute a username or caller-selected UUID.
-- **403:** actor mismatch, required strict mode, current policy denial/unfulfilled obligations, identity remapping or a denied/unconfirmed staff check. Reevaluate current authority; do not retry with an invented actor or change the same business intent.
+- **403:** missing/invalid native CSRF on an unsafe non-bearer request, actor mismatch, required strict mode, current policy denial/unfulfilled obligations, identity remapping or a denied/unconfirmed staff check. Reevaluate current authority; do not retry with an invented actor or change the same business intent.
 - **Startup/OpenAPI failure:** inspect the executable's own dependency inventory and startup log. A test classpath or an older cached SDK cannot repair a missing runtime dependency.
 - **Business/provider uncertainty:** follow the owning domain/core operation's retained action, lookup and reconciliation contract. A terminal record response does not establish booking, settlement, coverage binding or accounting completion.
 
