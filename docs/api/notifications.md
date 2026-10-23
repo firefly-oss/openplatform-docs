@@ -1,133 +1,17 @@
-# Notifications
+# Notifications API
 
-This page is generated from `exp-notifications-sdk/src/main/resources/openapi.yml`.
-Core and domain contracts stay in each repository.
-A journey call is identity, then access, then a decision only when the operation creates risk, then the domain port.
-Read the path, then the example, then the panel rendered from the spec.
+Recipient and preference authority, consent, template, delivery lifecycle, retry, and correlation must be maintained independently of financial business completion. Synthetic delivery acknowledgments are not live delivery proof.
 
-## GET /api/v1/experience/notifications/preferences
+[Complete current producer contract](services/exp-notifications.md) · [Business lifecycle](../journeys/shared.md) · [Repository adoption guide](https://github.com/fireflysoftwaresolutions/exp-notifications)
 
-Get notification preferences.
+## Read the request in context
 
-This operation's spec does not document a separate refusal body.
+Use the linked producer page for all declared paths, request and response models, required fields, enums, parameters, and statuses. Its downloadable contract and SHA256 identify the copied source independently of the producer's base revision. The [complete API directory](contracts.md) includes experience, domain, and core producers.
 
-```text
-// request GET /api/v1/experience/notifications/preferences
-// no request body declared
+Executable examples belong with their prerequisite records, selected adapters, validation fixture, expected outcome, and failure/recovery checks. The repository guide and business implementation chapter identify those sources. Commented pseudo-JSON is not a valid request body.
 
-// response
-// 200 OK
-```
+## Authentication and effects
 
-## PUT /api/v1/experience/notifications/preferences
+Establish trusted subject and tenant from the configured authenticated context and verify resource authority before the operation. Supply synthetic IDs created in the same disposable environment for qualification. Do not reuse another chapter's customer, contract, policy, or account merely because its UUID has the right shape.
 
-Update notification preferences.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request PUT /api/v1/experience/notifications/preferences
-// schema: UpdatePreferencesCommand
-{
-  // email: boolean, optional
-  // sms: boolean, optional
-  // push: boolean, optional
-  // inApp: boolean, optional
-  // marketingConsent: boolean, optional
-}
-
-// response
-// 200 OK
-```
-
-## POST /api/v1/experience/notifications/read-all
-
-Mark all notifications as read.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request POST /api/v1/experience/notifications/read-all
-// no request body declared
-
-// response
-// 204 No Content
-```
-
-## PATCH /api/v1/experience/notifications/{id}/read
-
-Mark notification as read.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request PATCH /api/v1/experience/notifications/{id}/read
-// no request body declared
-
-// response
-// 204 No Content
-```
-
-## GET /api/v1/experience/notifications
-
-List notifications.
-
-Returns the notification list for the authenticated party
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request GET /api/v1/experience/notifications
-// no request body declared
-
-// response
-// 200 OK
-```
-
-## GET /api/v1/experience/notifications/{id}
-
-Get notification detail.
-
-Returns full detail for a single notification
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request GET /api/v1/experience/notifications/{id}
-// no request body declared
-
-// response
-// 200 OK
-```
-
-## DELETE /api/v1/experience/notifications/{id}
-
-Delete a notification.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request DELETE /api/v1/experience/notifications/{id}
-// no request body declared
-
-// response
-// 204 No Content
-```
-
-## GET /api/v1/experience/notifications/unread-count
-
-Get unread notification count.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request GET /api/v1/experience/notifications/unread-count
-// no request body declared
-
-// response
-// 200 OK
-```
-
-The panel below is the same file. Open an operation there after you have read its example.
-
-<swagger-ui src="specs/notifications/openapi.yml"></swagger-ui>
+A successful HTTP status establishes the documented transport result. Verify the owning durable state, emitted events, provider references, and financial effects required by the journey. Include denied, invalid, identical/conflicting replay, uncertainty, restart, and recovery cases. See [operating guidance](../operations/index.md) and [operate](../operations/index.md).

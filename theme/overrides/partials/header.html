@@ -1,7 +1,7 @@
 {#-
   Firefly OpenPlatform header.
   Product signal: Firefly logo lockup + "|" + OpenPlatform (Manrope).
-  site_name is Firefly OpenPlatform Documentation Hub. The lockup stays logo | OpenPlatform.
+  The product name and document title come from the active MkDocs configuration.
 -#}
 {% set class = "md-header" %}
 {% if "navigation.tabs.sticky" in features %}
@@ -24,7 +24,7 @@
       <span class="ff-header-brand__sep" aria-hidden="true">|</span>
       <span class="ff-header-brand__product">OpenPlatform</span>
     </span>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Open navigation" tabindex="0" role="button">
       {% set icon = config.theme.icon.menu or "material/menu" %}
       {% include ".icons/" ~ icon ~ ".svg" %}
     </label>
@@ -60,14 +60,14 @@
     {% if "material/search" in config.plugins %}
       {% set search = config.plugins["material/search"] | attr("config") %}
       {% if search.enabled %}
-        <label class="md-header__button md-icon" for="__search">
+        <label class="md-header__button md-icon" for="__search" aria-label="Open search" tabindex="0" role="button">
           {% set icon = config.theme.icon.search or "material/magnify" %}
           {% include ".icons/" ~ icon ~ ".svg" %}
         </label>
         {% include "partials/search.html" %}
       {% endif %}
     {% endif %}
-    <span class="ff-version" title="Published version">26.10.6</span>
+    <a class="ff-version" href="{{ 'quickstart/' | url }}" title="Set up and explore OpenPlatform">Get started</a>
     {% if config.repo_url %}
       <div class="md-header__source">
         {% include "partials/source.html" %}

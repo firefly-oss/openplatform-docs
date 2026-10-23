@@ -1,31 +1,17 @@
-# Profile
+# Profile API
 
-Ada reads who she is, and she reads the agreements she holds. Access is checked before either read. A denied caller gets nothing. The agreement list is not stored in the profile. Each row is fetched from the contract service, and the product name is fetched from the product on that agreement.
+Resource ownership and trusted subject/tenant scope apply to every profile, consent, document, and contract read or change. Request path party IDs do not establish permission.
 
-Her party id is `11111111-1111-4111-8111-111111111111`. Agreement `10000000-0000-4000-8000-000000000021` is in the list only when the contract service holds it for her. That is the Horizon Personal Loan the document prints.
-Source: the sandbox sample is 250,000.00 EUR. The profile returns the number, the status, and the product. It does not return the printed pages.
+[Complete current producer contract](services/exp-profile.md) · [Business lifecycle](../journeys/shared.md) · [Repository adoption guide](https://github.com/fireflysoftwaresolutions/exp-profile)
 
-The service listens on port 8103.
+## Read the request in context
 
-```text
-// GET /api/v1/experience/profile/11111111-1111-4111-8111-111111111111
-// Access must allow READ on PARTY. The body is her person record.
+Use the linked producer page for all declared paths, request and response models, required fields, enums, parameters, and statuses. Its downloadable contract and SHA256 identify the copied source independently of the producer's base revision. The [complete API directory](contracts.md) includes experience, domain, and core producers.
 
-// GET /api/v1/experience/profile/11111111-1111-4111-8111-111111111111/contracts
-// one item when the contract service has the sandbox agreement
-{
-  // contractId: 10000000-0000-4000-8000-000000000021
-  // type: the contract number
-  // status: the contract status
-  // signedAt: when it was signed
-  // productId: 10000000-0000-4000-8000-000000000202
-  // productName: Horizon Personal Loan
-  // productCode: the code on that product
-}
-```
+Executable examples belong with their prerequisite records, selected adapters, validation fixture, expected outcome, and failure/recovery checks. The repository guide and business implementation chapter identify those sources. Commented pseudo-JSON is not a valid request body.
 
-A change of personal data is `PATCH .../personal-data`. If a later step of that change fails, the previous row is written back. Addresses, consents, and identity documents are the other paths on the same party.
+## Authentication and effects
 
-The panel is the OpenAPI file from `exp-profile`. Read the example, then open the operation.
+Establish trusted subject and tenant from the configured authenticated context and verify resource authority before the operation. Supply synthetic IDs created in the same disposable environment for qualification. Do not reuse another chapter's customer, contract, policy, or account merely because its UUID has the right shape.
 
-<swagger-ui src="specs/profile/openapi.yml"></swagger-ui>
+A successful HTTP status establishes the documented transport result. Verify the owning durable state, emitted events, provider references, and financial effects required by the journey. Include denied, invalid, identical/conflicting replay, uncertainty, restart, and recovery cases. See [operating guidance](../operations/index.md) and [operate](../operations/index.md).

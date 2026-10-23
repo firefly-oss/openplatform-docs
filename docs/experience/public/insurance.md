@@ -1,84 +1,95 @@
-# Insurance
+# Insurance experience
 
-A person asks for cover, accepts it, and later reports a loss. That is one sitting. It is not three products glued together, and it does not collect a premium. Insurance does not move money, and it does not certify IFRS 17 or Solvency II. Where a premium or a claim payment would leave the institution, the payments journey and the ledger own that movement. This journey stores the quote, the policy, and the claim.
+Quote and underwriting decisions precede effective binding. Policy servicing, claims, premium, reserve, reinsurance, commission, tax, settlement, and close continue beyond create-record operations. Preserve terms and effective-date versions and explicit delegated authority.
 
-Ada Lovelace is `sample-journey`, actor `11111111-1111-4111-8111-111111111111`. The sandbox agreement she can name on the policy is `10000000-0000-4000-8000-000000000021`, the same agreement the Horizon Personal Loan document prints. Naming it records the identifier. It does not disburse that amount, and it does not post a ledger entry.
+[Business lifecycle](../../journeys/insurance.md) · [Repository guide](https://github.com/fireflysoftwaresolutions/exp-insurance) · [Source reference](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/docs/openplatform/reference.md)
 
-She asks for a motor quote. The journey checks access as the sample customer. If that check is not allowed, the quote stops and nothing is stored. It then asks for a decision. She does not send a credit score. The sandbox report supplies 640, which is below the sample threshold of 680, so the outcome is a referral. A referral does not stop her. The submission is stored as received.
+## Behavior and limitations
 
-She binds a policy and names that agreement, a product, the line of business, the currency, and the inception and expiry dates. The same access check and the same decision run again. If she omits her party id, the agreement id is used for the check. The policy is stored as bound, and binding it issues the letter through the document domain SDK.
+The typed policy correction preserves customer party identity through the generated domain SDK and real controller validation. Its combined fixture mocks domain orchestration; underwriting approval, contract effects, premium, claim settlement, and insurance finance remain unqualified. A sample product-family classifier cannot remove insurance controls.
 
-She registers a claim against the policy: a loss date, a cause, and a description. The catalog default is notified. Reading, updating, or changing a status later does not ask for another decision. Withdrawing the quote, cancelling the policy, and closing the claim do not either.
+## Declared entry points
 
-Endorse and renew are not operations on this journey, and they are not operations on the policy domain. Reinsurance, reserving, and insurance financials are not in this sitting. Staff work is the insurance terminal.
+The table is derived from local controller mappings. It does not include inherited, conditional, gateway, or framework routes and is not a runtime security or completeness assertion.
 
-<div class="ff-journey" markdown="0">
-<img src="../../../assets/journeys/insurance.svg" alt="Sequence: Ada asks for a motor quote. Access allows her. The decision refers her because the sandbox score is 640. The submission is stored as received. Bind stores the policy as bound. Claim, status, withdraw, cancel, and close follow. A decline stops before the record.">
-</div>
+| Method | Path | Source |
+| --- | --- | --- |
+| `GET` | `/api/v1/experience/insurance/quotes/{submissionId}` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `GET` | `/api/v1/experience/insurance/policies/{policyId}` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `GET` | `/api/v1/experience/insurance/claims/{claimId}` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `POST` | `/api/v1/experience/insurance/quotes` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `POST` | `/api/v1/experience/insurance/quotes/{submissionId}/withdraw` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `POST` | `/api/v1/experience/insurance/policies` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `POST` | `/api/v1/experience/insurance/policies/{policyId}/cancel` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `POST` | `/api/v1/experience/insurance/claims` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `POST` | `/api/v1/experience/insurance/claims/{claimId}/close` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `PUT` | `/api/v1/experience/insurance/quotes/{submissionId}` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `PUT` | `/api/v1/experience/insurance/quotes/{submissionId}/status` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `PUT` | `/api/v1/experience/insurance/policies/{policyId}` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `PUT` | `/api/v1/experience/insurance/policies/{policyId}/status` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `PUT` | `/api/v1/experience/insurance/claims/{claimId}` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
+| `PUT` | `/api/v1/experience/insurance/claims/{claimId}/status` | [InsuranceController](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-web/src/main/java/io/fireflysoftware/experience/insurance/web/controllers/InsuranceController.java) |
 
-## What she sees
+## Reproduce a source-specific boundary
 
-A quote comes back with an id, a reference, and status `RECEIVED` when she omits a status. A bind comes back `BOUND`. A claim comes back `NOTIFIED`. A referral does not change those statuses. She does not see a ledger entry, and she does not see the Horizon Personal Loan amount move. Naming agreement `10000000-0000-4000-8000-000000000021` only stores that identifier on the policy.
+## Consumer example: serialize a policy through the generated domain SDK
 
-## Where the records go
+Start with this repository-owned executable contract before connecting a full runtime. Use the JDK required by the effective parent, Maven, and the matching internal artifacts. The selected test defines its own collaborators; no provider credentials should be added to it. Run from this repository root:
 
-The quote is stored by the underwriting domain. The policy is stored by the policies domain. The claim is stored by the claims domain. Each of those cores keeps its own rows. None of them posts cash. A premium or a claim payment, if the institution pays it, is a payments journey and a ledger entry, not this sitting.
-
-## What a refusal does
-
-If access is not allowed, the call stops before the credit report and before any record is written.
-
-A decision of decline, which the sample rules return when high risk is true, stops the quote, the bind, or the claim registration. The reason code is `HIGH_RISK`. Nothing is stored. A referral is not a refusal.
-
-If the catalog has switched an operation off, the call answers HTTP 409 and says that operation is not enabled. In the file shipped here, quote, bind, claim, status, withdraw, cancel, and close are all enabled.
-
-The journey does not lapse or expire a policy. Those closes exist on the policy domain. The status stored for a cancelled policy is `CANCELLED`.
-
-## Reference
-
-The service listens on port 8108.
-
-| What she does | Call | Decision | Default status when she omits one |
-| --- | --- | --- | --- |
-| Ask for a quote | `POST /api/v1/experience/insurance/quotes` | Yes | `RECEIVED` |
-| Read or update the quote | `GET` or `PUT .../quotes/{id}` | No | |
-| Change quote status | `PUT .../quotes/{id}/status` | No | |
-| Withdraw the quote | `POST .../quotes/{id}/withdraw` | No | |
-| Bind | `POST /api/v1/experience/insurance/policies` | Yes | `BOUND` |
-| Read, update, or change policy status | the matching policy calls | No | |
-| Cancel the policy | `POST .../policies/{id}/cancel` | No | |
-| Register a claim | `POST /api/v1/experience/insurance/claims` | Yes | `NOTIFIED` |
-| Read, update, change claim status, or close | the matching claim calls | No | |
-
-```text
-// POST /api/v1/experience/insurance/quotes
-{
-  // partyId: 11111111-1111-4111-8111-111111111111
-  // productId: the cover she is quoted
-  // lineOfBusiness: MOTOR
-  // currency: EUR
-  // submissionStatus: omit to store RECEIVED
-}
-
-// POST /api/v1/experience/insurance/policies
-{
-  // partyId: 11111111-1111-4111-8111-111111111111
-  // contractId: 10000000-0000-4000-8000-000000000021
-  // productId: the cover
-  // lineOfBusiness: MOTOR
-  // currency: EUR
-  // inceptionDate, expiryDate: dates
-  // policyStatus: omit to store BOUND
-}
-
-// POST /api/v1/experience/insurance/claims
-{
-  // policyId: the bound policy
-  // lossDate, causeCode, description, currency
-  // claimStatus: omit to store NOTIFIED
-}
-
-// Withdraw, cancel, and close send { "reason": "why" }
+```sh
+mvn -B -pl exp-insurance-core -am test -DskipOpenApiGen \
+  -Dtest=HttpPolicyClientTest -Dsurefire.failIfNoSpecifiedTests=false
 ```
 
-A successful create returns the record id, a business reference, and the status name. Lines of business include motor, property, liability, life, health, marine, aviation, accident, and other. The type names are `QuoteCommand`, `PolicyCommand`, and `ClaimCommand`. The panel of paths is on the [insurance API](../../api/insurance.md).
+Runtime integration remains gated on the service configuration and selected adapters described below. The local port and bean-selection inventory below distinguishes the declared abstraction from its configured implementation. An SDK client is an outbound integration; its presence does not establish a working provider connection. Where a sandbox adapter is selected, its behavior is synthetic and limited to what that adapter implements.
+
+**Inputs and fixture ownership.** The complete linked test class supplies its imports, setup, synthetic IDs and collaborators. Run that class as shown; the excerpt is not a standalone Java program. The test uses a local HTTP fixture; it does not connect to the production downstream service. For a deployed call, replace fixture IDs with IDs returned by the owning record-creation API and keep tenant/parent associations intact. The request values and assertions below describe this test boundary only.
+
+```java
+@ParameterizedTest
+    @EnumSource(LineOfBusiness.class)
+    void createSerializesPartyAndPolicyFieldsThroughTheActualGeneratedSdk(LineOfBusiness business) {
+        UUID tenant = UUID.randomUUID();
+        UUID contract = UUID.randomUUID();
+        UUID product = UUID.randomUUID();
+        UUID party = UUID.randomUUID();
+        var command = new PolicyCommand(tenant, contract, product, party, "SYNTHETIC-001", business,
+                PolicyStatus.QUOTE, LocalDate.of(2026, 11, 1), LocalDate.of(2027, 11, 1), "USD");
+
+        StepVerifier.create(client.create(command, PolicyStatus.QUOTE)).assertNext(result -> {
+            assertThat(result.id()).isEqualTo(policyId);
+            assertThat(result.reference()).isEqualTo("SYNTHETIC-001");
+        }).verifyComplete();
+
+        JsonNode request = sent.get();
+        assertThat(request).isNotNull();
+        assertThat(request.path("partyId").asText()).isEqualTo(party.toString());
+        assertThat(request.path("tenantId").asText()).isEqualTo(tenant.toString());
+        assertThat(request.path("contractId").asText()).isEqualTo(contract.toString());
+        assertThat(request.path("productId").asText()).isEqualTo(product.toString());
+        assertThat(request.path("policyNumber").asText()).isEqualTo("SYNTHETIC-001");
+        assertThat(request.path("lineOfBusiness").asText()).isEqualTo(business.name());
+        assertThat(request.path("policyStatus").asText()).isEqualTo("QUOTE");
+        assertThat(request.path("inceptionDate").asText()).isEqualTo("2026-11-01");
+        assertThat(request.path("expiryDate").asText()).isEqualTo("2027-11-01");
+        assertThat(request.path("currency").asText()).isEqualTo("USD");
+    }
+```
+
+**Expected behavior.** The parameterized test covers every LineOfBusiness. It checks tenant, contract, product and customer-party UUIDs, policy number, QUOTE status, inception/expiry dates, and USD in the actual generated request body.
+
+**Verification and recovery.** Run the complete selected test class and inspect its Surefire result: zero failures/errors and at least one executed test are required. A skipped or zero-test build is not evidence. Compare the assertions with the owning DTO/service before extending the request. For a runtime run, separately configure authentication/entitlements and the exact downstream endpoints, migrate/seed disposable owner stores, and reread the returned identifier; these unit/contract fixtures do not establish those prerequisites.
+
+Source of this example: [HttpPolicyClientTest](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-core/src/test/java/io/fireflysoftware/experience/insurance/core/adapter/HttpPolicyClientTest.java), [LineOfBusiness](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-core/src/main/java/io/fireflysoftware/experience/insurance/core/journey/LineOfBusiness.java), [PolicyCommand](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-core/src/main/java/io/fireflysoftware/experience/insurance/core/journey/PolicyCommand.java), [PolicyStatus](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/main/exp-insurance-core/src/main/java/io/fireflysoftware/experience/insurance/core/journey/PolicyStatus.java).
+
+
+
+## Configuration and replacement
+
+Read the exact runtime configuration and existing adapter selectors in the repository guide. Defaults are implementation facts, not recommended live settings. A live dependency failure must not fall back to synthetic approval. [The adapter contract](../../adapters/index.md) defines durable request identity, lookup, uncertain outcomes, callbacks, and provenance.
+
+## Required negative and recovery cases
+
+Denied and cross-tenant callers must reach no unauthorized write. Missing or expired evidence, changed intent under the same key, duplicate callback, partial participant failure, lost response, process restart, and replica retry must preserve one authoritative outcome. Retain original and compensating effects; do not delete accepted evidence to simulate rollback. Financial cases reconcile posted, available, reserved, provider, and accounting state.
+
+See [operating procedures](../../operations/index.md) for duplicate requests, partial failures, provider uncertainty, and recovery.

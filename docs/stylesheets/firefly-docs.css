@@ -2,3 +2,133 @@
 Firefly Software — MkDocs Material brand stylesheet (alias of extra.css).
 */
 @import url("extra.css");
+
+
+/* Business intent is the entry point; supporting navigation stays quiet. */
+.ff-intent-path {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 2rem 0;
+  border-block: 1px solid var(--ff-line);
+}
+.ff-intent-path > div {
+  padding: 1.3rem 1rem 1rem 0;
+  min-width: 0;
+}
+.ff-intent-path > div + div {
+  border-left: 1px solid var(--ff-line);
+  padding-left: 1rem;
+}
+.ff-intent-path span {
+  display: block;
+  color: var(--ff-muted);
+  font-size: .68rem;
+  letter-spacing: .04em;
+  margin-bottom: .7rem;
+}
+.ff-intent-path strong {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+.ff-intent-path p {
+  font-size: .78rem;
+  line-height: 1.65;
+}
+.ff-intent-path .ff-intent-path__recovery {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: .9rem 0;
+  border-top: 1px solid var(--ff-line);
+  color: var(--ff-muted);
+}
+.md-typeset .md-typeset__table { max-width: 100%; }
+.md-typeset pre { max-width: 100%; }
+.md-nav__link[role="button"]:focus-visible {
+  outline: 2px solid var(--ff-amber-deep);
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .ff-intent-path { grid-template-columns: 1fr; }
+  .ff-intent-path > div + div {
+    border-left: 0;
+    border-top: 1px solid var(--ff-line);
+    padding-left: 0;
+  }
+}
+
+/* Keep long documentation labels readable and header controls inside narrow screens. */
+.md-sidebar a.md-nav__link .md-ellipsis,
+.md-sidebar label.md-nav__link .md-ellipsis {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 76.234375em) {
+  .md-header__button.ff-header-logo { display: inline-flex; flex: 0 0 auto; }
+  .md-header__button.ff-header-logo img { width: 4.2rem; height: auto; }
+  .ff-header-brand { gap: .35rem; margin-right: auto; }
+  .ff-header-brand__sep { display: none; }
+  .ff-header-brand__product { font-size: .85rem; }
+  .md-header__title, .md-header .ff-version { display: none; }
+  .md-header__inner { gap: .15rem; padding-inline: .4rem; }
+  .md-header__button.md-icon { margin-inline: .1rem; padding-inline: .25rem; }
+}
+@media (max-width: 360px) {
+  .md-header__button.ff-header-logo img { width: 3.3rem; }
+  .ff-header-brand__product { font-size: .76rem; }
+}
+
+/* An orientation canvas on the home page; articles retain a measured reading column. */
+.ff-home .md-sidebar--secondary { display: none; }
+.ff-home .md-content { min-width: 0; }
+.ff-home .md-content__inner { max-width: none; }
+.ff-home .md-typeset > h1 { font-size: clamp(2.5rem, 5vw, 4.1rem); line-height: 1.05; margin-bottom: 1rem; }
+.ff-manual-lead { max-width: 70ch; }
+.ff-manual-lead > p:first-child { font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 600; line-height: 1.45; }
+.ff-platform-map { margin: 2rem 0 2.5rem; max-width: none; text-align: left; }
+.ff-platform-map picture, .ff-platform-map img { display: block; width: 100%; height: auto; }
+.ff-platform-map figcaption { max-width: 76ch; margin-top: .75rem; font-size: .75rem; color: var(--ff-muted); line-height: 1.6; }
+.ff-manual-areas { max-width: 70ch; }
+.ff-manual-areas h3 { margin-bottom: 0; }
+.ff-manual-areas p { margin-top: .6rem; }
+@media (max-width: 640px) {
+  .ff-manual-areas { display: block; }
+  .ff-platform-map { margin-inline: -.5rem; }
+}
+
+/* Use the viewport for navigation rails and reserve the middle for the manual. */
+.md-grid {
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(12px, 1.25vw, 28px);
+}
+@media screen and (min-width: 76.25em) {
+  .md-main__inner.md-grid { gap: clamp(20px, 1.8vw, 36px); }
+  .md-sidebar--primary { width: clamp(220px, 15vw, 264px); }
+  .md-sidebar--secondary { width: clamp(180px, 12vw, 224px); }
+  .md-sidebar__inner { width: 100%; }
+  .md-content > .md-content__inner { margin-inline: 0; }
+  .md-sidebar a.md-nav__link,
+  .md-sidebar label.md-nav__link {
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 36px;
+    padding: 8px 12px;
+  }
+  .md-sidebar--primary .md-nav--primary > .md-nav__title { font-size: 16px; }
+}
+/* Prose stays readable; figures and tables can use the entire middle column. */
+.md-typeset > p, .md-typeset > ul, .md-typeset > ol { max-width: 88ch; }
+
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary .md-nav .md-nav > .md-nav__list > .md-nav__item > a.md-nav__link,
+  .md-sidebar--primary .md-nav .md-nav > .md-nav__list > .md-nav__item > label.md-nav__link {
+    padding-left: 24px;
+  }
+  .md-sidebar--primary .md-nav .md-nav .md-nav > .md-nav__list > .md-nav__item > a.md-nav__link,
+  .md-sidebar--primary .md-nav .md-nav .md-nav > .md-nav__list > .md-nav__item > label.md-nav__link {
+    padding-left: 34px;
+  }
+}

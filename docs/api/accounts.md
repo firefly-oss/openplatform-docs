@@ -1,174 +1,21 @@
-# Accounts
+# Accounts API
 
-This page is generated from `exp-accounts-sdk/src/main/resources/openapi.yml`.
-Core and domain contracts stay in each repository.
-A journey call is identity, then access, then a decision only when the operation creates risk, then the domain port.
-Read the path, then the example, then the panel rendered from the spec.
+Account opening, servicing, authority, and closure must agree with the owning domain and core. The controller inventory can be broader than a checked-in OpenAPI input; qualification compares both.
 
-## POST /api/v1/journeys/account-opening/{journeyId}/income-proof
+[Complete current producer contract](services/exp-accounts.md) · [Business lifecycle](../journeys/banking.md) · [Repository adoption guide](https://github.com/fireflysoftwaresolutions/exp-accounts)
 
-Submit Income Proof.
+## Read the request in context
 
-Submit income proof documents for the account opening. Advances the journey past the income proof gate.
+Use the linked producer page for all declared paths, request and response models, required fields, enums, parameters, and statuses. Its downloadable contract and SHA256 identify the copied source independently of the producer's base revision. The [complete API directory](contracts.md) includes experience, domain, and core producers.
 
-This operation's spec does not document a separate refusal body.
+Executable examples belong with their prerequisite records, selected adapters, validation fixture, expected outcome, and failure/recovery checks. The repository guide and business implementation chapter identify those sources. Commented pseudo-JSON is not a valid request body.
 
-```text
-// request POST /api/v1/journeys/account-opening/{journeyId}/income-proof
-// schema: SubmitIncomeProofCommand
-{
-  // documentType: string, optional
-  // documentContent: string, optional
-  // mimeType: string, optional
-  // declaredAnnualIncome: number, optional
-  // employerName: string, optional
-  // occupation: string, optional
-}
+## Authentication and effects
 
-// response
-// 200 OK
-// no fields declared
-```
+Establish trusted subject and tenant from the configured authenticated context and verify resource authority before the operation. Supply synthetic IDs created in the same disposable environment for qualification. Do not reuse another chapter's customer, contract, policy, or account merely because its UUID has the right shape.
 
-## POST /api/v1/journeys/account-opening/{journeyId}/funding
+A successful HTTP status establishes the documented transport result. Verify the owning durable state, emitted events, provider references, and financial effects required by the journey. Include denied, invalid, identical/conflicting replay, uncertainty, restart, and recovery cases. See [recovery and reconciliation](../operations/index.md).
 
-Configure Funding Source.
+## Account-service complaints
 
-Configure the funding source for the initial deposit. Advances the journey past the funding gate and triggers account creation.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request POST /api/v1/journeys/account-opening/{journeyId}/funding
-// schema: ConfigureFundingSourceCommand
-{
-  // fundingMethod: string, optional
-  // externalAccountNumber: string, optional
-  // externalBankCode: string, optional
-  // initialDepositAmount: number, optional
-}
-
-// response
-// 200 OK
-// no fields declared
-```
-
-## POST /api/v1/journeys/account-opening
-
-Initiate Account Opening.
-
-Start a new account opening journey - sends welcome notification, checks eligibility, and waits for income proof submission
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request POST /api/v1/journeys/account-opening
-// schema: InitiateAccountOpeningCommand
-{
-  // customerId: string (uuid); identifier, optional
-  // productId: string (uuid); identifier, optional
-  // productCatalogId: string (uuid); identifier, optional
-  // accountType: string, optional
-  // currency: string; currency code, optional
-  // branchId: string (uuid); identifier, optional
-  // email: string, optional
-  // phone: string, optional
-}
-
-// response
-// 200 OK
-// schema: AccountOpeningJourneyStatusDTO
-{
-  // journeyId: string (uuid); identifier, optional
-  // customerId: string (uuid); identifier, optional
-  // accountId: string (uuid); identifier, optional
-  // contractId: string (uuid); identifier, optional
-  // currentPhase: string, optional
-  // completedSteps: array, optional
-  // nextStep: string, optional
-  // accountStatus: string, optional
-  // documentVerificationStatus: string, optional
-}
-```
-
-## GET /api/v1/journeys/account-opening/{journeyId}
-
-Get Journey Status.
-
-Retrieve the current state of an account opening journey. Returns completed steps, current phase, and next expected action.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request GET /api/v1/journeys/account-opening/{journeyId}
-// no request body declared
-
-// response
-// 200 OK
-// schema: AccountOpeningJourneyStatusDTO
-{
-  // journeyId: string (uuid); identifier, optional
-  // customerId: string (uuid); identifier, optional
-  // accountId: string (uuid); identifier, optional
-  // contractId: string (uuid); identifier, optional
-  // currentPhase: string, optional
-  // completedSteps: array, optional
-  // nextStep: string, optional
-  // accountStatus: string, optional
-  // documentVerificationStatus: string, optional
-}
-```
-
-## GET /api/v1/accounts/{accountId}
-
-Get account summary.
-
-Retrieves the account summary including balances and status
-
-A refusal in this spec is `404` Account not found.
-
-```text
-// request GET /api/v1/accounts/{accountId}
-// no request body declared
-
-// response
-// 200 Account found
-// 404 Account not found
-```
-
-## DELETE /api/v1/accounts/{accountId}
-
-Close an account.
-
-Closes an account with the specified reason
-
-A refusal in this spec is `404` Account not found.
-
-```text
-// request DELETE /api/v1/accounts/{accountId}
-// no request body declared
-
-// response
-// 204 Account closed successfully
-// 404 Account not found
-```
-
-## GET /api/v1/accounts/party/{partyId}
-
-Get party accounts.
-
-Retrieves all accounts for a specific party (customer)
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request GET /api/v1/accounts/party/{partyId}
-// no request body declared
-
-// response
-// 200 Accounts retrieved
-```
-
-The panel below is the same file. Open an operation there after you have read its example.
-
-<swagger-ui src="specs/accounts/openapi.yml"></swagger-ui>
+`POST /api/v1/experience/accounts/{resourceId}/complaints` checks the signed account-resource grant, reads the product through its SDK and opens the shared case through the case-domain SDK. Retain the original sourceRequestId and Idempotency-Key. A valid intake returns201 with case identity/state/deadline/version; it does not change the account or its money. [Configure the complete human-work chain](../operations/cases.md), including token properties, current-permission replay, evidence, investigation and independent closure. The new case source/SDK builds are local unpublished additions in this snapshot.

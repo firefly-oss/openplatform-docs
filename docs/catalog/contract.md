@@ -1,6 +1,6 @@
 # Contract
 
-A contract is the agreement record: parties, product lines, currency, status, and an optional predecessor. The domain saga is the only writer. The core owns the rows.
+A contract is the agreement record: parties, product lines, currency, status, and an optional predecessor. The domain coordinates contract intent and the core owns the rows. The core also exposes APIs, so deployment authorization and invariant guards must protect those entry points; the architectural writer boundary is not established by this sentence.
 
 The data rules are on the [contract model](../models/contract.md).
 

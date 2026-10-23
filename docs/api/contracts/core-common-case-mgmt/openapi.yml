@@ -1,0 +1,611 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:18080
+  description: Generated server url
+paths:
+  /api/v1/internal/cases:
+    get:
+      tags:
+      - Cases
+      operationId: caseQueue
+      parameters:
+      - name: queue
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: afterId
+        in: query
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CaseView"
+      security:
+      - caseBearer: []
+    post:
+      tags:
+      - Cases
+      operationId: openCase
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: X-Request-ID
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OpenCaseRequest"
+        required: true
+      responses:
+        "201":
+          description: Case response or authorized original response replayed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CaseView"
+        "409":
+          description: "Idempotency, version, source or lifecycle conflict"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Validated finite-lived access token required
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CaseView"
+        "403":
+          description: Current action or resource permission denied
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CaseView"
+      security:
+      - caseBearer: []
+  /api/v1/internal/cases/{caseId}/actions:
+    post:
+      tags:
+      - Cases
+      operationId: mutateCase
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: If-Match
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: X-Request-ID
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Mutation"
+        required: true
+      responses:
+        "200":
+          description: Case response or authorized original response replayed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CaseView"
+        "409":
+          description: "Idempotency, version, source or lifecycle conflict"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Validated finite-lived access token required
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CaseView"
+        "403":
+          description: Current action or resource permission denied
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CaseView"
+        "428":
+          description: If-Match expected version is required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      security:
+      - caseBearer: []
+  /api/v1/internal/cases/workers/outbox:
+    post:
+      tags:
+      - Cases
+      operationId: dispatchCaseOutbox
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int64
+      security:
+      - caseBearer: []
+  /api/v1/internal/cases/workers/deadlines:
+    post:
+      tags:
+      - Cases
+      operationId: runCaseDeadlines
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int64
+      security:
+      - caseBearer: []
+  /api/v1/internal/cases/{caseId}:
+    get:
+      tags:
+      - Cases
+      operationId: getCase
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CaseView"
+      security:
+      - caseBearer: []
+  /api/v1/internal/cases/{caseId}/history:
+    get:
+      tags:
+      - Cases
+      operationId: caseHistory
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: afterVersion
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+          default: -1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CaseEvent"
+      security:
+      - caseBearer: []
+components:
+  schemas:
+    OpenCaseRequest:
+      required:
+      - category
+      - description
+      - productReference
+      - sourceRequestId
+      - subject
+      - subtype
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+          - COMPLAINT
+          - HUMAN_REFERRAL
+          - OPERATIONAL_EXCEPTION
+        subtype:
+          type: string
+          enum:
+          - ACCOUNT_SERVICE
+          - POLICY_SERVICE
+          - UNDERWRITING_REVIEW
+          - CLAIM_REVIEW
+          - PAYMENT_EXCEPTION
+        sourceRequestId:
+          type: string
+          format: uuid
+        subject:
+          maxLength: 200
+          minLength: 0
+          type: string
+        description:
+          maxLength: 4000
+          minLength: 0
+          type: string
+        productReference:
+          $ref: "#/components/schemas/ProductReference"
+    ProductReference:
+      required:
+      - ownerService
+      - resourceId
+      - resourceType
+      type: object
+      properties:
+        ownerService:
+          maxLength: 100
+          minLength: 0
+          type: string
+        resourceType:
+          type: string
+          enum:
+          - ACCOUNT
+          - POLICY
+          - SUBMISSION
+          - CLAIM
+          - PAYMENT
+        resourceId:
+          type: string
+          format: uuid
+    CaseView:
+      type: object
+      properties:
+        caseId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+        category:
+          type: string
+          enum:
+          - COMPLAINT
+          - HUMAN_REFERRAL
+          - OPERATIONAL_EXCEPTION
+        subtype:
+          type: string
+          enum:
+          - ACCOUNT_SERVICE
+          - POLICY_SERVICE
+          - UNDERWRITING_REVIEW
+          - CLAIM_REVIEW
+          - PAYMENT_EXCEPTION
+        sourceRequestId:
+          type: string
+          format: uuid
+        subject:
+          type: string
+        description:
+          type: string
+        productReference:
+          $ref: "#/components/schemas/ProductReference"
+        requesterSubject:
+          type: string
+        queue:
+          type: string
+        assigneeSubject:
+          type: string
+        state:
+          type: string
+          enum:
+          - OPEN
+          - ASSIGNED
+          - IN_PROGRESS
+          - RESOLVED
+          - CLOSED
+          - CANCELLED
+        dueAt:
+          type: string
+          format: date-time
+        nextEscalationAt:
+          type: string
+          format: date-time
+        version:
+          type: integer
+          format: int64
+        escalationLevel:
+          type: integer
+          format: int32
+        resolution:
+          $ref: "#/components/schemas/Resolution"
+        evidence:
+          type: array
+          items:
+            $ref: "#/components/schemas/VerifiedEvidence"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    EvidenceReference:
+      required:
+      - description
+      - documentId
+      - documentOwner
+      - documentVersionId
+      - sha256
+      type: object
+      properties:
+        documentId:
+          type: string
+          format: uuid
+        documentVersionId:
+          type: string
+          format: uuid
+        documentOwner:
+          minLength: 1
+          type: string
+        sha256:
+          minLength: 1
+          pattern: "[a-f0-9]{64}"
+          type: string
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+    Resolution:
+      type: object
+      properties:
+        outcome:
+          type: string
+          enum:
+          - ACCEPTED
+          - REJECTED
+          - INFORMATION_PROVIDED
+          - REFERRED_TO_PRODUCT_OWNER
+          - WITHDRAWN
+        reason:
+          type: string
+        actorSubject:
+          type: string
+        decidedAt:
+          type: string
+          format: date-time
+    VerifiedEvidence:
+      type: object
+      properties:
+        reference:
+          $ref: "#/components/schemas/EvidenceReference"
+        verifiedAt:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Mutation:
+      required:
+      - action
+      - reason
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - OPEN
+          - ASSIGN
+          - START
+          - EVIDENCE
+          - RESOLVE
+          - CLOSE
+          - REOPEN
+          - CANCEL
+          - ESCALATE
+        assigneeSubject:
+          maxLength: 200
+          minLength: 0
+          type: string
+        queue:
+          maxLength: 100
+          minLength: 0
+          type: string
+        reason:
+          maxLength: 4000
+          minLength: 0
+          type: string
+        outcome:
+          type: string
+          enum:
+          - ACCEPTED
+          - REJECTED
+          - INFORMATION_PROVIDED
+          - REFERRED_TO_PRODUCT_OWNER
+          - WITHDRAWN
+        evidence:
+          $ref: "#/components/schemas/EvidenceReference"
+    CaseEvent:
+      type: object
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        caseId:
+          type: string
+          format: uuid
+        version:
+          type: integer
+          format: int64
+        action:
+          type: string
+          enum:
+          - OPEN
+          - ASSIGN
+          - START
+          - EVIDENCE
+          - RESOLVE
+          - CLOSE
+          - REOPEN
+          - CANCEL
+          - ESCALATE
+        actorSubject:
+          type: string
+        occurredAt:
+          type: string
+          format: date-time
+        reason:
+          type: string
+        requestId:
+          type: string
+        correlationId:
+          type: string
+        mutation:
+          $ref: "#/components/schemas/Mutation"
+  securitySchemes:
+    caseBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

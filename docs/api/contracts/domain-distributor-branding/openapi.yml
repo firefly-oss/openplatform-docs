@@ -1,0 +1,3927 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:18080
+  description: Generated server url
+tags:
+- name: Terms and Conditions
+  description: Lifecycle operations for distributor terms and conditions
+- name: Territory
+  description: CRUD operations for distributor authorized territories
+- name: Agent
+  description: CRUD operations for distributor agents
+- name: Distributor
+  description: CQ queries and registration for Distributors
+- name: Operation
+  description: Lifecycle operations for distributor operations
+- name: Agent-Agency
+  description: Operations for distributor agent-agency assignments
+- name: Agency
+  description: CRUD operations for distributor agencies
+- name: Distributor Query
+  description: Query endpoints for distributor profile and branding
+- name: Configuration
+  description: CRUD operations for distributor configurations
+paths:
+  /api/v1/distributors/{distributorId}/territories/{territoryId}:
+    get:
+      tags:
+      - Territory
+      summary: Get Territory
+      description: Retrieve a single authorized territory by its identifier.
+      operationId: getTerritory
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: territoryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorAuthorizedTerritoryDTO"
+    put:
+      tags:
+      - Territory
+      summary: Update Territory
+      description: Update an existing authorized territory.
+      operationId: updateTerritory
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: territoryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateTerritoryCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+    delete:
+      tags:
+      - Territory
+      summary: Delete Territory
+      description: Delete an authorized territory from a distributor.
+      operationId: deleteTerritory
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: territoryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+  /api/v1/distributors/{distributorId}/terms-and-conditions/{tcId}:
+    get:
+      tags:
+      - Terms and Conditions
+      summary: Get Terms and Conditions Detail
+      description: Retrieve the detail of a specific terms and conditions entry.
+      operationId: getTermsAndConditionsDetail
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: tcId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorTermsAndConditionsDTO"
+    put:
+      tags:
+      - Distributor
+      summary: Revise Terms and Conditions
+      description: Revise or version distributor's terms & conditions.
+      operationId: reviseTermsAndConditions
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: tcId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReviseTermsAndConditionsCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+      - Terms and Conditions
+      summary: Delete Terms and Conditions
+      description: Delete terms and conditions from a distributor.
+      operationId: deleteTermsAndConditions
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: tcId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+  /api/v1/distributors/{distributorId}/profile:
+    get:
+      tags:
+      - Distributor Query
+      summary: Get Distributor Profile
+      description: Retrieve the profile of a distributor by its identifier.
+      operationId: getDistributorProfile
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Distributor profile retrieved successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorDTO"
+        "404":
+          description: Distributor not found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorDTO"
+    put:
+      tags:
+      - Distributor Query
+      summary: Update Distributor
+      description: Update an existing distributor's profile.
+      operationId: updateDistributor
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DistributorDTO"
+        required: true
+      responses:
+        "200":
+          description: Distributor updated successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorDTO"
+    delete:
+      tags:
+      - Distributor Query
+      summary: Delete Distributor
+      description: Delete a distributor by its identifier.
+      operationId: deleteDistributor
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Distributor deleted successfully
+  /api/v1/distributors/{distributorId}/operations/{operationId}:
+    get:
+      tags:
+      - Operation
+      summary: Get Operation
+      description: Retrieve a single operation by its identifier.
+      operationId: getOperation
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: operationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorOperationDTO"
+    put:
+      tags:
+      - Operation
+      summary: Update Operation
+      description: Update an existing operation.
+      operationId: updateOperation
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: operationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateOperationCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+    delete:
+      tags:
+      - Operation
+      summary: Delete Operation
+      description: Delete an operation from a distributor.
+      operationId: deleteOperation
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: operationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+  /api/v1/distributors/{distributorId}/configurations/{configurationId}:
+    get:
+      tags:
+      - Configuration
+      summary: Get Configuration
+      description: Retrieve a single configuration by its identifier.
+      operationId: getConfiguration
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: configurationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorConfigurationDTO"
+    put:
+      tags:
+      - Configuration
+      summary: Update Configuration
+      description: Update an existing configuration.
+      operationId: updateConfiguration
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: configurationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateConfigurationCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+    delete:
+      tags:
+      - Configuration
+      summary: Delete Configuration
+      description: Delete a configuration from a distributor.
+      operationId: deleteConfiguration
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: configurationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+  /api/v1/distributors/{distributorId}/branding/{brandingId}:
+    get:
+      tags:
+      - Distributor Query
+      summary: Get Distributor Branding
+      description: Retrieve a specific branding configuration for a distributor.
+      operationId: getDistributorBranding
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: brandingId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Distributor branding retrieved successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorBrandingDTO"
+        "404":
+          description: Distributor or branding not found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorBrandingDTO"
+    put:
+      tags:
+      - Distributor
+      summary: Revise Branding
+      description: Revise distributor's branding configuration.
+      operationId: reviseBranding
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: brandingId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReviseBrandingCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+      - Distributor Query
+      summary: Delete Distributor Branding
+      description: Delete a specific branding configuration for a distributor.
+      operationId: deleteDistributorBranding
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: brandingId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Branding deleted successfully
+  /api/v1/distributors/{distributorId}/branding/{brandingId}/set-default:
+    put:
+      tags:
+      - Distributor
+      summary: Set Default Branding
+      description: Mark branding as default for the distributor.
+      operationId: setDefaultBranding
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: brandingId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetDefaultBrandingCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/distributors/{distributorId}/agents/{agentId}:
+    get:
+      tags:
+      - Agent
+      summary: Get Agent
+      description: Retrieve a single agent by its identifier.
+      operationId: getAgent
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: agentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorAgentDTO"
+    put:
+      tags:
+      - Agent
+      summary: Update Agent
+      description: Update an existing agent.
+      operationId: updateAgent
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: agentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateAgentCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+    delete:
+      tags:
+      - Agent
+      summary: Delete Agent
+      description: Delete an agent from a distributor.
+      operationId: deleteAgent
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: agentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+  /api/v1/distributors/{distributorId}/agencies/{agencyId}:
+    get:
+      tags:
+      - Agency
+      summary: Get Agency
+      description: Retrieve a single agency by its identifier.
+      operationId: getAgency
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: agencyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorAgencyDTO"
+    put:
+      tags:
+      - Agency
+      summary: Update Agency
+      description: Update an existing agency.
+      operationId: updateAgency
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: agencyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateAgencyCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+    delete:
+      tags:
+      - Agency
+      summary: Delete Agency
+      description: Delete an agency from a distributor.
+      operationId: deleteAgency
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: agencyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+  /api/v1/distributors:
+    post:
+      tags:
+      - Distributor
+      summary: Onboard Distributor
+      description: Onboard a new distributor with branding and terms & conditions.
+      operationId: onboardDistributor
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterDistributorCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/distributors/{distributorId}/territories:
+    get:
+      tags:
+      - Territory
+      summary: List Territories
+      description: List all authorized territories for a distributor.
+      operationId: listTerritories
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponse"
+    post:
+      tags:
+      - Territory
+      summary: Create Territory
+      description: Create a new authorized territory for a distributor.
+      operationId: createTerritory
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTerritoryCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+  /api/v1/distributors/{distributorId}/terms-and-conditions:
+    get:
+      tags:
+      - Terms and Conditions
+      summary: List Terms and Conditions
+      description: List all terms and conditions for a distributor.
+      operationId: listTermsAndConditions
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorTermsAndConditionsDTO"
+    post:
+      tags:
+      - Terms and Conditions
+      summary: Create Terms and Conditions
+      description: Create new terms and conditions for a distributor.
+      operationId: createTermsAndConditions
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTermsAndConditionsCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+  /api/v1/distributors/{distributorId}/operations:
+    get:
+      tags:
+      - Operation
+      summary: List Operations
+      description: List all operations for a distributor.
+      operationId: listOperations
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorOperationDTO"
+    post:
+      tags:
+      - Operation
+      summary: Create Operation
+      description: Create a new operation for a distributor.
+      operationId: createOperation
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOperationCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+  /api/v1/distributors/{distributorId}/configurations:
+    get:
+      tags:
+      - Configuration
+      summary: List Configurations
+      description: List all configurations for a distributor.
+      operationId: listConfigurations
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponse"
+    post:
+      tags:
+      - Configuration
+      summary: Create Configuration
+      description: Create a new configuration for a distributor.
+      operationId: createConfiguration
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateConfigurationCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+  /api/v1/distributors/{distributorId}/branding:
+    post:
+      tags:
+      - Distributor Query
+      summary: Create Distributor Branding
+      description: Create a new branding configuration for a distributor.
+      operationId: createDistributorBranding
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DistributorBrandingDTO"
+        required: true
+      responses:
+        "200":
+          description: Branding created successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorBrandingDTO"
+  /api/v1/distributors/{distributorId}/branding/filter:
+    post:
+      tags:
+      - Distributor Query
+      summary: List Distributor Brandings
+      description: Retrieve all branding configurations for a distributor.
+      operationId: filterDistributorBrandings
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FilterRequestDistributorBrandingDTO"
+        required: true
+      responses:
+        "200":
+          description: Brandings listed successfully
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DistributorBrandingDTO"
+  /api/v1/distributors/{distributorId}/audit-logs:
+    post:
+      tags:
+      - Distributor Query
+      summary: Record a staff attachment
+      description: Writes an audit log row through the distributor core.
+      operationId: recordAuditLog
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterDistributorAuditLogCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+  /api/v1/distributors/{distributorId}/agents:
+    get:
+      tags:
+      - Agent
+      summary: List Agents
+      description: List all agents for a distributor.
+      operationId: listAgents
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponse"
+    post:
+      tags:
+      - Agent
+      summary: Create Agent
+      description: Create a new agent for a distributor.
+      operationId: createAgent
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAgentCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+  /api/v1/distributors/{distributorId}/agent-agencies:
+    get:
+      tags:
+      - Agent-Agency
+      summary: List Agent-Agency Assignments
+      description: List all agent-agency assignments for a distributor.
+      operationId: listAgentAgencies
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+    post:
+      tags:
+      - Agent-Agency
+      summary: Assign Agent to Agency
+      description: Create an agent-agency assignment for a distributor.
+      operationId: assignAgentAgency
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssignAgentAgencyCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+  /api/v1/distributors/{distributorId}/agencies:
+    get:
+      tags:
+      - Agency
+      summary: List Agencies
+      description: List all agencies for a distributor.
+      operationId: listAgencies
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponse"
+    post:
+      tags:
+      - Agency
+      summary: Create Agency
+      description: Create a new agency for a distributor.
+      operationId: createAgency
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAgencyCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: uuid
+  /api/v1/distributors/filter:
+    post:
+      tags:
+      - Distributor Query
+      summary: Filter distributors
+      description: Returns distributors from the distributor core.
+      operationId: filterDistributors
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponse"
+  /api/v1/distributors/{distributorId}/terms-and-conditions/{tcId}/sign:
+    patch:
+      tags:
+      - Terms and Conditions
+      summary: Sign Terms and Conditions
+      description: Sign terms and conditions for a distributor.
+      operationId: signTermsAndConditions
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: tcId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: signedBy
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorTermsAndConditionsDTO"
+  /api/v1/distributors/{distributorId}/terms-and-conditions/{tcId}/deactivate:
+    patch:
+      tags:
+      - Terms and Conditions
+      summary: Deactivate Terms and Conditions
+      description: Deactivate terms and conditions for a distributor.
+      operationId: deactivateTermsAndConditions
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: tcId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: deactivatedBy
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorTermsAndConditionsDTO"
+  /api/v1/distributors/{distributorId}/terms-and-conditions/{tcId}/activate:
+    patch:
+      tags:
+      - Terms and Conditions
+      summary: Activate Terms and Conditions
+      description: Activate terms and conditions for a distributor.
+      operationId: activateTermsAndConditions
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: tcId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: activatedBy
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorTermsAndConditionsDTO"
+  /api/v1/distributors/{distributorId}/operations/{operationId}/deactivate:
+    patch:
+      tags:
+      - Operation
+      summary: Deactivate Operation
+      description: Deactivate an operation for a distributor.
+      operationId: deactivateOperation
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: operationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: deactivatedBy
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorOperationDTO"
+  /api/v1/distributors/{distributorId}/operations/{operationId}/activate:
+    patch:
+      tags:
+      - Operation
+      summary: Activate Operation
+      description: Activate an operation for a distributor.
+      operationId: activateOperation
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: operationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: activatedBy
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorOperationDTO"
+  /api/v1/distributors/{distributorId}/terms-and-conditions/latest:
+    get:
+      tags:
+      - Terms and Conditions
+      summary: Get Latest Terms and Conditions
+      description: Retrieve the latest terms and conditions for a distributor.
+      operationId: getLatestTermsAndConditions
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorTermsAndConditionsDTO"
+  /api/v1/distributors/{distributorId}/terms-and-conditions/has-active-signed:
+    get:
+      tags:
+      - Terms and Conditions
+      summary: Has Active Signed Terms
+      description: Check whether a distributor has active signed terms and conditions.
+      operationId: hasActiveSignedTerms
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /api/v1/distributors/{distributorId}/terms-and-conditions/active:
+    get:
+      tags:
+      - Terms and Conditions
+      summary: Get Active Terms and Conditions
+      description: Retrieve the active terms and conditions for a distributor.
+      operationId: getActiveTermsAndConditions
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DistributorTermsAndConditionsDTO"
+  /api/v1/distributors/{distributorId}/operations/can-operate:
+    get:
+      tags:
+      - Operation
+      summary: Can Operate
+      description: Check whether a distributor can operate in a given location.
+      operationId: canOperate
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: operationId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: locationId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /api/v1/distributors/{distributorId}/agent-agencies/{agentAgencyId}:
+    delete:
+      tags:
+      - Agent-Agency
+      summary: Remove Agent-Agency Assignment
+      description: Remove an agent-agency assignment from a distributor.
+      operationId: removeAgentAgency
+      parameters:
+      - name: distributorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: agentAgencyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+components:
+  schemas:
+    UpdateTerritoryCommand:
+      required:
+      - countryId
+      - distributorId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        countryId:
+          type: string
+          format: uuid
+        administrativeDivisionId:
+          type: string
+          format: uuid
+          nullable: true
+        authorizationLevel:
+          type: string
+          nullable: true
+          enum:
+          - COUNTRY
+          - REGION
+          - CITY
+        isActive:
+          type: boolean
+          nullable: true
+        authorizedFrom:
+          type: string
+          format: date-time
+          nullable: true
+        authorizedUntil:
+          type: string
+          format: date-time
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    DistributorDTO:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        externalCode:
+          type: string
+          nullable: true
+        name:
+          type: string
+        displayName:
+          type: string
+          nullable: true
+        taxId:
+          type: string
+          nullable: true
+        registrationNumber:
+          type: string
+          nullable: true
+        websiteUrl:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        supportEmail:
+          type: string
+          nullable: true
+        addressLine:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          format: uuid
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        isTestDistributor:
+          type: boolean
+          nullable: true
+        timeZone:
+          type: string
+          nullable: true
+        defaultLocale:
+          type: string
+          nullable: true
+        onboardedAt:
+          type: string
+          format: date-time
+          nullable: true
+        terminatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    ReviseTermsAndConditionsCommand:
+      required:
+      - content
+      - distributorId
+      - effectiveDate
+      - title
+      - version
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        templateId:
+          type: string
+          format: uuid
+          nullable: true
+        title:
+          type: string
+        content:
+          type: string
+        version:
+          type: string
+        effectiveDate:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
+          nullable: true
+        signedDate:
+          type: string
+          format: date-time
+          nullable: true
+        signedBy:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+        distributor:
+          $ref: "#/components/schemas/DistributorDTO"
+        template:
+          $ref: "#/components/schemas/TermsAndConditionsTemplateDTO"
+    TermsAndConditionsTemplateDTO:
+      required:
+      - category
+      - name
+      - templateContent
+      - version
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        category:
+          type: string
+        templateContent:
+          type: string
+        variables:
+          type: string
+          nullable: true
+        version:
+          type: string
+        isDefault:
+          type: boolean
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        approvalRequired:
+          type: boolean
+          nullable: true
+        autoRenewal:
+          type: boolean
+          nullable: true
+        renewalPeriodMonths:
+          type: integer
+          format: int32
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    UpdateOperationCommand:
+      required:
+      - administrativeDivisionId
+      - countryId
+      - distributorId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        countryId:
+          type: string
+          format: uuid
+        administrativeDivisionId:
+          type: string
+          format: uuid
+        managedByAgentId:
+          type: string
+          format: uuid
+          nullable: true
+        agencyId:
+          type: string
+          format: uuid
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    UpdateConfigurationCommand:
+      required:
+      - configKey
+      - configValue
+      - dataTypeId
+      - distributorId
+      - scopeId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        agencyId:
+          type: string
+          format: uuid
+          nullable: true
+        agentId:
+          type: string
+          format: uuid
+          nullable: true
+        scopeId:
+          type: string
+          format: uuid
+        configKey:
+          type: string
+        configValue:
+          type: string
+        dataTypeId:
+          type: string
+          format: uuid
+        category:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        isSensitive:
+          type: boolean
+          nullable: true
+        isOverridable:
+          type: boolean
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        effectiveFrom:
+          type: string
+          format: date-time
+          nullable: true
+        effectiveUntil:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    ReviseBrandingCommand:
+      required:
+      - distributorId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        logoUrl:
+          type: string
+          nullable: true
+        faviconUrl:
+          type: string
+          nullable: true
+        primaryColor:
+          type: string
+          nullable: true
+        secondaryColor:
+          type: string
+          nullable: true
+        backgroundColor:
+          type: string
+          nullable: true
+        fontFamily:
+          type: string
+          nullable: true
+        theme:
+          type: string
+          nullable: true
+          enum:
+          - LIGHT
+          - DARK
+          - CUSTOM
+        isDefault:
+          type: boolean
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    SetDefaultBrandingCommand:
+      required:
+      - distributorId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        logoUrl:
+          type: string
+          nullable: true
+        faviconUrl:
+          type: string
+          nullable: true
+        primaryColor:
+          type: string
+          nullable: true
+        secondaryColor:
+          type: string
+          nullable: true
+        backgroundColor:
+          type: string
+          nullable: true
+        fontFamily:
+          type: string
+          nullable: true
+        theme:
+          type: string
+          nullable: true
+          enum:
+          - LIGHT
+          - DARK
+          - CUSTOM
+        isDefault:
+          type: boolean
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    UpdateAgentCommand:
+      required:
+      - distributorId
+      - email
+      - firstName
+      - lastName
+      - userId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        employeeCode:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        department:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        addressLine:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          format: uuid
+          nullable: true
+        administrativeDivisionId:
+          type: string
+          format: uuid
+          nullable: true
+        hireDate:
+          type: string
+          format: date
+          nullable: true
+        terminationDate:
+          type: string
+          format: date
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    UpdateAgencyCommand:
+      required:
+      - code
+      - countryId
+      - distributorId
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        code:
+          type: string
+        description:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          format: uuid
+        administrativeDivisionId:
+          type: string
+          format: uuid
+          nullable: true
+        addressLine:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        legalEntityName:
+          type: string
+          nullable: true
+        legalFormId:
+          type: string
+          format: uuid
+          nullable: true
+        taxId:
+          type: string
+          nullable: true
+        registrationNumber:
+          type: string
+          nullable: true
+        vatNumber:
+          type: string
+          nullable: true
+        fiscalAddressLine:
+          type: string
+          nullable: true
+        fiscalPostalCode:
+          type: string
+          nullable: true
+        fiscalCity:
+          type: string
+          nullable: true
+        fiscalState:
+          type: string
+          nullable: true
+        fiscalCountryId:
+          type: string
+          format: uuid
+          nullable: true
+        isHeadquarters:
+          type: boolean
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        openedAt:
+          type: string
+          format: date-time
+          nullable: true
+        closedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    RegisterDistributorAuditLogCommand:
+      required:
+      - action
+      - auditTimestamp
+      - distributorId
+      - entity
+      - entityId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        action:
+          type: string
+          enum:
+          - CREATED
+          - UPDATED
+          - TERMINATED
+        entity:
+          type: string
+        entityId:
+          type: string
+        auditMetadata:
+          type: string
+          nullable: true
+        ipAddress:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          format: uuid
+          nullable: true
+        auditTimestamp:
+          type: string
+          format: date-time
+    RegisterDistributorBrandingCommand:
+      required:
+      - distributorId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        logoUrl:
+          type: string
+          nullable: true
+        faviconUrl:
+          type: string
+          nullable: true
+        primaryColor:
+          type: string
+          nullable: true
+        secondaryColor:
+          type: string
+          nullable: true
+        backgroundColor:
+          type: string
+          nullable: true
+        fontFamily:
+          type: string
+          nullable: true
+        theme:
+          type: string
+          nullable: true
+          enum:
+          - LIGHT
+          - DARK
+          - CUSTOM
+        isDefault:
+          type: boolean
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    RegisterDistributorCommand:
+      type: object
+      properties:
+        distributorInfo:
+          $ref: "#/components/schemas/RegisterDistributorInfoCommand"
+        termsAndConditionsTemplate:
+          $ref: "#/components/schemas/RegisterTandCTemplateCommand"
+        termsAndConditions:
+          $ref: "#/components/schemas/RegisterTermsAndConditionsCommand"
+        auditLog:
+          $ref: "#/components/schemas/RegisterDistributorAuditLogCommand"
+        branding:
+          $ref: "#/components/schemas/RegisterDistributorBrandingCommand"
+    RegisterDistributorInfoCommand:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        externalCode:
+          type: string
+          nullable: true
+        name:
+          type: string
+        displayName:
+          type: string
+          nullable: true
+        taxId:
+          type: string
+          nullable: true
+        registrationNumber:
+          type: string
+          nullable: true
+        websiteUrl:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        supportEmail:
+          type: string
+          nullable: true
+        addressLine:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          format: uuid
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        isTestDistributor:
+          type: boolean
+          nullable: true
+        timeZone:
+          type: string
+          nullable: true
+        defaultLocale:
+          type: string
+          nullable: true
+        onboardedAt:
+          type: string
+          format: date-time
+          nullable: true
+        terminatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    RegisterTandCTemplateCommand:
+      required:
+      - category
+      - name
+      - templateContent
+      - version
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        category:
+          type: string
+        templateContent:
+          type: string
+        variables:
+          type: string
+          nullable: true
+        version:
+          type: string
+        isDefault:
+          type: boolean
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        approvalRequired:
+          type: boolean
+          nullable: true
+        autoRenewal:
+          type: boolean
+          nullable: true
+        renewalPeriodMonths:
+          type: integer
+          format: int32
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    RegisterTermsAndConditionsCommand:
+      required:
+      - content
+      - distributorId
+      - effectiveDate
+      - title
+      - version
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        templateId:
+          type: string
+          format: uuid
+          nullable: true
+        title:
+          type: string
+        content:
+          type: string
+        version:
+          type: string
+        effectiveDate:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
+          nullable: true
+        signedDate:
+          type: string
+          format: date-time
+          nullable: true
+        signedBy:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+        distributor:
+          $ref: "#/components/schemas/DistributorDTO"
+        template:
+          $ref: "#/components/schemas/TermsAndConditionsTemplateDTO"
+    CreateTerritoryCommand:
+      required:
+      - countryId
+      - distributorId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        countryId:
+          type: string
+          format: uuid
+        administrativeDivisionId:
+          type: string
+          format: uuid
+          nullable: true
+        authorizationLevel:
+          type: string
+          nullable: true
+          enum:
+          - COUNTRY
+          - REGION
+          - CITY
+        isActive:
+          type: boolean
+          nullable: true
+        authorizedFrom:
+          type: string
+          format: date-time
+          nullable: true
+        authorizedUntil:
+          type: string
+          format: date-time
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    CreateTermsAndConditionsCommand:
+      required:
+      - content
+      - distributorId
+      - effectiveDate
+      - title
+      - version
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        templateId:
+          type: string
+          format: uuid
+          nullable: true
+        title:
+          type: string
+        content:
+          type: string
+        version:
+          type: string
+        effectiveDate:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
+          nullable: true
+        signedDate:
+          type: string
+          format: date-time
+          nullable: true
+        signedBy:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+        distributor:
+          $ref: "#/components/schemas/DistributorDTO"
+        template:
+          $ref: "#/components/schemas/TermsAndConditionsTemplateDTO"
+    CreateOperationCommand:
+      required:
+      - administrativeDivisionId
+      - countryId
+      - distributorId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        countryId:
+          type: string
+          format: uuid
+        administrativeDivisionId:
+          type: string
+          format: uuid
+        managedByAgentId:
+          type: string
+          format: uuid
+          nullable: true
+        agencyId:
+          type: string
+          format: uuid
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    CreateConfigurationCommand:
+      required:
+      - configKey
+      - configValue
+      - dataTypeId
+      - distributorId
+      - scopeId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        agencyId:
+          type: string
+          format: uuid
+          nullable: true
+        agentId:
+          type: string
+          format: uuid
+          nullable: true
+        scopeId:
+          type: string
+          format: uuid
+        configKey:
+          type: string
+        configValue:
+          type: string
+        dataTypeId:
+          type: string
+          format: uuid
+        category:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        isSensitive:
+          type: boolean
+          nullable: true
+        isOverridable:
+          type: boolean
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        effectiveFrom:
+          type: string
+          format: date-time
+          nullable: true
+        effectiveUntil:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    DistributorBrandingDTO:
+      required:
+      - distributorId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        logoUrl:
+          type: string
+          nullable: true
+        faviconUrl:
+          type: string
+          nullable: true
+        primaryColor:
+          type: string
+          nullable: true
+        secondaryColor:
+          type: string
+          nullable: true
+        backgroundColor:
+          type: string
+          nullable: true
+        fontFamily:
+          type: string
+          nullable: true
+        theme:
+          type: string
+          nullable: true
+          enum:
+          - LIGHT
+          - DARK
+          - CUSTOM
+        isDefault:
+          type: boolean
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    FilterOptions:
+      type: object
+      properties:
+        caseInsensitiveStrings:
+          type: boolean
+          nullable: true
+        includeInheritedFields:
+          type: boolean
+          nullable: true
+    FilterRequestDistributorBrandingDTO:
+      required:
+      - pagination
+      type: object
+      properties:
+        filters:
+          $ref: "#/components/schemas/DistributorBrandingDTO"
+        rangeFilters:
+          $ref: "#/components/schemas/RangeFilter"
+        pagination:
+          $ref: "#/components/schemas/PaginationRequest"
+        options:
+          $ref: "#/components/schemas/FilterOptions"
+    PaginationRequest:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+          nullable: true
+        pageSize:
+          type: integer
+          format: int32
+          nullable: true
+        sortBy:
+          type: string
+          nullable: true
+        sortDirection:
+          type: string
+          nullable: true
+    RangeFilter:
+      type: object
+      properties:
+        ranges:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/RangeObject"
+          nullable: true
+    RangeObject:
+      type: object
+      properties:
+        from:
+          type: object
+          nullable: true
+        to:
+          type: object
+          nullable: true
+    CreateAgentCommand:
+      required:
+      - distributorId
+      - email
+      - firstName
+      - lastName
+      - userId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        employeeCode:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        department:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        addressLine:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          format: uuid
+          nullable: true
+        administrativeDivisionId:
+          type: string
+          format: uuid
+          nullable: true
+        hireDate:
+          type: string
+          format: date
+          nullable: true
+        terminationDate:
+          type: string
+          format: date
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    AssignAgentAgencyCommand:
+      required:
+      - agencyId
+      - agentId
+      - roleId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        agentId:
+          type: string
+          format: uuid
+        agencyId:
+          type: string
+          format: uuid
+        roleId:
+          type: string
+          format: uuid
+        isPrimaryAgency:
+          type: boolean
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        assignedAt:
+          type: string
+          format: date-time
+          nullable: true
+        unassignedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+    CreateAgencyCommand:
+      required:
+      - code
+      - countryId
+      - distributorId
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        code:
+          type: string
+        description:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          format: uuid
+        administrativeDivisionId:
+          type: string
+          format: uuid
+          nullable: true
+        addressLine:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        legalEntityName:
+          type: string
+          nullable: true
+        legalFormId:
+          type: string
+          format: uuid
+          nullable: true
+        taxId:
+          type: string
+          nullable: true
+        registrationNumber:
+          type: string
+          nullable: true
+        vatNumber:
+          type: string
+          nullable: true
+        fiscalAddressLine:
+          type: string
+          nullable: true
+        fiscalPostalCode:
+          type: string
+          nullable: true
+        fiscalCity:
+          type: string
+          nullable: true
+        fiscalState:
+          type: string
+          nullable: true
+        fiscalCountryId:
+          type: string
+          format: uuid
+          nullable: true
+        isHeadquarters:
+          type: boolean
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        openedAt:
+          type: string
+          format: date-time
+          nullable: true
+        closedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    PaginationResponse:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            type: object
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true
+    DistributorTermsAndConditionsDTO:
+      required:
+      - content
+      - distributorId
+      - effectiveDate
+      - title
+      - version
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        templateId:
+          type: string
+          format: uuid
+          nullable: true
+        title:
+          type: string
+        content:
+          type: string
+        version:
+          type: string
+        effectiveDate:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
+          nullable: true
+        signedDate:
+          type: string
+          format: date-time
+          nullable: true
+        signedBy:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+        distributor:
+          $ref: "#/components/schemas/DistributorDTO"
+        template:
+          $ref: "#/components/schemas/TermsAndConditionsTemplateDTO"
+    DistributorOperationDTO:
+      required:
+      - administrativeDivisionId
+      - countryId
+      - distributorId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        countryId:
+          type: string
+          format: uuid
+        administrativeDivisionId:
+          type: string
+          format: uuid
+        managedByAgentId:
+          type: string
+          format: uuid
+          nullable: true
+        agencyId:
+          type: string
+          format: uuid
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    DistributorAuthorizedTerritoryDTO:
+      required:
+      - countryId
+      - distributorId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        countryId:
+          type: string
+          format: uuid
+        administrativeDivisionId:
+          type: string
+          format: uuid
+          nullable: true
+        authorizationLevel:
+          type: string
+          nullable: true
+          enum:
+          - COUNTRY
+          - REGION
+          - CITY
+        isActive:
+          type: boolean
+          nullable: true
+        authorizedFrom:
+          type: string
+          format: date-time
+          nullable: true
+        authorizedUntil:
+          type: string
+          format: date-time
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    DistributorConfigurationDTO:
+      required:
+      - configKey
+      - configValue
+      - dataTypeId
+      - distributorId
+      - scopeId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        agencyId:
+          type: string
+          format: uuid
+          nullable: true
+        agentId:
+          type: string
+          format: uuid
+          nullable: true
+        scopeId:
+          type: string
+          format: uuid
+        configKey:
+          type: string
+        configValue:
+          type: string
+        dataTypeId:
+          type: string
+          format: uuid
+        category:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        isSensitive:
+          type: boolean
+          nullable: true
+        isOverridable:
+          type: boolean
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        effectiveFrom:
+          type: string
+          format: date-time
+          nullable: true
+        effectiveUntil:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    DistributorAgentDTO:
+      required:
+      - distributorId
+      - email
+      - firstName
+      - lastName
+      - userId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        employeeCode:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        department:
+          type: string
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+        jobTitle:
+          type: string
+          nullable: true
+        addressLine:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          format: uuid
+          nullable: true
+        administrativeDivisionId:
+          type: string
+          format: uuid
+          nullable: true
+        hireDate:
+          type: string
+          format: date
+          nullable: true
+        terminationDate:
+          type: string
+          format: date
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    DistributorAgencyDTO:
+      required:
+      - code
+      - countryId
+      - distributorId
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        distributorId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        code:
+          type: string
+        description:
+          type: string
+          nullable: true
+        countryId:
+          type: string
+          format: uuid
+        administrativeDivisionId:
+          type: string
+          format: uuid
+          nullable: true
+        addressLine:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        legalEntityName:
+          type: string
+          nullable: true
+        legalFormId:
+          type: string
+          format: uuid
+          nullable: true
+        taxId:
+          type: string
+          nullable: true
+        registrationNumber:
+          type: string
+          nullable: true
+        vatNumber:
+          type: string
+          nullable: true
+        fiscalAddressLine:
+          type: string
+          nullable: true
+        fiscalPostalCode:
+          type: string
+          nullable: true
+        fiscalCity:
+          type: string
+          nullable: true
+        fiscalState:
+          type: string
+          nullable: true
+        fiscalCountryId:
+          type: string
+          format: uuid
+          nullable: true
+        isHeadquarters:
+          type: boolean
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        openedAt:
+          type: string
+          format: date-time
+          nullable: true
+        closedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          format: uuid
+          nullable: true

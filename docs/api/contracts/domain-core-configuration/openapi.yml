@@ -1,0 +1,480 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:18080
+  description: Generated server url
+tags:
+- name: Configuration Queries
+  description: Query endpoints for configuration data
+- name: Configuration
+  description: CQ queries for configuration
+- name: Business parameters
+  description: Journey limits, switches, account identifiers, and transfer routes
+paths:
+  /api/v1/configuration/tenant-brandings:
+    get:
+      tags:
+      - Configuration Queries
+      summary: Get tenant brandings
+      description: Retrieve all tenant brandings
+      operationId: getTenantBrandings
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TenantBrandingDTO"
+  /api/v1/configuration/lookup-items:
+    get:
+      tags:
+      - Configuration Queries
+      summary: Get lookup items grouped by domain code
+      description: "Returns every lookup item available in the master-data catalogue,\
+        \ grouped by its parent domain code. Lets channel-management or any other\
+        \ experience tier project the items it needs into its own master-data DTO\
+        \ without re-implementing the lookup_domains + lookup_items join."
+      operationId: getMasterDataLookups
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/LookupItemDTO"
+  /api/v1/configuration/lookup-domains:
+    get:
+      tags:
+      - Configuration Queries
+      summary: Get lookup domains
+      description: Retrieve all available lookup domains
+      operationId: getLookupDomains
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponse"
+  /api/v1/configuration/languages:
+    get:
+      tags:
+      - Configuration Queries
+      summary: Get language locales
+      description: Retrieve all available language locales
+      operationId: getLanguages
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PaginationResponse"
+  /api/v1/configuration/init:
+    get:
+      tags:
+      - Configuration
+      summary: Get init configuration
+      description: Retrieve init configuration
+      operationId: getInitConfiguration
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/InitConfigResponse"
+  /api/v1/environment-configs:
+    post:
+      tags:
+      - Environment Config
+      operationId: createConfig
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnvironmentConfig"
+      responses:
+        "201":
+          description: Configuration stored
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentConfig"
+  /api/v1/environment-configs/filter:
+    post:
+      tags:
+      - Environment Config
+      operationId: filterConfigs
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 200
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnvironmentConfigFilter"
+      responses:
+        "200":
+          description: Configuration page
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentConfigPage"
+  /api/v1/parameters/by-key/{key}:
+    get:
+      tags:
+      - Business parameters
+      summary: Read one business parameter by key
+      description: "Returns the business parameter stored for this key. The key is\
+        \ one path segment and may contain dots."
+      operationId: getBusinessParameterByKey
+      parameters:
+      - name: key
+        in: path
+        required: true
+        description: Business parameter key
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Business parameter
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BusinessParameter"
+        "404":
+          description: Parameter not found
+components:
+  schemas:
+    TenantBrandingDTO:
+      required:
+      - tenantId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        logoUrl:
+          type: string
+        logoDarkUrl:
+          type: string
+        faviconUrl:
+          type: string
+        primaryColor:
+          type: string
+        secondaryColor:
+          type: string
+        accentColor:
+          type: string
+        backgroundColor:
+          type: string
+        textColor:
+          type: string
+        fontFamily:
+          type: string
+        customCss:
+          type: string
+        emailHeaderUrl:
+          type: string
+        emailFooterText:
+          type: string
+        metadata:
+          type: string
+        active:
+          type: boolean
+        version:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    LookupItemDTO:
+      required:
+      - domainId
+      - itemCode
+      - itemLabelDefault
+      - status
+      type: object
+      properties:
+        itemId:
+          type: string
+          format: uuid
+        domainId:
+          type: string
+          format: uuid
+        itemCode:
+          type: string
+        itemLabelDefault:
+          type: string
+        itemDesc:
+          type: string
+        parentItemId:
+          type: string
+          format: uuid
+        sortOrder:
+          type: integer
+          format: int32
+        effectiveFrom:
+          type: string
+          format: date
+        effectiveTo:
+          type: string
+          format: date
+        isCurrent:
+          type: boolean
+        extraJson:
+          type: string
+        tenantId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+    PaginationResponse:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            type: object
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+    CountryDTO:
+      required:
+      - countryName
+      - isoCode
+      - region
+      - status
+      type: object
+      properties:
+        countryId:
+          type: string
+          format: uuid
+        isoCode:
+          type: string
+        countryName:
+          type: string
+        region:
+          type: string
+          enum:
+          - EUROPE
+          - AMERICAS
+          - APAC
+          - OCEANIA
+          - ASIA
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+        svgFlag:
+          type: string
+        dateCreated:
+          type: string
+          format: date-time
+        dateUpdated:
+          type: string
+          format: date-time
+    CurrencyDTO:
+      required:
+      - currencyName
+      - isoCode
+      - status
+      type: object
+      properties:
+        currencyId:
+          type: string
+          format: uuid
+        isoCode:
+          type: string
+        currencyName:
+          type: string
+        symbol:
+          type: string
+        decimalPrecision:
+          type: integer
+          format: int32
+        isMajor:
+          type: boolean
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+        dateCreated:
+          type: string
+          format: date-time
+        dateUpdated:
+          type: string
+          format: date-time
+    InitConfigResponse:
+      type: object
+      properties:
+        countries:
+          type: array
+          items:
+            $ref: "#/components/schemas/CountryDTO"
+        currencies:
+          type: array
+          items:
+            $ref: "#/components/schemas/CurrencyDTO"
+        legalForms:
+          type: array
+          items:
+            $ref: "#/components/schemas/LegalFormDTO"
+    LegalFormDTO:
+      required:
+      - code
+      - countryId
+      - name
+      - status
+      type: object
+      properties:
+        legalFormId:
+          type: string
+          format: uuid
+        countryId:
+          type: string
+          format: uuid
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isCorporate:
+          type: boolean
+        entityType:
+          type: string
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+    EnvironmentConfig:
+      type: object
+      properties:
+        environmentName:
+          type: string
+        configKey:
+          type: string
+        configValue:
+          type: string
+        configType:
+          type: string
+        isSecret:
+          type: boolean
+        description:
+          type: string
+    EnvironmentConfigFilter:
+      type: object
+      additionalProperties: true
+    EnvironmentConfigPage:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/EnvironmentConfig"
+    BusinessParameter:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        key:
+          type: string
+        value:
+          type: string
+        kind:
+          type: string
+          enum:
+          - LIMIT
+          - SWITCH
+          - ACCOUNT
+          - ROUTE
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+        description:
+          type: string

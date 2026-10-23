@@ -1,0 +1,136 @@
+{
+  "guides": [
+    {
+      "repository": "core-common-document-mgmt",
+      "source": "docs/governed-document-issuance.md",
+      "title": "Issue immutable content and recover retained documents",
+      "destination": "governed-document-issuance.md"
+    },
+    {
+      "repository": "core-banking-accounts",
+      "source": "docs/managed-funds.md",
+      "title": "Enroll accounts and control managed lifecycle",
+      "destination": "managed-account-lifecycle.md"
+    },
+    {
+      "repository": "core-banking-ledger",
+      "source": "docs/managed-funds.md",
+      "title": "Configure managed funds and durable reservations",
+      "destination": "managed-funds-reservations.md"
+    },
+    {
+      "repository": "core-common-reference-master-data",
+      "source": "docs/document-template-revisions.md",
+      "title": "Author and publish template revisions",
+      "destination": "document-template-revisions.md"
+    },
+    {
+      "repository": "core-common-config-mgmt",
+      "source": "docs/document-template-bindings.md",
+      "title": "Configure exact tenant template bindings",
+      "destination": "document-template-bindings.md"
+    },
+    {
+      "repository": "core-common-config-mgmt",
+      "source": "docs/document-issuer-revisions.md",
+      "title": "Approve issuer definitions and exact asset-pack references",
+      "destination": "document-issuer-revisions.md"
+    },
+    {
+      "repository": "core-banking-payments",
+      "source": "docs/managed-internal-payments.md",
+      "title": "Coordinate durable internal payments and recover uncertain outcomes",
+      "destination": "managed-internal-payments.md"
+    },
+    {
+      "repository": "domain-payments",
+      "source": "docs/payment-adapters.md",
+      "title": "Configure and replace payment adapters",
+      "destination": "payment-adapters.md"
+    },
+    {
+      "repository": "core-common-product-mgmt",
+      "source": "docs/product-pricing-configuration.md",
+      "title": "Configure exact product pricing inputs and recover malformed values",
+      "destination": "product-pricing-configuration.md"
+    },
+    {
+      "repository": "domain-payments",
+      "source": "docs/managed-internal-payments.md",
+      "title": "Configure native payment journeys, current delegation and typed SDK history",
+      "destination": "managed-payment-domain.md"
+    },
+    {
+      "repository": "core-common-contract-mgmt",
+      "source": "docs/governed-contract-documents.md",
+      "title": "Prepare contract facts, verify issued bytes and attach immutable evidence",
+      "destination": "governed-contract-documents.md"
+    },
+    {
+      "repository": "exp-payments",
+      "source": "docs/managed-internal-payment-experience.md",
+      "title": "Integrate channel payment identity, current resource policy and typed history",
+      "destination": "managed-internal-payment-experience.md"
+    },
+    {
+      "repository": "library-rails",
+      "source": "docs/exact-amount-conversion.md",
+      "title": "Map provider integer units with an admitted exact scale",
+      "destination": "exact-rail-amount-conversion.md"
+    },
+    {
+      "repository": "core-common-reference-master-data",
+      "source": "docs/document-layout-publications.md",
+      "title": "Publish exact layouts and ordered legal-notice revisions",
+      "destination": "document-layout-publications.md"
+    },
+    {
+      "repository": "firefly-parent",
+      "source": "docs/adopting-jafly.md",
+      "title": "Adopt Jafly, preserve SDK compatibility and verify complete service operations",
+      "destination": "framework-adoption.md"
+    },
+    {
+      "repository": "domain-payments",
+      "source": "docs/managed-payment-recovery.md",
+      "title": "Configure automatic payment recovery with current service authority and durable retry budgets",
+      "destination": "managed-payment-recovery.md"
+    },
+    {
+      "repository": "domain-banking-psdx",
+      "source": "docs/ledger-account-transactions.md",
+      "title": "Read account transaction collections through the ledger SDK and PSD2 adapter",
+      "destination": "ledger-account-transactions.md"
+    },
+    {
+      "repository": "exp-finance-terminal",
+      "source": "docs/staff-authentication-and-sdk.md",
+      "title": "Configure finance staff identity, current policy and the generated terminal SDK",
+      "destination": "finance-terminal-authentication.md"
+    },
+    {
+      "repository": "core-common-reference-master-data",
+      "source": "docs/currency-execution-policies.md",
+      "title": "Publish exact currency representations and recover immutable policy references",
+      "destination": "currency-execution-policies.md"
+    },
+    {
+      "repository": "domain-common-contracts",
+      "source": "docs/governed-contract-documents.md",
+      "title": "Orchestrate governed contract issuance, current delegation and native recovery",
+      "destination": "governed-contract-domain.md"
+    },
+    {
+      "repository": "exp-insurance-terminal",
+      "source": "docs/staff-authentication-and-sdk.md",
+      "title": "Configure insurance staff identity, current policy and the generated terminal SDK",
+      "destination": "insurance-terminal-authentication.md"
+    },
+    {
+      "repository": "core-banking-cards",
+      "source": "docs/card-authentication-data.md",
+      "title": "Protect card record credentials and separate processor operations",
+      "destination": "card-authentication-data.md"
+    }
+  ]
+}

@@ -1,56 +1,92 @@
-# Profile
+# Profile experience
 
-The signed-in person reads who she is and which agreements she holds. She can correct a name, a phone, an address, a consent, or an identity document. She cannot open an account here, and she cannot move money here. Contracts on the profile are a read from the contract service, then a read of the product named on each contract. The profile does not open the contract tables itself.
+Read and change only resources permitted to the authenticated subject or documented delegate. Preserve effective customer data, consent history, document evidence, contract relationships, and privacy-safe audit.
 
-Ada Lovelace is `sample-journey`, party `11111111-1111-4111-8111-111111111111`. She asks for her profile, and she asks for her agreements. The sandbox agreement `10000000-0000-4000-8000-000000000021` appears in that list when the contract service holds it for her. The profile does not invent the row. When the row is there, she sees the contract id, the contract number, the status, when it was signed, and the product id, name, and code. The Horizon Personal Loan document is the reading copy of that agreement. The profile is the list.
+[Business lifecycle](../../journeys/shared.md) · [Repository guide](https://github.com/fireflysoftwaresolutions/exp-profile) · [Source reference](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/docs/openplatform/reference.md)
 
-Every read and every change checks access as `sample-journey`. She must be allowed to read, or to update, the party. If she is not, the person service and the contract service are not called.
+## Behavior and limitations
 
-A change of personal data reads the current row, writes the new one, and keeps the previous row aside. If a later step of that change fails, the previous row is written back.
+Source analysis found fixed sample-identity assumptions. A successful read for a fixture party does not prove resource ownership or cross-tenant isolation. Product enrichment is a dependent read; missing enrichment must not fabricate a new contract or authority.
 
-<div class="ff-journey" markdown="0">
-<img src="../../../assets/journeys/profile.svg" alt="Sequence: Ada opens her profile. Access must allow the read. The person record and then her agreements are returned. A denied caller gets nothing. A failed change writes the previous row back.">
-</div>
+## Declared entry points
 
-## What she sees
+The table is derived from local controller mappings. It does not include inherited, conditional, gateway, or framework routes and is not a runtime security or completeness assertion.
 
-A profile read shows her name and the contact facts the person record holds. An agreements read, when the contract service has agreement `10000000-0000-4000-8000-000000000021` for her, shows that contract id, the contract number, the status, when it was signed, and the product id, name, and code. The product on the sample is the Horizon Personal Loan. The profile does not show the printed pages and does not show the amount. Those are on the document.
+| Method | Path | Source |
+| --- | --- | --- |
+| `GET` | `/api/v1/experience/profile/{partyId}` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `GET` | `/api/v1/experience/profile/{partyId}/addresses` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `GET` | `/api/v1/experience/profile/{partyId}/documents` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `GET` | `/api/v1/experience/profile/{partyId}/documents/{id}` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `GET` | `/api/v1/experience/profile/{partyId}/consents` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `GET` | `/api/v1/experience/profile/{partyId}/identity-documents` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `GET` | `/api/v1/experience/profile/{partyId}/contracts` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `POST` | `/api/v1/experience/profile/{partyId}/addresses` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `POST` | `/api/v1/experience/profile/{partyId}/documents` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `POST` | `/api/v1/experience/profile/{partyId}/identity-documents` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `PUT` | `/api/v1/experience/profile/{partyId}/addresses/{id}` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `PUT` | `/api/v1/experience/profile/{partyId}/consents/{id}` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `PATCH` | `/api/v1/experience/profile/{partyId}/personal-data` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `PATCH` | `/api/v1/experience/profile/{partyId}/contact-data` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `DELETE` | `/api/v1/experience/profile/{partyId}/addresses/{id}` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
+| `DELETE` | `/api/v1/experience/profile/{partyId}/identity-documents/{id}` | [ProfileController](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/main/java/io/fireflysoftware/experience/profile/web/controllers/ProfileController.java) |
 
-## Where the records go
+## Reproduce a source-specific boundary
 
-The person row is in the customer core. Each agreement row is in the contract core. The product name is read from the product catalog. The profile does not keep a copy of those tables. A corrected name is written back to the person row. Money is not posted here.
+## Consumer example: read a customer profile view
 
-## What a refusal does
+Start with this repository-owned executable contract before connecting a full runtime. Use the JDK required by the effective parent, Maven, and the matching internal artifacts. The selected test defines its own collaborators; no provider credentials should be added to it. Run from this repository root:
 
-When access is not allowed, the call returns no profile and no agreements. An update is not attempted.
-
-The check is made as `sample-journey`. In the sandbox policy that actor may read and update the sample party. A policy that does not grant her stops the call before either service.
-
-A contract the contract service does not have for her is simply absent from the list. The profile does not answer with an empty product in its place. If the product named on a contract cannot be read, that agreement still comes back with the contract fields and without a product name.
-
-## Reference
-
-The service listens on port 8103. The party id is in the path.
-
-| What she does | Call |
-| --- | --- |
-| Read herself | `GET /api/v1/experience/profile/{partyId}` |
-| Change personal data or contact data | `PATCH .../personal-data` or `.../contact-data` |
-| Addresses | `GET`, `POST`, `PUT`, `DELETE .../addresses` |
-| Consents | `GET .../consents` and `PUT .../consents/{id}` |
-| Identity documents | `GET`, `POST`, `DELETE .../identity-documents` |
-| Agreements | `GET /api/v1/experience/profile/{partyId}/contracts` |
-
-```text
-// GET /api/v1/experience/profile/11111111-1111-4111-8111-111111111111/contracts
-// each item
-{
-  // contractId: 10000000-0000-4000-8000-000000000021 when that agreement is hers
-  // type: the contract number
-  // status: the contract status
-  // signedAt: when it was signed
-  // productId, productName, productCode: the product on that agreement
-}
+```sh
+mvn -B -pl exp-profile-web -am test -DskipOpenApiGen \
+  -Dtest=ProfileControllerTest -Dsurefire.failIfNoSpecifiedTests=false
 ```
 
-The JSON property for the contract number is `type`. The type names are `ContractSummary` and the party profile port. Full terms stay on the contract service. The calls are also on the [profile API](../../api/profile.md).
+Runtime integration remains gated on the service configuration and selected adapters described below. The local port and bean-selection inventory below distinguishes the declared abstraction from its configured implementation. An SDK client is an outbound integration; its presence does not establish a working provider connection. Where a sandbox adapter is selected, its behavior is synthetic and limited to what that adapter implements.
+
+**Inputs and fixture ownership.** The complete linked test class supplies its imports, setup, synthetic IDs and collaborators. Run that class as shown; the excerpt is not a standalone Java program. Mocked collaborators include `ProfileService`. For a deployed call, replace fixture IDs with IDs returned by the owning record-creation API and keep tenant/parent associations intact. The request values and assertions below describe this test boundary only.
+
+```java
+@Test
+    void getProfile_returns200WithProfileDto() {
+        ProfileDTO profileDto = ProfileDTO.builder()
+                .partyId(UUID.randomUUID())
+                .firstName("Jane")
+                .lastName("Doe")
+                .dateOfBirth(LocalDate.of(1990, 5, 15))
+                .addresses(Collections.emptyList())
+                .identityDocuments(Collections.emptyList())
+                .build();
+
+        when(profileService.getProfile(any())).thenReturn(Mono.just(profileDto));
+
+        webTestClient.get()
+                .uri(BASE_PATH)
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ProfileDTO.class)
+                .value(body -> {
+                    assertThat(body.getFirstName()).isEqualTo("Jane");
+                    assertThat(body.getLastName()).isEqualTo("Doe");
+                });
+    }
+```
+
+**Expected behavior.** The HTTP response preserves the fixture’s Jane Doe profile and empty address/document collections. The response contract is exercised with a mocked profile service.
+
+**Verification and recovery.** Run the complete selected test class and inspect its Surefire result: zero failures/errors and at least one executed test are required. A skipped or zero-test build is not evidence. Compare the assertions with the owning DTO/service before extending the request. For a runtime run, separately configure authentication/entitlements and the exact downstream endpoints, migrate/seed disposable owner stores, and reread the returned identifier; these unit/contract fixtures do not establish those prerequisites.
+
+Source of this example: [ProfileControllerTest](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-web/src/test/java/io/fireflysoftware/experience/profile/web/controllers/ProfileControllerTest.java), [AddAddressCommand](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-core/src/main/java/io/fireflysoftware/experience/profile/core/commands/AddAddressCommand.java), [AddIdentityDocumentCommand](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-core/src/main/java/io/fireflysoftware/experience/profile/core/commands/AddIdentityDocumentCommand.java), [UpdateAddressCommand](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-core/src/main/java/io/fireflysoftware/experience/profile/core/commands/UpdateAddressCommand.java), [UpdateConsentCommand](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-core/src/main/java/io/fireflysoftware/experience/profile/core/commands/UpdateConsentCommand.java), [UpdateContactDataCommand](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-core/src/main/java/io/fireflysoftware/experience/profile/core/commands/UpdateContactDataCommand.java), [UpdatePersonalDataCommand](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-core/src/main/java/io/fireflysoftware/experience/profile/core/commands/UpdatePersonalDataCommand.java), [AddressDTO](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-core/src/main/java/io/fireflysoftware/experience/profile/core/queries/AddressDTO.java), [IdentityDocumentDTO](https://github.com/fireflysoftwaresolutions/exp-profile/blob/main/exp-profile-core/src/main/java/io/fireflysoftware/experience/profile/core/queries/IdentityDocumentDTO.java).
+
+
+
+## Configuration and replacement
+
+Read the exact runtime configuration and existing adapter selectors in the repository guide. Defaults are implementation facts, not recommended live settings. A live dependency failure must not fall back to synthetic approval. [The adapter contract](../../adapters/index.md) defines durable request identity, lookup, uncertain outcomes, callbacks, and provenance.
+
+## Required negative and recovery cases
+
+Denied and cross-tenant callers must reach no unauthorized write. Missing or expired evidence, changed intent under the same key, duplicate callback, partial participant failure, lost response, process restart, and replica retry must preserve one authoritative outcome. Retain original and compensating effects; do not delete accepted evidence to simulate rollback. Financial cases reconcile posted, available, reserved, provider, and accounting state.
+
+See [operating procedures](../../operations/index.md) for duplicate requests, partial failures, provider uncertainty, and recovery.

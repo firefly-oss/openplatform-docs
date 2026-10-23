@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: Domain Model Hub API
+  version: 26.10.6
+paths:
+  /api/v1/records/{id}:
+    get:
+      tags: [Records]
+      operationId: read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelRecordView"
+    put:
+      tags: [Records]
+      operationId: update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RecordDraft"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StoredRecord"
+  /api/v1/records:
+    post:
+      tags: [Records]
+      operationId: create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RecordDraft"
+      responses:
+        "200":
+          description: Registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StoredRecord"
+components:
+  schemas:
+    ModelRecordView:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        label:
+          type: string
+    RecordDraft:
+      type: object
+      additionalProperties: true
+    StoredRecord:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        body:
+          $ref: "#/components/schemas/RecordDraft"

@@ -1,0 +1,158 @@
+{
+  "guides": [
+    {
+      "repository": "core-common-document-mgmt",
+      "source": "docs/governed-document-issuance.md",
+      "destination": "governed-document-issuance.md",
+      "sha256": "f38e3f69692de20080429fce49fe14d8cc57b80fc02fdfabdd5c44446504492d",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-banking-accounts",
+      "source": "docs/managed-funds.md",
+      "destination": "managed-account-lifecycle.md",
+      "sha256": "c0fb7681490873f421bb9a1c7a2b356f010b1297e5790198aca133a05b6109f5",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-banking-ledger",
+      "source": "docs/managed-funds.md",
+      "destination": "managed-funds-reservations.md",
+      "sha256": "b6066a4cd4c4be405395375b5428a3175775099afa2359ea35dfb25d808aaeee",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-common-reference-master-data",
+      "source": "docs/document-template-revisions.md",
+      "destination": "document-template-revisions.md",
+      "sha256": "efd8cb6828a6db8af15f1e73ded063cacd958ff7ecd4ee335385e89408635b16",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-common-config-mgmt",
+      "source": "docs/document-template-bindings.md",
+      "destination": "document-template-bindings.md",
+      "sha256": "d08ec6aaff83d5cb63adfe7be09cc2979936236f6bf0af5bf23fe6225f0b52e9",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-common-config-mgmt",
+      "source": "docs/document-issuer-revisions.md",
+      "destination": "document-issuer-revisions.md",
+      "sha256": "8336ec224d119ac9f06b675f729a7404bb32ee1eae0bfd6addafab0af76eb609",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-banking-payments",
+      "source": "docs/managed-internal-payments.md",
+      "destination": "managed-internal-payments.md",
+      "sha256": "a5458e90d9387bbccd05899b1f6932e4a38e9b81ca2d9e30a4361cba0725f97d",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "domain-payments",
+      "source": "docs/payment-adapters.md",
+      "destination": "payment-adapters.md",
+      "sha256": "3db26f13f13e010cd971ef739a0e57062fee9dc686cef009c463ef7f702acd5c",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-common-product-mgmt",
+      "source": "docs/product-pricing-configuration.md",
+      "destination": "product-pricing-configuration.md",
+      "sha256": "18af5d251d6657d0c61bbb903b6072dd8555c1fbf38604d48c2da3d26ada9323",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "domain-payments",
+      "source": "docs/managed-internal-payments.md",
+      "destination": "managed-payment-domain.md",
+      "sha256": "ec3dd9541de801ad2fd2bde6268ffafcefc0b898eeef0bfafbb47ec35b7872e8",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-common-contract-mgmt",
+      "source": "docs/governed-contract-documents.md",
+      "destination": "governed-contract-documents.md",
+      "sha256": "7d3733179c5f95237724d8517f2b2fd2f9a6618b014b506b0636dd9bd4895951",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "exp-payments",
+      "source": "docs/managed-internal-payment-experience.md",
+      "destination": "managed-internal-payment-experience.md",
+      "sha256": "31bb0ccc2d9868adb91083b00abace45101cc8a63e5a0d530f3d9626f8d3c86d",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "library-rails",
+      "source": "docs/exact-amount-conversion.md",
+      "destination": "exact-rail-amount-conversion.md",
+      "sha256": "9864f8b70e5fb31704bbb62c5fbd0df8eac98d88237515c088e41a2208152caf",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-common-reference-master-data",
+      "source": "docs/document-layout-publications.md",
+      "destination": "document-layout-publications.md",
+      "sha256": "746a9d8010669c9b587597a4a6b59090e3172f8a5f4f87371142bd4a05eb4cf5",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "firefly-parent",
+      "source": "docs/adopting-jafly.md",
+      "destination": "framework-adoption.md",
+      "sha256": "1eb1925f689fd2ee310c37c25f50b67dc2eb89a3a00bfa71837f7033860b72d4",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "domain-payments",
+      "source": "docs/managed-payment-recovery.md",
+      "destination": "managed-payment-recovery.md",
+      "sha256": "7da5b5e166fe2301484be2ff8de428f49fb55fef2912c02ff6fe5ceedd8454cb",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "domain-banking-psdx",
+      "source": "docs/ledger-account-transactions.md",
+      "destination": "ledger-account-transactions.md",
+      "sha256": "a7fa5f90a66c1e1444253ffa5ee6af03c49f9eaaeaedeb3303239337fcaea5fa",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "exp-finance-terminal",
+      "source": "docs/staff-authentication-and-sdk.md",
+      "destination": "finance-terminal-authentication.md",
+      "sha256": "13438d4c3323aeabd7473500dc0c1e80c6e758a1c4bababb25c2dfc7338d859b",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-common-reference-master-data",
+      "source": "docs/currency-execution-policies.md",
+      "destination": "currency-execution-policies.md",
+      "sha256": "efed3bcd070790878a53bb6920e48eb9a0a31c2f74b7fad9a71fbc00dad224cb",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "domain-common-contracts",
+      "source": "docs/governed-contract-documents.md",
+      "destination": "governed-contract-domain.md",
+      "sha256": "be0f96ebece1c3d340595220e6c5e04dc6bfcb28d36997d0a8ab311e6d9946bd",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "exp-insurance-terminal",
+      "source": "docs/staff-authentication-and-sdk.md",
+      "destination": "insurance-terminal-authentication.md",
+      "sha256": "4d30aab546315b1cb78784f406e1677b54402b2635865150c99d5a37ee5ef2b0",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-banking-cards",
+      "source": "docs/card-authentication-data.md",
+      "destination": "card-authentication-data.md",
+      "sha256": "3d12b87ba3af10665567e0068930350b01098c1f3db8af330ca160ced18f527c",
+      "publication": "local_source_snapshot_not_release_proof"
+    }
+  ]
+}

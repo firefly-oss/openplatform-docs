@@ -8,6 +8,10 @@ Libraries are shared code. They are not a fourth business layer. The layer page 
 
 ## Domain
 
+### domain-common-case-mgmt
+
+Local unpublished addition owning authenticated case commands/queries and SDK composition. Its durable aggregate lives in the case core. Account-service and policy-service complaint intake is connected through the existing experiences; referral/exception contracts do not automatically resume product work. See [configuration and workflow](../operations/cases.md) and the [domain contract](../api/services/domain-common-case-mgmt.md).
+
 <div class="ff-entry ff-entry--domain" markdown="1">
 <p class="ff-kicker">Domain</p>
 
@@ -55,6 +59,10 @@ Owns the saga for a distributor product catalog, through `core-common-distributo
 
 ## Core
 
+### core-common-case-mgmt
+
+Local unpublished addition owning cases, immutable journals/evidence references, original command receipts, transactional outbox and persisted escalation deadlines. It enforces tenant scope and requester/operator/closer duties. A case decision does not authorize a financial or insurance product command. See the [core contract](../api/services/core-common-case-mgmt.md).
+
 <div class="ff-entry ff-entry--core" markdown="1">
 <p class="ff-kicker">Core</p>
 
@@ -93,7 +101,7 @@ Owns distributor records, agreements, agencies, agents, territories, and catalog
 
 ### core-common-document-mgmt
 
-Owns document metadata and stored content. This is a core without a domain orchestrator.
+Owns document metadata, versions, storage integration, and the managed signature evidence lifecycle. `domain-common-contracts` consumes its document/signature SDK. The current kit-document endpoint still creates metadata without rendering content; see [documents](../shared/documents.md).
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/core-common-document-mgmt">github.com/fireflysoftwaresolutions/core-common-document-mgmt</a></p>
 
@@ -115,7 +123,7 @@ Owns data models defined at runtime, and the records stored against those models
 
 ### core-common-notification-services
 
-Owns notification messages and delivery state. `domain-common-notifications` is the domain orchestrator.
+Exposes email, SMS, and push delivery facades over configured Jafly providers. Its reactor has web and SDK modules and no owned notification-record database. The email sandbox returns a synthetic SENT acknowledgement without delivering a message. `domain-common-notifications` provides separate orchestration; see its source guide.
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/core-common-notification-services">github.com/fireflysoftwaresolutions/core-common-notification-services</a></p>
 
@@ -201,7 +209,7 @@ Port library for payment rails. Domain and experience code call the port. A depl
 
 ### firefly-bom
 
-Bill of materials for version 26.10.4. Import it to pin every published `io.fireflysoftware` library, core, domain, experience service, and application to that version.
+Bill of materials for source version 26.10.6. Its dependency management declares the platform coordinates. Verify the actual managed dependency and published artifact before adoption; a source version does not establish publication.
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/firefly-bom">github.com/fireflysoftwaresolutions/firefly-bom</a></p>
 
@@ -212,7 +220,7 @@ Bill of materials for version 26.10.4. Import it to pin every published `io.fire
 
 ### firefly-parent
 
-Parent POM for OpenPlatform modules. It extends `org.fireflyframework:fireflyframework-parent` 26.10.20 and imports `firefly-bom` 26.10.4. Banking, lending, and insurance use this parent.
+Parent POM for OpenPlatform modules. The current unpublished integration source extends `org.fireflyframework:fireflyframework-parent` 26.10.22 and imports `firefly-bom` 26.10.6; the remote baseline used Jafly 26.10.20. Banking, lending, and insurance use this parent. Follow the [version-selection guide](../release/train.md) and inspect the actual consumer artifact before adoption.
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/firefly-parent">github.com/fireflysoftwaresolutions/firefly-parent</a></p>
 
