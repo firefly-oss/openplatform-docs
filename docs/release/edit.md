@@ -15,10 +15,13 @@ Strict build and brand check:
 
 ```sh
 mkdocs build --strict
+python3 scripts/check_site.py
 python3 scripts/brand_check.py README.md docs/index.md
 ```
 
 Pass every `docs/**/*.md` file to the brand check, as `.github/workflows/docs.yml` does. The check fails the build on errors. Do not invent metrics, client names, or certifications. Spell Firefly and OpenPlatform as one word each. The slogan stays in English: Attitude makes the difference.
+
+[Maintenance tools](../../scripts/README.md) explain producer/coverage refreshes and their provenance. Review rendered desktop/mobile pages in both themes, keyboard navigation/search, zoom, long tables, readable diagrams, and read-only explorer loading.
 
 ## Publish
 

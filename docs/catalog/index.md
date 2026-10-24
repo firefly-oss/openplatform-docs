@@ -8,11 +8,11 @@
 <p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
 
 
-The OpenPlatform release list contains 90 repositories. This catalog documents all 90. Each entry names the repository, the layer, and what that repository owns. Links go to `github.com/fireflysoftwaresolutions`.
+The catalog groups the current public implementation contexts by business responsibility. The [governed repository map](../reference/repositories.md) identifies the complete public remote baseline, including supporting artifacts and archived contexts; private supporting repositories are documented under their existing access controls. Each entry identifies an architectural role and declared record or orchestration ownership. Read the owning source and journey evidence before treating that declaration as a completed capability.
 
 Insurance is one of the families, with seven domain services and seven cores. A lending core with no `domain-lending-*` repository is described as a core without a domain orchestrator.
 
-Service host pattern: `https://openplatform.fireflysoftware.io/{service}`. Public site: [fireflysoftware.io](https://fireflysoftware.io/). Publisher: Firefly Software Foundation. Contact: [dev@fireflysoftware.io](mailto:dev@fireflysoftware.io).
+Start with the [platform introduction](../introduction/index.md) and [business journeys](../journeys/index.md), then use this catalog to locate the responsible source. Runtime endpoints come from each deployment and service configuration; a repository name is not an endpoint. [API contracts](../api/contracts.md) expose producer transport declarations, while [operating guidance](../operations/index.md) records their qualification boundary.
 
 ## Customer and party
 
@@ -269,7 +269,7 @@ Service host pattern: `https://openplatform.fireflysoftware.io/{service}`. Publi
     Core. Owns data models defined at runtime, and the records stored against those models.
 
 - [core-common-notification-services](shared.md#core-common-notification-services)
-    Core. Owns notification messages and delivery state.
+    Core facade. Delegates email, SMS, and push to selected Jafly providers; no owned notification-record database is declared.
 
 - [core-common-org-mgmt](shared.md#core-common-org-mgmt)
     Core. Owns organization structure: divisions, regions, branches, departments, positions, and working calendars.
@@ -290,7 +290,7 @@ Service host pattern: `https://openplatform.fireflysoftware.io/{service}`. Publi
     Domain. Owns the saga for a distributor product catalog, through `core-common-distributor-mgmt`.
 
 - [firefly-bom](shared.md#firefly-bom)
-    Platform. Bill of materials for version 26.10.4.
+    Platform. Bill of materials source version 26.10.6; publication and deployed compatibility require separate evidence.
 
 - [firefly-parent](shared.md#firefly-parent)
     Platform. Parent POM for OpenPlatform modules.
@@ -306,5 +306,5 @@ Service host pattern: `https://openplatform.fireflysoftware.io/{service}`. Publi
 
 ## Decision
 
-No separate decision repository. The published decision service is `domain-lending-credit-scoring`. See [Decision](decision.md).
+No separate decision repository. The current decision implementation context is `domain-lending-credit-scoring`. See [Decision](decision.md).
 

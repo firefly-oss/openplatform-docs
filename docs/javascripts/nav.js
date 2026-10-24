@@ -1,14 +1,14 @@
 (function () {
+  var iconBase = new URL("../assets/nav/", document.currentScript.src);
   var icons = {
-    "Presentation": "/assets/nav/spark.svg",
-    "Start here": "/assets/nav/light-trail.svg",
-    "Jafly": "/assets/nav/rules-decide.svg",
-    "Architecture": "/assets/nav/backbone.svg",
-    "Banking": "/assets/nav/bank.svg",
-    "Insurance": "/assets/nav/cover.svg",
-    "Shared": "/assets/nav/module.svg",
-    "API": "/assets/nav/api.svg",
-    "Catalog": "/assets/nav/catalogue.svg"
+    "Overview": "spark.svg",
+    "Introduction": "module.svg",
+    "Get started": "light-trail.svg",
+    "Business journeys": "bank.svg",
+    "Architecture": "backbone.svg",
+    "Integrations": "module.svg",
+    "Operate": "rules-decide.svg",
+    "Reference": "catalogue.svg"
   };
 
   function topItems() {
@@ -63,13 +63,13 @@
       }
     });
     missing.forEach(function (job) {
-      fetch(job.src)
+      fetch(new URL(job.src, iconBase))
         .then(function (response) { return response.text(); })
         .then(function (markup) {
           svgText[job.src] = markup;
           if (job.link.isConnected) mountIcon(job.link, markup);
           else decorate();
-        });
+        }).catch(function () { /* Navigation remains usable without decoration. */ });
     });
   }
 
@@ -93,7 +93,10 @@
       toggle.addEventListener("change", function () {
         if (!toggle.checked) return;
         toggles.forEach(function (other) {
-          if (other !== toggle) other.checked = false;
+          if (other !== toggle && other.checked) {
+            other.checked = false;
+            other.dispatchEvent(new Event("change", { bubbles: true }));
+          }
         });
       });
     });
@@ -101,6 +104,14 @@
       if (label.dataset.ffKey) return;
       label.dataset.ffKey = "1";
       label.tabIndex = 0;
+      label.setAttribute("role", "button");
+      var controlled = document.getElementById(label.htmlFor);
+      if (controlled) {
+        label.setAttribute("aria-expanded", String(controlled.checked));
+        controlled.addEventListener("change", function () {
+          label.setAttribute("aria-expanded", String(controlled.checked));
+        });
+      }
       label.addEventListener("keydown", function (event) {
         if (event.key !== "Enter" && event.key !== " ") return;
         if (event.repeat) return;
@@ -119,10 +130,63 @@
     });
   }
 
+  function syncDiagramTheme() {
+    var dark = document.body.getAttribute("data-md-color-scheme") === "slate";
+    document.querySelectorAll('picture source[media*="prefers-color-scheme"], picture source[data-ff-media]').forEach(function (source) {
+      var original = source.dataset.ffMedia || source.media;
+      source.dataset.ffMedia = original;
+      var wantsDark = /prefers-color-scheme:\s*dark/.test(original);
+      source.media = dark !== wantsDark ? "not all" :
+        original.replace(/\s*and\s*\(prefers-color-scheme:[^)]+\)/, "")
+          .replace(/\(prefers-color-scheme:[^)]+\)/, "all");
+    });
+  }
+
   function boot() {
+    var drawer = document.getElementById("__drawer");
+    var navigation = document.querySelector(".md-sidebar--primary");
+    var menu = document.querySelector('header label[for="__drawer"]');
+    if (drawer && navigation && menu) {
+      navigation.id = "ff-navigation";
+      menu.setAttribute("aria-controls", navigation.id);
+      menu.setAttribute("aria-expanded", String(drawer.checked));
+      if (!drawer.dataset.ffDismiss) {
+        drawer.dataset.ffDismiss = "1";
+        drawer.addEventListener("change", function () {
+          menu.setAttribute("aria-expanded", String(drawer.checked));
+        });
+      }
+    }
+    document.querySelectorAll('header label[role="button"]').forEach(function (label) {
+      if (label.dataset.ffHeaderKey) return;
+      label.dataset.ffHeaderKey = "1";
+      label.addEventListener("keydown", function (event) {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.repeat) return;
+        label.click();
+      });
+    });
+    syncDiagramTheme();
     decorate();
     accordion();
   }
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key !== "Escape") return;
+    var search = document.getElementById("__search");
+    if (search && search.checked) return;
+    var drawer = document.getElementById("__drawer");
+    if (!drawer || !drawer.checked) return;
+    drawer.checked = false;
+    drawer.dispatchEvent(new Event("change", { bubbles: true }));
+    var menu = document.querySelector('header label[for="__drawer"]');
+    if (menu) menu.focus();
+    event.preventDefault();
+  });
+
+  new MutationObserver(syncDiagramTheme).observe(document.body, { attributes: true, attributeFilter: ["data-md-color-scheme"] });
 
   if (typeof document$ !== "undefined") {
     document$.subscribe(boot);

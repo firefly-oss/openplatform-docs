@@ -1,10 +1,9 @@
 # Firefly OpenPlatform developer documentation hub.
-# Theme pack: vendored from firefly-oss/brand-kit dist/Firefly-Brand-Kit/16-MkDocs/
+# Theme pack: vendored from fireflysoftwaresolutions/brand-kit dist/Firefly-Brand-Kit/16-MkDocs/
 
-# site_name is the document title. The navbar lockup stays logo | OpenPlatform
-# (see overrides/partials/header.html). Do not shorten this to OpenPlatform.
-site_name: Firefly OpenPlatform Documentation
-site_description: Open-source corporate systems for banking and insurance. Firefly OpenPlatform, version 26.10.4.
+# The product name matches the branded header; Firefly appears in the logo lockup.
+site_name: OpenPlatform
+site_description: Business journeys, architecture, integrations, and operating guides for the Firefly banking and insurance platform.
 site_author: Firefly Software Foundation
 site_url: https://docs.fireflysoftware.io/
 repo_url: https://github.com/fireflysoftwaresolutions/openplatform-docs
@@ -92,12 +91,18 @@ extra_javascript:
 
 hooks:
   - hooks/swagger_ui.py
+  - hooks/repository_links.py
 
 validation:
-  omitted_files: info
-  absolute_links: info
-  unrecognized_links: info
-  anchors: info
+  nav:
+    omitted_files: info
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    absolute_links: warn
+    unrecognized_links: warn
+    anchors: warn
 
 extra:
   # mike version selector stays off until `mike deploy` publishes versions.json
@@ -115,74 +120,115 @@ extra:
     slogan: Attitude makes the difference.
 
 nav:
-  - Presentation: index.md
-  - Start here: quickstart.md
-  - Jafly: jafly.md
+  - Overview: index.md
+  - Introduction:
+      - What OpenPlatform is: introduction/index.md
+      - Platform map: introduction/platform-map.md
+      - Execution model: introduction/execution-model.md
+      - Data and money: introduction/data-and-money.md
+      - Reading paths: introduction/reading-paths.md
+      - Glossary: introduction/glossary.md
+  - Get started: quickstart.md
+  - Business journeys:
+      - Journey contract: journeys/index.md
+      - Operational banking: journeys/banking.md
+      - Accounts: journeys/accounts.md
+      - Cards: journeys/cards.md
+      - Payments and open banking: journeys/payments.md
+      - Lending: journeys/lending.md
+      - Insurance: journeys/insurance.md
+      - Shared services: journeys/shared.md
+      - Experience guides:
+          - Onboarding: experience/public/onboarding.md
+          - Profile: experience/public/profile.md
+          - Accounts: experience/public/accounts.md
+          - Cards: experience/public/cards.md
+          - Payments: experience/public/payments.md
+          - Lending: experience/public/lending.md
+          - Insurance: experience/public/insurance.md
+          - Finance terminal: experience/administration/finance.md
+          - Insurance terminal: experience/administration/insurance.md
   - Architecture:
-      - Journey: layers/index.md
+      - Responsibilities and consistency: layers/index.md
+      - Experience boundaries: experience/index.md
       - Domain: layers/domain.md
       - Core: layers/core.md
-      - Libraries: layers/libraries.md
-      - Replace an adapter: adapters/index.md
-      - Service landscape: layers/bian.md
-  - Banking:
-      - Open and close an account: experience/public/accounts.md
-      - Cards: experience/public/cards.md
-      - Lending: experience/public/lending.md
-      - Payments: experience/public/payments.md
-      - Administration:
-          - Finance terminal: experience/administration/finance.md
-      - Accounts and cards: catalog/banking.md
-      - Lending catalog: catalog/lending.md
-  - Insurance:
-      - Journey: experience/public/insurance.md
-      - Insurance terminal: experience/administration/insurance.md
-      - Standards: layers/acord.md
-      - Domains and cores: catalog/insurance.md
-  - Shared:
-      - Onboarding: experience/public/onboarding.md
-      - Profile: experience/public/profile.md
       - Customer:
-          - Bounded context: domains/customer/context.md
+          - Context: domains/customer/context.md
           - Journeys: domains/customer/journeys.md
           - Domain: domains/customer/domain.md
           - Core: domains/customer/core.md
       - Contract:
-          - Bounded context: domains/contract/context.md
+          - Context: domains/contract/context.md
           - Journeys: domains/contract/journeys.md
           - Domain: domains/contract/domain.md
           - Core: domains/contract/core.md
       - Product:
-          - Bounded context: domains/product/context.md
+          - Context: domains/product/context.md
           - Journeys: domains/product/journeys.md
           - Domain: domains/product/domain.md
           - Core: domains/product/core.md
       - Models:
-          - models/index.md
+          - Overview: models/index.md
           - Party: models/party.md
           - Contract: models/contract.md
           - Product: models/product.md
-      - Security and access: catalog/security.md
-      - Decision: catalog/decision.md
-      - Reference data: catalog/data.md
+      - Service landscape: layers/bian.md
+      - Insurance mappings: layers/acord.md
+  - Integrations:
+      - Adapter contract and replacement: adapters/index.md
+      - Configure payment adapters: adapters/payments.md
+      - Jafly framework: jafly.md
+      - Upgrade framework and SDKs: reference/service-guides/framework-adoption.md
+      - Finance terminal identity and SDK: reference/service-guides/finance-terminal-authentication.md
+      - Insurance terminal identity and SDK: reference/service-guides/insurance-terminal-authentication.md
+      - Libraries and dependency ownership: layers/libraries.md
+      - Managed accounts and funds: shared/managed-funds.md
+      - Governed product definitions: shared/product-definition-governance.md
+      - Currency representation and policy: reference/service-guides/currency-execution-policies.md
+      - Card credentials and processor boundary: reference/service-guides/card-authentication-data.md
+      - Guarded card activation: reference/service-guides/card-activation.md
+      - Insurance binding and SDK migration: reference/service-guides/insurance-bind-decision-boundary.md
+      - Durable internal payments: shared/managed-payments.md
+      - Atomic journal admission: shared/atomic-accounting-admission.md
       - Documents: shared/documents.md
-      - Shared platform: catalog/shared.md
-  - API:
-      - How to read a call: api/index.md
-      - Onboarding: api/onboarding.md
-      - Profile: api/profile.md
-      - Accounts: api/accounts.md
-      - Cards: api/cards.md
-      - Lending: api/lending.md
-      - Insurance: api/insurance.md
-      - Distributor: api/distributor.md
-      - Notifications: api/notifications.md
-      - Security: api/security.md
-      - Channel: api/channel.md
-  - Catalog:
-      - catalog/index.md
-      - Customer and party: catalog/customer.md
-      - Contract: catalog/contract.md
-      - Product: catalog/product.md
-      - Onboarding and other journeys: catalog/journeys.md
-      - Edit these docs: release/edit.md
+      - Governed contract issuance: reference/service-guides/governed-contract-domain.md
+      - Configure document templates: shared/template-configuration.md
+      - Financial stationery tutorial: shared/financial-stationery.md
+  - Operate:
+      - Recovery and reconciliation: operations/index.md
+      - Configure automatic payment recovery: reference/service-guides/managed-payment-recovery.md
+      - Complaints and human work: operations/cases.md
+      - Release train: release/train.md
+      - Versioned documentation: versioning/mike.md
+      - Contribute to the docs: release/edit.md
+  - Reference:
+      - Repository map: reference/repositories.md
+      - Service configuration guides: reference/service-guides/index.md
+      - Documentation source reference: openplatform/reference.md
+      - APIs:
+          - Contract navigation: api/index.md
+          - All producer contracts: api/contracts.md
+          - Onboarding: api/onboarding.md
+          - Profile: api/profile.md
+          - Accounts: api/accounts.md
+          - Cards: api/cards.md
+          - Lending: api/lending.md
+          - Insurance: api/insurance.md
+          - Distributor: api/distributor.md
+          - Notifications: api/notifications.md
+          - Security: api/security.md
+          - Channel: api/channel.md
+      - Context catalogs:
+          - Overview: catalog/index.md
+          - Accounts and cards: catalog/banking.md
+          - Lending: catalog/lending.md
+          - Insurance: catalog/insurance.md
+          - Customer: catalog/customer.md
+          - Contract: catalog/contract.md
+          - Product: catalog/product.md
+          - Other journeys: catalog/journeys.md
+          - Security: catalog/security.md
+          - Decisions: catalog/decision.md
+          - Reference data: catalog/data.md
+          - Shared platform: catalog/shared.md

@@ -1,0 +1,51 @@
+/* The explorer is an inspectable contract, using the surrounding Firefly palette. */
+@font-face {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("../assets/fonts/manrope/manrope-latin-wght-normal.woff2") format("woff2");
+}
+:root { --api-bg: #f3f1eb; --api-text: #24251f; --api-panel: #ffffff; --api-line: #cbc9bf; }
+html.dark-mode { --api-bg: #10110f; --api-text: #f3f1eb; --api-panel: #1c1d19; --api-line: #55564d; }
+html, body { background: var(--api-bg); margin: 0; }
+.swagger-ui, .swagger-ui .info .title, .swagger-ui .opblock-tag,
+.swagger-ui .opblock .opblock-summary-description, .swagger-ui .btn,
+.swagger-ui .model, .swagger-ui select { font-family: Manrope, sans-serif; }
+.swagger-ui, .swagger-ui .info .title, .swagger-ui .info p,
+.swagger-ui .opblock-tag, .swagger-ui .opblock-tag small,
+.swagger-ui .model, .swagger-ui .models-control,
+.swagger-ui .opblock .opblock-summary-description,
+.swagger-ui .opblock .opblock-summary-path,
+.swagger-ui .opblock-description-wrapper p,
+.swagger-ui .opblock-title_normal, .swagger-ui .response-col_status,
+.swagger-ui .parameter__name, .swagger-ui .parameter__type,
+.swagger-ui .tab li, .swagger-ui table thead tr th,
+.swagger-ui .response-col_description, .swagger-ui .prop-type { color: var(--api-text); }
+.swagger-ui .wrapper { padding: 0 8px; }
+.swagger-ui .info { margin: 20px 0; }
+.swagger-ui .info .title { font-size: 24px; overflow-wrap: anywhere; }
+.swagger-ui .info .title small { background: #55564d; }
+.swagger-ui .info a, .swagger-ui a.nostyle { color: inherit; }
+.swagger-ui a { color: #9a4b09; }
+html.dark-mode .swagger-ui a { color: #ffb34a; }
+.swagger-ui .scheme-container, .swagger-ui .opblock-section-header,
+.swagger-ui section.models, .swagger-ui select,
+.swagger-ui .model-container, .swagger-ui .model-box { background: var(--api-panel); box-shadow: none; }
+.swagger-ui .opblock-tag, .swagger-ui section.models { border-color: var(--api-line); }
+.swagger-ui .opblock { background: var(--api-panel); border-color: var(--api-line); }
+.swagger-ui .opblock .opblock-summary { border-color: var(--api-line); }
+.swagger-ui .opblock .opblock-summary-method { background: #55564d; }
+.swagger-ui .opblock.opblock-post .opblock-summary-method { background: #786326; }
+.swagger-ui .opblock.opblock-delete .opblock-summary-method { background: #9a4537; }
+.swagger-ui .opblock.opblock-put .opblock-summary-method,
+.swagger-ui .opblock.opblock-patch .opblock-summary-method { background: #76532d; }
+.swagger-ui .opblock .opblock-summary-path { overflow-wrap: anywhere; word-break: break-word; }
+.swagger-ui svg { fill: var(--api-text); }
+.swagger-ui .opblock-body { overflow-x: auto; }
+@media (max-width: 480px) {
+  .swagger-ui .opblock-tag { font-size: 17px; padding-inline: 4px; }
+  .swagger-ui .opblock .opblock-summary { flex-wrap: wrap; gap: 4px; }
+  .swagger-ui .opblock .opblock-summary-path { font-size: 12px; max-width: calc(100% - 100px); }
+  .swagger-ui .opblock .opblock-summary-description { flex-basis: 100%; }
+}

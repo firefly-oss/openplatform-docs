@@ -1,0 +1,1222 @@
+{
+  "adapters": [],
+  "ci_jdks": [],
+  "conditions": [],
+  "config_files": [],
+  "docs": [
+    {
+      "path": "docs/adapters/index.md",
+      "title": "Integrations and adapter replacement"
+    },
+    {
+      "path": "docs/adapters/payments.md",
+      "title": "Configure payment adapters"
+    },
+    {
+      "path": "docs/api/accounts.md",
+      "title": "Accounts API"
+    },
+    {
+      "path": "docs/api/cards.md",
+      "title": "Cards API"
+    },
+    {
+      "path": "docs/api/channel.md",
+      "title": "Channel management API"
+    },
+    {
+      "path": "docs/api/contracts.md",
+      "title": "Producer API contracts"
+    },
+    {
+      "path": "docs/api/distributor.md",
+      "title": "Distributor API"
+    },
+    {
+      "path": "docs/api/index.md",
+      "title": "API and SDK contracts"
+    },
+    {
+      "path": "docs/api/insurance.md",
+      "title": "Insurance API"
+    },
+    {
+      "path": "docs/api/lending.md",
+      "title": "Lending API"
+    },
+    {
+      "path": "docs/api/notifications.md",
+      "title": "Notifications API"
+    },
+    {
+      "path": "docs/api/onboarding.md",
+      "title": "Onboarding API"
+    },
+    {
+      "path": "docs/api/profile.md",
+      "title": "Profile API"
+    },
+    {
+      "path": "docs/api/security.md",
+      "title": "Security API"
+    },
+    {
+      "path": "docs/api/services/core-banking-accounts.md",
+      "title": "core-banking-accounts"
+    },
+    {
+      "path": "docs/api/services/core-banking-cards.md",
+      "title": "core-banking-cards"
+    },
+    {
+      "path": "docs/api/services/core-banking-ledger.md",
+      "title": "core-banking-ledger"
+    },
+    {
+      "path": "docs/api/services/core-banking-payments.md",
+      "title": "core-banking-payments"
+    },
+    {
+      "path": "docs/api/services/core-banking-psdx.md",
+      "title": "core-banking-psdx"
+    },
+    {
+      "path": "docs/api/services/core-common-accounting-gl.md",
+      "title": "core-common-accounting-gl"
+    },
+    {
+      "path": "docs/api/services/core-common-case-mgmt.md",
+      "title": "core-common-case-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-common-config-mgmt.md",
+      "title": "core-common-config-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-common-contract-mgmt.md",
+      "title": "core-common-contract-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-common-customer-mgmt.md",
+      "title": "core-common-customer-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-common-distributor-mgmt.md",
+      "title": "core-common-distributor-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-common-document-mgmt.md",
+      "title": "core-common-document-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-common-kycb-mgmt.md",
+      "title": "core-common-kycb-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-common-modelhub.md",
+      "title": "core-common-modelhub"
+    },
+    {
+      "path": "docs/api/services/core-common-notification-services.md",
+      "title": "core-common-notification-services"
+    },
+    {
+      "path": "docs/api/services/core-common-org-mgmt.md",
+      "title": "core-common-org-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-common-product-mgmt.md",
+      "title": "core-common-product-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-common-reference-master-data.md",
+      "title": "core-common-reference-master-data"
+    },
+    {
+      "path": "docs/api/services/core-common-sca-mgmt.md",
+      "title": "core-common-sca-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-common-security-vault.md",
+      "title": "core-common-security-vault"
+    },
+    {
+      "path": "docs/api/services/core-common-user-mgmt.md",
+      "title": "core-common-user-mgmt"
+    },
+    {
+      "path": "docs/api/services/core-insurance-claims.md",
+      "title": "core-insurance-claims"
+    },
+    {
+      "path": "docs/api/services/core-insurance-delegated-authority.md",
+      "title": "core-insurance-delegated-authority"
+    },
+    {
+      "path": "docs/api/services/core-insurance-financials.md",
+      "title": "core-insurance-financials"
+    },
+    {
+      "path": "docs/api/services/core-insurance-policies.md",
+      "title": "core-insurance-policies"
+    },
+    {
+      "path": "docs/api/services/core-insurance-reinsurance.md",
+      "title": "core-insurance-reinsurance"
+    },
+    {
+      "path": "docs/api/services/core-insurance-reserving.md",
+      "title": "core-insurance-reserving"
+    },
+    {
+      "path": "docs/api/services/core-insurance-underwriting.md",
+      "title": "core-insurance-underwriting"
+    },
+    {
+      "path": "docs/api/services/core-lending-asset-finance.md",
+      "title": "core-lending-asset-finance"
+    },
+    {
+      "path": "docs/api/services/core-lending-collateral-management.md",
+      "title": "core-lending-collateral-management"
+    },
+    {
+      "path": "docs/api/services/core-lending-credit-cards.md",
+      "title": "core-lending-credit-cards"
+    },
+    {
+      "path": "docs/api/services/core-lending-credit-scoring.md",
+      "title": "core-lending-credit-scoring"
+    },
+    {
+      "path": "docs/api/services/core-lending-delinquency-collections.md",
+      "title": "core-lending-delinquency-collections"
+    },
+    {
+      "path": "docs/api/services/core-lending-loan-origination.md",
+      "title": "core-lending-loan-origination"
+    },
+    {
+      "path": "docs/api/services/core-lending-loan-servicing.md",
+      "title": "core-lending-loan-servicing"
+    },
+    {
+      "path": "docs/api/services/core-lending-mortgage.md",
+      "title": "core-lending-mortgage"
+    },
+    {
+      "path": "docs/api/services/core-lending-personal-loans.md",
+      "title": "core-lending-personal-loans"
+    },
+    {
+      "path": "docs/api/services/core-lending-provisioning-risk.md",
+      "title": "core-lending-provisioning-risk"
+    },
+    {
+      "path": "docs/api/services/core-lending-regulatory-compliance.md",
+      "title": "core-lending-regulatory-compliance"
+    },
+    {
+      "path": "docs/api/services/core-lending-supply-chain-finance.md",
+      "title": "core-lending-supply-chain-finance"
+    },
+    {
+      "path": "docs/api/services/domain-banking-accounts.md",
+      "title": "domain-banking-accounts"
+    },
+    {
+      "path": "docs/api/services/domain-banking-cards.md",
+      "title": "domain-banking-cards"
+    },
+    {
+      "path": "docs/api/services/domain-banking-psdx.md",
+      "title": "domain-banking-psdx"
+    },
+    {
+      "path": "docs/api/services/domain-common-accounting.md",
+      "title": "domain-common-accounting"
+    },
+    {
+      "path": "docs/api/services/domain-common-case-mgmt.md",
+      "title": "domain-common-case-mgmt"
+    },
+    {
+      "path": "docs/api/services/domain-common-contracts.md",
+      "title": "domain-common-contracts"
+    },
+    {
+      "path": "docs/api/services/domain-common-notifications.md",
+      "title": "domain-common-notifications"
+    },
+    {
+      "path": "docs/api/services/domain-common-sca.md",
+      "title": "domain-common-sca"
+    },
+    {
+      "path": "docs/api/services/domain-core-configuration.md",
+      "title": "domain-core-configuration"
+    },
+    {
+      "path": "docs/api/services/domain-core-modelhub.md",
+      "title": "domain-core-modelhub"
+    },
+    {
+      "path": "docs/api/services/domain-core-organization.md",
+      "title": "domain-core-organization"
+    },
+    {
+      "path": "docs/api/services/domain-core-pricing-engine.md",
+      "title": "domain-core-pricing-engine"
+    },
+    {
+      "path": "docs/api/services/domain-core-reference-data.md",
+      "title": "domain-core-reference-data"
+    },
+    {
+      "path": "docs/api/services/domain-core-security-center.md",
+      "title": "domain-core-security-center"
+    },
+    {
+      "path": "docs/api/services/domain-core-security-vault.md",
+      "title": "domain-core-security-vault"
+    },
+    {
+      "path": "docs/api/services/domain-core-user-mgmt.md",
+      "title": "domain-core-user-mgmt"
+    },
+    {
+      "path": "docs/api/services/domain-customer-kyc-kyb.md",
+      "title": "domain-customer-kyc-kyb"
+    },
+    {
+      "path": "docs/api/services/domain-customer-people.md",
+      "title": "domain-customer-people"
+    },
+    {
+      "path": "docs/api/services/domain-data-business-intelligence.md",
+      "title": "domain-data-business-intelligence"
+    },
+    {
+      "path": "docs/api/services/domain-data-credit-bureaus.md",
+      "title": "domain-data-credit-bureaus"
+    },
+    {
+      "path": "docs/api/services/domain-distributor-branding.md",
+      "title": "domain-distributor-branding"
+    },
+    {
+      "path": "docs/api/services/domain-distributor-catalog.md",
+      "title": "domain-distributor-catalog"
+    },
+    {
+      "path": "docs/api/services/domain-insurance-claims.md",
+      "title": "domain-insurance-claims"
+    },
+    {
+      "path": "docs/api/services/domain-insurance-delegated-authority.md",
+      "title": "domain-insurance-delegated-authority"
+    },
+    {
+      "path": "docs/api/services/domain-insurance-financials.md",
+      "title": "domain-insurance-financials"
+    },
+    {
+      "path": "docs/api/services/domain-insurance-policies.md",
+      "title": "domain-insurance-policies"
+    },
+    {
+      "path": "docs/api/services/domain-insurance-reinsurance.md",
+      "title": "domain-insurance-reinsurance"
+    },
+    {
+      "path": "docs/api/services/domain-insurance-reserving.md",
+      "title": "domain-insurance-reserving"
+    },
+    {
+      "path": "docs/api/services/domain-insurance-underwriting.md",
+      "title": "domain-insurance-underwriting"
+    },
+    {
+      "path": "docs/api/services/domain-lending-asset-finance.md",
+      "title": "domain-lending-asset-finance"
+    },
+    {
+      "path": "docs/api/services/domain-lending-collateral-management.md",
+      "title": "domain-lending-collateral-management"
+    },
+    {
+      "path": "docs/api/services/domain-lending-credit-scoring.md",
+      "title": "domain-lending-credit-scoring"
+    },
+    {
+      "path": "docs/api/services/domain-lending-delinquency-collections.md",
+      "title": "domain-lending-delinquency-collections"
+    },
+    {
+      "path": "docs/api/services/domain-lending-loan-origination.md",
+      "title": "domain-lending-loan-origination"
+    },
+    {
+      "path": "docs/api/services/domain-lending-loan-servicing.md",
+      "title": "domain-lending-loan-servicing"
+    },
+    {
+      "path": "docs/api/services/domain-lending-mortgage.md",
+      "title": "domain-lending-mortgage"
+    },
+    {
+      "path": "docs/api/services/domain-lending-personal-loans.md",
+      "title": "domain-lending-personal-loans"
+    },
+    {
+      "path": "docs/api/services/domain-lending-provisioning-risk.md",
+      "title": "domain-lending-provisioning-risk"
+    },
+    {
+      "path": "docs/api/services/domain-lending-regulatory-compliance.md",
+      "title": "domain-lending-regulatory-compliance"
+    },
+    {
+      "path": "docs/api/services/domain-lending-supply-chain-finance.md",
+      "title": "domain-lending-supply-chain-finance"
+    },
+    {
+      "path": "docs/api/services/domain-payments.md",
+      "title": "domain-payments"
+    },
+    {
+      "path": "docs/api/services/domain-product-catalog.md",
+      "title": "domain-product-catalog"
+    },
+    {
+      "path": "docs/api/services/domain-product-pricing.md",
+      "title": "domain-product-pricing"
+    },
+    {
+      "path": "docs/api/services/exp-accounts.md",
+      "title": "exp-accounts"
+    },
+    {
+      "path": "docs/api/services/exp-cards.md",
+      "title": "exp-cards"
+    },
+    {
+      "path": "docs/api/services/exp-channel-management.md",
+      "title": "exp-channel-management"
+    },
+    {
+      "path": "docs/api/services/exp-distributor.md",
+      "title": "exp-distributor"
+    },
+    {
+      "path": "docs/api/services/exp-finance-terminal.md",
+      "title": "exp-finance-terminal"
+    },
+    {
+      "path": "docs/api/services/exp-insurance-terminal.md",
+      "title": "exp-insurance-terminal"
+    },
+    {
+      "path": "docs/api/services/exp-insurance.md",
+      "title": "exp-insurance"
+    },
+    {
+      "path": "docs/api/services/exp-lending.md",
+      "title": "exp-lending"
+    },
+    {
+      "path": "docs/api/services/exp-notifications.md",
+      "title": "exp-notifications"
+    },
+    {
+      "path": "docs/api/services/exp-onboarding.md",
+      "title": "exp-onboarding"
+    },
+    {
+      "path": "docs/api/services/exp-payments.md",
+      "title": "exp-payments"
+    },
+    {
+      "path": "docs/api/services/exp-profile.md",
+      "title": "exp-profile"
+    },
+    {
+      "path": "docs/api/services/exp-security.md",
+      "title": "exp-security"
+    },
+    {
+      "path": "docs/assets/diagrams/README.md",
+      "title": "Manual diagrams"
+    },
+    {
+      "path": "docs/catalog/banking.md",
+      "title": "Banking"
+    },
+    {
+      "path": "docs/catalog/contract.md",
+      "title": "Contract"
+    },
+    {
+      "path": "docs/catalog/customer.md",
+      "title": "Customer and party"
+    },
+    {
+      "path": "docs/catalog/data.md",
+      "title": "Data and external systems"
+    },
+    {
+      "path": "docs/catalog/decision.md",
+      "title": "Scoring and decisions"
+    },
+    {
+      "path": "docs/catalog/index.md",
+      "title": "Families"
+    },
+    {
+      "path": "docs/catalog/insurance.md",
+      "title": "Insurance"
+    },
+    {
+      "path": "docs/catalog/journeys.md",
+      "title": "Onboarding and other journeys"
+    },
+    {
+      "path": "docs/catalog/lending.md",
+      "title": "Lending"
+    },
+    {
+      "path": "docs/catalog/product.md",
+      "title": "Product"
+    },
+    {
+      "path": "docs/catalog/security.md",
+      "title": "Security and access"
+    },
+    {
+      "path": "docs/catalog/shared.md",
+      "title": "Shared platform"
+    },
+    {
+      "path": "docs/domains/contract/context.md",
+      "title": "Contract"
+    },
+    {
+      "path": "docs/domains/contract/core.md",
+      "title": "Contract core"
+    },
+    {
+      "path": "docs/domains/contract/domain.md",
+      "title": "Contract domain"
+    },
+    {
+      "path": "docs/domains/contract/journeys.md",
+      "title": "Contract journeys"
+    },
+    {
+      "path": "docs/domains/customer/context.md",
+      "title": "Customer"
+    },
+    {
+      "path": "docs/domains/customer/core.md",
+      "title": "Customer core"
+    },
+    {
+      "path": "docs/domains/customer/domain.md",
+      "title": "Customer domain"
+    },
+    {
+      "path": "docs/domains/customer/journeys.md",
+      "title": "Customer journeys"
+    },
+    {
+      "path": "docs/domains/product/context.md",
+      "title": "Product"
+    },
+    {
+      "path": "docs/domains/product/core.md",
+      "title": "Product core"
+    },
+    {
+      "path": "docs/domains/product/domain.md",
+      "title": "Product domain"
+    },
+    {
+      "path": "docs/domains/product/journeys.md",
+      "title": "Product journeys"
+    },
+    {
+      "path": "docs/experience/administration/finance.md",
+      "title": "Finance staff terminal"
+    },
+    {
+      "path": "docs/experience/administration/insurance.md",
+      "title": "Insurance staff terminal"
+    },
+    {
+      "path": "docs/experience/index.md",
+      "title": "Experience"
+    },
+    {
+      "path": "docs/experience/public/accounts.md",
+      "title": "Accounts experience"
+    },
+    {
+      "path": "docs/experience/public/cards.md",
+      "title": "Cards experience"
+    },
+    {
+      "path": "docs/experience/public/insurance.md",
+      "title": "Insurance experience"
+    },
+    {
+      "path": "docs/experience/public/lending.md",
+      "title": "Lending experience"
+    },
+    {
+      "path": "docs/experience/public/onboarding.md",
+      "title": "Onboarding experience"
+    },
+    {
+      "path": "docs/experience/public/payments.md",
+      "title": "Payments experience"
+    },
+    {
+      "path": "docs/experience/public/profile.md",
+      "title": "Profile experience"
+    },
+    {
+      "path": "docs/index.md",
+      "title": "OpenPlatform"
+    },
+    {
+      "path": "docs/introduction/data-and-money.md",
+      "title": "Records, money, events, and evidence"
+    },
+    {
+      "path": "docs/introduction/execution-model.md",
+      "title": "From business intent to a durable result"
+    },
+    {
+      "path": "docs/introduction/glossary.md",
+      "title": "Concepts and vocabulary"
+    },
+    {
+      "path": "docs/introduction/index.md",
+      "title": "Understand OpenPlatform"
+    },
+    {
+      "path": "docs/introduction/platform-map.md",
+      "title": "The platform map"
+    },
+    {
+      "path": "docs/introduction/reading-paths.md",
+      "title": "Reading paths by responsibility"
+    },
+    {
+      "path": "docs/jafly.md",
+      "title": "Jafly and the application architecture"
+    },
+    {
+      "path": "docs/journeys/accounts.md",
+      "title": "Accounts: opening through closure"
+    },
+    {
+      "path": "docs/journeys/banking.md",
+      "title": "Operational banking"
+    },
+    {
+      "path": "docs/journeys/cards.md",
+      "title": "Cards: issuance, authorization, and clearing"
+    },
+    {
+      "path": "docs/journeys/index.md",
+      "title": "Business journeys"
+    },
+    {
+      "path": "docs/journeys/insurance.md",
+      "title": "Insurance: coverage, claims, and financial operations"
+    },
+    {
+      "path": "docs/journeys/lending.md",
+      "title": "Lending: from application to final recovery"
+    },
+    {
+      "path": "docs/journeys/payments.md",
+      "title": "Payments: intent, money, and external finality"
+    },
+    {
+      "path": "docs/journeys/shared.md",
+      "title": "Shared services: trust, terms, evidence, and communication"
+    },
+    {
+      "path": "docs/layers/acord.md",
+      "title": "ACORD alignment for OpenPlatform insurance"
+    },
+    {
+      "path": "docs/layers/bian.md",
+      "title": "OpenPlatform mapped to the BIAN Service Landscape"
+    },
+    {
+      "path": "docs/layers/core.md",
+      "title": "Core: authoritative state and local transactions"
+    },
+    {
+      "path": "docs/layers/domain.md",
+      "title": "Domain: decisions, orchestration, and recovery"
+    },
+    {
+      "path": "docs/layers/index.md",
+      "title": "Architecture"
+    },
+    {
+      "path": "docs/layers/libraries.md",
+      "title": "Libraries"
+    },
+    {
+      "path": "docs/models/contract.md",
+      "title": "Contract"
+    },
+    {
+      "path": "docs/models/index.md",
+      "title": "Models"
+    },
+    {
+      "path": "docs/models/party.md",
+      "title": "Party"
+    },
+    {
+      "path": "docs/models/product.md",
+      "title": "Product"
+    },
+    {
+      "path": "docs/operations/cases.md",
+      "title": "Configure complaints and human work"
+    },
+    {
+      "path": "docs/operations/index.md",
+      "title": "Operate and recover"
+    },
+    {
+      "path": "docs/quickstart.md",
+      "title": "Get started"
+    },
+    {
+      "path": "docs/reference/repositories.md",
+      "title": "Repository map"
+    },
+    {
+      "path": "docs/reference/service-guides/currency-execution-policies.md",
+      "title": "Currency execution policy publications"
+    },
+    {
+      "path": "docs/reference/service-guides/document-issuer-revisions.md",
+      "title": "Document issuer revisions"
+    },
+    {
+      "path": "docs/reference/service-guides/document-layout-publications.md",
+      "title": "Publish document layouts and legal-notice associations"
+    },
+    {
+      "path": "docs/reference/service-guides/document-template-bindings.md",
+      "title": "Exact document template bindings"
+    },
+    {
+      "path": "docs/reference/service-guides/document-template-revisions.md",
+      "title": "Immutable document template revisions"
+    },
+    {
+      "path": "docs/reference/service-guides/exact-rail-amount-conversion.md",
+      "title": "Convert rail amounts without losing information"
+    },
+    {
+      "path": "docs/reference/service-guides/finance-terminal-authentication.md",
+      "title": "Configure the finance staff terminal and its generated SDK"
+    },
+    {
+      "path": "docs/reference/service-guides/framework-adoption.md",
+      "title": "Adopt Jafly in an OpenPlatform service"
+    },
+    {
+      "path": "docs/reference/service-guides/governed-contract-documents.md",
+      "title": "Governed contract document operations"
+    },
+    {
+      "path": "docs/reference/service-guides/governed-contract-domain.md",
+      "title": "Governed contract documents"
+    },
+    {
+      "path": "docs/reference/service-guides/governed-document-issuance.md",
+      "title": "Governed document issuance"
+    },
+    {
+      "path": "docs/reference/service-guides/index.md",
+      "title": "Service configuration guides"
+    },
+    {
+      "path": "docs/reference/service-guides/insurance-terminal-authentication.md",
+      "title": "Configure the insurance staff terminal and its generated SDK"
+    },
+    {
+      "path": "docs/reference/service-guides/ledger-account-transactions.md",
+      "title": "Ledger account-transaction collections"
+    },
+    {
+      "path": "docs/reference/service-guides/managed-account-lifecycle.md",
+      "title": "Managed-account enrollment and lifecycle"
+    },
+    {
+      "path": "docs/reference/service-guides/managed-funds-reservations.md",
+      "title": "Managed funds and durable reservations"
+    },
+    {
+      "path": "docs/reference/service-guides/managed-internal-payment-experience.md",
+      "title": "Managed internal payment experience"
+    },
+    {
+      "path": "docs/reference/service-guides/managed-internal-payments.md",
+      "title": "Managed internal payments"
+    },
+    {
+      "path": "docs/reference/service-guides/managed-payment-domain.md",
+      "title": "Managed internal payment journeys"
+    },
+    {
+      "path": "docs/reference/service-guides/managed-payment-recovery.md",
+      "title": "Automatic recovery of managed internal payments"
+    },
+    {
+      "path": "docs/reference/service-guides/payment-adapters.md",
+      "title": "Configure payment adapters"
+    },
+    {
+      "path": "docs/reference/service-guides/product-pricing-configuration.md",
+      "title": "Configure exact product pricing inputs"
+    },
+    {
+      "path": "docs/release/edit.md",
+      "title": "Edit these docs"
+    },
+    {
+      "path": "docs/release/train.md",
+      "title": "Source, SDK, and release versions"
+    },
+    {
+      "path": "docs/shared/documents.md",
+      "title": "Documents: content, records, and signature evidence"
+    },
+    {
+      "path": "docs/shared/financial-stationery.md",
+      "title": "Financial stationery: author, configure, and issue"
+    },
+    {
+      "path": "docs/shared/managed-funds.md",
+      "title": "Managed accounts and available funds"
+    },
+    {
+      "path": "docs/shared/managed-payments.md",
+      "title": "Durable internal payments"
+    },
+    {
+      "path": "docs/shared/template-configuration.md",
+      "title": "Configure governed document templates"
+    },
+    {
+      "path": "docs/versioning/mike.md",
+      "title": "Versioned documentation"
+    },
+    {
+      "path": "scripts/README.md",
+      "title": "Documentation maintenance tools"
+    },
+    {
+      "path": "theme/PACK.md",
+      "title": "Theme pack (vendored)"
+    },
+    {
+      "path": "theme/README.md",
+      "title": "OpenPlatform documentation theme"
+    }
+  ],
+  "editorial_sha256": "51ffcef2958c8df5bd417893d0adb560ad3bc075e8cee4ff6b4bcb050143402d",
+  "errors": [],
+  "files": {
+    ".github/workflows/docs.yml": "2f58479f7725083396091728cfcd1c0406c0c7ffed2e921dcbec3cb66276d8d3",
+    ".github/workflows/publish-gh-pages.yml": "207332e822c4e8e6b8e9410d66c12a2eae8613fce4731eb2be8beffea26016b9",
+    "docs/adapters/index.md": "b6745f18449ae35862ac0f2880ded7316b284a96b6a2d4f9c41790a78ded5da6",
+    "docs/adapters/payments.md": "59e0fd51b5ffdd7460b9570b8780511efa931d1c711b14e081ab14982ee0347b",
+    "docs/api/accounts.md": "b8999533f555242394cdf3c1d08dea0893cca98ab6b02af58037b4446ec8dfec",
+    "docs/api/cards.md": "e9594aad3a0295ab896839f3e98439a968e3c7bf4b6ee3606e40d0cd5ef7a4f2",
+    "docs/api/channel.md": "e24b1b21ce31ab0740ce8ea901ae235d0fb55567d2cb64779ac704a955a29e97",
+    "docs/api/contract-manifest.json": "3c2b63e24d7a67a8597f5c3d7688f02ec7ad8dc7e2bf03a6881b6902f639eabc",
+    "docs/api/contracts.md": "ae78f3b277e3ea0cbe1ac78b1d8f8a578fee91b9dff2924b6e3ddf57c6d0bade",
+    "docs/api/contracts/core-banking-accounts/openapi.yml": "0afa0ff5ff7ca25dd01d229bd16ebc20618d81bdf4619ef6b28e2b269a3291d3",
+    "docs/api/contracts/core-banking-cards/openapi.yml": "00dd0598375f201c54de92394f4a8071b16992166c895298d1237c12cd3f37c3",
+    "docs/api/contracts/core-banking-ledger/openapi.yml": "d5372642dd91dc2e5c5f633259af52ca3fa314f9c5ef4c3502be5dba8ea9c1f8",
+    "docs/api/contracts/core-banking-payments/openapi.yml": "6ecdc86364ee9a48657b67cadd039c1bc3c29ef9aeb7652726eea7f08da1ff5a",
+    "docs/api/contracts/core-banking-psdx/openapi.yml": "8b6e200413a8b27005a3ec00c78459c48b2bef40d4c1ff34bcf485d47cf869a3",
+    "docs/api/contracts/core-common-accounting-gl/openapi.yml": "780be3257b142daa2a18818a1b5ad77420a6b7ff5c20039dfe43fc858e5b5724",
+    "docs/api/contracts/core-common-case-mgmt/openapi.yml": "116db1010298209fbc2c8c63520bcec299345467d558b296d6e0ebaa0a0b4bad",
+    "docs/api/contracts/core-common-config-mgmt/openapi.yml": "93e82ba2b0cb4c0e4e6d325536afdf4c3c4cefbb23037c36a0256e6214e9e606",
+    "docs/api/contracts/core-common-contract-mgmt/openapi.yml": "15cba145c3c50484d83148718835e0c15de953fbe94e166a4a5cc560c969fff6",
+    "docs/api/contracts/core-common-customer-mgmt/openapi.yml": "672c7d74fe671a2a6aba56000e18997456dd9289a7a29ac31e0c6b1ca9630f34",
+    "docs/api/contracts/core-common-distributor-mgmt/openapi.yml": "c2b64b4e279802a48531b174a7aa1ba97c8ab31b526798f15fee1a2a41920d69",
+    "docs/api/contracts/core-common-document-mgmt/openapi.yml": "e0b6375023bd9c9f727af28bbad12113c6ddc291dee7e83ae67fa62ab125e46c",
+    "docs/api/contracts/core-common-kycb-mgmt/openapi.yml": "954f2df0ab40f5660f1e27163bc961e4c8f48af699628f0941b5369afb6d3443",
+    "docs/api/contracts/core-common-modelhub/openapi.yml": "1bf6becceb5547706caaeda023fea6812b0eb8d9dca1f6ccfc22b8589dcadf9b",
+    "docs/api/contracts/core-common-notification-services/openapi.yml": "4484470dddc306978e1ed1ad6c3d34a312c963b180c34787de7f50f7ba4d029a",
+    "docs/api/contracts/core-common-org-mgmt/openapi.yml": "4b89a24fbbd76fff65796f361986d6e0c9c57b52884fb0a3e781db72a2bf3419",
+    "docs/api/contracts/core-common-product-mgmt/openapi.yml": "be68a9932684c422409503ece0d413edfa0ad84e3695af38b19f2487b30329b1",
+    "docs/api/contracts/core-common-reference-master-data/openapi.yml": "c08c8db0ca7b6059f1b5232d853db244ea8f392a8be68d457988ca51eac9279c",
+    "docs/api/contracts/core-common-sca-mgmt/openapi.yml": "36898bb44b8a1f09c9fff4f5eba63a9776893d917faaa01dd6ab23bd8441cf44",
+    "docs/api/contracts/core-common-security-vault/openapi.yml": "2efa244e777f8c068ce3f03e37f008f42ff5795c4bed54c26db931d888c7571b",
+    "docs/api/contracts/core-common-user-mgmt/openapi.yml": "749301018f09895f806fad69b2e63c6314dbad4ea66ad13dfc092537f3b21f85",
+    "docs/api/contracts/core-insurance-claims/openapi.yml": "279d1b2800c04d719fd2eed71671f2e36321fb4ce8bc4e768a4e40c3e21799d0",
+    "docs/api/contracts/core-insurance-delegated-authority/openapi.yml": "56e228a5e9af02f66a5a668e76373832261fbcb4303aab824c3ac80cb8f01745",
+    "docs/api/contracts/core-insurance-financials/openapi.yml": "33be704912fa72de35b374241ea862fab1a774a7f2a1aa719441d131df6d6fa4",
+    "docs/api/contracts/core-insurance-policies/openapi.yml": "00ba15ad95b25ea252c0cb83869395ec580d05ebd083042475e7d3b43c7e722c",
+    "docs/api/contracts/core-insurance-reinsurance/openapi.yml": "1b3a8c88f6c35fa8fd0491593d0df6f4bc41ce9fe452a70ad373a753d39ae624",
+    "docs/api/contracts/core-insurance-reserving/openapi.yml": "7efe0685074ea773eaed03e35679524d4bc3776572d0919af0497b67f0e09ac9",
+    "docs/api/contracts/core-insurance-underwriting/openapi.yml": "72e870af6d31348d98e26cd11935ad948b6b333c4f9389515373f22bdf146840",
+    "docs/api/contracts/core-lending-asset-finance/openapi.yml": "c640878a06b18230dcf9f21a6921b000aced54e7c82d2a6e2830f05c85265c9c",
+    "docs/api/contracts/core-lending-collateral-management/openapi.yml": "70d3eeef10b61b8064faac4d34d4b8e79fe805b4f1f431d4a451bb2306f25f3a",
+    "docs/api/contracts/core-lending-credit-cards/openapi.yml": "476450c9a23c9580dc057b2694bf05aa490989dfdeab035667a8b77cb2a76b9e",
+    "docs/api/contracts/core-lending-credit-scoring/openapi.yml": "b41dabf137c665e78275a3d86d45b3b00c2648c2870c3fd73b4d70df514d0776",
+    "docs/api/contracts/core-lending-delinquency-collections/openapi.yml": "5263d6d052449580d8958273caea0335fe0ca05b3000757b6307bbe22f56b8a8",
+    "docs/api/contracts/core-lending-loan-origination/openapi.yml": "69d2f5c161d3373df02df9b059f551e40faf9c73f19c2f9031a51b1f2da3f57b",
+    "docs/api/contracts/core-lending-loan-servicing/openapi.yml": "2532110f31a22dabcceb59f9c87488e8ef88a6b29fa8f3200d9fa87b9c8a7891",
+    "docs/api/contracts/core-lending-mortgage/openapi.yml": "2512ec10ca8a4e8eed05b38c0a65929981a5ab462cc3761ee3fcf879895d0785",
+    "docs/api/contracts/core-lending-personal-loans/openapi.yml": "1d5bd3223090ff7f1b9130863c8929354542a04e5462abb7dc881855d257b158",
+    "docs/api/contracts/core-lending-provisioning-risk/openapi.yml": "74c70ce0589e9b2763a1bb8f12a0902e1c6582b39b0dba3c58eac7afff137f7a",
+    "docs/api/contracts/core-lending-regulatory-compliance/openapi.yml": "ba4bf07b30e294833f4e1c02cb1ab2a9f232d4fe4be269c432c6c9082cad9034",
+    "docs/api/contracts/core-lending-supply-chain-finance/openapi.yml": "24b4ac3cf5081ab7d05e8ebec9994831509f847559ecc8253a3cb20fb0787ee9",
+    "docs/api/contracts/domain-banking-accounts/openapi.yml": "21c5e9ff799874f954cc3b211d6e041056f50273f6b34e90c9200989c7d5b109",
+    "docs/api/contracts/domain-banking-cards/openapi.yml": "f18e959b1e5b2c000a7135d5634a8143af9006d2e8c3cee2d19b7a20bab00b3f",
+    "docs/api/contracts/domain-banking-psdx/openapi.yml": "4149efb28d982eaa46ab71e7e5e165a455808ba267d1a439ec3aca8f7f776c3c",
+    "docs/api/contracts/domain-common-accounting/openapi.yml": "13a9c4ff893c85e5e6a081d3908d9c97c43649f87147147bddbbe4b3fccc436e",
+    "docs/api/contracts/domain-common-case-mgmt/openapi.yml": "2f08c964162d212cfd843c5d9d33af16d0e45fb256c235f73774aabf94cacb1a",
+    "docs/api/contracts/domain-common-contracts/openapi.yml": "e52ca8104445ac3b51bb0f54a84286f5fc1565e13e02641c1d2ee378ed4aa0b2",
+    "docs/api/contracts/domain-common-notifications/openapi.yml": "d654530db018d53eeedf5dcdee6eb391f0415c5335c1a2e6c8f901af405f0d74",
+    "docs/api/contracts/domain-common-sca/openapi.yml": "7c2900b47106b7bb6bda00a084c59871bf6c28c25e9057e3e233988eefd5f80e",
+    "docs/api/contracts/domain-core-configuration/openapi.yml": "0aeea08e667a6005a21d700fccde0be379c62938c2f5cc333f750bdddfe52540",
+    "docs/api/contracts/domain-core-modelhub/openapi.yml": "baa944e2b5241e27af836330b392eba3ca21a96855c7215df75d58782cc601d6",
+    "docs/api/contracts/domain-core-organization/openapi.yml": "7c22206aa52c12cfdb4cbd282e391ae0e9c592a1064e8309146030f44809304c",
+    "docs/api/contracts/domain-core-pricing-engine/openapi.yml": "81cd02b219cd9ea8fb8c043625c5e6cb86c4fa4d82804cd1684060df7ec4e289",
+    "docs/api/contracts/domain-core-reference-data/openapi.yml": "3f0ec732029253288b5635a62e5ab70726555d6095a47e52ee9068f0fcb49b9c",
+    "docs/api/contracts/domain-core-security-center/openapi.yml": "5e985e6244bc40bb7d8bed64ac46e9e798c7a5d65d510f446be065d214b0909a",
+    "docs/api/contracts/domain-core-security-vault/openapi.yml": "f67d955f60e47277917b13d316df442bdb845332d128e21a29dce927ae8ca202",
+    "docs/api/contracts/domain-core-user-mgmt/openapi.yml": "a7e2664c33dd662c98817066f3318a529ec0f9030aaeb2736d0ba55aa2d80921",
+    "docs/api/contracts/domain-customer-kyc-kyb/openapi.yml": "a07ec921b1148abeab705e2d7f8f3734e24e7e8aa12f38d1216fd0a5f431784e",
+    "docs/api/contracts/domain-customer-people/openapi.yml": "d9427788eb180b2f5ae7fe0e58e1615c1d0767f09f55e59a98afd69a477edc35",
+    "docs/api/contracts/domain-data-business-intelligence/openapi.yml": "28e5f3eeca926cba5a93296ce4bd09353aa30f589a6eda4fc25f619c7367297e",
+    "docs/api/contracts/domain-data-credit-bureaus/openapi.yml": "85558b03c3230eac5d23beaaa29c6f67f1aa43d6d4eb1c732c2fe50105ebe1b6",
+    "docs/api/contracts/domain-distributor-branding/openapi.yml": "cb3b83ab06e613e49e40a6b68fb41fdfdfddaac92624483a202f201deaff3419",
+    "docs/api/contracts/domain-distributor-catalog/openapi.yml": "20576005004278ae1832aaafcadae25d6d153abe8d0ef58abd2bd569ad57dfbe",
+    "docs/api/contracts/domain-insurance-claims/openapi.yml": "9e362a96b8417d18f1d85ffde638139032a2463be3b65d4fd7727cd1b071f7e2",
+    "docs/api/contracts/domain-insurance-delegated-authority/openapi.yml": "67fb04fd4676655b00c962b3fe2b4a26b1f2891391620302de1947999bbc2fe0",
+    "docs/api/contracts/domain-insurance-financials/openapi.yml": "b3dd80addaacdef80a93b7e1ce8a3feb539ea2f82c89db6d0cd56a7811c13adf",
+    "docs/api/contracts/domain-insurance-policies/openapi.yml": "0f993d686b59d95a75270e10d2f382a10d4ba293576264266b1d250f2d6ced90",
+    "docs/api/contracts/domain-insurance-reinsurance/openapi.yml": "a1188d722f71198c917df177cd9c8e2014af0385f0098367cf229ced8511d937",
+    "docs/api/contracts/domain-insurance-reserving/openapi.yml": "d45ac848f1d5f3875e975cf54f1807f511b1879dfe7bce00a6c23f65f9bfa57c",
+    "docs/api/contracts/domain-insurance-underwriting/openapi.yml": "6cb99b145a982cb9d07e39997ff6f90ae0bd4d54a59b9b0b46f911851e9fcb19",
+    "docs/api/contracts/domain-lending-asset-finance/openapi.yml": "62c9f0ae1821c54a15227d31af6f8eff2262d23e066778193dfe0bda8cf934fe",
+    "docs/api/contracts/domain-lending-collateral-management/openapi.yml": "13265d4bd5b8744aa6ecd2bbf778d3b838e9ab3e2dc812e46e932b58b1205a25",
+    "docs/api/contracts/domain-lending-credit-scoring/openapi.yml": "7d0bed9bcbf6eb178210dbc39769a3583c336ca5885a2444c6c6592ded8672fb",
+    "docs/api/contracts/domain-lending-delinquency-collections/openapi.yml": "48240ddef5082f5ce2e92c79d90cd72cff67bbf08f948d10614ba4c3c3d47aab",
+    "docs/api/contracts/domain-lending-loan-origination/openapi.yml": "39b5dc5d9dc7da3147ecd1073a1bcb728c343d65ab68f924fcd0d158f9050348",
+    "docs/api/contracts/domain-lending-loan-servicing/openapi.yml": "7ed6c9781291f157f10f904fad7d060f28ecd6c07fe05dc4f66365d1f893bf2d",
+    "docs/api/contracts/domain-lending-mortgage/openapi.yml": "59c42dfc83b73278a6fde21f9668fd8b0ccb9135ef76a297cab5d73ea9dbb506",
+    "docs/api/contracts/domain-lending-personal-loans/openapi.yml": "7b25505799125da3f88452b9a2419a13def67b9de0203f32f52b63fe1fae664a",
+    "docs/api/contracts/domain-lending-provisioning-risk/openapi.yml": "4fc8fa65eb801b8971b4e01cb0700f6e573c38d0a4d0d2afa1090f4d0d267384",
+    "docs/api/contracts/domain-lending-regulatory-compliance/openapi.yml": "61fc8767479c6a62116771d62926bc4336b911aa2231043799542e5a7ef4c64b",
+    "docs/api/contracts/domain-lending-supply-chain-finance/openapi.yml": "5a23df6b610f4a6b393d06ce571e167c3d1b23ac07f7ea7b17749eed3bd528b8",
+    "docs/api/contracts/domain-payments/openapi.yml": "8c6262d8b2b7f263ade44dd4521c9bcf24031ae5d8a25cf46f7c080178af8079",
+    "docs/api/contracts/domain-product-catalog/openapi.yml": "a10e67ce69377e81a5c03bda84ff408d80a3e906364d92ef3e11bc1df9bb81ea",
+    "docs/api/contracts/domain-product-pricing/openapi.yml": "2ceca21ed752766dc93acb9d2f4e3122556fc77c05b307bad3fce668057cd4dd",
+    "docs/api/contracts/exp-accounts/openapi.yml": "26d92cbd53a93e6f1dd5b7ae8055edda928dfe8d4f5e6f2ce83fd3205bc1f4ce",
+    "docs/api/contracts/exp-cards/openapi.yml": "9ebc0338fa7ea118dadc88cf0194a25fa29ab59fdb6de7a2c78651f5e8c590ec",
+    "docs/api/contracts/exp-channel-management/openapi.yml": "b97524e8eb1416c4189cac6be0bc4e18254fc46ff2205f63961efb4c99e88483",
+    "docs/api/contracts/exp-distributor/openapi.yml": "e48ccc788e4a776a7dd968ae63bc2e1f3654e85ec9a7babd97559df3c8407ab7",
+    "docs/api/contracts/exp-finance-terminal/openapi.yml": "6ea59b9712c7e91437561b2ec1d70bfa6d7be6165b52e1c67e18adc25f1f77be",
+    "docs/api/contracts/exp-insurance-terminal/openapi.yml": "11e989b26c759e114fa2546d5264f1c080fca214409dbc1da01f9108c84602cf",
+    "docs/api/contracts/exp-insurance/openapi.yml": "139fde83dadcf02985b0c83d7ef234846792411a5d272e2bec5e796a8b276f07",
+    "docs/api/contracts/exp-lending/openapi.yml": "299a0079ea24a810bcadd96d47672140b2af068a682bfd8731a4e9f027229a51",
+    "docs/api/contracts/exp-notifications/openapi.yml": "0b30cb5171d92229d4f550c888bf6448f72c3bc3a915ae06337fb34d0ec6f1f6",
+    "docs/api/contracts/exp-onboarding/openapi.yml": "9b1af00e231e688faecd3bb0bbd196da9095dfee608cd46afd240112810cfdb2",
+    "docs/api/contracts/exp-payments/openapi.yml": "8e9862e75156b9cc48c171193c93f4a480b71a3d14b4b2f7914432207b141744",
+    "docs/api/contracts/exp-profile/openapi.yml": "0d6526fcf13c742f0442cdab4898f9683203997073d80e96b3d656ce295e5ba0",
+    "docs/api/contracts/exp-security/openapi.yml": "1236ef07b73434f7e7ab2601ae3f1a33e5aed00d3a3dfdcc6ee988d6bfcbc67c",
+    "docs/api/distributor.md": "6b7b6d425c69475d0b40d754179116473fdccb8c5c9b63c9592c982e863d4b2b",
+    "docs/api/index.md": "236e7471cfe3b290a70acde2dd9f2578332f45d31b3b8343488bb802e29542fc",
+    "docs/api/insurance.md": "abfdee8fce111370ab43e4b93c0ff39c64fcc06a553f64ee2c825504a9988e5f",
+    "docs/api/lending.md": "5808c9f5542aa680ff060822349184cbbe68f4b5ca4b74c524088b2005728c08",
+    "docs/api/notifications.md": "dc059c04b620e05653354bc390c28290ce063577f6e65f6913d5af95ab92dac5",
+    "docs/api/onboarding.md": "d9c4cb6471e3c42a3358020761c8d92af248ed6876fa341bf91e20acf59aec4c",
+    "docs/api/profile.md": "c15a6fd7799337f2ffb2d5bec78a4986bcd5852469c6821b4afd97da82ffdf83",
+    "docs/api/security.md": "a09033b4dd639a43621ee1d502fcef61b0b3ac00ab3b7293e7122a6937edd4ba",
+    "docs/api/services/core-banking-accounts.md": "66cf78dcb3b1951d6eda850c50d837f920e26fc9b6eb860469718d55156d8bbf",
+    "docs/api/services/core-banking-cards.md": "e19296e6025d4c185c820b0bb54694060f9f3d3839c8e6fb678bcbddbf3a3cb7",
+    "docs/api/services/core-banking-ledger.md": "dc3fe47f4947e134c8b4842fb7c8597246ac2403a59de2d37bef2510b2c94f1a",
+    "docs/api/services/core-banking-payments.md": "824a4e84510386746eb4e40da1f729a6b0dd395ee12d6f299ca68f77bb7a5f83",
+    "docs/api/services/core-banking-psdx.md": "5bef23ebe30854abdb57014dc670057aa2247d0f1318cd56ad4d05b196e972ea",
+    "docs/api/services/core-common-accounting-gl.md": "120240700d663e814a90bccf641cb9b0cc18f83d3842c615b25703f08d077293",
+    "docs/api/services/core-common-case-mgmt.md": "cc2327edd7dc0f5192324f0243bdb136c65995d8c4d1523c20d51c86c576fc5d",
+    "docs/api/services/core-common-config-mgmt.md": "f8794991d745272d540aa6311f6ebb713a5fce5db37da967e467d0cf76727b40",
+    "docs/api/services/core-common-contract-mgmt.md": "ff149c7497dbf6636794ba0a3535839e46e7db11618851e4f0fa6bc6faae8ade",
+    "docs/api/services/core-common-customer-mgmt.md": "31cdee927eb77274a66e9a524716b4e9fcafd6716b90f0d31735808a3e6b4a66",
+    "docs/api/services/core-common-distributor-mgmt.md": "a908e0a6a616a123d7bb009b030c348cafac708839c763282c5cb5700088cc19",
+    "docs/api/services/core-common-document-mgmt.md": "ef72181e949c4fb11816c255673ad4707860c5275800a592a0c1dbcc5c4cab97",
+    "docs/api/services/core-common-kycb-mgmt.md": "c60ed517ea7e59faf19670cd3b82bd2c93d474cab5ce1bbbd06fbdc0f90cd1be",
+    "docs/api/services/core-common-modelhub.md": "771587454c7490e2e4e0f2aaf8ad1721f2089a1e5885108a6ce45ac692ec0b60",
+    "docs/api/services/core-common-notification-services.md": "f77f68c4cbc49a848a7bed9413efe620defab85f4af882fff25e869a0f0a5456",
+    "docs/api/services/core-common-org-mgmt.md": "337bf79ad6f1e8bfa913e04fc8d5228544f5fe3d94e9ca08d712af032fbfa3f4",
+    "docs/api/services/core-common-product-mgmt.md": "173706a7570748fc7551f29e1bacbc4a9c775ae51bb6303d7cbf9db6be59ac12",
+    "docs/api/services/core-common-reference-master-data.md": "b42440a038e055f31ad8bdd614692b59013e3cde0e53adda738fe666e8d94557",
+    "docs/api/services/core-common-sca-mgmt.md": "c55ee67c1c4f86500882c39709eda76caf3c03fea8aff03fbe840523cc6ee0b9",
+    "docs/api/services/core-common-security-vault.md": "af030dd5a1f80a6f0c103743950857962f6d03312029553ca43a3fa6b5f447bf",
+    "docs/api/services/core-common-user-mgmt.md": "d42846684d4b321b7a53319afda87e6c5fab242eedbae181bd88e90e5156dacf",
+    "docs/api/services/core-insurance-claims.md": "f1b73f8eab886182b0167bc3175babee68fff0c51283d0f3a3598fc3cf78be63",
+    "docs/api/services/core-insurance-delegated-authority.md": "d1d71dd3680f14e9b7fdd89dd0fa6615d10650f6488a9a0cc17fdaaa3264ea69",
+    "docs/api/services/core-insurance-financials.md": "63aabc8fa33255f02e59f7df9da12e5c1b5cedf823946a3a06410bc3f02aec33",
+    "docs/api/services/core-insurance-policies.md": "13b5915423e2a9adb44d54df33231f33c850040dde67701d3c04da41814f0982",
+    "docs/api/services/core-insurance-reinsurance.md": "0e83cef6d0dd5e47a077ed33e8514fae6af2b8876ae04348a06b9136d9556c4b",
+    "docs/api/services/core-insurance-reserving.md": "20faf6bd03914d36815d07324adb14ab7424a4fe20d0c1a4a89cf8c53442102d",
+    "docs/api/services/core-insurance-underwriting.md": "d3cd5d8400c6fffa2528bb5ac37dc39c215d64715fd7afc622359fe10d003b99",
+    "docs/api/services/core-lending-asset-finance.md": "4adcc22ebe70b96a16c571c393491cdabe386ecc3ab758e5b58aada0d08e1f5b",
+    "docs/api/services/core-lending-collateral-management.md": "c67b481475482929ae86f955fc97d81a9d6f7d521ae383c10fa824dcebdbe980",
+    "docs/api/services/core-lending-credit-cards.md": "7fd7176180116d7acf8701c74c8b7c0a6a86c622e6f8b6adc473bc6414542d0f",
+    "docs/api/services/core-lending-credit-scoring.md": "34aa71934bfb808ecfc1f32243c83418b5803aae6ef0f53c40e74ba0bdd33c8e",
+    "docs/api/services/core-lending-delinquency-collections.md": "47ecaf7658d523346aa66aa19eeaeadd93f1a141d39e692e25966ecf18d6f2e4",
+    "docs/api/services/core-lending-loan-origination.md": "ebe222e3613d45ffbeefb779ea03c3542321927f5377fd58c7e4cb9122f8efa4",
+    "docs/api/services/core-lending-loan-servicing.md": "6215af111a1aa7f314eee9507bfc6934d59ba576b573ea88bf88cb48dc36b9f8",
+    "docs/api/services/core-lending-mortgage.md": "09e9a2ffe2490f5998352a70bbb6f0ed46025053c5b171f0981980a6cc0b5522",
+    "docs/api/services/core-lending-personal-loans.md": "2c312349401b32b77fba5e16e98dd6650176be186a394bc170c1c9ea21ac34ae",
+    "docs/api/services/core-lending-provisioning-risk.md": "4812bb54338fd12b7a0ef265a751be7fa6f28fddee521e159a22c1e232471722",
+    "docs/api/services/core-lending-regulatory-compliance.md": "da281f4e12bc5a14751811bf99ca18d1725230f758d13ebeae23fe65d10cfd6b",
+    "docs/api/services/core-lending-supply-chain-finance.md": "ad854918398cb45db31c31d4e005f8e04e674878694e632600366423b4980169",
+    "docs/api/services/domain-banking-accounts.md": "b5d069dadeafdd9a64a414d92b303f6ca41e501ca3f4884088e962ce160357d7",
+    "docs/api/services/domain-banking-cards.md": "8efb428aca41a884196fd14f4ab4b83288bdb6610e625b699f5d93fdceb4534b",
+    "docs/api/services/domain-banking-psdx.md": "2667d2e46f66da223557f7a711081775ba1df59bab714711510503c06e0e88f4",
+    "docs/api/services/domain-common-accounting.md": "f8dc890ffc7fb2beaf514409393d728439894eea063a6654f6d5110ae1980c81",
+    "docs/api/services/domain-common-case-mgmt.md": "c648a38cedbbd728449aa008437c7ad479a44eb73a7b82a4b70194329384054c",
+    "docs/api/services/domain-common-contracts.md": "e41540e9c475a6e6c34b540cca387195ec738c6ddac0ee9d61e1862efee79714",
+    "docs/api/services/domain-common-notifications.md": "1bb5f3668fb0d23d3a94e3747ee1e018b5880791915b074cc9b587f4f4d345ba",
+    "docs/api/services/domain-common-sca.md": "5c320bf645213df480f6e176aff1433bbc7c1affe3b68c9c1f552a29127e9221",
+    "docs/api/services/domain-core-configuration.md": "3ba4fb7ef179c18a5b736acf3ab99c27c7082bdf6a48b6a3b6256817de7ea147",
+    "docs/api/services/domain-core-modelhub.md": "c18b60f43e51653f8d66eafa769d466c0ea9ba09b755246eece44a21eb9e138a",
+    "docs/api/services/domain-core-organization.md": "df153d13bd1db26bf1ee5615cb9c87d8a5a79d903e359bc6880312e9aae0a88a",
+    "docs/api/services/domain-core-pricing-engine.md": "20427ac5eea22cc05d5e93e9c737418c0cd5ef0e57df40ba8aa8f4d51406649f",
+    "docs/api/services/domain-core-reference-data.md": "27ab1d81a242cbc6945b1692a15e0896aaee27a21eb9541304a024c1a4ec10ee",
+    "docs/api/services/domain-core-security-center.md": "3d8c751d452341919e43f4da1c239ec73ce44c77429a1fd03f379d4775c058e5",
+    "docs/api/services/domain-core-security-vault.md": "49bb8efd70dc0fcf40a759441a08d317d94573bbfe0aea71c7d74cd732d876e9",
+    "docs/api/services/domain-core-user-mgmt.md": "48b4ffa4b5fdfa9dca706d983522777ec87e1f9e94aae6947aac5a010a9082bd",
+    "docs/api/services/domain-customer-kyc-kyb.md": "75341fda105303ddbc5c799819bb7a116b6b6e66fbaf45bd80580fbc636c21e2",
+    "docs/api/services/domain-customer-people.md": "e36334357ff82515772650b7d558f31247178743a79d2e5c842a05ba451182fa",
+    "docs/api/services/domain-data-business-intelligence.md": "bbc0b171618c138f33cf3c2de70067b9fa84b9a9b891b16e22079b60ddba0eee",
+    "docs/api/services/domain-data-credit-bureaus.md": "d20cba75f991786e614cfb49f2503a66bafe5ad7b86308b07c1b5210ee20dba0",
+    "docs/api/services/domain-distributor-branding.md": "9b2f63f96ec216b31e424629f2fefc697a22a00264d283745cf0630f94332cf9",
+    "docs/api/services/domain-distributor-catalog.md": "c07a55732b1e0c5521314e046a63514414ae5a7e7204a0e2672541661f02eb27",
+    "docs/api/services/domain-insurance-claims.md": "82a12ff359c76a110e35179c7e3abdff864d116d928d29e02fbf01fcbb41ffc1",
+    "docs/api/services/domain-insurance-delegated-authority.md": "ae60d580470c8aa5f5b76ef790f26fef499d8e5d532a2fadef524375a53987f1",
+    "docs/api/services/domain-insurance-financials.md": "2f3ebac2d76f974ab350adc602ea8716a05b87e7be18dc61f89b313225b440ed",
+    "docs/api/services/domain-insurance-policies.md": "f145f7f96c362e9b78c75217f3bdd0ea897d6eda3e10b7185bc45606312d43be",
+    "docs/api/services/domain-insurance-reinsurance.md": "fb7d843f5b422843ecbed773ff90601027707ee406b15d470e14071f0ada586a",
+    "docs/api/services/domain-insurance-reserving.md": "c09827938795218c23703e5753a879b90b010ffa85aa466d3ff5adfa33f940a2",
+    "docs/api/services/domain-insurance-underwriting.md": "3f02fe59c7e154e1b0adfef781019fb4027a632f594171601bdc73fe5f519d66",
+    "docs/api/services/domain-lending-asset-finance.md": "d83cccb4e8b769159a830779adf2c341e35ad99ce4c38b7a19e2ad1c589d3303",
+    "docs/api/services/domain-lending-collateral-management.md": "05862b488aecfeac67423920a0b2ca687ef102992f54c42e74bd36c6ba987803",
+    "docs/api/services/domain-lending-credit-scoring.md": "0588bdf35ce97c7c2125f5c25700d162034520da5014647cf3ff86cac3b2550b",
+    "docs/api/services/domain-lending-delinquency-collections.md": "81e0a3de16e4cf952589c48e66ee7dcadd00c6fd829186f959adc48e63a3b622",
+    "docs/api/services/domain-lending-loan-origination.md": "d01f68c50c2c6eeab1f6842270f021053acd0c7a36847a3c3407faa26954de4e",
+    "docs/api/services/domain-lending-loan-servicing.md": "e136e4e6219adb4577e11ee3f10df00ba4400d5328880474325c85a11c8b7a2b",
+    "docs/api/services/domain-lending-mortgage.md": "e8f1fe262457e5a3285adfb2ac4b1f627029d1922652dc6eb8b44d2ff76cb9bd",
+    "docs/api/services/domain-lending-personal-loans.md": "d49cfb63ccd19fd305304471b7a59f8c1bd08234d07be1c93bab16c7dcfeb17e",
+    "docs/api/services/domain-lending-provisioning-risk.md": "64d360ceae4599fe86b1b1c837564f3c0476f22b9f1b25e64312bca2fd3c1197",
+    "docs/api/services/domain-lending-regulatory-compliance.md": "e53a707e9afb4b7dfbe2f897855a61e4a36b5f6c416db8c32a35d574c2a97747",
+    "docs/api/services/domain-lending-supply-chain-finance.md": "4fdb0dc5f03988ebabe2d077cf51eba8146a8e0b3a722e4b0de7441fcee99fd4",
+    "docs/api/services/domain-payments.md": "dfa498d01ee37270cbc21c6f297b6cd684471787a5de40276002d46b53ee40a3",
+    "docs/api/services/domain-product-catalog.md": "134b605aa15f5ab80f3522b3b9f8319da680d48f3e1ca3d6b56536b5b093231d",
+    "docs/api/services/domain-product-pricing.md": "d467b45510ec2a99e566ed3ab3b292db0874534bf4b4fe09d3f9c0c0b68f8dd0",
+    "docs/api/services/exp-accounts.md": "4c7c54df0e9afde703f4fa9a490e2e17a74f9d124398dfb057fcbdabb83d0a02",
+    "docs/api/services/exp-cards.md": "e9f06fbd2ccc29285723d933886bbc44d460308ba198edf66a1042be9fb1ee42",
+    "docs/api/services/exp-channel-management.md": "e8970fa70b318ac08dccfc953437d7e2fe9e38b9aaffba401afc0b81884b5311",
+    "docs/api/services/exp-distributor.md": "db7f15108657cdeb35829a945f3c3d1779bb952285a196a12073d9264d112a02",
+    "docs/api/services/exp-finance-terminal.md": "8c042b248ee8f2edac713a831b02c8ac186f8021b4c38a34bfab6067c40ed7c4",
+    "docs/api/services/exp-insurance-terminal.md": "014a09a7f190ae58054c3b7ab138e250343a08fcda6b0171944d6682d1b58936",
+    "docs/api/services/exp-insurance.md": "f098031b9b5156ef6ea684bdbce83cb2caa65f5cad8aebf4ba6e1cead627aef4",
+    "docs/api/services/exp-lending.md": "07cfc418e6d2fb920a458b9fb08da11a4676ef9917b427a1035ff5ac78db858f",
+    "docs/api/services/exp-notifications.md": "fb93f4c69d66abcbdfce802167224a675c480c0760681be32ef905b97ee7f5e5",
+    "docs/api/services/exp-onboarding.md": "7671517df9e5a8db53b97da1d75bf9215cf3eae7af0c8ac4166e52999b89938c",
+    "docs/api/services/exp-payments.md": "95d41092f83edabd1e7d58b4445e10cde89b4c1009978ad8059928585948c8d9",
+    "docs/api/services/exp-profile.md": "fc4a87b73c72f6228f0d5104965a4e61a8f7f8001a1b8654a0f615e1d0c8c71e",
+    "docs/api/services/exp-security.md": "5f99fba713090c11ea81706d4489b328814f6c582dbb335169fb31264e86c099",
+    "docs/api/specs/accounts.yml": "1b5d00d48c33188c05295d8048328bb7ad98d6c2aa471b04f9c5a363e8e60e38",
+    "docs/api/specs/accounts/openapi.yml": "1b5d00d48c33188c05295d8048328bb7ad98d6c2aa471b04f9c5a363e8e60e38",
+    "docs/api/specs/cards.yml": "9ebc0338fa7ea118dadc88cf0194a25fa29ab59fdb6de7a2c78651f5e8c590ec",
+    "docs/api/specs/cards/openapi.yml": "9ebc0338fa7ea118dadc88cf0194a25fa29ab59fdb6de7a2c78651f5e8c590ec",
+    "docs/api/specs/channel.yml": "b97524e8eb1416c4189cac6be0bc4e18254fc46ff2205f63961efb4c99e88483",
+    "docs/api/specs/channel/openapi.yml": "b97524e8eb1416c4189cac6be0bc4e18254fc46ff2205f63961efb4c99e88483",
+    "docs/api/specs/distributor.yml": "e48ccc788e4a776a7dd968ae63bc2e1f3654e85ec9a7babd97559df3c8407ab7",
+    "docs/api/specs/distributor/openapi.yml": "e48ccc788e4a776a7dd968ae63bc2e1f3654e85ec9a7babd97559df3c8407ab7",
+    "docs/api/specs/insurance.yml": "9eff25b666fd29ec5274296909067f1f4d0fc971781bc783d207070954c36ff3",
+    "docs/api/specs/insurance/openapi.yml": "d2ba3ac1327da0f2be336f9e8b586b2f667b8852b13a90dfab612b68e9d29220",
+    "docs/api/specs/lending.yml": "8e19c618a27a77a0e2d00725ceed646eff233e812e0a8531a2518301c559337c",
+    "docs/api/specs/lending/openapi.yml": "299a0079ea24a810bcadd96d47672140b2af068a682bfd8731a4e9f027229a51",
+    "docs/api/specs/notifications.yml": "e6ba6b195785bf3e81cc9f1bc057fc094fe102ab9142a139efa5d59293e7bf14",
+    "docs/api/specs/notifications/openapi.yml": "0b30cb5171d92229d4f550c888bf6448f72c3bc3a915ae06337fb34d0ec6f1f6",
+    "docs/api/specs/onboarding.yml": "9b1af00e231e688faecd3bb0bbd196da9095dfee608cd46afd240112810cfdb2",
+    "docs/api/specs/onboarding/openapi.yml": "9b1af00e231e688faecd3bb0bbd196da9095dfee608cd46afd240112810cfdb2",
+    "docs/api/specs/profile.yml": "0d6526fcf13c742f0442cdab4898f9683203997073d80e96b3d656ce295e5ba0",
+    "docs/api/specs/profile/openapi.yml": "0d6526fcf13c742f0442cdab4898f9683203997073d80e96b3d656ce295e5ba0",
+    "docs/api/specs/security.yml": "e53c59cb2c19d957f42f6ff0a562e407d79a072c5a3bf4c38d1a6f644b232ff1",
+    "docs/api/specs/security/openapi.yml": "1236ef07b73434f7e7ab2601ae3f1a33e5aed00d3a3dfdcc6ee988d6bfcbc67c",
+    "docs/assets/diagrams/README.md": "0aa1fed88c5691cd427d6453c7925b8affa8e7ef580d5365dceea6f5058ba323",
+    "docs/assets/diagrams/diagram-inventory.json": "a9b0055517fb74128a31fde3ec06635072082cc16f64d5322900207987dcfe44",
+    "docs/assets/diagrams/render.mjs": "1de3b9fb65622531f21fc4f29fb702a85685dd2150fa7ade64cd667458305c38",
+    "docs/assets/diagrams/sequences.json": "246b09d9d53f2042fafcd0668a716c64db8a5b5da0abca38135ae56b738cf613",
+    "docs/assets/diagrams/source-manifest.json": "594b2fcc29cb9ba1fb9dd47bb708be8e5bd3aad88ec47f4d11732b09873e58c0",
+    "docs/assets/diagrams/validate.mjs": "10b02a83a9d2c75c6b61b5c02ba0f96aaeccfed7bb85e752298e9bd7fa7cf921",
+    "docs/assets/fonts/manrope/OFL.txt": "d826ab6583b12c26807d8716a545bdbbb672df04f48608a364ba9efdbe501c30",
+    "docs/assets/swagger/javascripts/swagger-ui-bundle.js": "97f03cdae8b9f09f8f33b604ed4796bd318c378e90763b468bb4aa0860bd90a7",
+    "docs/catalog/banking.md": "3dd02d4c3f80e74af0e88133adb1a338c9f9bfa7cfd5d87ee9904f8bb691dc2c",
+    "docs/catalog/contract.md": "95bca7167c7f75d638d119f79fdeccbc4f038d1e6da607f60a0c1f97618db53f",
+    "docs/catalog/customer.md": "8cfcce4a70e58529ec0b89214d7659031f4b305865ef590fdbc64abb4f2f4403",
+    "docs/catalog/data.md": "8efa68379a67c308985d132f45ace4f155797515f710cae033dd936553a6f80a",
+    "docs/catalog/decision.md": "eafe39055da9987cbb248de909a27ae4aca60cbe61ab34159013b85b1d5f0556",
+    "docs/catalog/index.md": "4c6da2b6b7eeaddaf708fa94123fc17641e3c648815e975ab7be856705e69dbb",
+    "docs/catalog/insurance.md": "432c9d5f28a944205b84cc00b708b1a130bca65bebdeacc17e4e7795e7e70645",
+    "docs/catalog/journeys.md": "ad3bb74845a1475ef9ed7179cf55d933215f21d3ed313de7d03ae0af62e6779d",
+    "docs/catalog/lending.md": "130f9389300e8d36c14954ce35629718577b4f777abbba38ad183972a214b201",
+    "docs/catalog/product.md": "8dcd1c28140dcc922dffa8583f0b03de401a3dc29f2d2f21a833d01d47d64a7f",
+    "docs/catalog/security.md": "127bd843e147400d07888ba57dc5a665d9fd9488d9e30a8e31401fa524cd67cb",
+    "docs/catalog/shared.md": "0b4bf0f5865272d378c50f82d5a452fdc09f6f6fe750fd63f3357ac8e6c0586b",
+    "docs/domains/contract/context.md": "73b74fdc7279f5e08e3a0880732cbb6d049bb5ce0985696c01132f567608d58a",
+    "docs/domains/contract/core.md": "e0a19089a04e6968d1b791ec3ebe7a218577ecb0e4d670b43a312b5faf759963",
+    "docs/domains/contract/domain.md": "e24ddd9cc1a337f758bd3662d2b124c67d2e1d6e0d0cd8a47f7825843d6aa68e",
+    "docs/domains/contract/journeys.md": "9bc76afc73dc670250eb1642a173f8849d34a2973c06de8028b0eddf64c4e744",
+    "docs/domains/customer/context.md": "847f3bcab22321dd18c2aa20cffa1c245d9f48d7961eec7b2ad0798057756dff",
+    "docs/domains/customer/core.md": "648f83184e782bf71a13dd7d7d6d1d39e68109a06b8f5312cdb4f5e6d6f85754",
+    "docs/domains/customer/domain.md": "f952aa24f9125f19dbaa65d0b87ce8ffe41b87c8798f44c734225dd0a4f19b1b",
+    "docs/domains/customer/journeys.md": "245c653df397d12b0b137aec16fcde0747c0244be5414e3e109bf5f93f6160da",
+    "docs/domains/product/context.md": "8acb5781b07f66c9b229535c09044abac02643c669423cb2e113c610e38c0b1b",
+    "docs/domains/product/core.md": "2bdb175490ab4c3053d37d498ca88042f8505f31764cc1239c8879daaf7a8b3a",
+    "docs/domains/product/domain.md": "46ef993d11e03f1096956eda889c21c2608bd768ceffad269c8536692b42bce7",
+    "docs/domains/product/journeys.md": "8c3c1197b1eb0cfca18fb8db320a72aa20cc285c8598c0f7708e76df7bb02cc4",
+    "docs/examples/DocumentTemplateBindingsExample.java": "b303647c824156a896ab07b00ccb866a074df3fa6b5f66b4c2a2738921da0c5d",
+    "docs/examples/GovernedDocumentIssuanceExample.java": "fa4cdcf30cb3766ca5df1c162b5fdb1e175f3e403236d775b8c1380ecee78a72",
+    "docs/experience/administration/finance.md": "354cb6cbe64860d0e76f641e7d317d81a73ce3625652e26c628b4deb12cc3cbc",
+    "docs/experience/administration/insurance.md": "807b56ba4b3d0860de5b3131b05d17008b35368cc44380a6c27b4ab88f12ddb6",
+    "docs/experience/index.md": "ea5e86e37f35866cfd1dbae07c8df8b34c190610f8d4b658339b67f8bd27f883",
+    "docs/experience/public/accounts.md": "02f1c2dd1d92492185988bf4af1fa52c3ef7b8fc8b313ab6137acd431df3d800",
+    "docs/experience/public/cards.md": "d379a2b5102666d1f1c7e74114dbedfc23f163650e56dcf57e626ceb0ae8f993",
+    "docs/experience/public/insurance.md": "262b7b67c63b921060fae97ca7cfccb2e9560cc05cf4754a86fc36097c6bcedf",
+    "docs/experience/public/lending.md": "762620a0d230246553cd7ebbf4acf185d023e5f544acedb3985b374612f4eac0",
+    "docs/experience/public/onboarding.md": "3ee012c0c6eef2656fb3131a1aca48581001f2bb461b65704be4298d815f5c7e",
+    "docs/experience/public/payments.md": "1c76d59371e3da1f1b9dee5bd06fe899d1aed01daee47eae08d4b36768b297c5",
+    "docs/experience/public/profile.md": "73cfe4f903a105ac5bb3d01f553d9e5d022c8fdd6eac305964d106e132a47645",
+    "docs/index.md": "8144047572b8529c7442d846ad5446a148ddd6a9d61d16e9429e43e205d03075",
+    "docs/introduction/data-and-money.md": "1ccfe2bd63c61153993bfc1eac08593caad740fd991ca0b7f5bc84b68b436358",
+    "docs/introduction/execution-model.md": "cbfa89e15252acfcddcb4a2a82ade6c16b5c5ce3ce26e45c1005cf483a2b2cbd",
+    "docs/introduction/glossary.md": "68e9c5f21649e2c46739b8ab4bbe6930e5e3a612a30228e72589962869dc334c",
+    "docs/introduction/index.md": "4886b8f87f517653bb94ed15ecb7eb3a86008bf89f141affeca4944facebddf6",
+    "docs/introduction/platform-map.md": "46cf39683b9956900ff10111994ef8825a3642c37d27ae4694749f8fdd7a5cd9",
+    "docs/introduction/reading-paths.md": "3e3e1b6315192a5872c02813c35a1171ed2c293d2f3cee3b5ec00f6c13670a13",
+    "docs/jafly.md": "ac302b3b97e1a571c39da0a39f6ae34f7f8eeba14661c9e39aa768cda7685ee1",
+    "docs/javascripts/nav.js": "3c936e50ab9dbe018c80bcd98ef2d04cebcb9e7a275bc1a08e97214113370e8b",
+    "docs/journeys/accounts.md": "e0769b70eb8e597dcc97b913e0e45669a8e3d24f5b71cb48c1dd0987c5511627",
+    "docs/journeys/banking.md": "7f5aa177ed20d064035a969f60757c53cda5166ed89965e8409b6dbbee3de8c4",
+    "docs/journeys/cards.md": "8fa1ebafd3994779780051418e512c89e5cdcc1c421e00154383e54fff52aa85",
+    "docs/journeys/index.md": "4ec768f1dfb0da4ce7313d967a99605409e46e0f2eb6645f2c5adff25f9d4c4e",
+    "docs/journeys/insurance.md": "08c46d90ddb79e34a279b95761bce0d6a3e1fbe1dd3fa5bde4632a1e7c81783e",
+    "docs/journeys/lending.md": "07b6cbaa0203e7f39a5133c8175a01a8f39b4a5a35b2d891f2de0f878731e7f1",
+    "docs/journeys/payments.md": "6bc4162ebe19daa12ab3a27840971c5983a2d4f1dcf6def691312612dc09f554",
+    "docs/journeys/shared.md": "5ca4a3873d80d9a011e5d00a72ff980e8705b810976cd154630189d077f57d7d",
+    "docs/layers/acord.md": "5dddf1b63579bf819abc35aed3d76ef349c974a3b2d87d36a8dd6a5bb265b7d2",
+    "docs/layers/bian.md": "8ac38b9ae2d2193fd6ce1c497bfe1c8fc45b6a3cf048e7717e8e08fc306d9709",
+    "docs/layers/core.md": "3fd915770d0db53adbbded73d85798c365f157281ae8072e0858617705bfa587",
+    "docs/layers/domain.md": "644170b7eb3d80c8fde9255215ec9beb6c0f055fc1d3c7eac3386f38a29edeec",
+    "docs/layers/index.md": "95342d031211874f796178ddf70e1cf5323dcae7f7c2f2411e07b2674fdfdef6",
+    "docs/layers/libraries.md": "1e1ff79c6c8d5a52ccf4534bf9ae867871caf32918bafca87890a3039d7990fd",
+    "docs/models/contract.md": "616c8c404983ce99549dfb168af7575ecdb14c6e4eaf24c42b3aa92d05cd7860",
+    "docs/models/index.md": "f34e85ad84672b7a128dea2d4873afe3618e8b5c77d6b19e4f2dff3e02675bad",
+    "docs/models/party.md": "f79b619f183bdd2a657a38ed52bf99266cd7f58b260754ee434edfb4c6cfd24d",
+    "docs/models/product.md": "5bf22ac066956aaa0ef19dc4ee9de757f011ddbfa7af579773cfa72fcdd912ab",
+    "docs/operations/cases.md": "c069f5f1d9db02427a04b7bb26409826040f2a30af5e06f4e0062d112945062f",
+    "docs/operations/index.md": "7a678ff1db7748398d06413e7eac8d9acd59280edb89d8aa2fb58a32d345c0ea",
+    "docs/quickstart.md": "1417e66c15e57fae059d8cbf1b8d8181b45a37fca2ca1be185d5e6e8262ef972",
+    "docs/reference/repositories.md": "66edffdeb1b73d64bcae1941cb99c5b285ac09ca1c98981dd4c2b87cbbf4797e",
+    "docs/reference/service-guides/currency-execution-policies.md": "efed3bcd070790878a53bb6920e48eb9a0a31c2f74b7fad9a71fbc00dad224cb",
+    "docs/reference/service-guides/document-issuer-revisions.md": "8336ec224d119ac9f06b675f729a7404bb32ee1eae0bfd6addafab0af76eb609",
+    "docs/reference/service-guides/document-layout-publications.md": "746a9d8010669c9b587597a4a6b59090e3172f8a5f4f87371142bd4a05eb4cf5",
+    "docs/reference/service-guides/document-template-bindings.md": "d08ec6aaff83d5cb63adfe7be09cc2979936236f6bf0af5bf23fe6225f0b52e9",
+    "docs/reference/service-guides/document-template-revisions.md": "efd8cb6828a6db8af15f1e73ded063cacd958ff7ecd4ee335385e89408635b16",
+    "docs/reference/service-guides/exact-rail-amount-conversion.md": "9864f8b70e5fb31704bbb62c5fbd0df8eac98d88237515c088e41a2208152caf",
+    "docs/reference/service-guides/finance-terminal-authentication.md": "13438d4c3323aeabd7473500dc0c1e80c6e758a1c4bababb25c2dfc7338d859b",
+    "docs/reference/service-guides/framework-adoption.md": "1eb1925f689fd2ee310c37c25f50b67dc2eb89a3a00bfa71837f7033860b72d4",
+    "docs/reference/service-guides/governed-contract-documents.md": "7d3733179c5f95237724d8517f2b2fd2f9a6618b014b506b0636dd9bd4895951",
+    "docs/reference/service-guides/governed-contract-domain.md": "be0f96ebece1c3d340595220e6c5e04dc6bfcb28d36997d0a8ab311e6d9946bd",
+    "docs/reference/service-guides/governed-document-issuance.md": "f38e3f69692de20080429fce49fe14d8cc57b80fc02fdfabdd5c44446504492d",
+    "docs/reference/service-guides/index.md": "1e3a3b11d0f1e7936779e560911616cc73c1cba480dba788acec2062824329b5",
+    "docs/reference/service-guides/insurance-terminal-authentication.md": "4d30aab546315b1cb78784f406e1677b54402b2635865150c99d5a37ee5ef2b0",
+    "docs/reference/service-guides/ledger-account-transactions.md": "a7fa5f90a66c1e1444253ffa5ee6af03c49f9eaaeaedeb3303239337fcaea5fa",
+    "docs/reference/service-guides/managed-account-lifecycle.md": "c0fb7681490873f421bb9a1c7a2b356f010b1297e5790198aca133a05b6109f5",
+    "docs/reference/service-guides/managed-funds-reservations.md": "b6066a4cd4c4be405395375b5428a3175775099afa2359ea35dfb25d808aaeee",
+    "docs/reference/service-guides/managed-internal-payment-experience.md": "31bb0ccc2d9868adb91083b00abace45101cc8a63e5a0d530f3d9626f8d3c86d",
+    "docs/reference/service-guides/managed-internal-payments.md": "a5458e90d9387bbccd05899b1f6932e4a38e9b81ca2d9e30a4361cba0725f97d",
+    "docs/reference/service-guides/managed-payment-domain.md": "ec3dd9541de801ad2fd2bde6268ffafcefc0b898eeef0bfafbb47ec35b7872e8",
+    "docs/reference/service-guides/managed-payment-recovery.md": "7da5b5e166fe2301484be2ff8de428f49fb55fef2912c02ff6fe5ceedd8454cb",
+    "docs/reference/service-guides/payment-adapters.md": "3db26f13f13e010cd971ef739a0e57062fee9dc686cef009c463ef7f702acd5c",
+    "docs/reference/service-guides/product-pricing-configuration.md": "18af5d251d6657d0c61bbb903b6072dd8555c1fbf38604d48c2da3d26ada9323",
+    "docs/reference/service-guides/source-manifest.json": "58a7c796a14fade2d06ff69b57dda4669e101f6efd82c096a6c786eb37ffb6f9",
+    "docs/release/edit.md": "05b26b483a3c568f2815093e82a82fa432aeecf417c99f0fcbed3b0a66e6b121",
+    "docs/release/train.md": "0f5d8f453804326a4797747b72ba32c4ef8843de22f1b3aca31ab461c2cf159d",
+    "docs/shared/documents.md": "a501020cc329642036c168c7da45d21c05ebab775ef5c27b014671698b16c265",
+    "docs/shared/financial-stationery.md": "534ca8b100965e5f0a986a2e6a5283a08548222a25b87a8eab7d9382499d64a7",
+    "docs/shared/managed-funds.md": "5121cd704974ea2f066ad4e7979ed0968d3ad1c74127182995e06fd996bb0080",
+    "docs/shared/managed-payments.md": "752e0b6490e6335eefcfca6249a30f0292f6af8d3d96df839d3e7eb57fab4456",
+    "docs/shared/template-configuration.md": "eaa80d3cc61f1f04eacd2e5f3ba3858a40da201677665290a5bdbd35ebc8bcc1",
+    "docs/versioning/mike.md": "19ce2a6d0969a5e40a8812debfc204c15cb080c816bf1360d9ca27ffc0503fe7",
+    "hooks/repository_links.py": "3fa203d69da41246642c03cd71ef2a850ccf16bb26dae52b99bb9f159d8c2a45",
+    "hooks/swagger_ui.py": "0bbc626bb27d4d6824432a642929e1c74d72adda0a998ccf711c13b0f411dec5",
+    "mkdocs.yml": "716adb9e77e89826882ca15ee0143f90230c4405045115338559399eab38ac63",
+    "requirements.txt": "234240de2dcd64c0f69fade29fa3d06998586278b3e9834c05426b765f0b0ed2",
+    "scripts/README.md": "f8be7db88799babdf8e415c7e4b2b420bab2a3d2697834a4680e93fadf0570d4",
+    "scripts/brand_check.py": "9e86049e8fa62bab842ef13e04224bf5d76c4b7ee2e1157615ab8970d2b9ab8e",
+    "scripts/check_public_manual.py": "bec4d45a52e672609617364076401770a8a775e76b0eedbb0251e0e97dc00a82",
+    "scripts/check_site.py": "4ac5d49c56b8ed7d061bb09c9afc4281ad9c950a080bd22943667fa4d2fbd8e4",
+    "scripts/sync_api_reference.py": "4551103914a1917611b2a098740cd3f79a0b82de12176527cde9659cb3511fbf",
+    "scripts/sync_service_guides.py": "457aeaff0060c4cbce13bae463c76d6e5e564e63b999c1a1ff708adabc88743b",
+    "scripts/tests/test_api_reference.py": "8fa50b6fff93258d729abbbdc862d8b84cf39b0e02a66bcb2621d91b8d30821c",
+    "scripts/tests/test_brand_check.py": "9333185de4245b0982b9e4ee77c6534a64d68294fded381213e7b8b6abb36091",
+    "scripts/tests/test_repository_snapshots.py": "59a65bd8cbf245f9bd1b77f9c78c5e05fc19b07539b582a18315e816dc0015e5",
+    "scripts/tests/test_service_guides.py": "05aa6d92487dbeb309ec15b5c27a56f9b1883bce830e4eca08684f0403e4bc48",
+    "sources/api-contracts.json": "7bd562f010c4e146fee01f1a0448278797f7df9061065086a92cdf8c5f064a9d",
+    "sources/brand-origin.json": "cb7982f875009f1f8e24d154b4fe09d58a0cf9d240aba12af9171259601be003",
+    "sources/service-guides.json": "e45d4175d73e7f8b10e3e58dcbd6c0ee4e8e509cf464ea3cc3dcff3f36fbdb97",
+    "theme/PACK.md": "d3757e46aa3e938229722ade84d1a110d11c9a28f339578afb55697bb7db3eef",
+    "theme/README.md": "cb6668532b01a1688070bdc3540b5946a5ce4d4a58fc593111377e7d58f9d7f6",
+    "theme/assets/fonts/manrope/OFL.txt": "d826ab6583b12c26807d8716a545bdbbb672df04f48608a364ba9efdbe501c30",
+    "theme/mkdocs.snippet.yml": "889c53a6dec98c28e5eeb36704174cbc9dc69cfb5aab6582c90c6659156bb578"
+  },
+  "migrations": [],
+  "modules": [],
+  "operations": [],
+  "poms": [],
+  "ports": [],
+  "repository": "openplatform-docs",
+  "routes": [],
+  "schema": 1,
+  "settings": [],
+  "test_cases": [],
+  "tests": [
+    "scripts/tests/test_api_reference.py",
+    "scripts/tests/test_brand_check.py",
+    "scripts/tests/test_repository_snapshots.py",
+    "scripts/tests/test_service_guides.py"
+  ],
+  "types": [],
+  "verification_hazards": [],
+  "workflows": [
+    ".github/workflows/docs.yml",
+    ".github/workflows/publish-gh-pages.yml"
+  ]
+}

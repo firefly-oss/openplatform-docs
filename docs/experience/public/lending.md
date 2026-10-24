@@ -1,111 +1,166 @@
-# Lending
+# Lending experience
 
-A borrower asks for credit, and later lives with the loan that was granted. Applying is one step. Servicing is what she can do after the loan exists: change the rate, close it, take a payment holiday or end one, and ask for the money to be paid out or for an installment to be paid. The product she names chooses which record is opened. A personal loan, a mortgage, asset finance, and supply-chain finance are not four different sittings. They are routes on this one journey. There is no separate experience for a syndicated loan.
+Retain application evidence, decision authority, pricing and product versions, accepted terms, signed content, fulfilled conditions, and the relationship between loan, drawdown, payment, and ledger. Servicing continues through repayment, collection, impairment, recovery, and closure.
 
-Ada Lovelace is the sandbox customer, party `11111111-1111-4111-8111-111111111111`. The product on the sandbox agreement `10000000-0000-4000-8000-000000000021` is Horizon Personal Loan, product `10000000-0000-4000-8000-000000000202`. In the lending catalog that product is a personal loan. She applies for it: the product, an amount, and a term in months. The printed agreement is five years, so the application that matches that document asks for that amount over 60 months.
-Source: the sandbox sample is 250,000.00 EUR.
+[Business lifecycle](../../journeys/lending.md) · [Repository guide](https://github.com/fireflysoftwaresolutions/exp-lending) · [Source reference](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/docs/openplatform/reference.md)
 
-The journey checks access as `sample-journey` before anything else. If she is not allowed to create an application, nothing is written.
+## Behavior and limitations
 
-It then reads the parameter `journey.lending.min-credit-score` and sends that number with the decision, under the name `minCreditScore`. In the sandbox that parameter is 680. She does not send a credit score. The decision service fills 640 from its own sandbox report when the score is omitted. 640 is below 680, so the sample rules refer her. A referral does not stop the application. High risk is a decline, and a decline does not open a record.
+The source routes products to specialized domains and exposes application and servicing calls. Fixed report scores, referral continuation, record creation, or sandbox payment confirmation are not evidence of authorized underwriting or settled cash. Actual schedule, allocation, pricing, accrual, and accounting behavior requires its own qualification.
 
-The catalog then chooses the domain from the product. Product `...202` is a personal loan, so the personal-loan domain opens the agreement. A mortgage product opens a mortgage. An asset-finance product opens asset finance, as a lease or as a rental. A supply-chain product opens that agreement. A product the catalog does not list uses the default route, which in the sandbox is loan origination. Creating that loan application also issues the contract document through the document domain SDK. The application row, when the route is origination, is stored by the origination domain in the origination core. The personal-loan agreement is stored by the personal-loan domain. The servicing case, once the loan exists, is stored by the loan-servicing domain. Cash, when a disbursement or an installment confirms, is a ledger posting. The sandbox payments adapter does not post that ledger.
+## Declared entry points
 
-## What she sees on the calendar
+The table is derived from local controller mappings. It does not include inherited, conditional, gateway, or framework routes and is not a runtime security or completeness assertion.
 
-`GET /api/v1/experience/lending/loans/{id}/calendar` returns one row per installment. She sees the installment number, the due date, the principal, the interest, and the remaining balance. She does not see a participant register. Restructuring and the end-of-day accrual are not this read. The OpenAPI spec includes the path as `readAmortizationCalendar`.
+| Method | Path | Source |
+| --- | --- | --- |
+| `GET` | `/api/v1/experience/lending/applications/{id}` | [ApplicationController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/status-history` | [ApplicationController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationController.java) |
+| `POST` | `/api/v1/experience/lending/applications` | [ApplicationController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationController.java) |
+| `POST` | `/api/v1/experience/lending/applications/{id}/submission` | [ApplicationController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationController.java) |
+| `POST` | `/api/v1/experience/lending/applications/{id}/withdraw` | [ApplicationController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationController.java) |
+| `PATCH` | `/api/v1/experience/lending/applications/{id}` | [ApplicationController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationController.java) |
+| `PATCH` | `/api/v1/experience/lending/applications/{applicationId}/employment-data` | [ApplicationController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/conditions` | [ApplicationDetailsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationDetailsController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/tasks` | [ApplicationDetailsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationDetailsController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/fees` | [ApplicationDetailsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationDetailsController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/verifications` | [ApplicationDetailsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationDetailsController.java) |
+| `PATCH` | `/api/v1/experience/lending/applications/{id}/tasks/{taskId}` | [ApplicationDetailsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationDetailsController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/documents` | [ApplicationDocumentsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationDocumentsController.java) |
+| `POST` | `/api/v1/experience/lending/applications/{id}/documents` | [ApplicationDocumentsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationDocumentsController.java) |
+| `DELETE` | `/api/v1/experience/lending/applications/{id}/documents/{docId}` | [ApplicationDocumentsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationDocumentsController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/parties` | [ApplicationPartiesController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationPartiesController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/parties/{partyId}` | [ApplicationPartiesController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationPartiesController.java) |
+| `POST` | `/api/v1/experience/lending/applications/{id}/parties` | [ApplicationPartiesController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationPartiesController.java) |
+| `PUT` | `/api/v1/experience/lending/applications/{id}/parties/{partyId}` | [ApplicationPartiesController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationPartiesController.java) |
+| `DELETE` | `/api/v1/experience/lending/applications/{id}/parties/{partyId}` | [ApplicationPartiesController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ApplicationPartiesController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance/{id}` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance/{id}/assets` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance/{id}/assets/{assetId}` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance/{id}/assets/{assetId}/deliveries` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance/{id}/assets/{assetId}/deliveries/{dId}` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance/{id}/assets/{assetId}/returns` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance/{id}/assets/{assetId}/pickups` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance/{id}/assets/{assetId}/service-events` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance/{id}/assets/{assetId}/usage` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/asset-finance/{id}/end-options` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `POST` | `/api/v1/experience/lending/asset-finance/{id}/assets/{assetId}/returns` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `POST` | `/api/v1/experience/lending/asset-finance/{id}/assets/{assetId}/service-events` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `POST` | `/api/v1/experience/lending/asset-finance/{id}/assets/{assetId}/usage` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `POST` | `/api/v1/experience/lending/asset-finance/{id}/end-options/{optId}/exercise` | [AssetFinanceController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/AssetFinanceController.java) |
+| `GET` | `/api/v1/experience/lending/collections` | [CollectionsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/CollectionsController.java) |
+| `GET` | `/api/v1/experience/lending/collections/{id}` | [CollectionsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/CollectionsController.java) |
+| `POST` | `/api/v1/experience/lending/collections/{id}/promise-to-pay` | [CollectionsController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/CollectionsController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/scoring-status` | [DecisionController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DecisionController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/decision` | [DecisionController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DecisionController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/offers` | [DecisionController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DecisionController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/offers/{offerId}` | [DecisionController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DecisionController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/contract` | [DecisionController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DecisionController.java) |
+| `POST` | `/api/v1/experience/lending/applications/{id}/offers/{offerId}/accept` | [DecisionController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DecisionController.java) |
+| `POST` | `/api/v1/experience/lending/applications/{id}/offers/{offerId}/reject` | [DecisionController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DecisionController.java) |
+| `POST` | `/api/v1/experience/lending/applications/{id}/contract/sign` | [DecisionController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DecisionController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/disbursement-account` | [DisbursementAccountController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DisbursementAccountController.java) |
+| `GET` | `/api/v1/experience/lending/applications/{id}/external-accounts` | [DisbursementAccountController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DisbursementAccountController.java) |
+| `POST` | `/api/v1/experience/lending/applications/{id}/external-accounts` | [DisbursementAccountController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DisbursementAccountController.java) |
+| `PUT` | `/api/v1/experience/lending/applications/{id}/disbursement-account` | [DisbursementAccountController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DisbursementAccountController.java) |
+| `DELETE` | `/api/v1/experience/lending/applications/{id}/external-accounts/{accId}` | [DisbursementAccountController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/DisbursementAccountController.java) |
+| `GET` | `/api/v1/experience/lending/contracts/{contractId}` | [LoanCustomerCommandController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanCustomerCommandController.java) |
+| `POST` | `/api/v1/experience/lending/loans/{loanId}/rate` | [LoanCustomerCommandController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanCustomerCommandController.java) |
+| `POST` | `/api/v1/experience/lending/loans/{loanId}/close` | [LoanCustomerCommandController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanCustomerCommandController.java) |
+| `POST` | `/api/v1/experience/lending/loans/{loanId}/payment-holiday` | [LoanCustomerCommandController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanCustomerCommandController.java) |
+| `POST` | `/api/v1/experience/lending/loans/{loanId}/payment-holiday/end` | [LoanCustomerCommandController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanCustomerCommandController.java) |
+| `POST` | `/api/v1/experience/lending/loans/{loanId}/disbursements` | [LoanCustomerCommandController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanCustomerCommandController.java) |
+| `POST` | `/api/v1/experience/lending/loans/{loanId}/installments/{installmentId}/payments` | [LoanCustomerCommandController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanCustomerCommandController.java) |
+| `POST` | `/api/v1/experience/lending/agreements/{agreementId}/commands/{operation}` | [LoanCustomerCommandController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanCustomerCommandController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/syndicated-facility` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/balance` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/balance/history` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/calendar` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/schedule` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/installments` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/installments/{instId}` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/installments/{instId}/payments` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/disbursements` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/disbursements/{dId}` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/disbursement-plan` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/repayments` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/rate-info` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/rate-changes` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/accruals` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/escrow` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/rebates` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/restructurings` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/events` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/loans/{id}/notifications` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `POST` | `/api/v1/experience/lending/loans/{id}/schedule` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `POST` | `/api/v1/experience/lending/loans/end-of-day` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `POST` | `/api/v1/experience/lending/loans/{id}/early-repayment` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `POST` | `/api/v1/experience/lending/loans/{id}/early-repayment/simulation` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `POST` | `/api/v1/experience/lending/loans/{id}/restructuring` | [LoanServicingController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/LoanServicingController.java) |
+| `GET` | `/api/v1/experience/lending/personal-loans` | [PersonalLoansController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/PersonalLoansController.java) |
+| `GET` | `/api/v1/experience/lending/personal-loans/{agreementId}` | [PersonalLoansController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/PersonalLoansController.java) |
+| `POST` | `/api/v1/experience/lending/personal-loans` | [PersonalLoansController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/PersonalLoansController.java) |
+| `PUT` | `/api/v1/experience/lending/personal-loans/{agreementId}` | [PersonalLoansController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/PersonalLoansController.java) |
+| `GET` | `/api/v1/experience/lending/products` | [ProductCatalogController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ProductCatalogController.java) |
+| `GET` | `/api/v1/experience/lending/products/{productId}/pricing` | [ProductCatalogController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/ProductCatalogController.java) |
+| `POST` | `/api/v1/experience/lending/simulations` | [SimulationController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/SimulationController.java) |
+| `POST` | `/api/v1/experience/lending/simulations/configure` | [SimulationController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/SimulationController.java) |
+| `POST` | `/api/v1/experience/lending/eligibility` | [SimulationController](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-web/src/main/java/io/fireflysoftware/experience/lending/web/controllers/SimulationController.java) |
 
-<div class="ff-journey" markdown="0">
-<img src="../../../assets/journeys/lending.svg" alt="Sequence: Ada applies for the Horizon Personal Loan. Access is checked. The decision is sent with the threshold 680. A decline stops. Product 202 opens a personal loan. Later she changes the rate, closes, or takes a holiday on the loan. Disbursement and an installment try, then confirm, through the payments port. The sandbox does not post the ledger.">
-</div>
+## Reproduce a source-specific boundary
 
-## After the loan exists
+## Consumer example: retain the payment ID on an early repayment
 
-She can change the interest rate. She sends the old rate, the new rate, the date it takes effect, and a reason: an index adjustment, a renegotiation, a penalty, or a promotion. She can close the loan and say why. She can take a payment holiday, and she can end it. Those four calls stay on the loan. They do not try a payment.
+Start with this repository-owned executable contract before connecting a full runtime. Use the JDK required by the effective parent, Maven, and the matching internal artifacts. The selected test defines its own collaborators; no provider credentials should be added to it. Run from this repository root:
 
-Asking for the money to be paid out, or paying one installment, does try and then confirm, through the payments port, in the same call. The sandbox adapter is the default. It keeps the try until confirm, and it does not post the ledger and does not run a challenge for this internal movement. Set `firefly.experience.payments.adapter` to `hub` and the same try and confirm go through the domain payments SDK. That live adapter does not invent a code, and it does not accept the word `sandbox` as one.
-
-If the loan is syndicated, she can read the facility. The response is the facility id, the loan id, the currency, the commitment amount, and the status. The participant register is not on that response. There is no `exp-syndicated-loans`. This journey only shows her the facility.
-
-## The schedule, the cash, and the day
-
-Once the loan exists, the servicing record keeps a schedule. Each installment stores its due date, the principal due, the interest due, and the balance that remains after that installment. The rate on that schedule is not one number for every loan. It is read from the product's pricing: the interest bracket that matches the product and the amount. A personal loan and a lease do not share a bracket. The sandbox price is the default. It reads that configuration and does not open a network connection. A live price is selected with `firefly.lending.price.adapter=engine`.
-
-A repayment marks the earliest unpaid installment paid, with the payment date and the amount, and posts the cash on the ledger. The sandbox ledger is the default. `firefly.lending.ledger.adapter=sdk` posts through the ledger instead. If that posting fails, the installment is put back and the repayment record is removed. If the balance update fails after the cash has posted, that posting is reversed.
-
-A restructure does not throw the old schedule away. The unpaid rows that are still current are marked superseded and stay on the same loan. New rows are stored on that same loan, priced again from the product. Paid rows are left as they are. If the restructure has to be undone, the previous rows can be made current again and the replacement rows removed.
-
-At the end of a business day, interest is accrued once for each open loan that does not already have an interest accrual on that date. Those amounts are posted as one general-ledger journal for the date and the currency. A second run for the same date finds the journal that is already there and does not post another. The sandbox general ledger is the default. `firefly.lending.accounting.adapter` left unset keeps that sandbox. The live adapter asks accounting to store the journal.
-
-## What a refusal does
-
-When access is not allowed, the application is not created, the rate is not changed, the loan is not closed, and no payment is tried.
-
-A decline stops before the personal-loan domain, the mortgage domain, asset finance, supply-chain finance, or origination. The sample decline is high risk.
-
-A servicing operation the catalog has switched off answers HTTP 409 and does not call the loan. In the file shipped here, rate change, close, both holiday calls, disbursement, and installment payment are enabled.
-
-Confirming a payment the sandbox does not know, or confirming an outbound try with the wrong code, does not complete the payment. On the live adapter, the word `sandbox` is rejected before confirm is sent.
-
-## Reference
-
-The service listens on port 8102.
-
-| What she does | Call |
-| --- | --- |
-| Apply | `POST /api/v1/experience/lending/applications` |
-| Change the rate | `POST /api/v1/experience/lending/loans/{loanId}/rate` |
-| Close | `POST /api/v1/experience/lending/loans/{loanId}/close` |
-| Take a payment holiday | `POST /api/v1/experience/lending/loans/{loanId}/payment-holiday` |
-| End the holiday | `POST /api/v1/experience/lending/loans/{loanId}/payment-holiday/end` |
-| Disburse | `POST /api/v1/experience/lending/loans/{loanId}/disbursements` |
-| Pay an installment | `POST /api/v1/experience/lending/loans/{loanId}/installments/{installmentId}/payments` |
-| Read a syndicated facility | `GET /api/v1/experience/lending/loans/{loanId}/syndicated-facility` |
-| Read the amortization calendar | `GET /api/v1/experience/lending/loans/{id}/calendar` |
-
-```text
-// POST /api/v1/experience/lending/applications
-{
-  // partyId: 11111111-1111-4111-8111-111111111111
-  // productId: 10000000-0000-4000-8000-000000000202
-  // requestedAmount: 250000.00
-  // term: 60
-  // purpose: optional
-}
-// The catalog routes product ...202 to a personal loan.
-// A product that is not listed uses loan origination.
-
-// GET /api/v1/experience/lending/loans/{id}/calendar
-// operationId: readAmortizationCalendar. The spec includes this path. Each row:
-{
-  // installmentNumber
-  // dueDate
-  // principal
-  // interest
-  // remainingBalance
-  // no participant register
-}
-
-// GET .../loans/{loanId}/syndicated-facility
-{
-  // facilityId
-  // loanId
-  // currency
-  // commitmentAmount
-  // status
-  // no participant register
-}
+```sh
+mvn -B -pl exp-lending-core -am test -DskipOpenApiGen \
+  -Dtest=EarlyRepaymentJourneyTest -Dsurefire.failIfNoSpecifiedTests=false
 ```
 
-The threshold parameter is `journey.lending.min-credit-score`. The sandbox value is 680. The product routes are `PERSONAL_LOAN`, `MORTGAGE`, `ASSET_FINANCE`, `SUPPLY_CHAIN_FINANCE`, and `LOAN_ORIGINATION`. The payments property is `firefly.experience.payments.adapter`, default `sandbox`, live value `hub`.
+Runtime integration remains gated on the service configuration and selected adapters described below. The local port and bean-selection inventory below distinguishes the declared abstraction from its configured implementation. An SDK client is an outbound integration; its presence does not establish a working provider connection. Where a sandbox adapter is selected, its behavior is synthetic and limited to what that adapter implements.
 
-The schedule, repayment, restructure, and end of day are on the loan servicing service, not on the experience call Ada uses to apply.
+**Inputs and fixture ownership.** The complete linked test class supplies its imports, setup, synthetic IDs and collaborators. Run that class as shown; the excerpt is not a standalone Java program. Mocked collaborators include `IdentityPort`, `AccessPort`, `LoanServicingPort`, `PaymentsPort`. Synthetic adapter data is scoped to this fixture and does not seed an external owner. For a deployed call, replace fixture IDs with IDs returned by the owning record-creation API and keep tenant/parent associations intact. The request values and assertions below describe this test boundary only.
 
-| What the servicing record does | Call |
-| --- | --- |
-| Build the schedule | `POST /api/v1/loans/{loanId}/schedule` |
-| Take a repayment | `POST /api/v1/loans/{loanId}/repayments` |
-| Replace the remaining schedule | `POST /api/v1/loans/{loanId}/restructure` |
-| Accrue the day | `POST /api/v1/loans/end-of-day` |
+```java
+@Test
+    void recordsThePaymentIdReturnedByThePaymentsPort() {
+        UUID loanId = UUID.randomUUID();
+        UUID paymentId = UUID.randomUUID();
+        when(paymentsPort.tryPayment(any())).thenReturn(Mono.just(
+                new PaymentTry(paymentId, PaymentKind.INSTALLMENT, PaymentPath.INTERNAL, null, "challenge")));
+        when(paymentsPort.confirm(paymentId, "challenge")).thenReturn(Mono.just(
+                new PaymentReceipt(paymentId, PaymentKind.INSTALLMENT, new BigDecimal("5000"), "hub", false)));
+        when(loanServicingPort.requestEarlyRepayment(eq(loanId), any())).thenReturn(Mono.empty());
 
-Each stored installment has `dueDate`, `principalDue`, `interestDue`, and `remainingBalance`. The calls Ada makes from the experience are also on the [lending API](../../api/lending.md).
+        RequestEarlyRepaymentCommand command = new RequestEarlyRepaymentCommand();
+        command.setAmount(new BigDecimal("5000"));
+        command.setType("PARTIAL");
+
+        StepVerifier.create(service.requestEarlyRepayment(loanId, command)).verifyComplete();
+
+        ArgumentCaptor<RequestEarlyRepaymentCommand> recorded = ArgumentCaptor.forClass(RequestEarlyRepaymentCommand.class);
+        verify(loanServicingPort).requestEarlyRepayment(eq(loanId), recorded.capture());
+        assertThat(recorded.getValue().getTransactionId()).isEqualTo(paymentId);
+    }
+```
+
+**Expected behavior.** The typed partial-repayment request carries amount 5000. After the payment port confirms, the service records the returned payment UUID on the servicing command. The mocked payment/servicing ports do not establish settlement.
+
+**Verification and recovery.** Run the complete selected test class and inspect its Surefire result: zero failures/errors and at least one executed test are required. A skipped or zero-test build is not evidence. Compare the assertions with the owning DTO/service before extending the request. For a runtime run, separately configure authentication/entitlements and the exact downstream endpoints, migrate/seed disposable owner stores, and reread the returned identifier; these unit/contract fixtures do not establish those prerequisites.
+
+Source of this example: [EarlyRepaymentJourneyTest](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-core/src/test/java/io/fireflysoftware/experience/lending/core/servicing/services/EarlyRepaymentJourneyTest.java), [AccessDecision](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-core/src/main/java/io/fireflysoftware/experience/lending/core/ports/AccessDecision.java), [AccessPort](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-core/src/main/java/io/fireflysoftware/experience/lending/core/ports/AccessPort.java), [IdentityPort](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-core/src/main/java/io/fireflysoftware/experience/lending/core/ports/IdentityPort.java), [SubjectRef](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-core/src/main/java/io/fireflysoftware/experience/lending/core/ports/SubjectRef.java), [PaymentKind](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-core/src/main/java/io/fireflysoftware/experience/lending/core/product/PaymentKind.java), [PaymentPath](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-core/src/main/java/io/fireflysoftware/experience/lending/core/product/PaymentPath.java), [PaymentReceipt](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-core/src/main/java/io/fireflysoftware/experience/lending/core/product/PaymentReceipt.java), [PaymentTry](https://github.com/fireflysoftwaresolutions/exp-lending/blob/main/exp-lending-core/src/main/java/io/fireflysoftware/experience/lending/core/product/PaymentTry.java).
+
+
+
+## Configuration and replacement
+
+Read the exact runtime configuration and existing adapter selectors in the repository guide. Defaults are implementation facts, not recommended live settings. A live dependency failure must not fall back to synthetic approval. [The adapter contract](../../adapters/index.md) defines durable request identity, lookup, uncertain outcomes, callbacks, and provenance.
+
+## Required negative and recovery cases
+
+Denied and cross-tenant callers must reach no unauthorized write. Missing or expired evidence, changed intent under the same key, duplicate callback, partial participant failure, lost response, process restart, and replica retry must preserve one authoritative outcome. Retain original and compensating effects; do not delete accepted evidence to simulate rollback. Financial cases reconcile posted, available, reserved, provider, and accounting state.
+
+See [operating procedures](../../operations/index.md) for duplicate requests, partial failures, provider uncertainty, and recovery.

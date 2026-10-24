@@ -231,6 +231,198 @@ def check_text(text: str, where: str = "", *, locale: str | None = None, final: 
 
 # ------------------------------------------------------------------ readers
 
+def _blank(text):
+    """Mask syntax without changing the source line numbers."""
+    return re.sub(r"[^\n]", " ", text)
+
+
+def _balanced_end(text, start, opening, closing):
+    depth = 0
+    quote = None
+    i = start
+    while i < len(text):
+        char = text[i]
+        if char == "\\":
+            i += 2
+            continue
+        if opening == "(" and char in ("\"", "'"):
+            if quote == char:
+                quote = None
+            elif quote is None:
+                quote = char
+        if quote is None:
+            if char == opening:
+                depth += 1
+            elif char == closing:
+                depth -= 1
+                if depth == 0:
+                    return i + 1
+        i += 1
+    return None
+
+
+def _reference_key(label):
+    return " ".join(label.split()).casefold()
+
+
+def _markdown_destination(text):
+    return bool(re.fullmatch(
+        r'''(?:<[^<>\n]*>|[^\s<>]+)(?:[ \t]+(?:"[^"]*"|'[^']*'|\([^()]*\)))?[ \t]*''', text.strip()))
+
+
+def _markdown_inline(text, references):
+    """Read Markdown syntax in source order so delimiters stay local."""
+    tag = re.compile(r'''</?([A-Za-z][\w:-]*)(?:\s+[\w:-]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'=<>`]+))?)*\s*/?>''')
+    out = []
+    i = 0
+    while i < len(text):
+        if text[i] == "\\" and i + 1 < len(text):
+            if text[i + 1] in r"\`*{}[]()#+-.!_|><":
+                out.append(text[i + 1])
+            else:
+                out.append(text[i:i + 2])
+            i += 2
+            continue
+        if text[i] == "`":
+            run = re.match(r"`+", text[i:]).group(0)
+            end = re.search(r"(?<!`)" + re.escape(run) + r"(?!`)", text[i + len(run):])
+            if end:
+                stop = i + len(run) + end.end()
+                out.append(_blank(text[i:stop]))
+                i = stop
+                continue
+            out.append(run)
+            i += len(run)
+            continue
+        image = text.startswith("![", i)
+        label_start = i + 1 if image else i
+        if text[label_start:label_start + 1] == "[":
+            label_end = _balanced_end(text, label_start, "[", "]")
+            if label_end:
+                label = text[label_start + 1:label_end - 1]
+                stop = None
+                if text[label_end:label_end + 1] == "(":
+                    stop = _balanced_end(text, label_end, "(", ")")
+                    if stop:
+                        destination = text[label_end + 1:stop - 1].strip()
+                        if destination and not _markdown_destination(destination):
+                            stop = None
+                elif text[label_end:label_end + 1] == "[":
+                    ref_end = _balanced_end(text, label_end, "[", "]")
+                    if ref_end:
+                        ref = text[label_end + 1:ref_end - 1] or label
+                        if _reference_key(ref) in references:
+                            stop = ref_end
+                elif _reference_key(label) in references:
+                    stop = label_end
+                if stop:
+                    out.append(_markdown_inline(label, references))
+                    out.append(_blank(text[label_end:stop]))
+                    i = stop
+                    continue
+        url = re.match(r"<?(?:https?|ftp)://[^\s<>]+>?", text[i:])
+        if url:
+            out.append(_blank(url.group(0)))
+            i += url.end()
+            continue
+        if text.startswith("<!--", i):
+            end = text.find("-->", i + 4)
+            if end != -1:
+                stop = end + 3
+                out.append("\n" * text[i:stop].count("\n"))
+                i = stop
+                continue
+        match = tag.match(text, i) if text[i] == "<" else None
+        if match:
+            markup = match.group(0)
+            name = match.group(1).lower()
+            if name in ("script", "style", "svg", "pre", "code") and not markup.startswith("</"):
+                end = re.search(r"</" + re.escape(name) + r"\s*>", text[match.end():], re.I)
+                if end:
+                    stop = match.end() + end.end()
+                    out.append(_blank(text[i:stop]))
+                    i = stop
+                    continue
+            attributes = re.finditer(
+                r'''\s+([\w:-]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?''', markup)
+            alt = next((attr for attr in attributes if attr.group(1).lower() == "alt"), None)
+            if name == "img" and alt and any(value is not None for value in alt.groups()[1:]):
+                group = next(j for j in range(2, 5) if alt.group(j) is not None)
+                out.append("\n" * markup[:alt.start(group)].count("\n") + alt.group(group)
+                           + "\n" * markup[alt.end(group):].count("\n"))
+            else:
+                # Inline tags join their surrounding text; block tags separate it.
+                separator = " " if name in ("br", "hr", "p", "div", "li", "td", "th", "tr", "blockquote",
+                                            "h1", "h2", "h3", "h4", "h5", "h6") else ""
+                out.append(separator + "\n" * markup.count("\n"))
+            i = match.end()
+            continue
+        out.append(text[i])
+        i += 1
+    return "".join(out)
+
+
+def _markdown_api_row(line):
+    """Exclude contract identifiers and exact financial operation noun labels."""
+    if not line.lstrip().startswith("|"):
+        return line
+    cells = line.split("|")
+    values = [cell.strip().strip("`") for cell in cells]
+    if not any(re.fullmatch(r"GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS", value) for value in values):
+        return line
+    paths = [i for i, value in enumerate(values)
+             if re.fullmatch(r"/[^\s|]*\bguarantee(?:s|-records)(?:/[^\s|]*)?", value)]
+    if not paths:
+        return line
+    for i in paths:
+        cells[i] = _blank(cells[i])
+    operation = re.compile(r"(?:Create|Get|List|Retrieve|Find|Search|Update|Delete) Guarantees?", re.I)
+    for i, value in enumerate(values):
+        if operation.fullmatch(value):
+            cells[i] = _blank(cells[i])
+    return "|".join(cells)
+
+
+def markdown_items(raw):
+    """Yield visible prose from technical Markdown, preserving source lines.
+
+    This is a lint profile, not a renderer. Only complete syntax is masked:
+    malformed fences, tags and links fail open rather than hiding later copy.
+    """
+    lines = raw.splitlines(keepends=True)
+    i = 0
+    while i < len(lines):
+        fence = re.match(r"^ {0,3}(`{3,}|~{3,})([^\n]*)", lines[i])
+        if fence and not (fence.group(1)[0] == "`" and "`" in fence.group(2)):
+            marker = fence.group(1)
+            closer = re.compile(r"^ {0,3}" + re.escape(marker[0]) + "{" + str(len(marker)) + r",}[ \t]*(?:\n)?$")
+            end = next((j for j in range(i + 1, len(lines)) if closer.fullmatch(lines[j])), None)
+            if end is not None:
+                for j in range(i, end + 1):
+                    lines[j] = _blank(lines[j])
+                i = end + 1
+                continue
+        i += 1
+    raw = "".join(_markdown_api_row(line) for line in lines)
+    lines = raw.splitlines()
+    references = set()
+    for i, line in enumerate(lines):
+        ref = re.match(r'^ {0,3}\[([^]\n]+)\]:[ \t]*(.+)$', line)
+        if ref and _markdown_destination(ref.group(2)):
+            references.add(_reference_key(ref.group(1)))
+            lines[i] = _blank(line)
+    raw = _markdown_inline("\n".join(lines), references)
+    for i, line in enumerate(raw.splitlines(), 1):
+        text = html.unescape(line)
+        # Emphasis and heading delimiters must not separate a number from '%'.
+        text = re.sub(r"[*_]+", "", text)
+        text = re.sub(r"^ {0,3}#{1,6}\s+", "", text)
+        # Exempt the negated verb, not every other promise on the same line.
+        text = re.sub(r"\b(?:does|do|did|will|can) not guarantee\b", " ", text, flags=re.I)
+        if text.strip():
+            yield f"line {i}", text, False
+
+
 def strings_in(obj, path=""):
     """(path, text, is_source) for every string in a YAML/JSON structure."""
     if isinstance(obj, str):
@@ -307,6 +499,8 @@ def read_file(path: Path):
             txt = re.sub(r"\s+", " ", txt).strip()
             if txt:
                 items.append((f"block {i}", txt, False))
+    elif suffix in (".md", ".markdown"):
+        items.extend(markdown_items(path.read_text(encoding="utf-8")))
     else:
         for i, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
             if line.strip():

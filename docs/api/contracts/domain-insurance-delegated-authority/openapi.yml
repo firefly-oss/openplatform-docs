@@ -1,0 +1,300 @@
+openapi: 3.0.1
+info:
+  title: Domain Insurance Delegated Authority API
+  description: "Orchestrates delegated authority binders through core-insurance-delegated-authority.\
+    \ It creates, updates, changes status, and closes binders through the delegated\
+    \ authority core. It does not bind a risk on the policies core, does not move\
+    \ money, and does not certify IFRS 17 or Solvency II."
+  contact:
+    name: Firefly Software Foundation
+    email: dev@fireflysoftware.io
+  version: 1.0.0
+servers:
+- url: https://openplatform.fireflysoftware.io/domain-insurance-delegated-authority
+  description: Development Environment
+- url: /
+  description: Local Development Environment
+tags:
+- name: Delegated Authority
+  description: Domain orchestration for delegated authority binders
+paths:
+  /api/v1/binders/{binderId}/status:
+    put:
+      tags:
+      - Delegated Authority
+      summary: Update status
+      description: Runs the status saga against core-insurance-delegated-authority.
+      operationId: updateStatus
+      parameters:
+      - name: binderId
+        in: path
+        description: Core identifier
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StatusChangeRequest"
+        required: true
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BinderDTO"
+        "404":
+          description: Not found
+  /api/v1/binders/{binderId}:
+    get:
+      tags:
+      - Delegated Authority
+      summary: Get binder
+      description: Reads one record from core-insurance-delegated-authority.
+      operationId: get
+      parameters:
+      - name: binderId
+        in: path
+        description: Core identifier
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BinderDTO"
+        "404":
+          description: Not found
+    put:
+      tags:
+      - Delegated Authority
+      summary: Update binder
+      description: Runs the update saga against core-insurance-delegated-authority.
+        Status is left unchanged.
+      operationId: update
+      parameters:
+      - name: binderId
+        in: path
+        description: Core identifier
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BinderDTO"
+        required: true
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BinderDTO"
+        "404":
+          description: Not found
+    delete:
+      tags:
+      - Delegated Authority
+      summary: Remove binder
+      description: Deletes the record through core-insurance-delegated-authority when
+        that core allows removal.
+      operationId: remove
+      parameters:
+      - name: binderId
+        in: path
+        description: Core identifier
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Removed
+        "404":
+          description: Not found
+  /api/v1/binders/{binderId}/expire:
+    post:
+      tags:
+      - Delegated Authority
+      summary: Expire binder
+      description: Expires a binder when the delegated authority core allows EXPIRED.
+      operationId: expire
+      parameters:
+      - name: binderId
+        in: path
+        description: Core identifier
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReasonRequest"
+        required: true
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BinderDTO"
+        "404":
+          description: Not found
+  /api/v1/binders:
+    post:
+      tags:
+      - Delegated Authority
+      summary: Create binder
+      description: Runs the register saga against core-insurance-delegated-authority.
+      operationId: create
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BinderDTO"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BinderDTO"
+        "400":
+          description: Invalid request
+components:
+  schemas:
+    StatusChangeRequest:
+      type: object
+      properties:
+        status:
+          type: string
+        statusReason:
+          type: string
+    BinderDTO:
+      required:
+      - binderNumber
+      - binderStatus
+      - carrierPartyId
+      - contractId
+      - coverholderDistributorId
+      - effectiveFrom
+      - lineOfBusiness
+      - tenantId
+      type: object
+      properties:
+        binderId:
+          type: string
+          format: uuid
+          nullable: true
+        tenantId:
+          type: string
+          format: uuid
+        binderNumber:
+          type: string
+        contractId:
+          type: string
+          format: uuid
+        carrierPartyId:
+          type: string
+          format: uuid
+        coverholderDistributorId:
+          type: string
+          format: uuid
+        lineOfBusiness:
+          type: string
+          enum:
+          - MOTOR
+          - PROPERTY
+          - LIABILITY
+          - LIFE
+          - HEALTH
+          - MARINE
+          - AVIATION
+          - ACCIDENT
+          - OTHER
+        effectiveFrom:
+          type: string
+          format: date
+        effectiveTo:
+          type: string
+          format: date
+          nullable: true
+        binderStatus:
+          type: string
+          enum:
+          - DRAFT
+          - ACTIVE
+          - SUSPENDED
+          - EXPIRED
+        currency:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    ReasonRequest:
+      type: object
+      properties:
+        statusReason:
+          type: string

@@ -760,6 +760,7 @@ html:not(.ff-home) .ff-banner {
 .ff-footer__blurb {
   margin: 0;
   max-width: 30ch;
+  overflow-wrap: anywhere;
   color: rgb(243 241 235 / 0.65);
   font-size: 0.8rem;
   line-height: 1.55;
@@ -797,6 +798,7 @@ html:not(.ff-home) .ff-banner {
 }
 
 .ff-footer__col a {
+  overflow-wrap: anywhere;
   color: rgb(243 241 235 / 0.88) !important;
   font-size: 0.82rem;
   font-weight: 540;

@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build-and-brand-check:
-    name: mkdocs build --strict + brand_check
+    name: Strict build, local references, and brand check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,8 +31,17 @@ jobs:
       - name: Install MkDocs
         run: pip install -r requirements.txt
 
+      - name: Keep internal acceptance records outside the manual
+        run: python3 scripts/check_public_manual.py
+
+      - name: Check documentation tooling regressions
+        run: python3 -m unittest discover -s scripts/tests -v
+
       - name: MkDocs build (strict)
         run: mkdocs build --strict
+
+      - name: Check all built local references
+        run: python3 scripts/check_site.py
 
       - name: Brand check
         run: |

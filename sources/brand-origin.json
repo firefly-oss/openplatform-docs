@@ -1,0 +1,42 @@
+{
+  "source_repository": "fireflysoftwaresolutions/brand-kit",
+  "source_base_commit": "f6d888c5c5588ab9c02c63fd525786d0d28903bf",
+  "source_files": {
+    "templates/mkdocs/README.md": "0e0d551677bb41ca688fb8b48d79a5dd96f66e6e537348ee56573f48175e0bcb",
+    "templates/mkdocs/mkdocs.snippet.yml": "cf552ace7a810052319c3366f74a0c98cdb8cc283a5de604751386f07a87a4aa",
+    "docs/diagram-system.md": "487be77ac55e354a118b9ee680dc3c2efe77809c807211b3691c765a9a7425d0",
+    "data/diagram-system.json": "370eea30998caa98d66587dd634212e5f1ef92c781ec816f792015e873c62d71",
+    "data/design-system/tokens.json": "ca58050beb77767b7fb218c575aa620eed6edbd8c40b727d15a8a8205b250dab",
+    "scripts/logo.mjs": "0ab3aa2a78b48307bac75dc7faf7e12f84eb2d44c538b9a4740be9d18aec6f95"
+  },
+  "fonts": {
+    "manrope-latin-ext-wght-normal.woff2": {
+      "upstream_sha256": "3911b66d9f2e005a4b989223405d0e5032619c668597ba467cc76a23c8fffcfb",
+      "site_sha256": "3911b66d9f2e005a4b989223405d0e5032619c668597ba467cc76a23c8fffcfb",
+      "identical": true
+    },
+    "manrope-latin-wght-normal.woff2": {
+      "upstream_sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972",
+      "site_sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972",
+      "identical": true
+    },
+    "OFL.txt": {
+      "upstream_sha256": "d826ab6583b12c26807d8716a545bdbbb672df04f48608a364ba9efdbe501c30",
+      "site_sha256": "d826ab6583b12c26807d8716a545bdbbb672df04f48608a364ba9efdbe501c30",
+      "identical": true
+    }
+  },
+  "note": "Source authority for typography, palette, logo geometry, diagram grammar and theme. Application layout extends this theme; this manifest does not claim CSS byte equality.",
+  "working_tool_source": {
+    "repository": "fireflysoftwaresolutions/brand-kit",
+    "base_commit": "f6d888c5c5588ab9c02c63fd525786d0d28903bf",
+    "status": "unpublished_working_source",
+    "files": {
+      "plugins/firefly-brand/skills/firefly-brand-check/scripts/brand_check.py": "9e86049e8fa62bab842ef13e04224bf5d76c4b7ee2e1157615ab8970d2b9ab8e",
+      "plugins/firefly-brand-desktop/firefly-brand-check/scripts/brand_check.py": "9e86049e8fa62bab842ef13e04224bf5d76c4b7ee2e1157615ab8970d2b9ab8e"
+    },
+    "vendored_file": "scripts/brand_check.py",
+    "vendored_sha256": "9e86049e8fa62bab842ef13e04224bf5d76c4b7ee2e1157615ab8970d2b9ab8e",
+    "checks": "29 regressions per distribution, 12 independent root probes; brand-kit npm suite35passed after isolated dependencies"
+  }
+}

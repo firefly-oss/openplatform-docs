@@ -1,43 +1,17 @@
-# Onboarding
+# Onboarding API
 
-A person or a company becomes a customer. Access is checked first. A decision follows. A decline writes nothing. The product family then chooses the path. `INSURANCE` opens a contract and does not start identity checks. `DEPOSITS`, `PAYMENTS`, `LENDING`, `CARDS`, or an omitted family registers the person and waits for the later signals.
+Use current identity and evidence prerequisites. The sample NON_REGULATED classification is a route label, not a legal exemption. A referral or missing verification cannot be assumed to authorize subsequent work.
 
-Ada can send party `11111111-1111-4111-8111-111111111111` so the decision is about her. The new contract from an insurance start is not agreement `10000000-0000-4000-8000-000000000021`. That agreement is the sandbox Horizon Personal Loan. This call asks the contract service for a new id.
+[Complete current producer contract](services/exp-onboarding.md) · [Business lifecycle](../journeys/shared.md) · [Repository adoption guide](https://github.com/fireflysoftwaresolutions/exp-onboarding)
 
-The service listens on port 8096. Denied access does not start. A decline does not register her. The published spec requires tenant, first name, last name, and email. The service also reads `productFamily`, `partyId`, and `actorId` when they are present.
+## Read the request in context
 
-```text
-// POST /api/v1/onboarding/individuals
-// header X-Idempotency-Key: optional
-{
-  // tenantId: required
-  // firstName: Ada
-  // lastName: Lovelace
-  // email: her email, required
-  // phone: optional
-  // nationalIdNumber: optional
-  // dueDiligenceLevel: STANDARD when omitted
-  // partyId: 11111111-1111-4111-8111-111111111111
-  // actorId: defaults to the party id
-  // productFamily: INSURANCE or DEPOSITS
-}
-// Insurance response
-{
-  // onboardingId: the new contract id
-  // partyId: the party sent above
-  // currentPhase: NON_REGULATED
-  // nextStep: INSURANCE
-}
-// Deposit response waits for personal data.
-// Later: POST .../{onboardingId}/personal-data
-//        POST .../economic-data
-//        POST .../identity-documents
-//        POST .../kyc
-//        POST .../completion
-```
+Use the linked producer page for all declared paths, request and response models, required fields, enums, parameters, and statuses. Its downloadable contract and SHA256 identify the copied source independently of the producer's base revision. The [complete API directory](contracts.md) includes experience, domain, and core producers.
 
-A company is `POST /api/v1/onboarding/businesses`, then company data, beneficial owners, documents, authorized signers, business verification, and completion.
+Executable examples belong with their prerequisite records, selected adapters, validation fixture, expected outcome, and failure/recovery checks. The repository guide and business implementation chapter identify those sources. Commented pseudo-JSON is not a valid request body.
 
-The panel is the OpenAPI file from `exp-onboarding`. Read the example before you open an operation. The spec schema for the start lists the required name and email. The family and the party id are read by the service when you send them.
+## Authentication and effects
 
-<swagger-ui src="specs/onboarding/openapi.yml"></swagger-ui>
+Establish trusted subject and tenant from the configured authenticated context and verify resource authority before the operation. Supply synthetic IDs created in the same disposable environment for qualification. Do not reuse another chapter's customer, contract, policy, or account merely because its UUID has the right shape.
+
+A successful HTTP status establishes the documented transport result. Verify the owning durable state, emitted events, provider references, and financial effects required by the journey. Include denied, invalid, identical/conflicting replay, uncertainty, restart, and recovery cases. See [operating guidance](../operations/index.md) and [operate](../operations/index.md).

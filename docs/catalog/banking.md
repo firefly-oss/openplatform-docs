@@ -3,9 +3,9 @@
 <p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
 
 
-Banking covers accounts, cards, the ledger, and open-banking access. Payments are a separate journey. They are not a step inside the account journey. The ledger posts money the institution holds. Ledger and open-banking access have no domain orchestrator.
+Operational banking spans accounts, cards, payments, ledger records, and open-banking access. These are separate authorities with explicitly integrated journeys. `domain-payments` consumes ledger and payment core SDKs; account opening and funding still require their own qualified integration. Follow the [banking manual](../journeys/banking.md) and detailed [payment obligations](../journeys/payments.md).
 
-Accounts, cards, the ledger, and payments do not hard-delete an open record. Ledger party columns are `initiating_party_identifier` and `card_merchant_tax_id`, not NIF or CIF.
+Deletion and terminal-state protection must be verified for each aggregate and every public service/HTTP/cascade path. Managed ledger postings have explicit protection; this does not establish a universal guard across every banking record. Ledger party columns are `initiating_party_identifier` and `card_merchant_tax_id`, not NIF or CIF.
 
 
 
@@ -63,7 +63,7 @@ Owns payment-card records, including physical and virtual cards. An open card is
 
 ### core-banking-ledger
 
-Owns ledger transactions. The initiating party is `initiating_party_identifier`. A card merchant tax identifier is `card_merchant_tax_id`. Those columns are not NIF or CIF. An open ledger record is not hard-deleted. This is a core without a domain orchestrator.
+Owns ledger transactions. The initiating party is `initiating_party_identifier`. A card merchant tax identifier is `card_merchant_tax_id`. Those columns are not NIF or CIF. An open ledger record is not hard-deleted. `domain-payments` consumes this core through its SDK.
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/core-banking-ledger">github.com/fireflysoftwaresolutions/core-banking-ledger</a></p>
 
@@ -74,7 +74,7 @@ Owns ledger transactions. The initiating party is `initiating_party_identifier`.
 
 ### core-banking-payments
 
-Owns payment orders, instructions, schedules, and related payment records. An open payment record is not hard-deleted. This is a core without a domain orchestrator.
+Owns payment orders, instructions, schedules, and related payment records. An open payment record is not hard-deleted. `domain-payments` consumes this core through its SDK.
 
 <p class="ff-entry__links"><a href="https://github.com/fireflysoftwaresolutions/core-banking-payments">github.com/fireflysoftwaresolutions/core-banking-payments</a></p>
 

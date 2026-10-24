@@ -1,0 +1,2432 @@
+{
+  "models": [
+    {
+      "id": "introduction-execution-model",
+      "page": "introduction/execution-model.md",
+      "kind": "sequenceDiagram",
+      "original_source": "sequenceDiagram\n    actor Caller\n    participant E as Experience\n    participant D as Domain\n    participant C as Owning core\n    participant P as Selected provider\n    Caller->>E: Business instruction + authenticated context\n    E->>D: Typed command with resource identities\n    D->>D: Validate authority, prerequisites and decision\n    D->>C: Owning command through matching SDK\n    C->>C: Validate and commit supported local effects\n    C-->>D: Durable identifiers and current state\n    opt External action is required\n        D->>P: Provider-specific action through selected port\n        P-->>D: Accepted, rejected, pending or uncertain\n    end\n    D-->>E: Business outcome and correlation\n    E-->>Caller: Explain result and next action\n",
+      "actors": {
+        "Caller": {
+          "name": "Caller",
+          "label": "Caller",
+          "family": "neutral"
+        },
+        "E": {
+          "name": "Experience",
+          "label": "Experience",
+          "family": "neutral"
+        },
+        "D": {
+          "name": "Domain",
+          "label": "Domain",
+          "family": "firefly"
+        },
+        "C": {
+          "name": "Owning core",
+          "label": "Core",
+          "family": "institution"
+        },
+        "P": {
+          "name": "Selected provider",
+          "label": "Provider",
+          "family": "thirdparty"
+        }
+      },
+      "steps": [
+        {
+          "from": "Caller",
+          "to": "E",
+          "action": "Business instruction + authenticated context",
+          "kind": "message",
+          "condition": "",
+          "id": "introduction-execution-model-01",
+          "number": 1
+        },
+        {
+          "from": "E",
+          "to": "D",
+          "action": "Typed command with resource identities",
+          "kind": "message",
+          "condition": "",
+          "id": "introduction-execution-model-02",
+          "number": 2
+        },
+        {
+          "from": "D",
+          "to": "D",
+          "action": "Validate authority, prerequisites and decision",
+          "kind": "message",
+          "condition": "",
+          "id": "introduction-execution-model-03",
+          "number": 3
+        },
+        {
+          "from": "D",
+          "to": "C",
+          "action": "Owning command through matching SDK",
+          "kind": "message",
+          "condition": "",
+          "id": "introduction-execution-model-04",
+          "number": 4
+        },
+        {
+          "from": "C",
+          "to": "C",
+          "action": "Validate and commit supported local effects",
+          "kind": "message",
+          "condition": "",
+          "id": "introduction-execution-model-05",
+          "number": 5
+        },
+        {
+          "from": "C",
+          "to": "D",
+          "action": "Durable identifiers and current state",
+          "kind": "return",
+          "condition": "",
+          "id": "introduction-execution-model-06",
+          "number": 6
+        },
+        {
+          "from": "D",
+          "to": "P",
+          "action": "Provider-specific action through selected port",
+          "kind": "message",
+          "condition": "External action is required",
+          "id": "introduction-execution-model-07",
+          "number": 7
+        },
+        {
+          "from": "P",
+          "to": "D",
+          "action": "Accepted, rejected, pending or uncertain",
+          "kind": "return",
+          "condition": "External action is required",
+          "id": "introduction-execution-model-08",
+          "number": 8
+        },
+        {
+          "from": "D",
+          "to": "E",
+          "action": "Business outcome and correlation",
+          "kind": "return",
+          "condition": "",
+          "id": "introduction-execution-model-09",
+          "number": 9
+        },
+        {
+          "from": "E",
+          "to": "Caller",
+          "action": "Explain result and next action",
+          "kind": "return",
+          "condition": "",
+          "id": "introduction-execution-model-10",
+          "number": 10
+        }
+      ],
+      "phases": [
+        {
+          "id": "introduction-execution-model-phase-1",
+          "title": "Phase 1",
+          "steps": [
+            {
+              "from": "Caller",
+              "to": "E",
+              "action": "Business instruction + authenticated context",
+              "kind": "message",
+              "condition": "",
+              "id": "introduction-execution-model-01",
+              "number": 1
+            },
+            {
+              "from": "E",
+              "to": "D",
+              "action": "Typed command with resource identities",
+              "kind": "message",
+              "condition": "",
+              "id": "introduction-execution-model-02",
+              "number": 2
+            },
+            {
+              "from": "D",
+              "to": "D",
+              "action": "Validate authority, prerequisites and decision",
+              "kind": "message",
+              "condition": "",
+              "id": "introduction-execution-model-03",
+              "number": 3
+            },
+            {
+              "from": "D",
+              "to": "C",
+              "action": "Owning command through matching SDK",
+              "kind": "message",
+              "condition": "",
+              "id": "introduction-execution-model-04",
+              "number": 4
+            },
+            {
+              "from": "C",
+              "to": "C",
+              "action": "Validate and commit supported local effects",
+              "kind": "message",
+              "condition": "",
+              "id": "introduction-execution-model-05",
+              "number": 5
+            },
+            {
+              "from": "C",
+              "to": "D",
+              "action": "Durable identifiers and current state",
+              "kind": "return",
+              "condition": "",
+              "id": "introduction-execution-model-06",
+              "number": 6
+            }
+          ]
+        },
+        {
+          "id": "introduction-execution-model-phase-2",
+          "title": "Phase 2",
+          "steps": [
+            {
+              "from": "D",
+              "to": "P",
+              "action": "Provider-specific action through selected port",
+              "kind": "message",
+              "condition": "External action is required",
+              "id": "introduction-execution-model-07",
+              "number": 7
+            },
+            {
+              "from": "P",
+              "to": "D",
+              "action": "Accepted, rejected, pending or uncertain",
+              "kind": "return",
+              "condition": "External action is required",
+              "id": "introduction-execution-model-08",
+              "number": 8
+            },
+            {
+              "from": "D",
+              "to": "E",
+              "action": "Business outcome and correlation",
+              "kind": "return",
+              "condition": "",
+              "id": "introduction-execution-model-09",
+              "number": 9
+            },
+            {
+              "from": "E",
+              "to": "Caller",
+              "action": "Explain result and next action",
+              "kind": "return",
+              "condition": "",
+              "id": "introduction-execution-model-10",
+              "number": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "introduction-data-and-money",
+      "page": "introduction/data-and-money.md",
+      "kind": "stateDiagram-v2",
+      "original_source": "stateDiagram-v2\n    [*] --> PENDING: create provisional aggregate\n    [*] --> POSTED: create posted aggregate\n    PENDING --> POSTED: confirm\n    PENDING --> REVERSED: release pending aggregate\n    POSTED --> POSTED: retain original when reversed\n    state \"Separate POSTED reversal\nlinked to original\" as R\n    POSTED --> R: reverse persisted original legs\n",
+      "actors": {
+        "START": {
+          "name": "Create command",
+          "label": "Create command",
+          "family": "firefly"
+        },
+        "PENDING": {
+          "name": "PENDING",
+          "label": "PENDING",
+          "family": "institution"
+        },
+        "POSTED": {
+          "name": "POSTED",
+          "label": "POSTED",
+          "family": "institution"
+        },
+        "REVERSED": {
+          "name": "REVERSED",
+          "label": "REVERSED",
+          "family": "institution"
+        },
+        "R": {
+          "name": "Separate POSTED reversal linked to original",
+          "label": "Separate posted reversal",
+          "family": "institution"
+        }
+      },
+      "steps": [
+        {
+          "from": "START",
+          "to": "PENDING",
+          "action": "create provisional aggregate",
+          "kind": "state change",
+          "condition": "",
+          "id": "introduction-data-and-money-01",
+          "number": 1
+        },
+        {
+          "from": "START",
+          "to": "POSTED",
+          "action": "create posted aggregate",
+          "kind": "state change",
+          "condition": "",
+          "id": "introduction-data-and-money-02",
+          "number": 2
+        },
+        {
+          "from": "PENDING",
+          "to": "POSTED",
+          "action": "confirm",
+          "kind": "state change",
+          "condition": "",
+          "id": "introduction-data-and-money-03",
+          "number": 3
+        },
+        {
+          "from": "PENDING",
+          "to": "REVERSED",
+          "action": "release pending aggregate",
+          "kind": "state change",
+          "condition": "",
+          "id": "introduction-data-and-money-04",
+          "number": 4
+        },
+        {
+          "from": "POSTED",
+          "to": "POSTED",
+          "action": "retain original when reversed",
+          "kind": "state change",
+          "condition": "",
+          "id": "introduction-data-and-money-05",
+          "number": 5
+        },
+        {
+          "from": "POSTED",
+          "to": "R",
+          "action": "reverse persisted original legs",
+          "kind": "new aggregate",
+          "condition": "",
+          "id": "introduction-data-and-money-06",
+          "number": 6
+        }
+      ],
+      "phases": [
+        {
+          "id": "introduction-data-and-money-phase-1",
+          "title": "Connections 1\u20134",
+          "steps": [
+            {
+              "from": "START",
+              "to": "PENDING",
+              "action": "create provisional aggregate",
+              "kind": "state change",
+              "condition": "",
+              "id": "introduction-data-and-money-01",
+              "number": 1
+            },
+            {
+              "from": "START",
+              "to": "POSTED",
+              "action": "create posted aggregate",
+              "kind": "state change",
+              "condition": "",
+              "id": "introduction-data-and-money-02",
+              "number": 2
+            },
+            {
+              "from": "PENDING",
+              "to": "POSTED",
+              "action": "confirm",
+              "kind": "state change",
+              "condition": "",
+              "id": "introduction-data-and-money-03",
+              "number": 3
+            },
+            {
+              "from": "PENDING",
+              "to": "REVERSED",
+              "action": "release pending aggregate",
+              "kind": "state change",
+              "condition": "",
+              "id": "introduction-data-and-money-04",
+              "number": 4
+            }
+          ]
+        },
+        {
+          "id": "introduction-data-and-money-phase-2",
+          "title": "Connections 5\u20136",
+          "steps": [
+            {
+              "from": "POSTED",
+              "to": "POSTED",
+              "action": "retain original when reversed",
+              "kind": "state change",
+              "condition": "",
+              "id": "introduction-data-and-money-05",
+              "number": 5
+            },
+            {
+              "from": "POSTED",
+              "to": "R",
+              "action": "reverse persisted original legs",
+              "kind": "new aggregate",
+              "condition": "",
+              "id": "introduction-data-and-money-06",
+              "number": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "journeys-shared",
+      "page": "journeys/shared.md",
+      "kind": "sequenceDiagram",
+      "original_source": "sequenceDiagram\n    participant D as Contract domain\n    participant C as Document core\n    participant DB as Durable signature store\n    participant S as Explicit sandbox adapter\n    D->>C: Submit owned document + signer + tenant + action key\n    C->>C: Validate document/provider associations\n    C->>DB: Persist immutable binding and pending request\n    C->>S: Create synthetic provider request\n    S-->>C: Provider request identity\n    C->>DB: Retain provider status and provenance\n    C-->>D: Authoritative signature request ID\n    Note over C,S: PENDING does not auto-complete\n    S->>DB: Explicit simulator outcome through supported core path\n    D->>C: Verify same tenant/contract association\n    C-->>D: Current retained outcome and signing time if completed\n",
+      "actors": {
+        "D": {
+          "name": "Contract domain",
+          "label": "Contract domain",
+          "family": "firefly"
+        },
+        "C": {
+          "name": "Document core",
+          "label": "Document core",
+          "family": "institution"
+        },
+        "DB": {
+          "name": "Durable signature store",
+          "label": "Signature store",
+          "family": "datastore"
+        },
+        "S": {
+          "name": "Explicit sandbox adapter",
+          "label": "Sandbox adapter",
+          "family": "firefly"
+        }
+      },
+      "steps": [
+        {
+          "from": "D",
+          "to": "C",
+          "action": "Submit owned document + signer + tenant + action key",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-shared-01",
+          "number": 1
+        },
+        {
+          "from": "C",
+          "to": "C",
+          "action": "Validate document/provider associations",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-shared-02",
+          "number": 2
+        },
+        {
+          "from": "C",
+          "to": "DB",
+          "action": "Persist immutable binding and pending request",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-shared-03",
+          "number": 3
+        },
+        {
+          "from": "C",
+          "to": "S",
+          "action": "Create synthetic provider request",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-shared-04",
+          "number": 4
+        },
+        {
+          "from": "S",
+          "to": "C",
+          "action": "Provider request identity",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-shared-05",
+          "number": 5
+        },
+        {
+          "from": "C",
+          "to": "DB",
+          "action": "Retain provider status and provenance",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-shared-06",
+          "number": 6
+        },
+        {
+          "from": "C",
+          "to": "D",
+          "action": "Authoritative signature request ID",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-shared-07",
+          "number": 7
+        },
+        {
+          "from": "S",
+          "to": "DB",
+          "action": "Explicit simulator outcome through supported core path",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-shared-08",
+          "number": 8
+        },
+        {
+          "from": "D",
+          "to": "C",
+          "action": "Verify same tenant/contract association",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-shared-09",
+          "number": 9
+        },
+        {
+          "from": "C",
+          "to": "D",
+          "action": "Current retained outcome and signing time if completed",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-shared-10",
+          "number": 10
+        }
+      ],
+      "phases": [
+        {
+          "id": "journeys-shared-phase-1",
+          "title": "Phase 1",
+          "steps": [
+            {
+              "from": "D",
+              "to": "C",
+              "action": "Submit owned document + signer + tenant + action key",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-shared-01",
+              "number": 1
+            },
+            {
+              "from": "C",
+              "to": "C",
+              "action": "Validate document/provider associations",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-shared-02",
+              "number": 2
+            },
+            {
+              "from": "C",
+              "to": "DB",
+              "action": "Persist immutable binding and pending request",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-shared-03",
+              "number": 3
+            },
+            {
+              "from": "C",
+              "to": "S",
+              "action": "Create synthetic provider request",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-shared-04",
+              "number": 4
+            },
+            {
+              "from": "S",
+              "to": "C",
+              "action": "Provider request identity",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-shared-05",
+              "number": 5
+            },
+            {
+              "from": "C",
+              "to": "DB",
+              "action": "Retain provider status and provenance",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-shared-06",
+              "number": 6
+            },
+            {
+              "from": "C",
+              "to": "D",
+              "action": "Authoritative signature request ID",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-shared-07",
+              "number": 7
+            }
+          ]
+        },
+        {
+          "id": "journeys-shared-phase-2",
+          "title": "Phase 2",
+          "steps": [
+            {
+              "from": "S",
+              "to": "DB",
+              "action": "Explicit simulator outcome through supported core path",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-shared-08",
+              "number": 8
+            },
+            {
+              "from": "D",
+              "to": "C",
+              "action": "Verify same tenant/contract association",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-shared-09",
+              "number": 9
+            },
+            {
+              "from": "C",
+              "to": "D",
+              "action": "Current retained outcome and signing time if completed",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-shared-10",
+              "number": 10
+            }
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "after": 7,
+          "text": "PENDING does not auto-complete"
+        }
+      ]
+    },
+    {
+      "id": "journeys-lending",
+      "page": "journeys/lending.md",
+      "kind": "flowchart TB",
+      "original_source": "flowchart TB\n    A[\"Approved terms and conditions\"] --> B[\"Agreement and signing evidence\"]\n    B --> C[\"Authorized drawdown\"]\n    C --> D[\"Payment instruction and financial effect\"]\n    D --> E[\"Servicing case and contractual schedule\"]\n    E --> F[\"Actual receipts and allocation\"]\n    F --> G[\"Balance, delinquency and risk views\"]\n    D -. \"External outcome unresolved\" .-> X[\"Funding exception: preserve references\"]\n    F -. \"Partial / reversed receipt\" .-> Y[\"Allocation adjustment and reconciliation\"]\n",
+      "actors": {
+        "A": {
+          "name": "Approved terms and conditions",
+          "label": "Approved terms and conditions",
+          "family": "process"
+        },
+        "B": {
+          "name": "Agreement and signing evidence",
+          "label": "Agreement and signing evidence",
+          "family": "firefly"
+        },
+        "C": {
+          "name": "Authorized drawdown",
+          "label": "Authorized drawdown",
+          "family": "firefly"
+        },
+        "D": {
+          "name": "Payment instruction and financial effect",
+          "label": "Payment instruction and financial effect",
+          "family": "firefly"
+        },
+        "E": {
+          "name": "Servicing case and contractual schedule",
+          "label": "Servicing case and contractual schedule",
+          "family": "institution"
+        },
+        "F": {
+          "name": "Actual receipts and allocation",
+          "label": "Actual receipts and allocation",
+          "family": "firefly"
+        },
+        "G": {
+          "name": "Balance, delinquency and risk views",
+          "label": "Balance, delinquency and risk views",
+          "family": "datastore"
+        },
+        "X": {
+          "name": "Funding exception: preserve references",
+          "label": "Funding exception: preserve references",
+          "family": "firefly"
+        },
+        "Y": {
+          "name": "Allocation adjustment and reconciliation",
+          "label": "Allocation adjustment and reconciliation",
+          "family": "datastore"
+        }
+      },
+      "steps": [
+        {
+          "from": "A",
+          "to": "B",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-lending-01",
+          "number": 1
+        },
+        {
+          "from": "B",
+          "to": "C",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-lending-02",
+          "number": 2
+        },
+        {
+          "from": "C",
+          "to": "D",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-lending-03",
+          "number": 3
+        },
+        {
+          "from": "D",
+          "to": "E",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-lending-04",
+          "number": 4
+        },
+        {
+          "from": "E",
+          "to": "F",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-lending-05",
+          "number": 5
+        },
+        {
+          "from": "F",
+          "to": "G",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-lending-06",
+          "number": 6
+        },
+        {
+          "from": "D",
+          "to": "X",
+          "action": "External outcome unresolved",
+          "kind": "control",
+          "condition": "External outcome unresolved",
+          "id": "journeys-lending-07",
+          "number": 7
+        },
+        {
+          "from": "F",
+          "to": "Y",
+          "action": "Partial / reversed receipt",
+          "kind": "control",
+          "condition": "Partial / reversed receipt",
+          "id": "journeys-lending-08",
+          "number": 8
+        }
+      ],
+      "phases": [
+        {
+          "id": "journeys-lending-phase-1",
+          "title": "Connections 1 to 4",
+          "steps": [
+            {
+              "from": "A",
+              "to": "B",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-lending-01",
+              "number": 1
+            },
+            {
+              "from": "B",
+              "to": "C",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-lending-02",
+              "number": 2
+            },
+            {
+              "from": "C",
+              "to": "D",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-lending-03",
+              "number": 3
+            },
+            {
+              "from": "D",
+              "to": "E",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-lending-04",
+              "number": 4
+            }
+          ]
+        },
+        {
+          "id": "journeys-lending-phase-2",
+          "title": "Connections 5 to 8",
+          "steps": [
+            {
+              "from": "E",
+              "to": "F",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-lending-05",
+              "number": 5
+            },
+            {
+              "from": "F",
+              "to": "G",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-lending-06",
+              "number": 6
+            },
+            {
+              "from": "D",
+              "to": "X",
+              "action": "External outcome unresolved",
+              "kind": "control",
+              "condition": "External outcome unresolved",
+              "id": "journeys-lending-07",
+              "number": 7
+            },
+            {
+              "from": "F",
+              "to": "Y",
+              "action": "Partial / reversed receipt",
+              "kind": "control",
+              "condition": "Partial / reversed receipt",
+              "id": "journeys-lending-08",
+              "number": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "journeys-payments",
+      "page": "journeys/payments.md",
+      "kind": "sequenceDiagram",
+      "original_source": "sequenceDiagram\n    participant E as Experience\n    participant T as Payment TCC hub\n    participant S as SCA participant\n    participant L as Ledger participant\n    participant R as Rail participant\n    E->>T: TRY with stable intent\n    T->>L: Create pending financial aggregate\n    opt Outbound route requires challenge\n        T->>S: Create challenge\n        S-->>T: Challenge identity and fixture response\n    end\n    T-->>E: TRYING + payment identity\n    E->>T: CONFIRM with response when required\n    T->>S: Validate applicable challenge\n    alt Valid confirmation\n        T->>L: Confirm posting\n        opt External route\n            T->>R: Submit through selected implementation\n            R-->>T: Actual provider result\n        end\n        T-->>E: Current confirmed result\n    else Rejected challenge\n        T->>L: Release provisional effect\n        T-->>E: CANCELLED in the tested rejection path\n    end\n",
+      "actors": {
+        "E": {
+          "name": "Experience",
+          "label": "Experience",
+          "family": "neutral"
+        },
+        "T": {
+          "name": "Payment TCC hub",
+          "label": "Payment hub",
+          "family": "firefly"
+        },
+        "S": {
+          "name": "SCA participant",
+          "label": "SCA",
+          "family": "process"
+        },
+        "L": {
+          "name": "Ledger participant",
+          "label": "Ledger",
+          "family": "institution"
+        },
+        "R": {
+          "name": "Rail participant",
+          "label": "Rail",
+          "family": "thirdparty"
+        }
+      },
+      "steps": [
+        {
+          "from": "E",
+          "to": "T",
+          "action": "TRY with stable intent",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-payments-01",
+          "number": 1
+        },
+        {
+          "from": "T",
+          "to": "L",
+          "action": "Create pending financial aggregate",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-payments-02",
+          "number": 2
+        },
+        {
+          "from": "T",
+          "to": "S",
+          "action": "Create challenge",
+          "kind": "message",
+          "condition": "Outbound route requires challenge",
+          "id": "journeys-payments-03",
+          "number": 3
+        },
+        {
+          "from": "S",
+          "to": "T",
+          "action": "Challenge identity and fixture response",
+          "kind": "return",
+          "condition": "Outbound route requires challenge",
+          "id": "journeys-payments-04",
+          "number": 4
+        },
+        {
+          "from": "T",
+          "to": "E",
+          "action": "TRYING + payment identity",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-payments-05",
+          "number": 5
+        },
+        {
+          "from": "E",
+          "to": "T",
+          "action": "CONFIRM with response when required",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-payments-06",
+          "number": 6
+        },
+        {
+          "from": "T",
+          "to": "S",
+          "action": "Validate applicable challenge",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-payments-07",
+          "number": 7
+        },
+        {
+          "from": "T",
+          "to": "L",
+          "action": "Confirm posting",
+          "kind": "message",
+          "condition": "Valid confirmation",
+          "id": "journeys-payments-08",
+          "number": 8
+        },
+        {
+          "from": "T",
+          "to": "R",
+          "action": "Submit through selected implementation",
+          "kind": "message",
+          "condition": "Valid confirmation / External route",
+          "id": "journeys-payments-09",
+          "number": 9
+        },
+        {
+          "from": "R",
+          "to": "T",
+          "action": "Actual provider result",
+          "kind": "return",
+          "condition": "Valid confirmation / External route",
+          "id": "journeys-payments-10",
+          "number": 10
+        },
+        {
+          "from": "T",
+          "to": "E",
+          "action": "Current confirmed result",
+          "kind": "return",
+          "condition": "Valid confirmation",
+          "id": "journeys-payments-11",
+          "number": 11
+        },
+        {
+          "from": "T",
+          "to": "L",
+          "action": "Release provisional effect",
+          "kind": "message",
+          "condition": "Rejected challenge",
+          "id": "journeys-payments-12",
+          "number": 12
+        },
+        {
+          "from": "T",
+          "to": "E",
+          "action": "CANCELLED in the tested rejection path",
+          "kind": "return",
+          "condition": "Rejected challenge",
+          "id": "journeys-payments-13",
+          "number": 13
+        }
+      ],
+      "phases": [
+        {
+          "id": "journeys-payments-phase-1",
+          "title": "Phase 1",
+          "steps": [
+            {
+              "from": "E",
+              "to": "T",
+              "action": "TRY with stable intent",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-payments-01",
+              "number": 1
+            },
+            {
+              "from": "T",
+              "to": "L",
+              "action": "Create pending financial aggregate",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-payments-02",
+              "number": 2
+            },
+            {
+              "from": "T",
+              "to": "S",
+              "action": "Create challenge",
+              "kind": "message",
+              "condition": "Outbound route requires challenge",
+              "id": "journeys-payments-03",
+              "number": 3
+            },
+            {
+              "from": "S",
+              "to": "T",
+              "action": "Challenge identity and fixture response",
+              "kind": "return",
+              "condition": "Outbound route requires challenge",
+              "id": "journeys-payments-04",
+              "number": 4
+            },
+            {
+              "from": "T",
+              "to": "E",
+              "action": "TRYING + payment identity",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-payments-05",
+              "number": 5
+            }
+          ]
+        },
+        {
+          "id": "journeys-payments-phase-2",
+          "title": "Phase 2",
+          "steps": [
+            {
+              "from": "E",
+              "to": "T",
+              "action": "CONFIRM with response when required",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-payments-06",
+              "number": 6
+            },
+            {
+              "from": "T",
+              "to": "S",
+              "action": "Validate applicable challenge",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-payments-07",
+              "number": 7
+            },
+            {
+              "from": "T",
+              "to": "L",
+              "action": "Confirm posting",
+              "kind": "message",
+              "condition": "Valid confirmation",
+              "id": "journeys-payments-08",
+              "number": 8
+            },
+            {
+              "from": "T",
+              "to": "R",
+              "action": "Submit through selected implementation",
+              "kind": "message",
+              "condition": "Valid confirmation / External route",
+              "id": "journeys-payments-09",
+              "number": 9
+            },
+            {
+              "from": "R",
+              "to": "T",
+              "action": "Actual provider result",
+              "kind": "return",
+              "condition": "Valid confirmation / External route",
+              "id": "journeys-payments-10",
+              "number": 10
+            },
+            {
+              "from": "T",
+              "to": "E",
+              "action": "Current confirmed result",
+              "kind": "return",
+              "condition": "Valid confirmation",
+              "id": "journeys-payments-11",
+              "number": 11
+            }
+          ]
+        },
+        {
+          "id": "journeys-payments-phase-3",
+          "title": "Phase 3",
+          "steps": [
+            {
+              "from": "T",
+              "to": "L",
+              "action": "Release provisional effect",
+              "kind": "message",
+              "condition": "Rejected challenge",
+              "id": "journeys-payments-12",
+              "number": 12
+            },
+            {
+              "from": "T",
+              "to": "E",
+              "action": "CANCELLED in the tested rejection path",
+              "kind": "return",
+              "condition": "Rejected challenge",
+              "id": "journeys-payments-13",
+              "number": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "journeys-accounts",
+      "page": "journeys/accounts.md",
+      "kind": "sequenceDiagram",
+      "original_source": "sequenceDiagram\n    participant U as Authorized caller\n    participant D as Account domain\n    participant A as Accounts core\n    participant P as Payment / ledger owner\n    U->>D: Create space under accountId\n    D->>A: Persist the space through owner contract\n    A-->>D: Space identity\n    Note over D,P: Funding is a separate financial obligation\n    D->>P: Supported movement using owned source/destination\n    P-->>D: Durable movement identity and actual state\n    D-->>U: Space result with funding outcome\n",
+      "actors": {
+        "U": {
+          "name": "Authorized caller",
+          "label": "Caller",
+          "family": "neutral"
+        },
+        "D": {
+          "name": "Account domain",
+          "label": "Account domain",
+          "family": "firefly"
+        },
+        "A": {
+          "name": "Accounts core",
+          "label": "Accounts core",
+          "family": "institution"
+        },
+        "P": {
+          "name": "Payment / ledger owner",
+          "label": "Payment / ledger",
+          "family": "institution"
+        }
+      },
+      "steps": [
+        {
+          "from": "U",
+          "to": "D",
+          "action": "Create space under accountId",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-accounts-01",
+          "number": 1
+        },
+        {
+          "from": "D",
+          "to": "A",
+          "action": "Persist the space through owner contract",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-accounts-02",
+          "number": 2
+        },
+        {
+          "from": "A",
+          "to": "D",
+          "action": "Space identity",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-accounts-03",
+          "number": 3
+        },
+        {
+          "from": "D",
+          "to": "P",
+          "action": "Supported movement using owned source/destination",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-accounts-04",
+          "number": 4
+        },
+        {
+          "from": "P",
+          "to": "D",
+          "action": "Durable movement identity and actual state",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-accounts-05",
+          "number": 5
+        },
+        {
+          "from": "D",
+          "to": "U",
+          "action": "Space result with funding outcome",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-accounts-06",
+          "number": 6
+        }
+      ],
+      "phases": [
+        {
+          "id": "journeys-accounts-phase-1",
+          "title": "Phase 1",
+          "steps": [
+            {
+              "from": "U",
+              "to": "D",
+              "action": "Create space under accountId",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-accounts-01",
+              "number": 1
+            },
+            {
+              "from": "D",
+              "to": "A",
+              "action": "Persist the space through owner contract",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-accounts-02",
+              "number": 2
+            },
+            {
+              "from": "A",
+              "to": "D",
+              "action": "Space identity",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-accounts-03",
+              "number": 3
+            }
+          ]
+        },
+        {
+          "id": "journeys-accounts-phase-2",
+          "title": "Phase 2",
+          "steps": [
+            {
+              "from": "D",
+              "to": "P",
+              "action": "Supported movement using owned source/destination",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-accounts-04",
+              "number": 4
+            },
+            {
+              "from": "P",
+              "to": "D",
+              "action": "Durable movement identity and actual state",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-accounts-05",
+              "number": 5
+            },
+            {
+              "from": "D",
+              "to": "U",
+              "action": "Space result with funding outcome",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-accounts-06",
+              "number": 6
+            }
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "after": 3,
+          "text": "Funding is a separate financial obligation"
+        }
+      ]
+    },
+    {
+      "id": "journeys-banking",
+      "page": "journeys/banking.md",
+      "kind": "flowchart TB",
+      "original_source": "flowchart TB\n    A[\"Party, authority, product and contract\"] --> B[\"Account and account spaces\"]\n    B --> C[\"Card instruction\"]\n    B --> P[\"Payment instruction\"]\n    C --> L[\"Ledger effects and retained history\"]\n    P --> L\n    C --> X[\"Processor / network outcome\"]\n    P --> R[\"Rail / bank outcome\"]\n    L --> Q[\"Reconciliation and operator exceptions\"]\n    X --> Q\n    R --> Q\n    S[\"Consent, restrictions and delegated authority\"] -. \"Controls at relevant boundaries\" .-> B\n    S -.-> C\n    S -.-> P\n",
+      "actors": {
+        "A": {
+          "name": "Party, authority, product and contract",
+          "label": "Party, authority, product and contract",
+          "family": "process"
+        },
+        "B": {
+          "name": "Account and account spaces",
+          "label": "Account and account spaces",
+          "family": "institution"
+        },
+        "C": {
+          "name": "Card instruction",
+          "label": "Card instruction",
+          "family": "firefly"
+        },
+        "P": {
+          "name": "Payment instruction",
+          "label": "Payment instruction",
+          "family": "firefly"
+        },
+        "L": {
+          "name": "Ledger effects and retained history",
+          "label": "Ledger effects and retained history",
+          "family": "institution"
+        },
+        "X": {
+          "name": "Processor / network outcome",
+          "label": "Processor / network outcome",
+          "family": "thirdparty"
+        },
+        "R": {
+          "name": "Rail / bank outcome",
+          "label": "Rail / bank outcome",
+          "family": "thirdparty"
+        },
+        "Q": {
+          "name": "Reconciliation and operator exceptions",
+          "label": "Reconciliation and operator exceptions",
+          "family": "datastore"
+        },
+        "S": {
+          "name": "Consent, restrictions and delegated authority",
+          "label": "Consent, restrictions and delegated authority",
+          "family": "process"
+        }
+      },
+      "steps": [
+        {
+          "from": "A",
+          "to": "B",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-banking-01",
+          "number": 1
+        },
+        {
+          "from": "B",
+          "to": "C",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-banking-02",
+          "number": 2
+        },
+        {
+          "from": "B",
+          "to": "P",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-banking-03",
+          "number": 3
+        },
+        {
+          "from": "C",
+          "to": "L",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-banking-04",
+          "number": 4
+        },
+        {
+          "from": "P",
+          "to": "L",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-banking-05",
+          "number": 5
+        },
+        {
+          "from": "C",
+          "to": "X",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-banking-06",
+          "number": 6
+        },
+        {
+          "from": "P",
+          "to": "R",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-banking-07",
+          "number": 7
+        },
+        {
+          "from": "L",
+          "to": "Q",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-banking-08",
+          "number": 8
+        },
+        {
+          "from": "X",
+          "to": "Q",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-banking-09",
+          "number": 9
+        },
+        {
+          "from": "R",
+          "to": "Q",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-banking-10",
+          "number": 10
+        },
+        {
+          "from": "S",
+          "to": "B",
+          "action": "Controls at relevant boundaries",
+          "kind": "control",
+          "condition": "Controls at relevant boundaries",
+          "id": "journeys-banking-11",
+          "number": 11
+        },
+        {
+          "from": "S",
+          "to": "C",
+          "action": "Business dependency",
+          "kind": "control",
+          "condition": "",
+          "id": "journeys-banking-12",
+          "number": 12
+        },
+        {
+          "from": "S",
+          "to": "P",
+          "action": "Business dependency",
+          "kind": "control",
+          "condition": "",
+          "id": "journeys-banking-13",
+          "number": 13
+        }
+      ],
+      "phases": [
+        {
+          "id": "journeys-banking-phase-1",
+          "title": "Connections 1 to 4",
+          "steps": [
+            {
+              "from": "A",
+              "to": "B",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-banking-01",
+              "number": 1
+            },
+            {
+              "from": "B",
+              "to": "C",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-banking-02",
+              "number": 2
+            },
+            {
+              "from": "B",
+              "to": "P",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-banking-03",
+              "number": 3
+            },
+            {
+              "from": "C",
+              "to": "L",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-banking-04",
+              "number": 4
+            }
+          ]
+        },
+        {
+          "id": "journeys-banking-phase-2",
+          "title": "Connections 5 to 8",
+          "steps": [
+            {
+              "from": "P",
+              "to": "L",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-banking-05",
+              "number": 5
+            },
+            {
+              "from": "C",
+              "to": "X",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-banking-06",
+              "number": 6
+            },
+            {
+              "from": "P",
+              "to": "R",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-banking-07",
+              "number": 7
+            },
+            {
+              "from": "L",
+              "to": "Q",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-banking-08",
+              "number": 8
+            }
+          ]
+        },
+        {
+          "id": "journeys-banking-phase-3",
+          "title": "Connections 9 to 12",
+          "steps": [
+            {
+              "from": "X",
+              "to": "Q",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-banking-09",
+              "number": 9
+            },
+            {
+              "from": "R",
+              "to": "Q",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-banking-10",
+              "number": 10
+            },
+            {
+              "from": "S",
+              "to": "B",
+              "action": "Controls at relevant boundaries",
+              "kind": "control",
+              "condition": "Controls at relevant boundaries",
+              "id": "journeys-banking-11",
+              "number": 11
+            },
+            {
+              "from": "S",
+              "to": "C",
+              "action": "Business dependency",
+              "kind": "control",
+              "condition": "",
+              "id": "journeys-banking-12",
+              "number": 12
+            }
+          ]
+        },
+        {
+          "id": "journeys-banking-phase-4",
+          "title": "Connections 13 to 13",
+          "steps": [
+            {
+              "from": "S",
+              "to": "P",
+              "action": "Business dependency",
+              "kind": "control",
+              "condition": "",
+              "id": "journeys-banking-13",
+              "number": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "journeys-cards",
+      "page": "journeys/cards.md",
+      "kind": "sequenceDiagram",
+      "original_source": "sequenceDiagram\n    participant N as Network-facing caller\n    participant S as Authorization saga\n    participant C as Card core\n    participant L as Card ledger command handler\n    N->>S: Card, amount, currency, externalAuthReference\n    S->>C: Resolve card and linked account\n    C-->>S: Account identity and currency\n    S->>C: Create PURCHASE / PENDING card transaction\n    C-->>S: cardTransactionId\n    S->>L: PENDING ledger command, source + suspense legs\n    L-->>S: Ledger transaction identity\n    S->>C: Update pending-authorizations projection\n    S-->>N: Saga result\n",
+      "actors": {
+        "N": {
+          "name": "Network-facing caller",
+          "label": "Network caller",
+          "family": "neutral"
+        },
+        "S": {
+          "name": "Authorization saga",
+          "label": "Card saga",
+          "family": "firefly"
+        },
+        "C": {
+          "name": "Card core",
+          "label": "Card core",
+          "family": "institution"
+        },
+        "L": {
+          "name": "Card ledger command handler",
+          "label": "Card ledger",
+          "family": "institution"
+        }
+      },
+      "steps": [
+        {
+          "from": "N",
+          "to": "S",
+          "action": "Card, amount, currency, externalAuthReference",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-cards-01",
+          "number": 1
+        },
+        {
+          "from": "S",
+          "to": "C",
+          "action": "Resolve card and linked account",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-cards-02",
+          "number": 2
+        },
+        {
+          "from": "C",
+          "to": "S",
+          "action": "Account identity and currency",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-cards-03",
+          "number": 3
+        },
+        {
+          "from": "S",
+          "to": "C",
+          "action": "Create PURCHASE / PENDING card transaction",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-cards-04",
+          "number": 4
+        },
+        {
+          "from": "C",
+          "to": "S",
+          "action": "cardTransactionId",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-cards-05",
+          "number": 5
+        },
+        {
+          "from": "S",
+          "to": "L",
+          "action": "PENDING ledger command, source + suspense legs",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-cards-06",
+          "number": 6
+        },
+        {
+          "from": "L",
+          "to": "S",
+          "action": "Ledger transaction identity",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-cards-07",
+          "number": 7
+        },
+        {
+          "from": "S",
+          "to": "C",
+          "action": "Update pending-authorizations projection",
+          "kind": "message",
+          "condition": "",
+          "id": "journeys-cards-08",
+          "number": 8
+        },
+        {
+          "from": "S",
+          "to": "N",
+          "action": "Saga result",
+          "kind": "return",
+          "condition": "",
+          "id": "journeys-cards-09",
+          "number": 9
+        }
+      ],
+      "phases": [
+        {
+          "id": "journeys-cards-phase-1",
+          "title": "Phase 1",
+          "steps": [
+            {
+              "from": "N",
+              "to": "S",
+              "action": "Card, amount, currency, externalAuthReference",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-cards-01",
+              "number": 1
+            },
+            {
+              "from": "S",
+              "to": "C",
+              "action": "Resolve card and linked account",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-cards-02",
+              "number": 2
+            },
+            {
+              "from": "C",
+              "to": "S",
+              "action": "Account identity and currency",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-cards-03",
+              "number": 3
+            },
+            {
+              "from": "S",
+              "to": "C",
+              "action": "Create PURCHASE / PENDING card transaction",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-cards-04",
+              "number": 4
+            },
+            {
+              "from": "C",
+              "to": "S",
+              "action": "cardTransactionId",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-cards-05",
+              "number": 5
+            }
+          ]
+        },
+        {
+          "id": "journeys-cards-phase-2",
+          "title": "Phase 2",
+          "steps": [
+            {
+              "from": "S",
+              "to": "L",
+              "action": "PENDING ledger command, source + suspense legs",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-cards-06",
+              "number": 6
+            },
+            {
+              "from": "L",
+              "to": "S",
+              "action": "Ledger transaction identity",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-cards-07",
+              "number": 7
+            },
+            {
+              "from": "S",
+              "to": "C",
+              "action": "Update pending-authorizations projection",
+              "kind": "message",
+              "condition": "",
+              "id": "journeys-cards-08",
+              "number": 8
+            },
+            {
+              "from": "S",
+              "to": "N",
+              "action": "Saga result",
+              "kind": "return",
+              "condition": "",
+              "id": "journeys-cards-09",
+              "number": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "journeys-insurance",
+      "page": "journeys/insurance.md",
+      "kind": "flowchart TB",
+      "original_source": "flowchart TB\n    S[\"Submission and risk evidence\"] --> U[\"Underwriting decision / referral\"]\n    U --> Q[\"Current quote and offered terms\"]\n    Q --> A[\"Authorized acceptance and conditions\"]\n    A --> P[\"Policy and effective coverage version\"]\n    P --> F[\"Premium schedule and collection\"]\n    P --> C[\"Loss notice and claim assessment\"]\n    C --> R[\"Reserve and authorized settlement\"]\n    R --> M[\"Payment and recovery evidence\"]\n    F --> G[\"Insurance finance and reconciliation\"]\n    M --> G\n",
+      "actors": {
+        "S": {
+          "name": "Submission and risk evidence",
+          "label": "Submission and risk evidence",
+          "family": "firefly"
+        },
+        "U": {
+          "name": "Underwriting decision / referral",
+          "label": "Underwriting decision / referral",
+          "family": "process"
+        },
+        "Q": {
+          "name": "Current quote and offered terms",
+          "label": "Current quote and offered terms",
+          "family": "firefly"
+        },
+        "A": {
+          "name": "Authorized acceptance and conditions",
+          "label": "Authorized acceptance and conditions",
+          "family": "firefly"
+        },
+        "P": {
+          "name": "Policy and effective coverage version",
+          "label": "Policy and effective coverage version",
+          "family": "institution"
+        },
+        "F": {
+          "name": "Premium schedule and collection",
+          "label": "Premium schedule and collection",
+          "family": "firefly"
+        },
+        "C": {
+          "name": "Loss notice and claim assessment",
+          "label": "Loss notice and claim assessment",
+          "family": "firefly"
+        },
+        "R": {
+          "name": "Reserve and authorized settlement",
+          "label": "Reserve and authorized settlement",
+          "family": "firefly"
+        },
+        "M": {
+          "name": "Payment and recovery evidence",
+          "label": "Payment and recovery evidence",
+          "family": "firefly"
+        },
+        "G": {
+          "name": "Insurance finance and reconciliation",
+          "label": "Insurance finance and reconciliation",
+          "family": "datastore"
+        }
+      },
+      "steps": [
+        {
+          "from": "S",
+          "to": "U",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-insurance-01",
+          "number": 1
+        },
+        {
+          "from": "U",
+          "to": "Q",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-insurance-02",
+          "number": 2
+        },
+        {
+          "from": "Q",
+          "to": "A",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-insurance-03",
+          "number": 3
+        },
+        {
+          "from": "A",
+          "to": "P",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-insurance-04",
+          "number": 4
+        },
+        {
+          "from": "P",
+          "to": "F",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-insurance-05",
+          "number": 5
+        },
+        {
+          "from": "P",
+          "to": "C",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-insurance-06",
+          "number": 6
+        },
+        {
+          "from": "C",
+          "to": "R",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-insurance-07",
+          "number": 7
+        },
+        {
+          "from": "R",
+          "to": "M",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-insurance-08",
+          "number": 8
+        },
+        {
+          "from": "F",
+          "to": "G",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-insurance-09",
+          "number": 9
+        },
+        {
+          "from": "M",
+          "to": "G",
+          "action": "Business dependency",
+          "kind": "dependency",
+          "condition": "",
+          "id": "journeys-insurance-10",
+          "number": 10
+        }
+      ],
+      "phases": [
+        {
+          "id": "journeys-insurance-phase-1",
+          "title": "Connections 1 to 4",
+          "steps": [
+            {
+              "from": "S",
+              "to": "U",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-insurance-01",
+              "number": 1
+            },
+            {
+              "from": "U",
+              "to": "Q",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-insurance-02",
+              "number": 2
+            },
+            {
+              "from": "Q",
+              "to": "A",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-insurance-03",
+              "number": 3
+            },
+            {
+              "from": "A",
+              "to": "P",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-insurance-04",
+              "number": 4
+            }
+          ]
+        },
+        {
+          "id": "journeys-insurance-phase-2",
+          "title": "Connections 5 to 8",
+          "steps": [
+            {
+              "from": "P",
+              "to": "F",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-insurance-05",
+              "number": 5
+            },
+            {
+              "from": "P",
+              "to": "C",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-insurance-06",
+              "number": 6
+            },
+            {
+              "from": "C",
+              "to": "R",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-insurance-07",
+              "number": 7
+            },
+            {
+              "from": "R",
+              "to": "M",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-insurance-08",
+              "number": 8
+            }
+          ]
+        },
+        {
+          "id": "journeys-insurance-phase-3",
+          "title": "Connections 9 to 10",
+          "steps": [
+            {
+              "from": "F",
+              "to": "G",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-insurance-09",
+              "number": 9
+            },
+            {
+              "from": "M",
+              "to": "G",
+              "action": "Business dependency",
+              "kind": "dependency",
+              "condition": "",
+              "id": "journeys-insurance-10",
+              "number": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "managed-payments-ownership",
+      "page": "shared/managed-payments.md",
+      "kind": "flowchart TB",
+      "original_source": "flowchart TB\n    C[\"Current authorized coordinator\"]\n    P[\"Payments core\"]\n    L[\"Banking ledger\"]\n    A[\"Accounts core\"]\n    H[\"Local operation, projection, history, outbox\"]\n    M[\"Authoritative funds and balanced postings\"]\n    C -->|\"Instruction, decision, claim\"| P\n    C -->|\"Persisted exact participant command\"| L\n    P -->|\"Genuine ledger SDK: exact reconciliation\"| L\n    L -->|\"Actual committed account linkage\"| A\n    P -->|\"Retain payment history\"| H\n    L -->|\"Retain authoritative financial effects\"| M\n",
+      "actors": {
+        "C": {
+          "name": "Current authorized coordinator",
+          "label": "Coordinator",
+          "family": "firefly"
+        },
+        "P": {
+          "name": "Payments core",
+          "label": "Payments",
+          "family": "institution"
+        },
+        "L": {
+          "name": "Banking ledger",
+          "label": "Ledger",
+          "family": "institution"
+        },
+        "A": {
+          "name": "Accounts core",
+          "label": "Accounts",
+          "family": "institution"
+        },
+        "H": {
+          "name": "Local operation, projection, history, outbox",
+          "label": "Payment records",
+          "family": "datastore"
+        },
+        "M": {
+          "name": "Authoritative funds and balanced postings",
+          "label": "Money",
+          "family": "datastore"
+        }
+      },
+      "steps": [
+        {
+          "from": "C",
+          "to": "P",
+          "action": "Instruction, decision, claim",
+          "kind": "dependency",
+          "condition": "Instruction, decision, claim",
+          "id": "managed-payments-ownership-01",
+          "number": 1
+        },
+        {
+          "from": "C",
+          "to": "L",
+          "action": "Persisted exact participant command",
+          "kind": "dependency",
+          "condition": "Persisted exact participant command",
+          "id": "managed-payments-ownership-02",
+          "number": 2
+        },
+        {
+          "from": "P",
+          "to": "L",
+          "action": "Genuine ledger SDK: exact reconciliation",
+          "kind": "dependency",
+          "condition": "Genuine ledger SDK: exact reconciliation",
+          "id": "managed-payments-ownership-03",
+          "number": 3
+        },
+        {
+          "from": "L",
+          "to": "A",
+          "action": "Actual committed account linkage",
+          "kind": "dependency",
+          "condition": "Actual committed account linkage",
+          "id": "managed-payments-ownership-04",
+          "number": 4
+        },
+        {
+          "from": "P",
+          "to": "H",
+          "action": "Retain payment history",
+          "kind": "dependency",
+          "condition": "Retain payment history",
+          "id": "managed-payments-ownership-05",
+          "number": 5
+        },
+        {
+          "from": "L",
+          "to": "M",
+          "action": "Retain authoritative financial effects",
+          "kind": "dependency",
+          "condition": "Retain authoritative financial effects",
+          "id": "managed-payments-ownership-06",
+          "number": 6
+        }
+      ],
+      "notes": [],
+      "phases": [
+        {
+          "id": "managed-payments-ownership-phase-1",
+          "title": "Phase 1",
+          "steps": [
+            {
+              "from": "C",
+              "to": "P",
+              "action": "Instruction, decision, claim",
+              "kind": "dependency",
+              "condition": "Instruction, decision, claim",
+              "id": "managed-payments-ownership-01",
+              "number": 1
+            },
+            {
+              "from": "C",
+              "to": "L",
+              "action": "Persisted exact participant command",
+              "kind": "dependency",
+              "condition": "Persisted exact participant command",
+              "id": "managed-payments-ownership-02",
+              "number": 2
+            },
+            {
+              "from": "P",
+              "to": "L",
+              "action": "Genuine ledger SDK: exact reconciliation",
+              "kind": "dependency",
+              "condition": "Genuine ledger SDK: exact reconciliation",
+              "id": "managed-payments-ownership-03",
+              "number": 3
+            }
+          ]
+        },
+        {
+          "id": "managed-payments-ownership-phase-2",
+          "title": "Phase 2",
+          "steps": [
+            {
+              "from": "L",
+              "to": "A",
+              "action": "Actual committed account linkage",
+              "kind": "dependency",
+              "condition": "Actual committed account linkage",
+              "id": "managed-payments-ownership-04",
+              "number": 4
+            },
+            {
+              "from": "P",
+              "to": "H",
+              "action": "Retain payment history",
+              "kind": "dependency",
+              "condition": "Retain payment history",
+              "id": "managed-payments-ownership-05",
+              "number": 5
+            },
+            {
+              "from": "L",
+              "to": "M",
+              "action": "Retain authoritative financial effects",
+              "kind": "dependency",
+              "condition": "Retain authoritative financial effects",
+              "id": "managed-payments-ownership-06",
+              "number": 6
+            }
+          ]
+        }
+      ],
+      "labelsDescribeConnections": true
+    },
+    {
+      "id": "managed-payments-effects",
+      "page": "shared/managed-payments.md",
+      "kind": "sequenceDiagram",
+      "original_source": "sequenceDiagram\n    participant C as Coordinator\n    participant P as Payments core\n    participant L as Ledger\n    C->>P: Create exact instruction and stable action ID\n    P-->>C: 201 RESERVING with fixed deadline\n    C->>P: Claim pending effect at exact version\n    P-->>C: Stable effect/participant IDs and fenced lease\n    C->>L: Reserve original operation, TTL, fixed deadline\n    Note over C,L: A response may be lost after ledger commit\n    C->>P: Acknowledge only effect ID, fence, expected version\n    P->>L: Reconcile exact original Reserve intent\n    L-->>P: FOUND, NOT_DUE, or retained ABSENT_CLOSED\n    P-->>C: Verified state, or 202 recovery required\n",
+      "actors": {
+        "C": {
+          "name": "Coordinator",
+          "label": "Coordinator",
+          "family": "firefly"
+        },
+        "P": {
+          "name": "Payments core",
+          "label": "Payments",
+          "family": "institution"
+        },
+        "L": {
+          "name": "Ledger",
+          "label": "Ledger",
+          "family": "institution"
+        }
+      },
+      "steps": [
+        {
+          "from": "C",
+          "to": "P",
+          "action": "Create exact instruction and stable action ID",
+          "kind": "message",
+          "condition": "",
+          "id": "managed-payments-effects-01",
+          "number": 1
+        },
+        {
+          "from": "P",
+          "to": "C",
+          "action": "201 RESERVING with fixed deadline",
+          "kind": "return",
+          "condition": "",
+          "id": "managed-payments-effects-02",
+          "number": 2
+        },
+        {
+          "from": "C",
+          "to": "P",
+          "action": "Claim pending effect at exact version",
+          "kind": "message",
+          "condition": "",
+          "id": "managed-payments-effects-03",
+          "number": 3
+        },
+        {
+          "from": "P",
+          "to": "C",
+          "action": "Stable effect/participant IDs and fenced lease",
+          "kind": "return",
+          "condition": "",
+          "id": "managed-payments-effects-04",
+          "number": 4
+        },
+        {
+          "from": "C",
+          "to": "L",
+          "action": "Reserve original operation, TTL, fixed deadline",
+          "kind": "message",
+          "condition": "",
+          "id": "managed-payments-effects-05",
+          "number": 5
+        },
+        {
+          "from": "C",
+          "to": "P",
+          "action": "Acknowledge only effect ID, fence, expected version",
+          "kind": "message",
+          "condition": "",
+          "id": "managed-payments-effects-06",
+          "number": 6
+        },
+        {
+          "from": "P",
+          "to": "L",
+          "action": "Reconcile exact original Reserve intent",
+          "kind": "message",
+          "condition": "",
+          "id": "managed-payments-effects-07",
+          "number": 7
+        },
+        {
+          "from": "L",
+          "to": "P",
+          "action": "FOUND, NOT_DUE, or retained ABSENT_CLOSED",
+          "kind": "return",
+          "condition": "",
+          "id": "managed-payments-effects-08",
+          "number": 8
+        },
+        {
+          "from": "P",
+          "to": "C",
+          "action": "Verified state, or 202 recovery required",
+          "kind": "return",
+          "condition": "",
+          "id": "managed-payments-effects-09",
+          "number": 9
+        }
+      ],
+      "notes": [
+        {
+          "after": 5,
+          "text": "A response may be lost after ledger commit"
+        }
+      ],
+      "phases": [
+        {
+          "id": "managed-payments-effects-phase-1",
+          "title": "Phase 1",
+          "steps": [
+            {
+              "from": "C",
+              "to": "P",
+              "action": "Create exact instruction and stable action ID",
+              "kind": "message",
+              "condition": "",
+              "id": "managed-payments-effects-01",
+              "number": 1
+            },
+            {
+              "from": "P",
+              "to": "C",
+              "action": "201 RESERVING with fixed deadline",
+              "kind": "return",
+              "condition": "",
+              "id": "managed-payments-effects-02",
+              "number": 2
+            },
+            {
+              "from": "C",
+              "to": "P",
+              "action": "Claim pending effect at exact version",
+              "kind": "message",
+              "condition": "",
+              "id": "managed-payments-effects-03",
+              "number": 3
+            },
+            {
+              "from": "P",
+              "to": "C",
+              "action": "Stable effect/participant IDs and fenced lease",
+              "kind": "return",
+              "condition": "",
+              "id": "managed-payments-effects-04",
+              "number": 4
+            },
+            {
+              "from": "C",
+              "to": "L",
+              "action": "Reserve original operation, TTL, fixed deadline",
+              "kind": "message",
+              "condition": "",
+              "id": "managed-payments-effects-05",
+              "number": 5
+            }
+          ]
+        },
+        {
+          "id": "managed-payments-effects-phase-2",
+          "title": "Phase 2",
+          "steps": [
+            {
+              "from": "C",
+              "to": "P",
+              "action": "Acknowledge only effect ID, fence, expected version",
+              "kind": "message",
+              "condition": "",
+              "id": "managed-payments-effects-06",
+              "number": 6
+            },
+            {
+              "from": "P",
+              "to": "L",
+              "action": "Reconcile exact original Reserve intent",
+              "kind": "message",
+              "condition": "",
+              "id": "managed-payments-effects-07",
+              "number": 7
+            },
+            {
+              "from": "L",
+              "to": "P",
+              "action": "FOUND, NOT_DUE, or retained ABSENT_CLOSED",
+              "kind": "return",
+              "condition": "",
+              "id": "managed-payments-effects-08",
+              "number": 8
+            },
+            {
+              "from": "P",
+              "to": "C",
+              "action": "Verified state, or 202 recovery required",
+              "kind": "return",
+              "condition": "",
+              "id": "managed-payments-effects-09",
+              "number": 9
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

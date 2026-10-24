@@ -1,127 +1,17 @@
-# Channel
+# Channel management API
 
-This page is generated from `exp-channel-management-sdk/src/main/resources/openapi.yml`.
-Core and domain contracts stay in each repository.
-A journey call is identity, then access, then a decision only when the operation creates risk, then the domain port.
-Read the path, then the example, then the panel rendered from the spec.
+Channel configuration, features, limits, and reference data need explicit deployment/tenant scope, effective dates, change authority, and dependency compatibility.
 
-## GET /api/v1/experience/channel/master-data
+[Complete current producer contract](services/exp-channel-management.md) · [Business lifecycle](../journeys/shared.md) · [Repository adoption guide](https://github.com/fireflysoftwaresolutions/exp-channel-management)
 
-All reference master data.
+## Read the request in context
 
-Returns all reference data (countries, currencies, document types) required for form rendering and validation.
+Use the linked producer page for all declared paths, request and response models, required fields, enums, parameters, and statuses. Its downloadable contract and SHA256 identify the copied source independently of the producer's base revision. The [complete API directory](contracts.md) includes experience, domain, and core producers.
 
-This operation's spec does not document a separate refusal body.
+Executable examples belong with their prerequisite records, selected adapters, validation fixture, expected outcome, and failure/recovery checks. The repository guide and business implementation chapter identify those sources. Commented pseudo-JSON is not a valid request body.
 
-```text
-// request GET /api/v1/experience/channel/master-data
-// no request body declared
+## Authentication and effects
 
-// response
-// 200 OK
-// schema: MasterDataDTO
-{
-  // countries: array, optional
-  // currencies: array, optional
-  // documentTypes: array, optional
-  // employmentStatuses: array, optional
-  // contractTypes: array, optional
-  // housingTypes: array, optional
-  // maritalStatuses: array, optional
-  // loanPurposes: array, optional
-  // sectors: array, optional
-  // assetTypes: array, optional
-  // legalForms: array, optional
-  // employeeRanges: array, optional
-  // representativeRoles: array, optional
-}
-```
+Establish trusted subject and tenant from the configured authenticated context and verify resource authority before the operation. Supply synthetic IDs created in the same disposable environment for qualification. Do not reuse another chapter's customer, contract, policy, or account merely because its UUID has the right shape.
 
-## GET /api/v1/experience/channel/languages/{localeId}
-
-Language detail.
-
-Retrieves a single language entry by its locale identifier.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request GET /api/v1/experience/channel/languages/{localeId}
-// no request body declared
-
-// response
-// 200 OK
-// schema: LanguageDTO
-{
-  // localeId: string; identifier, optional
-  // name: string, optional
-  // nativeName: string, optional
-  // default: boolean, optional
-}
-```
-
-## GET /api/v1/experience/channel/languages
-
-Available languages and locales.
-
-Lists all language/locale entries available for this channel.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request GET /api/v1/experience/channel/languages
-// no request body declared
-
-// response
-// 200 OK
-// no fields declared
-```
-
-## GET /api/v1/experience/channel/init
-
-Full channel initialization.
-
-Returns languages, active branding, and reference master data in a single call. Intended for frontend bootstrap — minimises round-trips on app start.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request GET /api/v1/experience/channel/init
-// no request body declared
-
-// response
-// 200 OK
-// schema: ChannelInitDTO
-{
-  // languages: array, optional
-  // branding: value, optional
-  // masterData: value, optional
-}
-```
-
-## GET /api/v1/experience/channel/branding
-
-Active channel branding.
-
-Retrieves the active visual branding configuration for this channel.
-
-This operation's spec does not document a separate refusal body.
-
-```text
-// request GET /api/v1/experience/channel/branding
-// no request body declared
-
-// response
-// 200 OK
-// schema: BrandingDTO
-{
-  // logoUrl: string, optional
-  // primaryColor: string, optional
-  // secondaryColor: string, optional
-  // theme: string, optional
-}
-```
-
-The panel below is the same file. Open an operation there after you have read its example.
-
-<swagger-ui src="specs/channel/openapi.yml"></swagger-ui>
+A successful HTTP status establishes the documented transport result. Verify the owning durable state, emitted events, provider references, and financial effects required by the journey. Include denied, invalid, identical/conflicting replay, uncertainty, restart, and recovery cases. See [operating guidance](../operations/index.md) and [operate](../operations/index.md).

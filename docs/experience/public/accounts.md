@@ -1,69 +1,102 @@
-# Open and close an account
+# Accounts experience
 
-Ada Lovelace wants a place to hold money at the institution. Opening that place is its own sitting. It is not the card sitting, and it is not the loan sitting. The Horizon Personal Loan on agreement `10000000-0000-4000-8000-000000000021` stays that agreement. The account she opens is a new record, with its own agreement written as part of the opening.
+Account opening and servicing must bind current eligibility, customer authority, contract, account spaces, and any proven funding effect. Restrictions, statements, limits, sweeps, mandates, recurring payments, and closure require their own financial and recovery cases. A stored servicing instruction is not evidence that money moved.
 
-She is `sample-journey`, party `11111111-1111-4111-8111-111111111111`. She asks for a savings account in EUR. The journey checks access as that sample customer before it writes anything. If she is not allowed to create an account, the domain is not called and she gets no account id.
+[Business lifecycle](../../journeys/banking.md) · [Repository guide](https://github.com/fireflysoftwaresolutions/exp-accounts) · [Source reference](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/docs/openplatform/reference.md)
 
-When access allows it, the account domain writes the row in order. It creates an agreement, puts Ada on that agreement, creates the account, posts an opening entry on the ledger, and creates the main balance space. She sees an account id, the new agreement id, and the status completed. The account number, the type savings, the status active, and the currency EUR are what a later read of that account returns.
+## Behavior and limitations
 
-Closing is a separate call. Access must allow close on that account. The same account record is then marked closed. She does not call the contract journey herself. The agreement that was opened with the account is finished inside the account close.
+Initial source analysis identified direct-open eligibility bypass, income/funding signals without retained evidence, process-local workflow state, and closure/compensation gaps. The account-domain HTTP correction preserves supplied fields and truthful saga outcomes; it does not by itself close these broader cases.
 
-She can also close a statement, set a withdrawal limit, and sweep money between two spaces of the same account. The accounts journey calls the accounts domain SDK for those three. It does not call the accounts core itself. The domain then calls the accounts core SDK, which stores the statement, the limit, and the sweep. The same journey stores a servicing mandate for her on the account, and it asks the payments domain SDK to run a standing order and to create a direct-debit mandate. The payments domain calls the payments core SDK, which stores those two and can read them back. The sample statement uses an opening balance and two lines. The sample limit and the sample sweep are separate amounts on that account.
-Source: the sandbox statement opens at 100.00 USD with lines 25.00 and -10.00. The withdrawal limit is 50.00 USD. The sweep is 15.00 USD. The standing order is 25.00 GBP. The direct-debit limit is 100.00 GBP.
+## Declared entry points
 
-<div class="ff-journey" markdown="0">
-<img src="../../../assets/journeys/accounts.svg" alt="Sequence: Ada asks to open a savings account. Access is checked. The account record and an opening ledger entry are written. She receives the account id. A failed open closes the account and reverses the entry. A later close marks the account closed.">
-</div>
+The table is derived from local controller mappings. It does not include inherited, conditional, gateway, or framework routes and is not a runtime security or completeness assertion.
 
-There is a longer opening as well. She can start it, send proof of income, and name a funding source. The account itself is opened only after those waits. If a step after the open fails, the account that was just opened is closed. The direct open is the call that checks access and writes immediately. The published OpenAPI file lists the longer opening, the read, and the close. It does not list the direct open as its own operation, so the panel does not invent one.
+| Method | Path | Source |
+| --- | --- | --- |
+| `GET` | `/api/v1/journeys/account-opening/{journeyId}` | [AccountOpeningJourneyController](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-web/src/main/java/io/fireflysoftware/experience/accounts/web/controllers/AccountOpeningJourneyController.java) |
+| `POST` | `/api/v1/journeys/account-opening` | [AccountOpeningJourneyController](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-web/src/main/java/io/fireflysoftware/experience/accounts/web/controllers/AccountOpeningJourneyController.java) |
+| `POST` | `/api/v1/journeys/account-opening/{journeyId}/income-proof` | [AccountOpeningJourneyController](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-web/src/main/java/io/fireflysoftware/experience/accounts/web/controllers/AccountOpeningJourneyController.java) |
+| `POST` | `/api/v1/journeys/account-opening/{journeyId}/funding` | [AccountOpeningJourneyController](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-web/src/main/java/io/fireflysoftware/experience/accounts/web/controllers/AccountOpeningJourneyController.java) |
+| `GET` | `/api/v1/accounts/{accountId}` | [AccountsController](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-web/src/main/java/io/fireflysoftware/experience/accounts/web/controllers/AccountsController.java) |
+| `GET` | `/api/v1/accounts/{accountId}/statements/{statementId}` | [AccountsController](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-web/src/main/java/io/fireflysoftware/experience/accounts/web/controllers/AccountsController.java) |
+| `POST` | `/api/v1/accounts` | [AccountsController](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-web/src/main/java/io/fireflysoftware/experience/accounts/web/controllers/AccountsController.java) |
+| `POST` | `/api/v1/accounts/{accountId}/statements` | [AccountsController](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-web/src/main/java/io/fireflysoftware/experience/accounts/web/controllers/AccountsController.java) |
+| `PUT` | `/api/v1/accounts/{accountId}` | [AccountsController](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-web/src/main/java/io/fireflysoftware/experience/accounts/web/controllers/AccountsController.java) |
+| `DELETE` | `/api/v1/accounts/{accountId}` | [AccountsController](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-web/src/main/java/io/fireflysoftware/experience/accounts/web/controllers/AccountsController.java) |
 
-## What she is refused
+## Reproduce a source-specific boundary
 
-When access is not allowed, nothing is opened and nothing is closed. The ledger is not posted.
+## Consumer example: carry account and payment records through typed domain SDKs
 
-A currency that is not a three-letter code, or a missing party or product on the direct open, is rejected by the request before the domain runs. The sample she can send is party Ada, account type savings, and currency EUR.
+Start with this repository-owned executable contract before connecting a full runtime. Use the JDK required by the effective parent, Maven, and the matching internal artifacts. The selected test defines its own collaborators; no provider credentials should be added to it. Run from this repository root:
 
-If the open writes the agreement and the account and then a later part fails, the opening is undone: the account is closed and the opening ledger entry is reversed. She should not be left with a half-open account.
-
-## Where the records go
-
-The account row and its spaces live in the accounts core. The opening entry is a ledger posting, not a note on the account. The agreement id she receives is a contract record created for this account. It is not agreement `10000000-0000-4000-8000-000000000021`.
-
-## Reference
-
-The service listens on port 8100.
-
-| What she does | Call |
-| --- | --- |
-| Open directly | `POST /api/v1/accounts` |
-| Read one account | `GET /api/v1/accounts/{accountId}` |
-| Read her accounts | `GET /api/v1/accounts/party/{partyId}` |
-| Close | `DELETE /api/v1/accounts/{accountId}` |
-| Close a statement | `POST /api/v1/account-records/accounts/{accountId}/statements` |
-| Set a withdrawal limit | `POST /api/v1/account-records/accounts/{accountId}/limits` |
-| Sweep two spaces | `POST /api/v1/account-records/accounts/{accountId}/sweeps` |
-| Store a servicing mandate | `POST /api/v1/account-records/accounts/{accountId}/servicing-mandates` |
-| Run a standing order | `POST /api/v1/payment-records/standing-orders` |
-| Create a direct-debit mandate | `POST /api/v1/payment-records/direct-debits` |
-| Start the longer opening | `POST /api/v1/journeys/account-opening` |
-| Send income proof | `POST /api/v1/journeys/account-opening/{journeyId}/income-proof` |
-| Name funding | `POST /api/v1/journeys/account-opening/{journeyId}/funding` |
-
-```text
-// POST /api/v1/accounts
-{
-  // partyId: 11111111-1111-4111-8111-111111111111
-  // productId: the savings product
-  // accountType: SAVINGS
-  // currency: EUR
-  // productCatalogId, roleInContractId, branchId: optional
-}
-// response
-{
-  // accountId
-  // contractId: the agreement created with this account
-  // status: COMPLETED
-}
+```sh
+mvn -B -pl exp-accounts-core -am test -DskipOpenApiGen \
+  -Dtest=AccountRecordsJourneyTest -Dsurefire.failIfNoSpecifiedTests=false
 ```
 
-The type names are `OpenAccountRequest` and `AccountSummaryResponse`. The domain that writes the core is the accounts domain. The calls that the OpenAPI file lists are on the [accounts API](../../api/accounts.md).
+Runtime integration remains gated on the service configuration and selected adapters described below. The local port and bean-selection inventory below distinguishes the declared abstraction from its configured implementation. An SDK client is an outbound integration; its presence does not establish a working provider connection. Where a sandbox adapter is selected, its behavior is synthetic and limited to what that adapter implements.
+
+**Inputs and fixture ownership.** The complete linked test class supplies its imports, setup, synthetic IDs and collaborators. Run that class as shown; the excerpt is not a standalone Java program. Mocked collaborators include `AccountRecordsControllerApi`, `PaymentRecordsApi`. For a deployed call, replace fixture IDs with IDs returned by the owning record-creation API and keep tenant/parent associations intact. The request values and assertions below describe this test boundary only.
+
+```java
+@Test
+    void recordsTheSixRowsThroughTheDomainSdks() {
+        when(accounts.closeStatement(any(), any(), any())).thenReturn(Mono.just(new RecordedId().id(UUID.randomUUID())));
+        when(accounts.withdrawalLimit(any(), any(), any())).thenReturn(Mono.just(new RecordedId().id(UUID.randomUUID())));
+        when(accounts.spaceSweep(any(), any(), any())).thenReturn(Mono.just(new RecordedId().id(UUID.randomUUID())));
+        when(accounts.servicingMandate(any(), any(), any())).thenReturn(Mono.just(new RecordedId().id(UUID.randomUUID())));
+        when(payments.runStandingOrder(any(), any())).thenReturn(Mono.just(new io.fireflysoftware.domain.payments.sdk.model.RecordedId().id(UUID.randomUUID())));
+        when(payments.createDirectDebit(any(), any())).thenReturn(Mono.just(new io.fireflysoftware.domain.payments.sdk.model.RecordedId().id(UUID.randomUUID())));
+
+        UUID accountId = UUID.randomUUID();
+        UUID partyId = UUID.randomUUID();
+        UUID source = UUID.randomUUID();
+        UUID target = UUID.randomUUID();
+        UUID schedule = UUID.randomUUID();
+        UUID creditor = UUID.randomUUID();
+        new AccountRecordsJourney(accounts, payments)
+                .record(accountId, partyId, source, target, schedule, creditor)
+                .block();
+
+        verify(accounts).closeStatement(eq(accountId), eq(new StatementClose()
+                .currency("USD")
+                .openingBalance(new BigDecimal("100.00"))
+                .lineAmounts(List.of(new BigDecimal("25.00"), new BigDecimal("-10.00")))), eq("statement"));
+        verify(accounts).withdrawalLimit(eq(accountId), eq(new WithdrawalLimit()
+                .currency("USD")
+                .withdrawalLimit(new BigDecimal("50.00"))
+                .overdraftLimit(new BigDecimal("10.00"))
+                .balance(new BigDecimal("40.00"))
+                .withdrawalAmount(new BigDecimal("45.00"))), eq("limit"));
+        verify(accounts).spaceSweep(eq(accountId), eq(new SpaceSweep()
+                .sourceSpaceId(source).targetSpaceId(target).amount(new BigDecimal("15.00")).currency("USD")), eq("sweep"));
+        verify(accounts).servicingMandate(eq(accountId), eq(new ServicingMandate()
+                .partyId(partyId).role("OPERATOR").active(true)), eq("mandate"));
+        verify(payments).runStandingOrder(eq(new StandingOrderBody()
+                .paymentScheduleId(schedule).amount(new BigDecimal("25.00")).currency("GBP")
+                .valueDate(LocalDate.of(2026, 10, 21))), eq("standing-order"));
+        verify(payments).createDirectDebit(eq(new DirectDebitBody()
+                .debtorAccountId(accountId).creditorPartyId(creditor).amountLimit(new BigDecimal("100.00"))
+                .currency("GBP").reference("MANDATE-1")), eq("direct-debit"));
+    }
+```
+
+**Expected behavior.** The fixture verifies statement lines, withdrawal limits, space sweep, servicing mandate, standing-order run and direct-debit mandate arguments. Its UUIDs and mocked RecordedId responses do not establish persisted rows or an atomic six-operation journey.
+
+**Verification and recovery.** Run the complete selected test class and inspect its Surefire result: zero failures/errors and at least one executed test are required. A skipped or zero-test build is not evidence. Compare the assertions with the owning DTO/service before extending the request. For a runtime run, separately configure authentication/entitlements and the exact downstream endpoints, migrate/seed disposable owner stores, and reread the returned identifier; these unit/contract fixtures do not establish those prerequisites.
+
+Source of this example: [AccountRecordsJourneyTest](https://github.com/fireflysoftwaresolutions/exp-accounts/blob/main/exp-accounts-core/src/test/java/io/fireflysoftware/experience/accounts/core/records/AccountRecordsJourneyTest.java).
+
+
+
+## Configuration and replacement
+
+Read the exact runtime configuration and existing adapter selectors in the repository guide. Defaults are implementation facts, not recommended live settings. A live dependency failure must not fall back to synthetic approval. [The adapter contract](../../adapters/index.md) defines durable request identity, lookup, uncertain outcomes, callbacks, and provenance.
+
+## Required negative and recovery cases
+
+Denied and cross-tenant callers must reach no unauthorized write. Missing or expired evidence, changed intent under the same key, duplicate callback, partial participant failure, lost response, process restart, and replica retry must preserve one authoritative outcome. Retain original and compensating effects; do not delete accepted evidence to simulate rollback. Financial cases reconcile posted, available, reserved, provider, and accounting state.
+
+See [operating procedures](../../operations/index.md) for duplicate requests, partial failures, provider uncertainty, and recovery.

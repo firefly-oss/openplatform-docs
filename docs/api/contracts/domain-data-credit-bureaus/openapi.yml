@@ -1,0 +1,219 @@
+openapi: 3.0.1
+info:
+  title: domain-data-credit-bureaus
+  description: Provider-neutral synthetic credit bureau lifecycle
+  version: 26.10.6
+servers:
+- url: http://localhost:18080
+  description: Generated server url
+tags:
+- name: BureauInquiry
+  description: "Provider-neutral, evidence-backed synthetic bureau lifecycle"
+paths:
+  /api/v1/bureau-inquiries:
+    post:
+      tags:
+      - BureauInquiry
+      summary: Submit an immutable bureau inquiry
+      operationId: submitBureauInquiry
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BureauInquiryRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BureauInquiry"
+  /api/v1/bureau-inquiries/{inquiryId}/recovery:
+    post:
+      tags:
+      - BureauInquiry
+      summary: Recover an unknown provider outcome without resubmission
+      operationId: recoverBureauInquiry
+      parameters:
+      - name: inquiryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BureauInquiry"
+  /api/v1/bureau-inquiries/{inquiryId}:
+    get:
+      tags:
+      - BureauInquiry
+      summary: Read durable bureau evidence
+      operationId: readBureauInquiry
+      parameters:
+      - name: inquiryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BureauInquiry"
+components:
+  schemas:
+    BureauInquiryRequest:
+      required:
+      - actionId
+      - applicationId
+      - consentEvidenceReference
+      - partyId
+      - provider
+      - purpose
+      - reportModel
+      - reportModelVersion
+      - scenario
+      - synthetic
+      - tenantId
+      type: object
+      properties:
+        tenantId:
+          type: string
+          format: uuid
+        actionId:
+          type: string
+          format: uuid
+        partyId:
+          type: string
+          format: uuid
+        applicationId:
+          type: string
+          format: uuid
+        consentEvidenceReference:
+          type: string
+        purpose:
+          type: string
+        provider:
+          type: string
+        reportModel:
+          type: string
+        reportModelVersion:
+          type: string
+        scenario:
+          type: string
+        synthetic:
+          type: boolean
+    BureauInquiry:
+      type: object
+      properties:
+        inquiryId:
+          type: string
+          format: uuid
+          nullable: true
+        request:
+          $ref: "#/components/schemas/BureauInquiryRequest"
+        evidence:
+          $ref: "#/components/schemas/BureauReportEvidence"
+        version:
+          type: integer
+          format: int64
+          nullable: true
+    BureauReportEvidence:
+      required:
+      - inquiryId
+      - observedAt
+      - provider
+      - reasonCodes
+      - reportId
+      - reportModel
+      - reportModelVersion
+      - schemaVersion
+      - status
+      - synthetic
+      type: object
+      properties:
+        inquiryId:
+          type: string
+          format: uuid
+        reportId:
+          type: string
+          format: uuid
+        schemaVersion:
+          type: string
+        provider:
+          type: string
+        reportModel:
+          type: string
+        reportModelVersion:
+          type: string
+        status:
+          type: string
+          enum:
+          - COMPLETE
+          - NO_HIT
+          - FROZEN
+          - PENDING
+          - UNAVAILABLE
+          - REJECTED
+          - UNKNOWN
+        creditScore:
+          type: integer
+          format: int32
+          nullable: true
+        rangeMin:
+          type: integer
+          format: int32
+          nullable: true
+        rangeMax:
+          type: integer
+          format: int32
+          nullable: true
+        highRisk:
+          type: boolean
+          nullable: true
+        reasonCodes:
+          type: array
+          items:
+            type: string
+        synthetic:
+          type: boolean
+        observedAt:
+          type: string
+          format: date-time

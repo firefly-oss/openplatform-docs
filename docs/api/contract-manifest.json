@@ -1,0 +1,870 @@
+{
+  "contracts": [
+    {
+      "repository": "core-banking-accounts",
+      "source_path": "core-banking-accounts/core-banking-accounts-sdk/src/main/resources/openapi.yml",
+      "base_commit": "9b97b9fe5bc084061ede0cd263f823a3ded66604",
+      "sha256": "0afa0ff5ff7ca25dd01d229bd16ebc20618d81bdf4619ef6b28e2b269a3291d3",
+      "operation_count": 107,
+      "schema_count": 34,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-banking-cards",
+      "source_path": "core-banking-cards/core-banking-cards-sdk/src/main/resources/openapi.yml",
+      "base_commit": "84fe51492341fb17200b3b3650d9039d86ce3b83",
+      "sha256": "adfee62a7ee32eee6d05f6a065623e0ef59c487b1d2d7d821ad3742b105b13f6",
+      "operation_count": 116,
+      "schema_count": 33,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-banking-ledger",
+      "source_path": "core-banking-ledger/core-banking-ledger-sdk/src/main/resources/openapi.yml",
+      "base_commit": "b9bf0997a056a761556883cb8b399dee33c40fd1",
+      "sha256": "d5372642dd91dc2e5c5f633259af52ca3fa314f9c5ef4c3502be5dba8ea9c1f8",
+      "operation_count": 90,
+      "schema_count": 34,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-banking-payments",
+      "source_path": "core-banking-payments/core-banking-payments-sdk/src/main/resources/openapi.yml",
+      "base_commit": "72360395129ca7cbb96f110fed657093fbb72fed",
+      "sha256": "6ecdc86364ee9a48657b67cadd039c1bc3c29ef9aeb7652726eea7f08da1ff5a",
+      "operation_count": 82,
+      "schema_count": 27,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-banking-psdx",
+      "source_path": "core-banking-psdx/core-banking-psdx-sdk/src/main/resources/openapi.yml",
+      "base_commit": "e91894575f1700619f61b2b373af6f8f24b979e3",
+      "sha256": "c2effd58ed295a9483ac36c686872e65ee32db4475feb3476d71fbd029a047f5",
+      "operation_count": 38,
+      "schema_count": 30,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-accounting-gl",
+      "source_path": "core-common-accounting-gl/core-common-accounting-gl-sdk/src/main/resources/openapi.yml",
+      "base_commit": "2561336a2a2e6379c1a9a0ef245ab23c9a732c8d",
+      "sha256": "780be3257b142daa2a18818a1b5ad77420a6b7ff5c20039dfe43fc858e5b5724",
+      "operation_count": 22,
+      "schema_count": 13,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-config-mgmt",
+      "source_path": "core-common-config-mgmt/core-common-config-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "a14ea8cced7261c090285a5b8cdadadb55192bb7",
+      "sha256": "93e82ba2b0cb4c0e4e6d325536afdf4c3c4cefbb23037c36a0256e6214e9e606",
+      "operation_count": 105,
+      "schema_count": 59,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-contract-mgmt",
+      "source_path": "core-common-contract-mgmt/core-common-contract-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "b9846569e715603763455a93f31d3eedd16aa884",
+      "sha256": "15cba145c3c50484d83148718835e0c15de953fbe94e166a4a5cc560c969fff6",
+      "operation_count": 59,
+      "schema_count": 45,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-customer-mgmt",
+      "source_path": "core-common-customer-mgmt/core-common-customer-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "194ebf43f14a83d0fd7cde305a9b8f172a98cac3",
+      "sha256": "672c7d74fe671a2a6aba56000e18997456dd9289a7a29ac31e0c6b1ca9630f34",
+      "operation_count": 85,
+      "schema_count": 43,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-distributor-mgmt",
+      "source_path": "core-common-distributor-mgmt/core-common-distributor-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "51f3acad982fcc7b7bc09dd4f9764ee9fea4098f",
+      "sha256": "c2b64b4e279802a48531b174a7aa1ba97c8ab31b526798f15fee1a2a41920d69",
+      "operation_count": 181,
+      "schema_count": 51,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-document-mgmt",
+      "source_path": "core-common-document-mgmt/core-common-document-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "7a1bc83de0d938de2add6608c9bc0976f892cd94",
+      "sha256": "e0b6375023bd9c9f727af28bbad12113c6ddc291dee7e83ae67fa62ab125e46c",
+      "operation_count": 73,
+      "schema_count": 36,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-kycb-mgmt",
+      "source_path": "core-common-kycb-mgmt/core-common-kycb-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "53bdc8df2b3f82cf7461ba0e6dfe593cc93b3d96",
+      "sha256": "954f2df0ab40f5660f1e27163bc961e4c8f48af699628f0941b5369afb6d3443",
+      "operation_count": 111,
+      "schema_count": 45,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-modelhub",
+      "source_path": "core-common-modelhub/core-common-modelhub-sdk/src/main/resources/openapi.yml",
+      "base_commit": "5031d237391d8f9e188992472580bedf82758c51",
+      "sha256": "1bf6becceb5547706caaeda023fea6812b0eb8d9dca1f6ccfc22b8589dcadf9b",
+      "operation_count": 18,
+      "schema_count": 7,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-notification-services",
+      "source_path": "core-common-notification-services/core-common-notification-services-sdk/src/main/resources/openapi.yml",
+      "base_commit": "aaaaa83ea98d307042747bfb231705b1ca06ace7",
+      "sha256": "4484470dddc306978e1ed1ad6c3d34a312c963b180c34787de7f50f7ba4d029a",
+      "operation_count": 3,
+      "schema_count": 7,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-org-mgmt",
+      "source_path": "core-common-org-mgmt/core-common-org-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "c3f62b56e33cddadb76085be4869aa02508d2213",
+      "sha256": "4b89a24fbbd76fff65796f361986d6e0c9c57b52884fb0a3e781db72a2bf3419",
+      "operation_count": 55,
+      "schema_count": 35,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-product-mgmt",
+      "source_path": "core-common-product-mgmt/core-common-product-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "73104164893dc1714adeffb443d529b6c993d8f5",
+      "sha256": "be68a9932684c422409503ece0d413edfa0ad84e3695af38b19f2487b30329b1",
+      "operation_count": 46,
+      "schema_count": 24,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-reference-master-data",
+      "source_path": "core-common-reference-master-data/core-common-reference-master-data-sdk/src/main/resources/openapi.yml",
+      "base_commit": "7c827fda6f42c21b4dadd792f7ac164dc3b3388b",
+      "sha256": "c08c8db0ca7b6059f1b5232d853db244ea8f392a8be68d457988ca51eac9279c",
+      "operation_count": 201,
+      "schema_count": 64,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-sca-mgmt",
+      "source_path": "core-common-sca-mgmt/core-common-sca-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "4127e3c3d469088c00e0642fc437442f550938ba",
+      "sha256": "36898bb44b8a1f09c9fff4f5eba63a9776893d917faaa01dd6ab23bd8441cf44",
+      "operation_count": 28,
+      "schema_count": 16,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-security-vault",
+      "source_path": "core-common-security-vault/core-common-security-vault-sdk/src/main/resources/openapi.yml",
+      "base_commit": "0c4ba050cb8f26cc2525ae2d3d7f0e97ac34ce38",
+      "sha256": "2efa244e777f8c068ce3f03e37f008f42ff5795c4bed54c26db931d888c7571b",
+      "operation_count": 30,
+      "schema_count": 19,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-user-mgmt",
+      "source_path": "core-common-user-mgmt/core-common-user-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "655b867a35b951d76fa9f14ea355b0dbc851ac75",
+      "sha256": "749301018f09895f806fad69b2e63c6314dbad4ea66ad13dfc092537f3b21f85",
+      "operation_count": 41,
+      "schema_count": 23,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-insurance-claims",
+      "source_path": "core-insurance-claims/core-insurance-claims-sdk/src/main/resources/openapi.yml",
+      "base_commit": "cac0ed150e5f1c09fa67125aff09be517f4d861f",
+      "sha256": "279d1b2800c04d719fd2eed71671f2e36321fb4ce8bc4e768a4e40c3e21799d0",
+      "operation_count": 75,
+      "schema_count": 49,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-insurance-delegated-authority",
+      "source_path": "core-insurance-delegated-authority/core-insurance-delegated-authority-sdk/src/main/resources/openapi.yml",
+      "base_commit": "aa6f0d59529ce35dd565f882623906398c6e1c46",
+      "sha256": "56e228a5e9af02f66a5a668e76373832261fbcb4303aab824c3ac80cb8f01745",
+      "operation_count": 15,
+      "schema_count": 13,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-insurance-financials",
+      "source_path": "core-insurance-financials/core-insurance-financials-sdk/src/main/resources/openapi.yml",
+      "base_commit": "c0b9a15a03f2d6851836e371dd8d60007c4bbcbf",
+      "sha256": "33be704912fa72de35b374241ea862fab1a774a7f2a1aa719441d131df6d6fa4",
+      "operation_count": 45,
+      "schema_count": 31,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-insurance-policies",
+      "source_path": "core-insurance-policies/core-insurance-policies-sdk/src/main/resources/openapi.yml",
+      "base_commit": "05efb49bb21b0b66cddd51307bb56090e72d7c0c",
+      "sha256": "00ba15ad95b25ea252c0cb83869395ec580d05ebd083042475e7d3b43c7e722c",
+      "operation_count": 60,
+      "schema_count": 40,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-insurance-reinsurance",
+      "source_path": "core-insurance-reinsurance/core-insurance-reinsurance-sdk/src/main/resources/openapi.yml",
+      "base_commit": "edba5267cd167109cf8781e19dc7b8167bb3871d",
+      "sha256": "1b3a8c88f6c35fa8fd0491593d0df6f4bc41ce9fe452a70ad373a753d39ae624",
+      "operation_count": 15,
+      "schema_count": 13,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-insurance-reserving",
+      "source_path": "core-insurance-reserving/core-insurance-reserving-sdk/src/main/resources/openapi.yml",
+      "base_commit": "ecbe1450bdc5eac8689ded8a8619110416edf06d",
+      "sha256": "7efe0685074ea773eaed03e35679524d4bc3776572d0919af0497b67f0e09ac9",
+      "operation_count": 15,
+      "schema_count": 13,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-insurance-underwriting",
+      "source_path": "core-insurance-underwriting/core-insurance-underwriting-sdk/src/main/resources/openapi.yml",
+      "base_commit": "6985af7b185fbb96283a0aac6279a6199d1e57f7",
+      "sha256": "72e870af6d31348d98e26cd11935ad948b6b333c4f9389515373f22bdf146840",
+      "operation_count": 60,
+      "schema_count": 40,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-asset-finance",
+      "source_path": "core-lending-asset-finance/core-lending-asset-finance-sdk/src/main/resources/openapi.yml",
+      "base_commit": "90d42a423aa800c76fcc25b80b3f289b36056d79",
+      "sha256": "c640878a06b18230dcf9f21a6921b000aced54e7c82d2a6e2830f05c85265c9c",
+      "operation_count": 40,
+      "schema_count": 28,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-collateral-management",
+      "source_path": "core-lending-collateral-management/core-lending-collateral-management-sdk/src/main/resources/openapi.yml",
+      "base_commit": "8d844ca199b9ac5cb15e2ded211bbbc2197d79e0",
+      "sha256": "70d3eeef10b61b8064faac4d34d4b8e79fe805b4f1f431d4a451bb2306f25f3a",
+      "operation_count": 80,
+      "schema_count": 52,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-credit-cards",
+      "source_path": "core-lending-credit-cards/core-lending-credit-cards-sdk/src/main/resources/openapi.yml",
+      "base_commit": "943f4494737c2a06bfe81110e2fbcb1d842879c6",
+      "sha256": "476450c9a23c9580dc057b2694bf05aa490989dfdeab035667a8b77cb2a76b9e",
+      "operation_count": 30,
+      "schema_count": 22,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-credit-scoring",
+      "source_path": "core-lending-credit-scoring/core-lending-credit-scoring-sdk/src/main/resources/openapi.yml",
+      "base_commit": "5e1a0a128c9c967b55a37101812d72775eabf71b",
+      "sha256": "b41dabf137c665e78275a3d86d45b3b00c2648c2870c3fd73b4d70df514d0776",
+      "operation_count": 31,
+      "schema_count": 24,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-delinquency-collections",
+      "source_path": "core-lending-delinquency-collections/core-lending-delinquency-collections-sdk/src/main/resources/openapi.yml",
+      "base_commit": "1d859da35fb3245868eb9e69d71cb33d84740647",
+      "sha256": "5263d6d052449580d8958273caea0335fe0ca05b3000757b6307bbe22f56b8a8",
+      "operation_count": 25,
+      "schema_count": 19,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-loan-origination",
+      "source_path": "core-lending-loan-origination/core-lending-loan-origination-sdk/src/main/resources/openapi.yml",
+      "base_commit": "b565bf817a3ae18dc54c395047937c19e97c1d57",
+      "sha256": "69d2f5c161d3373df02df9b059f551e40faf9c73f19c2f9031a51b1f2da3f57b",
+      "operation_count": 111,
+      "schema_count": 42,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-loan-servicing",
+      "source_path": "core-lending-loan-servicing/core-lending-loan-servicing-sdk/src/main/resources/openapi.yml",
+      "base_commit": "c6f0e7f3ce04a3e5b842764adc654a2c9f2ccb94",
+      "sha256": "2532110f31a22dabcceb59f9c87488e8ef88a6b29fa8f3200d9fa87b9c8a7891",
+      "operation_count": 100,
+      "schema_count": 61,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-mortgage",
+      "source_path": "core-lending-mortgage/core-lending-mortgages-sdk/src/main/resources/openapi.yml",
+      "base_commit": "86bc04362b103752fe496523faa29fff321178b5",
+      "sha256": "2512ec10ca8a4e8eed05b38c0a65929981a5ab462cc3761ee3fcf879895d0785",
+      "operation_count": 5,
+      "schema_count": 7,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-personal-loans",
+      "source_path": "core-lending-personal-loans/core-lending-personal-loans-sdk/src/main/resources/openapi.yml",
+      "base_commit": "090007a2cbcbcd2cab7bd9234e5613a3d4b9947c",
+      "sha256": "1d5bd3223090ff7f1b9130863c8929354542a04e5462abb7dc881855d257b158",
+      "operation_count": 5,
+      "schema_count": 7,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-provisioning-risk",
+      "source_path": "core-lending-provisioning-risk/core-lending-provisioning-risk-sdk/src/main/resources/openapi.yml",
+      "base_commit": "c19174c5e809af26237af424ddd32d30dc6a378b",
+      "sha256": "74c70ce0589e9b2763a1bb8f12a0902e1c6582b39b0dba3c58eac7afff137f7a",
+      "operation_count": 25,
+      "schema_count": 19,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-regulatory-compliance",
+      "source_path": "core-lending-regulatory-compliance/core-lending-regulatory-compliance-sdk/src/main/resources/openapi.yml",
+      "base_commit": "fd8220fa1f10db3a11a75c790c450b966dd6f574",
+      "sha256": "ba4bf07b30e294833f4e1c02cb1ab2a9f232d4fe4be269c432c6c9082cad9034",
+      "operation_count": 30,
+      "schema_count": 22,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-lending-supply-chain-finance",
+      "source_path": "core-lending-supply-chain-finance/core-lending-supply-chain-finance-sdk/src/main/resources/openapi.yml",
+      "base_commit": "56ea0f31669d5f0c3249e51bc698f86cd4aa3e7b",
+      "sha256": "24b4ac3cf5081ab7d05e8ebec9994831509f847559ecc8253a3cb20fb0787ee9",
+      "operation_count": 30,
+      "schema_count": 17,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-banking-accounts",
+      "source_path": "domain-banking-accounts/domain-banking-accounts-sdk/src/main/resources/openapi.yml",
+      "base_commit": "d4e27b545878ca358e3dfdbccc04416caa73c528",
+      "sha256": "21c5e9ff799874f954cc3b211d6e041056f50273f6b34e90c9200989c7d5b109",
+      "operation_count": 23,
+      "schema_count": 26,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-banking-cards",
+      "source_path": "domain-banking-cards/domain-banking-cards-sdk/src/main/resources/openapi.yml",
+      "base_commit": "fa75286715a89ca8f9486cb5fd9510c24e40a121",
+      "sha256": "f18e959b1e5b2c000a7135d5634a8143af9006d2e8c3cee2d19b7a20bab00b3f",
+      "operation_count": 29,
+      "schema_count": 29,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-banking-psdx",
+      "source_path": "domain-banking-psdx/domain-banking-psdx-sdk/src/main/resources/openapi.yml",
+      "base_commit": "b45374ceafebc9c805b53bc89a43538a21076ae7",
+      "sha256": "4149efb28d982eaa46ab71e7e5e165a455808ba267d1a439ec3aca8f7f776c3c",
+      "operation_count": 23,
+      "schema_count": 10,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-common-accounting",
+      "source_path": "domain-common-accounting/domain-common-accounting-sdk/src/main/resources/openapi.yml",
+      "base_commit": "c54d9fc44bb2042c82e8a956f201265e39157dbf",
+      "sha256": "13a9c4ff893c85e5e6a081d3908d9c97c43649f87147147bddbbe4b3fccc436e",
+      "operation_count": 3,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-common-contracts",
+      "source_path": "domain-common-contracts/domain-common-contracts-sdk/src/main/resources/openapi.yml",
+      "base_commit": "266d474f21024125feaf1566bb0ba7fd28e6107d",
+      "sha256": "e52ca8104445ac3b51bb0f54a84286f5fc1565e13e02641c1d2ee378ed4aa0b2",
+      "operation_count": 24,
+      "schema_count": 23,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-common-notifications",
+      "source_path": "domain-common-notifications/domain-common-notifications-sdk/src/main/resources/openapi.yml",
+      "base_commit": "708a6766738ee0d6f7bb516fc60520926824ed71",
+      "sha256": "d654530db018d53eeedf5dcdee6eb391f0415c5335c1a2e6c8f901af405f0d74",
+      "operation_count": 7,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-common-sca",
+      "source_path": "domain-common-sca/domain-common-sca-sdk/src/main/resources/openapi.yml",
+      "base_commit": "741cfd7dd9ec0459e29ecac054d97b4c639139f6",
+      "sha256": "7c2900b47106b7bb6bda00a084c59871bf6c28c25e9057e3e233988eefd5f80e",
+      "operation_count": 6,
+      "schema_count": 10,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-core-configuration",
+      "source_path": "domain-core-configuration/domain-core-configuration-sdk/src/main/resources/openapi.yml",
+      "base_commit": "912c97d58fd77936f7a2f1b203ae8bc65c06bc97",
+      "sha256": "0aeea08e667a6005a21d700fccde0be379c62938c2f5cc333f750bdddfe52540",
+      "operation_count": 8,
+      "schema_count": 11,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-core-modelhub",
+      "source_path": "domain-core-modelhub/domain-core-modelhub-sdk/src/main/resources/openapi.yml",
+      "base_commit": "46285e8e047e072ccc9e6909eb98a362038bd5d4",
+      "sha256": "baa944e2b5241e27af836330b392eba3ca21a96855c7215df75d58782cc601d6",
+      "operation_count": 3,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-core-organization",
+      "source_path": "domain-core-organization/domain-core-organization-sdk/src/main/resources/openapi.yml",
+      "base_commit": "142a18fb7f99823dbb7ec0381603b369b91f2f99",
+      "sha256": "7c22206aa52c12cfdb4cbd282e391ae0e9c592a1064e8309146030f44809304c",
+      "operation_count": 3,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-core-pricing-engine",
+      "source_path": "domain-core-pricing-engine/domain-core-pricing-engine-sdk/src/main/resources/openapi.yml",
+      "base_commit": "bf30e82bdd09b606e9b4d8d8d462faec6b34f917",
+      "sha256": "81cd02b219cd9ea8fb8c043625c5e6cb86c4fa4d82804cd1684060df7ec4e289",
+      "operation_count": 3,
+      "schema_count": 5,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-core-reference-data",
+      "source_path": "domain-core-reference-data/domain-core-reference-data-sdk/src/main/resources/openapi.yml",
+      "base_commit": "297be312b0ccf174c385801902572ad82bc6a1dd",
+      "sha256": "3f0ec732029253288b5635a62e5ab70726555d6095a47e52ee9068f0fcb49b9c",
+      "operation_count": 3,
+      "schema_count": 1,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-core-security-center",
+      "source_path": "domain-core-security-center/domain-core-security-center-sdk/src/main/resources/openapi.yml",
+      "base_commit": "da6006873315a81c5cd04057f83503e2f11dd030",
+      "sha256": "5e985e6244bc40bb7d8bed64ac46e9e798c7a5d65d510f446be065d214b0909a",
+      "operation_count": 17,
+      "schema_count": 18,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-core-security-vault",
+      "source_path": "domain-core-security-vault/domain-core-security-vault-sdk/src/main/resources/openapi.yml",
+      "base_commit": "d28642121cd1fec88e7a99aae04dd93278f0e0e0",
+      "sha256": "f67d955f60e47277917b13d316df442bdb845332d128e21a29dce927ae8ca202",
+      "operation_count": 3,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-core-user-mgmt",
+      "source_path": "domain-core-user-mgmt/domain-core-user-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": "8b6649ccdc336c21f1e64f5c2ca38df26d7cd204",
+      "sha256": "a7e2664c33dd662c98817066f3318a529ec0f9030aaeb2736d0ba55aa2d80921",
+      "operation_count": 3,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-customer-kyc-kyb",
+      "source_path": "domain-customer-kyc-kyb/domain-customer-kyc-kyb-sdk/src/main/resources/openapi.yml",
+      "base_commit": "1ebfe41745e73438c586fefced50fee6874c6387",
+      "sha256": "a07ec921b1148abeab705e2d7f8f3734e24e7e8aa12f38d1216fd0a5f431784e",
+      "operation_count": 15,
+      "schema_count": 11,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-customer-people",
+      "source_path": "domain-customer-people/domain-customer-people-sdk/src/main/resources/openapi.yml",
+      "base_commit": "efc8ca960f7326f9d8ec7b334a43f20af71ae0cf",
+      "sha256": "d9427788eb180b2f5ae7fe0e58e1615c1d0767f09f55e59a98afd69a477edc35",
+      "operation_count": 55,
+      "schema_count": 48,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-data-business-intelligence",
+      "source_path": "domain-data-business-intelligence/domain-data-business-intelligence-sdk/src/main/resources/openapi.yml",
+      "base_commit": "d513c40bfc258876c24c3888bcb903b157ee9a3d",
+      "sha256": "28e5f3eeca926cba5a93296ce4bd09353aa30f589a6eda4fc25f619c7367297e",
+      "operation_count": 1,
+      "schema_count": 2,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-data-credit-bureaus",
+      "source_path": "domain-data-credit-bureaus/domain-data-credit-bureaus-sdk/src/main/resources/openapi.yml",
+      "base_commit": "bcab5dbae24b3daee0573db0de275a3f9aeb26a5",
+      "sha256": "85558b03c3230eac5d23beaaa29c6f67f1aa43d6d4eb1c732c2fe50105ebe1b6",
+      "operation_count": 3,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-distributor-branding",
+      "source_path": "domain-distributor-branding/domain-distributor-branding-sdk/src/main/resources/openapi.yml",
+      "base_commit": "df367549efc2cc15dae0822d8f530bd96244363b",
+      "sha256": "cb3b83ab06e613e49e40a6b68fb41fdfdfddaac92624483a202f201deaff3419",
+      "operation_count": 54,
+      "schema_count": 36,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-distributor-catalog",
+      "source_path": "domain-distributor-catalog/domain-distributor-catalog-sdk/src/main/resources/openapi.yml",
+      "base_commit": "9d1ed971407cef9063f39c9a830359c7ffc50d58",
+      "sha256": "20576005004278ae1832aaafcadae25d6d153abe8d0ef58abd2bd569ad57dfbe",
+      "operation_count": 14,
+      "schema_count": 16,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-insurance-claims",
+      "source_path": "domain-insurance-claims/domain-insurance-claims-sdk/src/main/resources/openapi.yml",
+      "base_commit": "893780d41e5f79cdf61761f129430d178e82c435",
+      "sha256": "9e362a96b8417d18f1d85ffde638139032a2463be3b65d4fd7727cd1b071f7e2",
+      "operation_count": 7,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-insurance-delegated-authority",
+      "source_path": "domain-insurance-delegated-authority/domain-insurance-delegated-authority-sdk/src/main/resources/openapi.yml",
+      "base_commit": "c979e0fb7b5237fc2f8bf9cd0e682ef941a9497c",
+      "sha256": "67fb04fd4676655b00c962b3fe2b4a26b1f2891391620302de1947999bbc2fe0",
+      "operation_count": 6,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-insurance-financials",
+      "source_path": "domain-insurance-financials/domain-insurance-financials-sdk/src/main/resources/openapi.yml",
+      "base_commit": "1e74e8cc552f03a903ed956f265ffb06e02fd6bd",
+      "sha256": "b3dd80addaacdef80a93b7e1ce8a3feb539ea2f82c89db6d0cd56a7811c13adf",
+      "operation_count": 7,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-insurance-policies",
+      "source_path": "domain-insurance-policies/domain-insurance-policies-sdk/src/main/resources/openapi.yml",
+      "base_commit": "4e92c22cb9f17251989a2748ea9543080b7210cd",
+      "sha256": "0f993d686b59d95a75270e10d2f382a10d4ba293576264266b1d250f2d6ced90",
+      "operation_count": 8,
+      "schema_count": 4,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-insurance-reinsurance",
+      "source_path": "domain-insurance-reinsurance/domain-insurance-reinsurance-sdk/src/main/resources/openapi.yml",
+      "base_commit": "8c262120374099f1ca1465e77495b8f52df5c073",
+      "sha256": "a1188d722f71198c917df177cd9c8e2014af0385f0098367cf229ced8511d937",
+      "operation_count": 6,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-insurance-reserving",
+      "source_path": "domain-insurance-reserving/domain-insurance-reserving-sdk/src/main/resources/openapi.yml",
+      "base_commit": "8049135716eba977ac2ab5ecf0e3b7e5b364516a",
+      "sha256": "d45ac848f1d5f3875e975cf54f1807f511b1879dfe7bce00a6c23f65f9bfa57c",
+      "operation_count": 6,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-insurance-underwriting",
+      "source_path": "domain-insurance-underwriting/domain-insurance-underwriting-sdk/src/main/resources/openapi.yml",
+      "base_commit": "2aec713ebc7a28d8205c4cad4ecb37443fc9e508",
+      "sha256": "6cb99b145a982cb9d07e39997ff6f90ae0bd4d54a59b9b0b46f911851e9fcb19",
+      "operation_count": 7,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-asset-finance",
+      "source_path": "domain-lending-asset-finance/domain-lending-asset-finance-sdk/src/main/resources/openapi.yml",
+      "base_commit": "10ad8d59fa64bc9af93e55a66692aad87d6dedd7",
+      "sha256": "62c9f0ae1821c54a15227d31af6f8eff2262d23e066778193dfe0bda8cf934fe",
+      "operation_count": 22,
+      "schema_count": 18,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-collateral-management",
+      "source_path": "domain-lending-collateral-management/domain-lending-collateral-management-sdk/src/main/resources/openapi.yml",
+      "base_commit": "1b6d9fbf6a196fa70d421a012b1d2f1d014f1e57",
+      "sha256": "13265d4bd5b8744aa6ecd2bbf778d3b838e9ab3e2dc812e46e932b58b1205a25",
+      "operation_count": 6,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-credit-scoring",
+      "source_path": "domain-lending-credit-scoring/domain-lending-credit-scoring-sdk/src/main/resources/openapi.yml",
+      "base_commit": "68b46911427a77bcd0926aa2cc463cd3b2f9f7f0",
+      "sha256": "7d0bed9bcbf6eb178210dbc39769a3583c336ca5885a2444c6c6592ded8672fb",
+      "operation_count": 8,
+      "schema_count": 12,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-delinquency-collections",
+      "source_path": "domain-lending-delinquency-collections/domain-lending-delinquency-collections-sdk/src/main/resources/openapi.yml",
+      "base_commit": "2c470b21cc164bb30825cebc055fd4f4c65f6475",
+      "sha256": "48240ddef5082f5ce2e92c79d90cd72cff67bbf08f948d10614ba4c3c3d47aab",
+      "operation_count": 8,
+      "schema_count": 5,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-loan-origination",
+      "source_path": "domain-lending-loan-origination/domain-lending-loan-origination-sdk/src/main/resources/openapi.yml",
+      "base_commit": "4938b6de578b047c0c08acb108371c8b39c3c661",
+      "sha256": "39b5dc5d9dc7da3147ecd1073a1bcb728c343d65ab68f924fcd0d158f9050348",
+      "operation_count": 29,
+      "schema_count": 30,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-loan-servicing",
+      "source_path": "domain-lending-loan-servicing/domain-lending-loan-servicing-sdk/src/main/resources/openapi.yml",
+      "base_commit": "b8beb6a43e5111b02d83066853018b0d24016939",
+      "sha256": "7ed6c9781291f157f10f904fad7d060f28ecd6c07fe05dc4f66365d1f893bf2d",
+      "operation_count": 37,
+      "schema_count": 53,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-mortgage",
+      "source_path": "domain-lending-mortgage/domain-lending-mortgage-sdk/src/main/resources/openapi.yml",
+      "base_commit": "6948e7725598a9bd91cbd2cb470d9ed2fe9d9363",
+      "sha256": "59c42dfc83b73278a6fde21f9668fd8b0ccb9135ef76a297cab5d73ea9dbb506",
+      "operation_count": 7,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-personal-loans",
+      "source_path": "domain-lending-personal-loans/domain-lending-personal-loans-sdk/src/main/resources/openapi.yml",
+      "base_commit": "fe7a27114329649d2a8a3081c16ad03ed4a1cf98",
+      "sha256": "7b25505799125da3f88452b9a2419a13def67b9de0203f32f52b63fe1fae664a",
+      "operation_count": 4,
+      "schema_count": 2,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-provisioning-risk",
+      "source_path": "domain-lending-provisioning-risk/domain-lending-provisioning-risk-sdk/src/main/resources/openapi.yml",
+      "base_commit": "39f036cba403dee0e0e1ea44fa27c223e99bddc7",
+      "sha256": "4fc8fa65eb801b8971b4e01cb0700f6e573c38d0a4d0d2afa1090f4d0d267384",
+      "operation_count": 6,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-regulatory-compliance",
+      "source_path": "domain-lending-regulatory-compliance/domain-lending-regulatory-compliance-sdk/src/main/resources/openapi.yml",
+      "base_commit": "cf70ecbf9ca5ca0740fe2273561f60569392d13a",
+      "sha256": "61fc8767479c6a62116771d62926bc4336b911aa2231043799542e5a7ef4c64b",
+      "operation_count": 6,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-lending-supply-chain-finance",
+      "source_path": "domain-lending-supply-chain-finance/domain-lending-supply-chain-finance-sdk/src/main/resources/openapi.yml",
+      "base_commit": "11409276f8318484e2e5a424a6089232b1e8fd15",
+      "sha256": "5a23df6b610f4a6b393d06ce571e167c3d1b23ac07f7ea7b17749eed3bd528b8",
+      "operation_count": 7,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-payments",
+      "source_path": "domain-payments/domain-payments-sdk/src/main/resources/openapi.yml",
+      "base_commit": "58fb42ab7d880c4dfda44bd0dc777bae68690452",
+      "sha256": "8c6262d8b2b7f263ade44dd4521c9bcf24031ae5d8a25cf46f7c080178af8079",
+      "operation_count": 30,
+      "schema_count": 24,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-product-catalog",
+      "source_path": "domain-product-catalog/domain-product-catalog-sdk/src/main/resources/openapi.yml",
+      "base_commit": "730466b64cc0caec600cbd385c60c08c0b2785b8",
+      "sha256": "a10e67ce69377e81a5c03bda84ff408d80a3e906364d92ef3e11bc1df9bb81ea",
+      "operation_count": 7,
+      "schema_count": 21,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "domain-product-pricing",
+      "source_path": "domain-product-pricing/domain-product-pricing-sdk/src/main/resources/openapi.yml",
+      "base_commit": "186703e2a036be69e5bc015cb60b0ee013b9a53a",
+      "sha256": "2ceca21ed752766dc93acb9d2f4e3122556fc77c05b307bad3fce668057cd4dd",
+      "operation_count": 7,
+      "schema_count": 12,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-accounts",
+      "source_path": "exp-accounts/exp-accounts-sdk/src/main/resources/openapi.yml",
+      "base_commit": "15a1a53f9d3b00a360462973f51e8f6231251f9c",
+      "sha256": "26d92cbd53a93e6f1dd5b7ae8055edda928dfe8d4f5e6f2ce83fd3205bc1f4ce",
+      "operation_count": 11,
+      "schema_count": 11,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-cards",
+      "source_path": "exp-cards/exp-cards-sdk/src/main/resources/openapi.yml",
+      "base_commit": "07888d50d359fff00aeabc66f388c823997aa784",
+      "sha256": "9ebc0338fa7ea118dadc88cf0194a25fa29ab59fdb6de7a2c78651f5e8c590ec",
+      "operation_count": 13,
+      "schema_count": 10,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-channel-management",
+      "source_path": "exp-channel-management/exp-channel-management-sdk/src/main/resources/openapi.yml",
+      "base_commit": "9291cf575f7888894fdc31ffa411d121758f6963",
+      "sha256": "b97524e8eb1416c4189cac6be0bc4e18254fc46ff2205f63961efb4c99e88483",
+      "operation_count": 5,
+      "schema_count": 5,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-distributor",
+      "source_path": "exp-distributor/exp-distributor-sdk/src/main/resources/openapi.yml",
+      "base_commit": "fa4c9c5dfd66674e4e56c528b9238b6770619b11",
+      "sha256": "e48ccc788e4a776a7dd968ae63bc2e1f3654e85ec9a7babd97559df3c8407ab7",
+      "operation_count": 70,
+      "schema_count": 40,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-finance-terminal",
+      "source_path": "exp-finance-terminal/exp-finance-terminal-sdk/src/main/resources/openapi.yml",
+      "base_commit": "7309a4fa15e3b1e02334864dbb12575e386293e9",
+      "sha256": "6ea59b9712c7e91437561b2ec1d70bfa6d7be6165b52e1c67e18adc25f1f77be",
+      "operation_count": 15,
+      "schema_count": 10,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-insurance",
+      "source_path": "exp-insurance/exp-insurance-sdk/src/main/resources/openapi.yml",
+      "base_commit": "b81836f3234f6ed03ef78715e789e1b5c260948c",
+      "sha256": "f28dd065bcab99c53f82078f5dd3f0fef7a65c6755ed494a60c8fcf51b9529ec",
+      "operation_count": 15,
+      "schema_count": 8,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-insurance-terminal",
+      "source_path": "exp-insurance-terminal/exp-insurance-terminal-sdk/src/main/resources/openapi.yml",
+      "base_commit": "a9fc32a76ab2eae500ce90593c96103e681f1334",
+      "sha256": "11e989b26c759e114fa2546d5264f1c080fca214409dbc1da01f9108c84602cf",
+      "operation_count": 11,
+      "schema_count": 7,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-lending",
+      "source_path": "exp-lending/exp-lending-sdk/src/main/resources/openapi.yml",
+      "base_commit": "fcffe113af1171f5968bd6046b00e460a4142c94",
+      "sha256": "299a0079ea24a810bcadd96d47672140b2af068a682bfd8731a4e9f027229a51",
+      "operation_count": 86,
+      "schema_count": 79,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-notifications",
+      "source_path": "exp-notifications/exp-notifications-sdk/src/main/resources/openapi.yml",
+      "base_commit": "dbaf6caa88c9407da3e3504f1c0a9718eed4f4db",
+      "sha256": "0b30cb5171d92229d4f550c888bf6448f72c3bc3a915ae06337fb34d0ec6f1f6",
+      "operation_count": 6,
+      "schema_count": 3,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-onboarding",
+      "source_path": "exp-onboarding/exp-onboarding-sdk/src/main/resources/openapi.yml",
+      "base_commit": "0c2dae401b3d683c8828c9417f133a58412e162e",
+      "sha256": "9b1af00e231e688faecd3bb0bbd196da9095dfee608cd46afd240112810cfdb2",
+      "operation_count": 20,
+      "schema_count": 19,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-profile",
+      "source_path": "exp-profile/exp-profile-sdk/src/main/resources/openapi.yml",
+      "base_commit": "ab6ff382c129b9a7793a5c429f24f4a887d0aef5",
+      "sha256": "0d6526fcf13c742f0442cdab4898f9683203997073d80e96b3d656ce295e5ba0",
+      "operation_count": 16,
+      "schema_count": 13,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "exp-security",
+      "source_path": "exp-security/exp-security-sdk/src/main/resources/openapi.yml",
+      "base_commit": "8278c552f7b3cc374c041701ab75e631e1a6c4e9",
+      "sha256": "1236ef07b73434f7e7ab2601ae3f1a33e5aed00d3a3dfdcc6ee988d6bfcbc67c",
+      "operation_count": 8,
+      "schema_count": 9,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    },
+    {
+      "repository": "core-common-case-mgmt",
+      "source_path": "core-common-case-mgmt/core-common-case-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": null,
+      "sha256": "116db1010298209fbc2c8c63520bcec299345467d558b296d6e0ebaa0a0b4bad",
+      "operation_count": 7,
+      "schema_count": 9,
+      "qualification": "declaration_snapshot_not_runtime_acceptance",
+      "publication": "local_addition_unpublished"
+    },
+    {
+      "repository": "domain-common-case-mgmt",
+      "source_path": "domain-common-case-mgmt/domain-common-case-mgmt-sdk/src/main/resources/openapi.yml",
+      "base_commit": null,
+      "sha256": "2f08c964162d212cfd843c5d9d33af16d0e45fb256c235f73774aabf94cacb1a",
+      "operation_count": 5,
+      "schema_count": 9,
+      "qualification": "declaration_snapshot_not_runtime_acceptance",
+      "publication": "local_addition_unpublished"
+    },
+    {
+      "repository": "exp-payments",
+      "source_path": "exp-payments/exp-payments-sdk/src/main/resources/openapi.yml",
+      "base_commit": "7896f830da451b0d06fe00c6554d767ef4fc62f8",
+      "sha256": "8e9862e75156b9cc48c171193c93f4a480b71a3d14b4b2f7914432207b141744",
+      "operation_count": 9,
+      "schema_count": 12,
+      "qualification": "declaration_snapshot_not_runtime_acceptance"
+    }
+  ]
+}

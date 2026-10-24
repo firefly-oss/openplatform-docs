@@ -1,0 +1,668 @@
+openapi: 3.0.1
+info:
+  title: domain-lending-credit-scoring
+  description: Evidence-backed credit scoring orchestration
+  version: 26.10.6
+servers:
+- url: http://localhost:18080
+  description: Generated server url
+tags:
+- name: Credit Scoring
+  description: Domain-level orchestration for credit scoring workflows
+- name: Decision
+  description: "Evaluate an APPROVE, REFER, or DECLINE decision for any journey"
+paths:
+  /api/v1/scoring/requests:
+    post:
+      tags:
+      - Credit Scoring
+      summary: Request scoring
+      description: Requests versioned synthetic bureau evidence through its SDK and
+        atomically records a verified sandbox index with MANUAL_REVIEW. Unresolved
+        outcomes include the durable inquiry ID.
+      operationId: requestScoring
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestScoringCommand"
+        required: true
+      responses:
+        "200":
+          description: Synthetic calculation persisted; manual review required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScoringProcessResponse"
+        "202":
+          description: Bureau inquiry persisted; outcome requires recovery
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScoringProcessResponse"
+        "422":
+          description: No numerical result was produced
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScoringProcessResponse"
+        "400":
+          description: Invalid request payload
+        "500":
+          description: Scoring process failed
+  /api/v1/decisions:
+    post:
+      tags:
+      - Decision
+      summary: Evaluate a decision
+      description: "Evaluates a named ruleset for a party, optional product, journey\
+        \ step, and attributes."
+      operationId: evaluateDecision
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DecisionRequest"
+        required: true
+      responses:
+        "200":
+          description: Decision evaluated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DecisionResponse"
+        "400":
+          description: Invalid request payload
+  /api/v1/credit-scoring/cases:
+    post:
+      tags:
+      - Credit Scoring
+      summary: Initiate scoring case (legacy)
+      description: Opens a new credit scoring case. Prefer POST /api/v1/scoring/requests
+        for the full workflow.
+      operationId: initiateScoring
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InitiateScoringCaseCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/scoring/requests/{requestId}/result:
+    get:
+      tags:
+      - Credit Scoring
+      summary: Get scoring result
+      description: Retrieves the computed scoring result for a given scoring request.
+      operationId: getScoringResult
+      parameters:
+      - name: requestId
+        in: path
+        description: Unique identifier of the scoring request
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Scoring result found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScoringResultDTO"
+        "404":
+          description: Result not yet available
+  /api/v1/scoring/requests/{requestId}/bureau-reports:
+    get:
+      tags:
+      - Credit Scoring
+      summary: Get bureau reports
+      description: Retrieves all credit bureau call records associated with a scoring
+        request.
+      operationId: getBureauReports
+      parameters:
+      - name: requestId
+        in: path
+        description: Unique identifier of the scoring request
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Bureau reports retrieved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginationResponseScoringBureauCallDTO"
+        "404":
+          description: Scoring request not found
+  /api/v1/scoring/requests/{requestId}:
+    get:
+      tags:
+      - Credit Scoring
+      summary: Get scoring request status
+      description: Retrieves the current status of a scoring request by its identifier.
+      operationId: getScoringRequest
+      parameters:
+      - name: requestId
+        in: path
+        description: Unique identifier of the scoring request
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Scoring request found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScoringRequestDTO"
+        "404":
+          description: Scoring request not found
+  /api/v1/scoring/models:
+    get:
+      tags:
+      - Credit Scoring
+      summary: Get scoring models
+      description: Retrieves the list of available scoring models from the core service.
+      operationId: getScoringModels
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Scoring models retrieved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginationResponseScoringModelDTO"
+  /api/v1/credit-scoring/cases/{scoringCaseId}:
+    get:
+      tags:
+      - Credit Scoring
+      summary: Get scoring case (legacy)
+      description: "Retrieves a credit scoring case by its identifier. Prefer GET\
+        \ /api/v1/scoring/requests/{requestId}."
+      operationId: getScoringCase
+      parameters:
+      - name: scoringCaseId
+        in: path
+        description: Unique identifier of the scoring case
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
+          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
+          \ and namespace; changed input returns 409. Business effects require durable\
+          \ application idempotency."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScoringCaseDTO"
+components:
+  schemas:
+    RequestScoringCommand:
+      required:
+      - actionId
+      - applicationId
+      - bureauScenario
+      - consentEvidenceReference
+      - partyId
+      - purpose
+      - scoringModelId
+      - synthetic
+      - tenantId
+      type: object
+      properties:
+        applicationId:
+          type: string
+          format: uuid
+        partyId:
+          type: string
+          format: uuid
+        scoringModelId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        actionId:
+          type: string
+          format: uuid
+        consentEvidenceReference:
+          minLength: 1
+          type: string
+        purpose:
+          minLength: 1
+          type: string
+        bureauScenario:
+          minLength: 1
+          type: string
+        synthetic:
+          type: boolean
+    ScoringProcessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        status:
+          type: string
+          enum:
+          - COMPLETED
+          - PENDING
+          - UNKNOWN
+          - UNAVAILABLE
+          - NO_HIT
+          - FROZEN
+          - REJECTED
+          - FAILED
+        inquiryId:
+          type: string
+          format: uuid
+        evaluationId:
+          type: string
+          format: uuid
+        scoringCaseId:
+          type: string
+          format: uuid
+        scoringRequestId:
+          type: string
+          format: uuid
+        scoringResultId:
+          type: string
+          format: uuid
+        scoreValue:
+          type: number
+        scoreOutcome:
+          type: string
+        synthetic:
+          type: boolean
+        reasonCodes:
+          type: array
+          items:
+            type: string
+        errorCode:
+          type: string
+    DecisionRequest:
+      required:
+      - journeyStep
+      - partyId
+      type: object
+      properties:
+        partyId:
+          type: string
+          format: uuid
+        productId:
+          type: string
+          format: uuid
+        journeyStep:
+          type: string
+          enum:
+          - ONBOARDING
+          - LENDING_APPLICATION
+          - INSURANCE_QUOTE
+          - INSURANCE_BIND
+          - CLAIM
+        attributes:
+          type: object
+          additionalProperties:
+            type: object
+    DecisionResponse:
+      type: object
+      properties:
+        outcome:
+          type: string
+          enum:
+          - APPROVE
+          - REFER
+          - DECLINE
+        reasonCodes:
+          type: array
+          items:
+            type: string
+    InitiateScoringCaseCommand:
+      type: object
+      properties:
+        loanApplicationId:
+          type: string
+          format: uuid
+        customerId:
+          type: string
+          format: uuid
+        caseType:
+          type: string
+    ScoringResultDTO:
+      required:
+      - scoreOutcome
+      - scoreValue
+      - scoringRequestId
+      type: object
+      properties:
+        scoringResultId:
+          type: string
+          format: uuid
+          nullable: true
+        scoringRequestId:
+          type: string
+          format: uuid
+        scoreValue:
+          type: number
+        scoreOutcome:
+          type: string
+          enum:
+          - APPROVE
+          - REJECT
+          - MANUAL_REVIEW
+          - REFER_TO_SUPERVISOR
+        reasonCodes:
+          type: string
+          nullable: true
+        extraDetails:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    PaginationResponseScoringBureauCallDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/ScoringBureauCallDTO"
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true
+    ScoringBureauCallDTO:
+      required:
+      - bureauName
+      - callDate
+      - isSuccess
+      - referenceCode
+      - scoringCaseId
+      type: object
+      properties:
+        scoringBureauCallId:
+          type: string
+          format: uuid
+          nullable: true
+        scoringCaseId:
+          type: string
+          format: uuid
+        bureauName:
+          type: string
+          enum:
+          - AXESOR
+          - EQUIFAX
+          - EXPERIAN
+          - ASNEF
+          - OTHER
+        callDate:
+          type: string
+          format: date-time
+        referenceCode:
+          type: string
+        isSuccess:
+          type: boolean
+        rawResponse:
+          type: string
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    ScoringRequestDTO:
+      required:
+      - requestStatus
+      - requestTimestamp
+      - scoringCaseId
+      - scoringModelId
+      type: object
+      properties:
+        scoringRequestId:
+          type: string
+          format: uuid
+          nullable: true
+        scoringCaseId:
+          type: string
+          format: uuid
+        scoringModelId:
+          type: string
+          format: uuid
+        requestTimestamp:
+          type: string
+          format: date-time
+        requestStatus:
+          type: string
+          enum:
+          - COMPLETED
+          - FAILED
+          - PENDING
+          - IN_PROGRESS
+          - TIMEOUT
+        note:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    PaginationResponseScoringModelDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/ScoringModelDTO"
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true
+    ScoringModelDTO:
+      required:
+      - modelApproach
+      - modelName
+      - modelStatus
+      - modelVersion
+      - scoreDimension
+      type: object
+      properties:
+        scoringModelId:
+          type: string
+          format: uuid
+          nullable: true
+        modelName:
+          type: string
+        modelVersion:
+          type: string
+        scoreDimension:
+          type: string
+          enum:
+          - FINANCIAL
+          - NON_FINANCIAL
+          - COMBINED
+          - BEHAVIORAL
+        modelApproach:
+          type: string
+          enum:
+          - AI
+          - RULES_BASED
+          - HYBRID
+          - STATISTICAL
+        modelStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - DEPRECATED
+          - TESTING
+          - DISABLED
+        note:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    ScoringCaseDTO:
+      required:
+      - caseStatus
+      - caseType
+      - customerId
+      type: object
+      properties:
+        scoringCaseId:
+          type: string
+          format: uuid
+          nullable: true
+        loanApplicationId:
+          type: string
+          format: uuid
+          nullable: true
+        customerId:
+          type: string
+          format: uuid
+        caseStatus:
+          type: string
+          enum:
+          - OPEN
+          - COMPLETED
+          - FAILED
+          - CANCELLED
+        caseType:
+          type: string
+          enum:
+          - APPLICATION
+          - RE_SCORING
+          - PORTFOLIO_MONITOR
+          - PRE_APPROVAL
+        remarks:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true

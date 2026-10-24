@@ -14,13 +14,6 @@ The repository column is the service that does the work. Gateways that only forw
 
 Channel Portfolio and Branch Portfolio are BIAN names in Channel management. The source extract used here has no job description for either name, so they have no row.
 
-## Counts
-
-- Covers: 8
-- Partial: 61
-- Absent: 132
-- BIAN rows: 201
-
 Insurance capabilities that have no BIAN service domain are in [Outside BIAN](#outside-bian), together with banking work that was left unmapped so it would not be forced onto a nearby domain.
 
 ## Customers

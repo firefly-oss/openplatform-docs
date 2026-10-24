@@ -1,0 +1,1383 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:18080
+  description: Generated server url
+tags:
+- name: Asset Finance
+  description: "Asset finance agreements. Product kinds: LEASING, a financial lease\
+    \ with a purchase option, and RENTING, an operating rental without a purchase\
+    \ option."
+paths:
+  /api/v1/asset-finance/agreements/{agreementId}/status:
+    put:
+      tags:
+      - Asset Finance
+      summary: Update status
+      description: Runs the status saga. The stored product kind is kept.
+      operationId: updateAgreementStatus
+      parameters:
+      - name: agreementId
+        in: path
+        description: Unique identifier of the agreement
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StatusChangeRequest"
+        required: true
+      responses:
+        "200":
+          description: Agreement updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssetFinanceAgreementDTO"
+        "404":
+          description: Agreement not found
+  /api/v1/asset-finance/agreements/{agreementId}/end-options/{optionId}:
+    put:
+      tags:
+      - Asset Finance
+      summary: Update end option
+      description: Updates a lease-end option (e.g. marks it as exercised).
+      operationId: updateEndOption
+      parameters:
+      - name: agreementId
+        in: path
+        description: Unique identifier of the agreement
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: optionId
+        in: path
+        description: Unique identifier of the end option
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EndOptionDTO"
+        required: true
+      responses:
+        "200":
+          description: End option updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EndOptionDTO"
+        "404":
+          description: End option not found
+  /api/v1/asset-finance/agreements/{agreementId}:
+    get:
+      tags:
+      - Asset Finance
+      summary: Get agreement
+      description: Retrieves an asset finance agreement by its identifier.
+      operationId: getAgreement
+      parameters:
+      - name: agreementId
+        in: path
+        description: Unique identifier of the agreement
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Agreement found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssetFinanceAgreementDTO"
+        "404":
+          description: Agreement not found
+    put:
+      tags:
+      - Asset Finance
+      summary: Update agreement
+      description: Runs the update saga. Status is left unchanged. The financeType
+        on the body is passed through.
+      operationId: updateAgreement
+      parameters:
+      - name: agreementId
+        in: path
+        description: Unique identifier of the agreement
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssetFinanceAgreementDTO"
+        required: true
+      responses:
+        "200":
+          description: Agreement updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssetFinanceAgreementDTO"
+        "404":
+          description: Agreement not found
+  /api/v1/asset-finance/agreements/{agreementId}/end-options:
+    get:
+      tags:
+      - Asset Finance
+      summary: List end options
+      description: Lists all lease-end purchase options for an agreement.
+      operationId: getAgreementEndOptions
+      parameters:
+      - name: agreementId
+        in: path
+        description: Unique identifier of the agreement
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: End options listed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginationResponseEndOptionDTO"
+    post:
+      tags:
+      - Asset Finance
+      summary: Create end option
+      description: Creates a lease-end purchase option for an agreement.
+      operationId: createEndOption
+      parameters:
+      - name: agreementId
+        in: path
+        description: Unique identifier of the agreement
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EndOptionDTO"
+        required: true
+      responses:
+        "201":
+          description: End option created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EndOptionDTO"
+  /api/v1/asset-finance/agreements/{agreementId}/close:
+    post:
+      tags:
+      - Asset Finance
+      summary: Close agreement
+      description: Closes the agreement when the asset finance core allows CLOSED.
+      operationId: closeAgreement
+      parameters:
+      - name: agreementId
+        in: path
+        description: Unique identifier of the agreement
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReasonRequest"
+        required: true
+      responses:
+        "200":
+          description: Agreement closed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssetFinanceAgreementDTO"
+        "404":
+          description: Agreement not found
+  /api/v1/asset-finance/agreements/{agreementId}/assets/{assetId}/usage:
+    get:
+      tags:
+      - Asset Finance
+      summary: List usage records
+      description: Lists all usage snapshots for an asset.
+      operationId: getAssetUsage
+      parameters:
+      - name: agreementId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Usage records listed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginationResponseUsageRecordDTO"
+    post:
+      tags:
+      - Asset Finance
+      summary: Report usage
+      description: "Records a usage snapshot (mileage, operating hours) for an asset."
+      operationId: reportUsage
+      parameters:
+      - name: agreementId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UsageRecordDTO"
+        required: true
+      responses:
+        "201":
+          description: Usage reported
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsageRecordDTO"
+  /api/v1/asset-finance/agreements/{agreementId}/assets/{assetId}/service-events:
+    get:
+      tags:
+      - Asset Finance
+      summary: List service events
+      description: Lists all service events logged for an asset.
+      operationId: getAssetServiceEvents
+      parameters:
+      - name: agreementId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Events listed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginationResponseServiceEventDTO"
+    post:
+      tags:
+      - Asset Finance
+      summary: Register service event
+      description: "Logs a service event (maintenance, damage, inspection) for an\
+        \ asset."
+      operationId: registerServiceEvent
+      parameters:
+      - name: agreementId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServiceEventDTO"
+        required: true
+      responses:
+        "201":
+          description: Event registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceEventDTO"
+  /api/v1/asset-finance/agreements/{agreementId}/assets/{assetId}/returns:
+    get:
+      tags:
+      - Asset Finance
+      summary: List returns
+      description: Lists all return records for an asset.
+      operationId: getAssetReturns
+      parameters:
+      - name: agreementId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Returns listed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginationResponseReturnRecordDTO"
+    post:
+      tags:
+      - Asset Finance
+      summary: Register return
+      description: Creates a return and condition assessment record for an asset.
+      operationId: registerReturn
+      parameters:
+      - name: agreementId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReturnRecordDTO"
+        required: true
+      responses:
+        "201":
+          description: Return registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReturnRecordDTO"
+  /api/v1/asset-finance/agreements/{agreementId}/assets/{assetId}/pickups:
+    get:
+      tags:
+      - Asset Finance
+      summary: List pickups
+      description: Lists all pickup records for an asset.
+      operationId: getAssetPickups
+      parameters:
+      - name: agreementId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Pickups listed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginationResponsePickupRecordDTO"
+    post:
+      tags:
+      - Asset Finance
+      summary: Register pickup
+      description: Creates a pickup record for an asset.
+      operationId: registerPickup
+      parameters:
+      - name: agreementId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PickupRecordDTO"
+        required: true
+      responses:
+        "201":
+          description: Pickup registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PickupRecordDTO"
+  /api/v1/asset-finance/agreements/{agreementId}/assets/{assetId}/deliveries:
+    get:
+      tags:
+      - Asset Finance
+      summary: List deliveries
+      description: Lists all delivery records for an asset.
+      operationId: getAssetDeliveries
+      parameters:
+      - name: agreementId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Deliveries listed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginationResponseDeliveryRecordDTO"
+    post:
+      tags:
+      - Asset Finance
+      summary: Register delivery
+      description: Creates a delivery record for an asset.
+      operationId: registerDelivery
+      parameters:
+      - name: agreementId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeliveryRecordDTO"
+        required: true
+      responses:
+        "201":
+          description: Delivery registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeliveryRecordDTO"
+  /api/v1/asset-finance/agreements/{agreementId}/assets:
+    get:
+      tags:
+      - Asset Finance
+      summary: List assets
+      description: Lists all physical assets registered under an agreement.
+      operationId: getAgreementAssets
+      parameters:
+      - name: agreementId
+        in: path
+        description: Unique identifier of the agreement
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Assets listed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginationResponseAssetFinanceAssetDTO"
+    post:
+      tags:
+      - Asset Finance
+      summary: Register asset
+      description: Registers a physical asset under an agreement.
+      operationId: registerAsset
+      parameters:
+      - name: agreementId
+        in: path
+        description: Unique identifier of the agreement
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssetFinanceAssetDTO"
+        required: true
+      responses:
+        "201":
+          description: Asset registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssetFinanceAssetDTO"
+        "400":
+          description: Invalid request
+  /api/v1/asset-finance/agreements:
+    get:
+      tags:
+      - Asset Finance
+      summary: List agreements
+      description: Reads the agreement page from core-lending-asset-finance.
+      operationId: listAgreements
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Agreements listed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginationResponseAssetFinanceAgreementDTO"
+    post:
+      tags:
+      - Asset Finance
+      summary: Create agreement
+      description: Runs the register saga. The financeType is LEASING or RENTING and
+        is passed through to the asset finance core.
+      operationId: createAgreement
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssetFinanceAgreementDTO"
+        required: true
+      responses:
+        "201":
+          description: Agreement created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssetFinanceAgreementDTO"
+        "400":
+          description: Invalid request
+  /api/v1/asset-finance/agreements/{agreementId}/assets/{assetId}:
+    get:
+      tags:
+      - Asset Finance
+      summary: Get asset
+      description: Retrieves a single asset by its identifier.
+      operationId: getAsset
+      parameters:
+      - name: agreementId
+        in: path
+        description: Unique identifier of the agreement
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: assetId
+        in: path
+        description: Unique identifier of the asset
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        description: "Unique key for idempotent requests. If provided, ensures that\
+          \ identical requests with the same key will only be processed once."
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Asset found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssetFinanceAssetDTO"
+        "404":
+          description: Asset not found
+components:
+  schemas:
+    StatusChangeRequest:
+      type: object
+      properties:
+        status:
+          type: string
+        statusReason:
+          type: string
+    AssetFinanceAgreementDTO:
+      required:
+      - agreementStatus
+      - endDate
+      - financeType
+      - paymentFrequency
+      - startDate
+      - totalValue
+      type: object
+      properties:
+        assetFinanceAgreementId:
+          type: string
+          format: uuid
+          nullable: true
+        loanServicingCaseId:
+          type: string
+          format: uuid
+          nullable: true
+        financeType:
+          type: string
+          enum:
+          - RENTING
+          - LEASING
+        agreementStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - SUSPENDED
+          - CLOSED
+          - TERMINATED
+          - DEFAULTED
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        totalValue:
+          type: number
+        paymentFrequency:
+          type: string
+        servicesIncluded:
+          type: boolean
+          nullable: true
+        depositAmount:
+          type: number
+          nullable: true
+        earlyTerminationFee:
+          type: number
+          nullable: true
+        residualValue:
+          type: number
+          nullable: true
+        purchaseOptionAvailable:
+          type: boolean
+          nullable: true
+        purchaseOptionPrice:
+          type: number
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    EndOptionDTO:
+      required:
+      - assetFinanceAgreementId
+      - optionExerciseDate
+      - optionPaidAmount
+      type: object
+      properties:
+        endOptionId:
+          type: string
+          format: uuid
+          nullable: true
+        assetFinanceAgreementId:
+          type: string
+          format: uuid
+        optionExerciseDate:
+          type: string
+          format: date
+        optionPaidAmount:
+          type: number
+        isExercised:
+          type: boolean
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    ReasonRequest:
+      type: object
+      properties:
+        statusReason:
+          type: string
+    UsageRecordDTO:
+      required:
+      - assetFinanceAssetId
+      - usageDate
+      type: object
+      properties:
+        usageRecordId:
+          type: string
+          format: uuid
+          nullable: true
+        assetFinanceAssetId:
+          type: string
+          format: uuid
+        usageDate:
+          type: string
+          format: date
+        mileage:
+          type: integer
+          format: int32
+          nullable: true
+        usageDetail:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    ServiceEventDTO:
+      required:
+      - assetFinanceAssetId
+      - eventDate
+      - eventType
+      type: object
+      properties:
+        serviceEventId:
+          type: string
+          format: uuid
+          nullable: true
+        assetFinanceAssetId:
+          type: string
+          format: uuid
+        eventDate:
+          type: string
+          format: date
+        eventType:
+          type: string
+          enum:
+          - MAINTENANCE
+          - DAMAGE
+          - RETURN
+          - INSPECTION
+          - MODIFICATION
+        cost:
+          type: number
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    ReturnRecordDTO:
+      required:
+      - actualReturnDate
+      - assetFinanceAssetId
+      - conditionReport
+      type: object
+      properties:
+        returnRecordId:
+          type: string
+          format: uuid
+          nullable: true
+        assetFinanceAssetId:
+          type: string
+          format: uuid
+        actualReturnDate:
+          type: string
+          format: date
+        conditionReport:
+          type: string
+        damageCost:
+          type: number
+          nullable: true
+        isFinalized:
+          type: boolean
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    PickupRecordDTO:
+      required:
+      - assetFinanceAssetId
+      - pickupAddress
+      - pickupStatus
+      type: object
+      properties:
+        pickupRecordId:
+          type: string
+          format: uuid
+          nullable: true
+        assetFinanceAssetId:
+          type: string
+          format: uuid
+        pickupStatus:
+          type: string
+          enum:
+          - PENDING
+          - SCHEDULED
+          - IN_TRANSIT
+          - PICKED_UP
+          - FAILED
+          - CANCELLED
+        scheduledPickupDate:
+          type: string
+          format: date
+          nullable: true
+        actualPickupDate:
+          type: string
+          format: date
+          nullable: true
+        pickupAddress:
+          type: string
+        pickupCity:
+          type: string
+          nullable: true
+        pickupState:
+          type: string
+          nullable: true
+        pickupPostalCode:
+          type: string
+          nullable: true
+        pickupCountry:
+          type: string
+          nullable: true
+        carrierName:
+          type: string
+          nullable: true
+        trackingNumber:
+          type: string
+          nullable: true
+        collectorName:
+          type: string
+          nullable: true
+        collectorPhone:
+          type: string
+          nullable: true
+        collectorEmail:
+          type: string
+          nullable: true
+        signatureReceived:
+          type: boolean
+          nullable: true
+        pickupConditionNotes:
+          type: string
+          nullable: true
+        pickupPhotoUrls:
+          type: array
+          nullable: true
+          items:
+            type: string
+        failedPickupReason:
+          type: string
+          nullable: true
+        pickupAttempts:
+          type: integer
+          format: int32
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    DeliveryRecordDTO:
+      required:
+      - assetFinanceAssetId
+      - deliveryAddress
+      - deliveryStatus
+      type: object
+      properties:
+        deliveryRecordId:
+          type: string
+          format: uuid
+          nullable: true
+        assetFinanceAssetId:
+          type: string
+          format: uuid
+        deliveryStatus:
+          type: string
+          enum:
+          - PENDING
+          - SCHEDULED
+          - IN_TRANSIT
+          - DELIVERED
+          - FAILED
+          - CANCELLED
+        scheduledDeliveryDate:
+          type: string
+          format: date
+          nullable: true
+        actualDeliveryDate:
+          type: string
+          format: date
+          nullable: true
+        deliveryAddress:
+          type: string
+        deliveryCity:
+          type: string
+          nullable: true
+        deliveryState:
+          type: string
+          nullable: true
+        deliveryPostalCode:
+          type: string
+          nullable: true
+        deliveryCountry:
+          type: string
+          nullable: true
+        carrierName:
+          type: string
+          nullable: true
+        trackingNumber:
+          type: string
+          nullable: true
+        recipientName:
+          type: string
+          nullable: true
+        recipientPhone:
+          type: string
+          nullable: true
+        recipientEmail:
+          type: string
+          nullable: true
+        signatureReceived:
+          type: boolean
+          nullable: true
+        deliveryConditionNotes:
+          type: string
+          nullable: true
+        deliveryPhotoUrls:
+          type: array
+          nullable: true
+          items:
+            type: string
+        failedDeliveryReason:
+          type: string
+          nullable: true
+        deliveryAttempts:
+          type: integer
+          format: int32
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    AssetFinanceAssetDTO:
+      required:
+      - assetDescription
+      - assetFinanceAgreementId
+      - assetSerialNumber
+      - assetTypeId
+      - assetValue
+      type: object
+      properties:
+        assetFinanceAssetId:
+          type: string
+          format: uuid
+          nullable: true
+        assetFinanceAgreementId:
+          type: string
+          format: uuid
+        assetTypeId:
+          type: string
+          format: uuid
+        assetDescription:
+          type: string
+        assetSerialNumber:
+          type: string
+        assetValue:
+          type: number
+        isActive:
+          type: boolean
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    PaginationResponseEndOptionDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/EndOptionDTO"
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true
+    PaginationResponseUsageRecordDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/UsageRecordDTO"
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true
+    PaginationResponseServiceEventDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/ServiceEventDTO"
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true
+    PaginationResponseReturnRecordDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/ReturnRecordDTO"
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true
+    PaginationResponsePickupRecordDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/PickupRecordDTO"
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true
+    PaginationResponseDeliveryRecordDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/DeliveryRecordDTO"
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true
+    PaginationResponseAssetFinanceAssetDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/AssetFinanceAssetDTO"
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true
+    PaginationResponseAssetFinanceAgreementDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/AssetFinanceAgreementDTO"
+        totalElements:
+          type: integer
+          format: int64
+          nullable: true
+        totalPages:
+          type: integer
+          format: int32
+          nullable: true
+        currentPage:
+          type: integer
+          format: int32
+          nullable: true

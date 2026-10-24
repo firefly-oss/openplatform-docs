@@ -1,71 +1,45 @@
-# Start here
+# Get started
 
-<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+Start with one explicit business outcome and the exact repositories that implement it. Use synthetic data and disposable infrastructure for qualification. A running process or a successful create-record response establishes only that part of the operation.
 
-This is one path through the sandbox, for OpenPlatform 26.10.4. The person is Ada Lovelace the whole way. You sign her in, you ask whether she may act, and you ask for a decision only when the step creates a record. The sandbox does not start an identity provider and it does not call a credit bureau. Jafly supplies the rules and the identity adapters. Their versions come from framework parent 26.10.20, imported by `firefly-parent` 26.10.4.
+## 1. Select a business operation and its prerequisites
 
-Her username is `sample-journey`. Her actor id is `11111111-1111-4111-8111-111111111111`. The agreement you will see printed, and the agreement a payment or a policy can name, is `10000000-0000-4000-8000-000000000021`. The product on that agreement is the Horizon Personal Loan, `10000000-0000-4000-8000-000000000202`.
+Choose a requirement from [Business journeys](journeys/index.md). Record the acting subject and tenant, affected resources, effective date, currency and amount where applicable, expected durable result, and the party authorized to approve a referral or exception. Identify the alternate outcomes before making a write.
 
-## Who is calling
+For example, qualifying account opening requires current eligibility evidence, the intended contract and account, correct ownership and spaces, and a proven funding effect when funding is requested. Creating an account row alone does not satisfy that outcome.
 
-`POST http://localhost:8085/api/v1/identity/subjects`
+## 2. Resolve the implementation and dependencies
 
-```text
-{ "username": "sample-journey" }
+Use the [repository map](reference/repositories.md) to find the experience, domain, and owning core. Read each repository's README and `docs/openplatform/` guide for source paths, modules, configuration, API operations, and current tests. Follow the producer's checked-in OpenAPI contract; do not infer a request from a diagram or from an SDK generated for another revision.
+
+Keep Jafly dependencies under `org.fireflyframework` and OpenPlatform services under their declared coordinates. Read the producer POM for its actual version. A local artifact built from an edited producer must precede qualification of its consumers.
+
+## 3. Establish an isolated environment
+
+Use the JDK and build command declared by the repository and CI. Check both `java -version` and `mvn -version`: Maven may select a different JDK. Configure the service's documented database properties and provider selection explicitly. Never point a test initializer at an existing local or shared database.
+
+Where a repository uses Testcontainers, run Docker and let the test provision its private database. For example, the account core's `StoredAccountRowsTest` provisions PostgreSQL, seeds synthetic positions through its own JDBC connection, then calls the actual generated SDK against the running application. It verifies that JDBC and the custom R2DBC connection use that same database and role. This qualifies stored account-position behavior; it does not post or reserve customer funds.
+
+## 4. Run the producer's configured verification
+
+The following commands show the repository build shape; they are not a platform installer. Run them from the relevant producer checkout after reviewing its prerequisites.
+
+```sh
+java -version
+mvn -version
+mvn verify
 ```
 
-She sees HTTP 200, actor `11111111-1111-4111-8111-111111111111`, and provider `sandbox`. An unknown username is HTTP 404. A body with neither a username nor an actor id is HTTP 400. The sandbox does not read a password. `denied-actor`, actor `22222222-2222-4222-8222-222222222222`, can be resolved and then fails the next check.
+Use any documented presubmit script instead when available. OpenAPI generation may launch a temporary application and require dedicated ports and dependencies. Serialize generation when the parent configuration uses a fixed port. Skipping generation is useful for a targeted test run only when a separately verified producer contract already exists; it is not fresh SDK-generation evidence.
 
-## Whether she may create a party
+## 5. Execute the actual SDK boundary
 
-`POST http://localhost:8085/api/v1/access/checks`
+Use the API/client example in the repository guide and replace synthetic IDs with records created in the same isolated environment. Preserve required fields and enum values. Carry a stable business action identity through retries; distinguish it from a transport response-cache header. Verify validation failures reach no business write.
 
-```text
-{
-  // actorId: 11111111-1111-4111-8111-111111111111
-  // action: CREATE
-  // resourceType: PARTY
-  // resourceId: 10000000-0000-4000-8000-000000000001
-}
-```
+A sandbox must implement the same port as its provider replacement and expose pending, rejected, unavailable, and uncertain outcomes. [Integrations](adapters/index.md) explains the replacement contract. Do not treat a constant score or an in-memory success response as provider acceptance.
 
-Both allow and deny return HTTP 200. She sees `allowed: true` and may continue. `allowed: false` means stop. Do not call the domain. That is what `denied-actor` sees.
+## 6. Prove recovery and retain evidence
 
-## The decision, when the step creates a record
+Repeat the same action, change its immutable input under the same key, restart the responsible process, and inspect the authoritative rows and events. Include denied and cross-tenant cases, a lost response, and failure after an intermediate write. Capture source revisions, exact commands, SDK/OpenAPI digests, isolated-resource configuration, test outputs, and the resulting durable IDs.
 
-`POST http://localhost:8042/api/v1/decisions`
-
-```text
-{
-  // partyId: 11111111-1111-4111-8111-111111111111
-  // journeyStep: ONBOARDING
-  // attributes: { highRisk: false }
-}
-```
-
-Omit the score. The sandbox report fills 640. She sees `REFER` and `CREDIT_SCORE_BELOW_THRESHOLD`, because 640 is below 680. A referral does not stop her. `highRisk: true` is `DECLINE` and `HIGH_RISK`, and a decline does not write the record. The same call is used for `INSURANCE_QUOTE`, `INSURANCE_BIND`, `CLAIM`, and a lending application.
-
-## The rest of the afternoon
-
-Onboard her at `POST http://localhost:8096/api/v1/onboarding/individuals`. Send `productFamily` `INSURANCE` and she sees phase `NON_REGULATED` and a new contract id. She does not see an identity case. Send `DEPOSITS`, or omit the family, and she is registered and the journey waits for personal data, economic data, identity documents, a verification signal, and completion. The body is on [onboarding](experience/public/onboarding.md).
-
-Read what she holds at `GET http://localhost:8103/api/v1/experience/profile/11111111-1111-4111-8111-111111111111/contracts`. Each row is an agreement and the product on it. Agreement `...021` appears only when the contract service holds it for her. See [profile](experience/public/profile.md).
-
-Issue the reading copy of that agreement as template `contract`. She can read HTML: Horizon Personal Loan, five years, two lines, each part its own sheet.
-Source: the sandbox sample prints 250,000.00 EUR. See [documents](shared/documents.md).
-
-Send money from [payments](experience/public/payments.md). Try, then confirm with the numeric code. The word sandbox does not confirm. The ledger posts on confirm, not on try. Cancel releases a hold that was never posted. An inbound credit posts once.
-
-Quote, bind, and claim from [insurance](experience/public/insurance.md). Those three ask for a decision. Status, withdraw, cancel, and close do not. Insurance does not move the loan amount and does not post a ledger entry.
-
-Apply for the Horizon Personal Loan at `POST http://localhost:8102/api/v1/experience/lending/applications` with product `10000000-0000-4000-8000-000000000202`, the sample amount, and term 60. The journey reads `journey.lending.min-credit-score` before it decides. After the loan exists she can read `GET /api/v1/experience/lending/loans/{id}/calendar`. See [lending](experience/public/lending.md).
-
-## Who else can call
-
-| Username | Actor id | What the sandbox allows |
-| --- | --- | --- |
-| `sample-journey` | `11111111-1111-4111-8111-111111111111` | Read and create on the sample party, account, card, policy, claim, contract, and product. |
-| `sample-employee` | `33333333-3333-4333-8333-333333333333` | Read, plus administer and impersonate. |
-| `denied-actor` | `22222222-2222-4222-8222-222222222222` | Nothing. The access check returns `allowed: false`. |
-
-The employee does not use Ada's calls. The finance terminal is port 8120 and the insurance terminal is port 8121.
+The [operating guide](operations/index.md) explains how to handle duplicate requests, partial failures, and uncertain outcomes.

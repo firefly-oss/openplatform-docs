@@ -1,81 +1,95 @@
-# Onboarding
+# Onboarding experience
 
-Someone new becomes a customer, or a company does. The same service runs both. What happens next depends on the product family she names. Banking families are regulated: deposits, payments, lending, and cards. Insurance is not. A regulated start registers the person and opens identity checks. A non-regulated start opens a contract and leaves quote, bind, and claim to the insurance journey. A decline stops either path before that write.
+Establish trusted customer or employee context, tenant, party, product, consent, evidence, screening, review, and a durable approval. Individual and business onboarding need separate evidence, ownership, signer, and exception handling.
 
-Ada Lovelace can be the person who starts. If she sends her party id `11111111-1111-4111-8111-111111111111`, that id is the one sent to the decision. If she omits it, the tenant id is used for the decision. The sandbox agreement `10000000-0000-4000-8000-000000000021` is not created by this call. A non-regulated start asks the contract service for a new contract id and returns that id as the onboarding id.
+[Business lifecycle](../../journeys/shared.md) · [Repository guide](https://github.com/fireflysoftwaresolutions/exp-onboarding) · [Source reference](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/docs/openplatform/reference.md)
 
-The journey checks access as `sample-journey`, the sandbox customer. If that check is not allowed, nothing is registered and no contract is opened.
+## Behavior and limitations
 
-The decision runs next, for onboarding. She does not send a score. The sandbox report is 640, below 680, so the outcome is a referral. A referral continues. High risk is a decline, and a decline does not register her and does not open a contract.
+The current sample catalog routes INSURANCE to a contract-only NON_REGULATED branch and banking families to verification workflows. That is an implementation classification, not a statement of legal obligations. These branches require explicit eligibility, caller ownership, and evidence checks before they can activate an account or customer relationship.
 
-If she sends product family `INSURANCE`, the catalog says the family is not regulated and the industry is insurance. The journey opens a contract for that industry and stops. The response phase is `NON_REGULATED`. There is no identity case and no welcome-and-wait.
+## Declared entry points
 
-If she omits the family, or she sends `DEPOSITS`, `PAYMENTS`, `LENDING`, or `CARDS`, the regulated path starts. For a person it registers her from her name and email, opens an identity case, and sends a welcome. It then waits. She submits personal data, economic data, and identity documents, asks for verification, and asks to complete. A company uses the business call and waits for company data, beneficial owners, documents, authorized signers, a business verification signal, and completion. Replaying the same email does not create a second person.
+The table is derived from local controller mappings. It does not include inherited, conditional, gateway, or framework routes and is not a runtime security or completeness assertion.
 
-<div class="ff-journey" markdown="0">
-<img src="../../../assets/journeys/onboarding.svg" alt="Sequence: Ada names a product family. Access and the decision run first. A decline stops. Insurance opens a contract. A deposit registers her and opens verification. A later failure closes her and cancels the case.">
-</div>
+| Method | Path | Source |
+| --- | --- | --- |
+| `GET` | `/api/v1/onboarding/businesses/{onboardingId}` | [BusinessOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingController.java) |
+| `GET` | `/api/v1/onboarding/businesses/{onboardingId}/kyb/status` | [BusinessOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/businesses` | [BusinessOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/businesses/{onboardingId}/company-data` | [BusinessOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/businesses/{onboardingId}/ubos` | [BusinessOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/businesses/{onboardingId}/corporate-documents` | [BusinessOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/businesses/{onboardingId}/authorized-signers` | [BusinessOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/businesses/{onboardingId}/kyb` | [BusinessOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/businesses/{onboardingId}/completion` | [BusinessOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingController.java) |
+| `PATCH` | `/api/v1/onboarding/businesses/{onboardingId}` | [BusinessOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingController.java) |
+| `GET` | `/api/v1/onboarding/businesses/search/{bvdId}` | [BusinessSearchController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessSearchController.java) |
+| `POST` | `/api/v1/onboarding/businesses/search` | [BusinessSearchController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessSearchController.java) |
+| `GET` | `/api/v1/onboarding/individuals/{onboardingId}` | [IndividualOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/IndividualOnboardingController.java) |
+| `GET` | `/api/v1/onboarding/individuals/{onboardingId}/kyc/status` | [IndividualOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/IndividualOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/individuals` | [IndividualOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/IndividualOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/individuals/{onboardingId}/personal-data` | [IndividualOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/IndividualOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/individuals/{onboardingId}/economic-data` | [IndividualOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/IndividualOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/individuals/{onboardingId}/identity-documents` | [IndividualOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/IndividualOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/individuals/{onboardingId}/kyc` | [IndividualOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/IndividualOnboardingController.java) |
+| `POST` | `/api/v1/onboarding/individuals/{onboardingId}/completion` | [IndividualOnboardingController](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/main/java/io/fireflysoftware/experience/onboarding/web/controllers/IndividualOnboardingController.java) |
 
-If a later step of the regulated path fails after she has been registered, the journey asks for her closure and cancels the identity case. If registration never produced a person, that closure is skipped. If a step inside registration fails after some of her records exist, those records are removed.
+## Reproduce a source-specific boundary
 
-A family the catalog does not know does not open a contract and does not start verification.
+## Consumer example: start the business onboarding response contract
 
-## What she sees
+Start with this repository-owned executable contract before connecting a full runtime. Use the JDK required by the effective parent, Maven, and the matching internal artifacts. The selected test defines its own collaborators; no provider credentials should be added to it. Run from this repository root:
 
-On the insurance start she sees an onboarding id that is a new contract id, phase `NON_REGULATED`, and next step `INSURANCE`. She does not see a person id created by this call, and she does not see an identity case. Agreement `10000000-0000-4000-8000-000000000021` is not that new id.
-
-On the deposit start she sees a person id, a phase that is waiting for personal data, and a welcome notification. She then sends personal data, economic data, and identity documents. After verification and completion she sees the journey move forward, and finishing onboarding issues the welcome document through the document domain SDK. The same email sent again does not create a second person.
-
-## Where the records go
-
-A regulated registration writes the person in the customer core and the identity case in the verification core. A non-regulated start writes a contract in the contract core and stops. Neither path posts money. The Horizon Personal Loan document is a later reading copy, not this call.
-
-## What a refusal does
-
-When access is not allowed, the workflow does not start and no contract is opened.
-
-A decline returns the decision failure and writes neither a person nor a contract. The sample decline is high risk, reason `HIGH_RISK`.
-
-A malformed personal, economic, or document signal is HTTP 400. If the regulated start does not reach the first wait within 30 seconds, the call times out. If the workflow has already failed, been cancelled, or timed out, the start is refused instead of returning an empty person.
-
-The published spec lists tenant, first name, last name, and email as required. The service also reads `productFamily`, `partyId`, and `actorId` when they are present. Omitting `productFamily` is the regulated path, not an error.
-
-## Reference
-
-Person: `POST /api/v1/onboarding/individuals` on port 8096.
-
-```text
-// Insurance. Opens a contract. Does not start identity checks.
-{
-  // tenantId: required identifier
-  // firstName: Ada
-  // lastName: Lovelace
-  // email: her email
-  // partyId: 11111111-1111-4111-8111-111111111111
-  // productFamily: INSURANCE
-}
-// onboardingId is the new contract id
-// currentPhase: NON_REGULATED
-// nextStep: INSURANCE
-
-// A deposit. Registers her and waits.
-{
-  // same name and email
-  // productFamily: DEPOSITS
-}
+```sh
+mvn -B -pl exp-onboarding-web -am test -DskipOpenApiGen \
+  -Dtest=BusinessOnboardingControllerTest -Dsurefire.failIfNoSpecifiedTests=false
 ```
 
-Later person calls, each with the onboarding id from the start:
+Runtime integration remains gated on the service configuration and selected adapters described below. The local port and bean-selection inventory below distinguishes the declared abstraction from its configured implementation. An SDK client is an outbound integration; its presence does not establish a working provider connection. Where a sandbox adapter is selected, its behavior is synthetic and limited to what that adapter implements.
 
-| Call | What she sends |
-| --- | --- |
-| `POST .../personal-data` | Address and personal details |
-| `POST .../economic-data` | Income and housing |
-| `POST .../identity-documents` | The documents |
-| `POST .../kyc` | The signal to verify |
-| `GET .../kyc/status` | Whether the case is open |
-| `POST .../completion` | The signal to finish |
+**Inputs and fixture ownership.** The complete linked test class supplies its imports, setup, synthetic IDs and collaborators. Run that class as shown; the excerpt is not a standalone Java program. Mocked collaborators include `BusinessOnboardingService`. For a deployed call, replace fixture IDs with IDs returned by the owning record-creation API and keep tenant/parent associations intact. The request values and assertions below describe this test boundary only.
 
-A company uses `POST /api/v1/onboarding/businesses` and then company data, beneficial owners, corporate documents, authorized signers, business verification, and completion.
+```java
+@Test
+    void initiateOnboarding_returnsCreatedWithBusinessOnboardingResponse() {
+        when(onboardingService.initiateOnboarding(any(InitiateBusinessOnboardingCommand.class)))
+                .thenReturn(Mono.just(MOCK_STATUS));
 
-The type names are `InitiateOnboardingCommand` and `ProductFamily`. The regulated families in the sandbox catalog are `DEPOSITS`, `PAYMENTS`, `LENDING`, and `CARDS`. `INSURANCE` is `NON_REGULATED`. The calls are also on the [onboarding API](../../api/onboarding.md).
+        InitiateBusinessOnboardingCommand command = InitiateBusinessOnboardingCommand.builder()
+                .businessName("Acme Corp")
+                .registrationNumber("B12345678")
+                .countryOfIncorporation("ES")
+                .build();
+
+        StepVerifier.create(controller.initiateOnboarding(command))
+                .assertNext(response -> {
+                    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+                    BusinessOnboardingResponse body = response.getBody();
+                    assertThat(body).isNotNull();
+                    assertThat(body.getOnboardingId()).isEqualTo(ONBOARDING_ID);
+                    assertThat(body.getPartyId()).isEqualTo(PARTY_ID);
+                    assertThat(body.getCurrentPhase())
+                            .isEqualTo(BusinessOnboardingWorkflow.PHASE_INITIATED);
+                })
+                .verifyComplete();
+    }
+```
+
+**Expected behavior.** Business name Acme Corp, registration B12345678 and country ES map to a 201 response containing onboarding/party IDs and INITIATED phase. The workflow service is mocked; subsequent KYB, document, and account steps are not executed.
+
+**Verification and recovery.** Run the complete selected test class and inspect its Surefire result: zero failures/errors and at least one executed test are required. A skipped or zero-test build is not evidence. Compare the assertions with the owning DTO/service before extending the request. For a runtime run, separately configure authentication/entitlements and the exact downstream endpoints, migrate/seed disposable owner stores, and reread the returned identifier; these unit/contract fixtures do not establish those prerequisites.
+
+Source of this example: [BusinessOnboardingControllerTest](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-web/src/test/java/io/fireflysoftware/experience/onboarding/web/controllers/BusinessOnboardingControllerTest.java), [InitiateBusinessOnboardingCommand](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-core/src/main/java/io/fireflysoftware/experience/onboarding/core/business/commands/InitiateBusinessOnboardingCommand.java), [SubmitAuthorizedSignersCommand](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-core/src/main/java/io/fireflysoftware/experience/onboarding/core/business/commands/SubmitAuthorizedSignersCommand.java), [SubmitCompanyDataCommand](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-core/src/main/java/io/fireflysoftware/experience/onboarding/core/business/commands/SubmitCompanyDataCommand.java), [SubmitCorporateDocumentsCommand](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-core/src/main/java/io/fireflysoftware/experience/onboarding/core/business/commands/SubmitCorporateDocumentsCommand.java), [SubmitUbosCommand](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-core/src/main/java/io/fireflysoftware/experience/onboarding/core/business/commands/SubmitUbosCommand.java), [UpdatePartialDataCommand](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-core/src/main/java/io/fireflysoftware/experience/onboarding/core/business/commands/UpdatePartialDataCommand.java), [BusinessOnboardingStatusDTO](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-core/src/main/java/io/fireflysoftware/experience/onboarding/core/business/queries/BusinessOnboardingStatusDTO.java), [KybStatusDTO](https://github.com/fireflysoftwaresolutions/exp-onboarding/blob/main/exp-onboarding-core/src/main/java/io/fireflysoftware/experience/onboarding/core/business/queries/KybStatusDTO.java).
+
+
+
+## Configuration and replacement
+
+Read the exact runtime configuration and existing adapter selectors in the repository guide. Defaults are implementation facts, not recommended live settings. A live dependency failure must not fall back to synthetic approval. [The adapter contract](../../adapters/index.md) defines durable request identity, lookup, uncertain outcomes, callbacks, and provenance.
+
+## Required negative and recovery cases
+
+Denied and cross-tenant callers must reach no unauthorized write. Missing or expired evidence, changed intent under the same key, duplicate callback, partial participant failure, lost response, process restart, and replica retry must preserve one authoritative outcome. Retain original and compensating effects; do not delete accepted evidence to simulate rollback. Financial cases reconcile posted, available, reserved, provider, and accounting state.
+
+See [operating procedures](../../operations/index.md) for duplicate requests, partial failures, provider uncertainty, and recovery.

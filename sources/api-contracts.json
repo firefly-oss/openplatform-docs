@@ -1,0 +1,967 @@
+{
+  "source_policy": "Remote-authoritative baseline producer declarations plus explicitly unpublished local additions; current producer bytes are copied with digest provenance, never interpreted as runtime acceptance.",
+  "contracts": [
+    {
+      "repository": "core-banking-accounts",
+      "sdk_module": "core-banking-accounts-sdk",
+      "pom": "core-banking-accounts/core-banking-accounts-sdk/pom.xml",
+      "input_spec": "core-banking-accounts/core-banking-accounts-sdk/src/main/resources/openapi.yml",
+      "operation_count": 107,
+      "schema_count": 34,
+      "security_scheme_count": 1,
+      "source_commit": "9b97b9fe5bc084061ede0cd263f823a3ded66604"
+    },
+    {
+      "repository": "core-banking-cards",
+      "sdk_module": "core-banking-cards-sdk",
+      "pom": "core-banking-cards/core-banking-cards-sdk/pom.xml",
+      "input_spec": "core-banking-cards/core-banking-cards-sdk/src/main/resources/openapi.yml",
+      "operation_count": 116,
+      "schema_count": 33,
+      "security_scheme_count": 0,
+      "source_commit": "84fe51492341fb17200b3b3650d9039d86ce3b83"
+    },
+    {
+      "repository": "core-banking-ledger",
+      "sdk_module": "core-banking-ledger-sdk",
+      "pom": "core-banking-ledger/core-banking-ledger-sdk/pom.xml",
+      "input_spec": "core-banking-ledger/core-banking-ledger-sdk/src/main/resources/openapi.yml",
+      "operation_count": 90,
+      "schema_count": 34,
+      "security_scheme_count": 1,
+      "source_commit": "b9bf0997a056a761556883cb8b399dee33c40fd1"
+    },
+    {
+      "repository": "core-banking-payments",
+      "sdk_module": "core-banking-payments-sdk",
+      "pom": "core-banking-payments/core-banking-payments-sdk/pom.xml",
+      "input_spec": "core-banking-payments/core-banking-payments-sdk/src/main/resources/openapi.yml",
+      "operation_count": 82,
+      "schema_count": 27,
+      "security_scheme_count": 1,
+      "source_commit": "72360395129ca7cbb96f110fed657093fbb72fed"
+    },
+    {
+      "repository": "core-banking-psdx",
+      "sdk_module": "core-banking-psdx-sdk",
+      "pom": "core-banking-psdx/core-banking-psdx-sdk/pom.xml",
+      "input_spec": "core-banking-psdx/core-banking-psdx-sdk/src/main/resources/openapi.yml",
+      "operation_count": 38,
+      "schema_count": 30,
+      "security_scheme_count": 0,
+      "source_commit": "e91894575f1700619f61b2b373af6f8f24b979e3"
+    },
+    {
+      "repository": "core-common-accounting-gl",
+      "sdk_module": "core-common-accounting-gl-sdk",
+      "pom": "core-common-accounting-gl/core-common-accounting-gl-sdk/pom.xml",
+      "input_spec": "core-common-accounting-gl/core-common-accounting-gl-sdk/src/main/resources/openapi.yml",
+      "operation_count": 22,
+      "schema_count": 13,
+      "security_scheme_count": 0,
+      "source_commit": "2561336a2a2e6379c1a9a0ef245ab23c9a732c8d"
+    },
+    {
+      "repository": "core-common-config-mgmt",
+      "sdk_module": "core-common-config-mgmt-sdk",
+      "pom": "core-common-config-mgmt/core-common-config-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-config-mgmt/core-common-config-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 105,
+      "schema_count": 59,
+      "security_scheme_count": 0,
+      "source_commit": "a14ea8cced7261c090285a5b8cdadadb55192bb7"
+    },
+    {
+      "repository": "core-common-contract-mgmt",
+      "sdk_module": "core-common-contract-mgmt-sdk",
+      "pom": "core-common-contract-mgmt/core-common-contract-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-contract-mgmt/core-common-contract-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 59,
+      "schema_count": 45,
+      "security_scheme_count": 0,
+      "source_commit": "b9846569e715603763455a93f31d3eedd16aa884"
+    },
+    {
+      "repository": "core-common-customer-mgmt",
+      "sdk_module": "core-common-customer-mgmt-sdk",
+      "pom": "core-common-customer-mgmt/core-common-customer-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-customer-mgmt/core-common-customer-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 85,
+      "schema_count": 43,
+      "security_scheme_count": 0,
+      "source_commit": "194ebf43f14a83d0fd7cde305a9b8f172a98cac3"
+    },
+    {
+      "repository": "core-common-distributor-mgmt",
+      "sdk_module": "core-common-distributor-mgmt-sdk",
+      "pom": "core-common-distributor-mgmt/core-common-distributor-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-distributor-mgmt/core-common-distributor-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 181,
+      "schema_count": 51,
+      "security_scheme_count": 0,
+      "source_commit": "51f3acad982fcc7b7bc09dd4f9764ee9fea4098f"
+    },
+    {
+      "repository": "core-common-document-mgmt",
+      "sdk_module": "core-common-document-mgmt-sdk",
+      "pom": "core-common-document-mgmt/core-common-document-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-document-mgmt/core-common-document-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 73,
+      "schema_count": 36,
+      "security_scheme_count": 0,
+      "source_commit": "7a1bc83de0d938de2add6608c9bc0976f892cd94"
+    },
+    {
+      "repository": "core-common-kycb-mgmt",
+      "sdk_module": "core-common-kycb-mgmt-sdk",
+      "pom": "core-common-kycb-mgmt/core-common-kycb-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-kycb-mgmt/core-common-kycb-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 111,
+      "schema_count": 45,
+      "security_scheme_count": 0,
+      "source_commit": "53bdc8df2b3f82cf7461ba0e6dfe593cc93b3d96"
+    },
+    {
+      "repository": "core-common-modelhub",
+      "sdk_module": "core-common-modelhub-sdk",
+      "pom": "core-common-modelhub/core-common-modelhub-sdk/pom.xml",
+      "input_spec": "core-common-modelhub/core-common-modelhub-sdk/src/main/resources/openapi.yml",
+      "operation_count": 18,
+      "schema_count": 7,
+      "security_scheme_count": 0,
+      "source_commit": "5031d237391d8f9e188992472580bedf82758c51"
+    },
+    {
+      "repository": "core-common-notification-services",
+      "sdk_module": "core-common-notification-services-sdk",
+      "pom": "core-common-notification-services/core-common-notification-services-sdk/pom.xml",
+      "input_spec": "core-common-notification-services/core-common-notification-services-sdk/src/main/resources/openapi.yml",
+      "operation_count": 3,
+      "schema_count": 7,
+      "security_scheme_count": 0,
+      "source_commit": "aaaaa83ea98d307042747bfb231705b1ca06ace7"
+    },
+    {
+      "repository": "core-common-org-mgmt",
+      "sdk_module": "core-common-org-mgmt-sdk",
+      "pom": "core-common-org-mgmt/core-common-org-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-org-mgmt/core-common-org-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 55,
+      "schema_count": 35,
+      "security_scheme_count": 0,
+      "source_commit": "c3f62b56e33cddadb76085be4869aa02508d2213"
+    },
+    {
+      "repository": "core-common-product-mgmt",
+      "sdk_module": "core-common-product-mgmt-sdk",
+      "pom": "core-common-product-mgmt/core-common-product-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-product-mgmt/core-common-product-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 46,
+      "schema_count": 24,
+      "security_scheme_count": 0,
+      "source_commit": "73104164893dc1714adeffb443d529b6c993d8f5"
+    },
+    {
+      "repository": "core-common-reference-master-data",
+      "sdk_module": "core-common-reference-master-data-sdk",
+      "pom": "core-common-reference-master-data/core-common-reference-master-data-sdk/pom.xml",
+      "input_spec": "core-common-reference-master-data/core-common-reference-master-data-sdk/src/main/resources/openapi.yml",
+      "operation_count": 201,
+      "schema_count": 64,
+      "security_scheme_count": 0,
+      "source_commit": "7c827fda6f42c21b4dadd792f7ac164dc3b3388b"
+    },
+    {
+      "repository": "core-common-sca-mgmt",
+      "sdk_module": "core-common-sca-mgmt-sdk",
+      "pom": "core-common-sca-mgmt/core-common-sca-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-sca-mgmt/core-common-sca-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 28,
+      "schema_count": 16,
+      "security_scheme_count": 0,
+      "source_commit": "4127e3c3d469088c00e0642fc437442f550938ba"
+    },
+    {
+      "repository": "core-common-security-vault",
+      "sdk_module": "core-common-security-vault-sdk",
+      "pom": "core-common-security-vault/core-common-security-vault-sdk/pom.xml",
+      "input_spec": "core-common-security-vault/core-common-security-vault-sdk/src/main/resources/openapi.yml",
+      "operation_count": 30,
+      "schema_count": 19,
+      "security_scheme_count": 0,
+      "source_commit": "0c4ba050cb8f26cc2525ae2d3d7f0e97ac34ce38"
+    },
+    {
+      "repository": "core-common-user-mgmt",
+      "sdk_module": "core-common-user-mgmt-sdk",
+      "pom": "core-common-user-mgmt/core-common-user-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-user-mgmt/core-common-user-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 41,
+      "schema_count": 23,
+      "security_scheme_count": 0,
+      "source_commit": "655b867a35b951d76fa9f14ea355b0dbc851ac75"
+    },
+    {
+      "repository": "core-insurance-claims",
+      "sdk_module": "core-insurance-claims-sdk",
+      "pom": "core-insurance-claims/core-insurance-claims-sdk/pom.xml",
+      "input_spec": "core-insurance-claims/core-insurance-claims-sdk/src/main/resources/openapi.yml",
+      "operation_count": 75,
+      "schema_count": 49,
+      "security_scheme_count": 0,
+      "source_commit": "cac0ed150e5f1c09fa67125aff09be517f4d861f"
+    },
+    {
+      "repository": "core-insurance-delegated-authority",
+      "sdk_module": "core-insurance-delegated-authority-sdk",
+      "pom": "core-insurance-delegated-authority/core-insurance-delegated-authority-sdk/pom.xml",
+      "input_spec": "core-insurance-delegated-authority/core-insurance-delegated-authority-sdk/src/main/resources/openapi.yml",
+      "operation_count": 15,
+      "schema_count": 13,
+      "security_scheme_count": 0,
+      "source_commit": "aa6f0d59529ce35dd565f882623906398c6e1c46"
+    },
+    {
+      "repository": "core-insurance-financials",
+      "sdk_module": "core-insurance-financials-sdk",
+      "pom": "core-insurance-financials/core-insurance-financials-sdk/pom.xml",
+      "input_spec": "core-insurance-financials/core-insurance-financials-sdk/src/main/resources/openapi.yml",
+      "operation_count": 45,
+      "schema_count": 31,
+      "security_scheme_count": 0,
+      "source_commit": "c0b9a15a03f2d6851836e371dd8d60007c4bbcbf"
+    },
+    {
+      "repository": "core-insurance-policies",
+      "sdk_module": "core-insurance-policies-sdk",
+      "pom": "core-insurance-policies/core-insurance-policies-sdk/pom.xml",
+      "input_spec": "core-insurance-policies/core-insurance-policies-sdk/src/main/resources/openapi.yml",
+      "operation_count": 60,
+      "schema_count": 40,
+      "security_scheme_count": 0,
+      "source_commit": "05efb49bb21b0b66cddd51307bb56090e72d7c0c"
+    },
+    {
+      "repository": "core-insurance-reinsurance",
+      "sdk_module": "core-insurance-reinsurance-sdk",
+      "pom": "core-insurance-reinsurance/core-insurance-reinsurance-sdk/pom.xml",
+      "input_spec": "core-insurance-reinsurance/core-insurance-reinsurance-sdk/src/main/resources/openapi.yml",
+      "operation_count": 15,
+      "schema_count": 13,
+      "security_scheme_count": 0,
+      "source_commit": "edba5267cd167109cf8781e19dc7b8167bb3871d"
+    },
+    {
+      "repository": "core-insurance-reserving",
+      "sdk_module": "core-insurance-reserving-sdk",
+      "pom": "core-insurance-reserving/core-insurance-reserving-sdk/pom.xml",
+      "input_spec": "core-insurance-reserving/core-insurance-reserving-sdk/src/main/resources/openapi.yml",
+      "operation_count": 15,
+      "schema_count": 13,
+      "security_scheme_count": 0,
+      "source_commit": "ecbe1450bdc5eac8689ded8a8619110416edf06d"
+    },
+    {
+      "repository": "core-insurance-underwriting",
+      "sdk_module": "core-insurance-underwriting-sdk",
+      "pom": "core-insurance-underwriting/core-insurance-underwriting-sdk/pom.xml",
+      "input_spec": "core-insurance-underwriting/core-insurance-underwriting-sdk/src/main/resources/openapi.yml",
+      "operation_count": 60,
+      "schema_count": 40,
+      "security_scheme_count": 0,
+      "source_commit": "6985af7b185fbb96283a0aac6279a6199d1e57f7"
+    },
+    {
+      "repository": "core-lending-asset-finance",
+      "sdk_module": "core-lending-asset-finance-sdk",
+      "pom": "core-lending-asset-finance/core-lending-asset-finance-sdk/pom.xml",
+      "input_spec": "core-lending-asset-finance/core-lending-asset-finance-sdk/src/main/resources/openapi.yml",
+      "operation_count": 40,
+      "schema_count": 28,
+      "security_scheme_count": 0,
+      "source_commit": "90d42a423aa800c76fcc25b80b3f289b36056d79"
+    },
+    {
+      "repository": "core-lending-collateral-management",
+      "sdk_module": "core-lending-collateral-management-sdk",
+      "pom": "core-lending-collateral-management/core-lending-collateral-management-sdk/pom.xml",
+      "input_spec": "core-lending-collateral-management/core-lending-collateral-management-sdk/src/main/resources/openapi.yml",
+      "operation_count": 80,
+      "schema_count": 52,
+      "security_scheme_count": 0,
+      "source_commit": "8d844ca199b9ac5cb15e2ded211bbbc2197d79e0"
+    },
+    {
+      "repository": "core-lending-credit-cards",
+      "sdk_module": "core-lending-credit-cards-sdk",
+      "pom": "core-lending-credit-cards/core-lending-credit-cards-sdk/pom.xml",
+      "input_spec": "core-lending-credit-cards/core-lending-credit-cards-sdk/src/main/resources/openapi.yml",
+      "operation_count": 30,
+      "schema_count": 22,
+      "security_scheme_count": 0,
+      "source_commit": "943f4494737c2a06bfe81110e2fbcb1d842879c6"
+    },
+    {
+      "repository": "core-lending-credit-scoring",
+      "sdk_module": "core-lending-credit-scoring-sdk",
+      "pom": "core-lending-credit-scoring/core-lending-credit-scoring-sdk/pom.xml",
+      "input_spec": "core-lending-credit-scoring/core-lending-credit-scoring-sdk/src/main/resources/openapi.yml",
+      "operation_count": 31,
+      "schema_count": 24,
+      "security_scheme_count": 0,
+      "source_commit": "5e1a0a128c9c967b55a37101812d72775eabf71b"
+    },
+    {
+      "repository": "core-lending-delinquency-collections",
+      "sdk_module": "core-lending-delinquency-collections-sdk",
+      "pom": "core-lending-delinquency-collections/core-lending-delinquency-collections-sdk/pom.xml",
+      "input_spec": "core-lending-delinquency-collections/core-lending-delinquency-collections-sdk/src/main/resources/openapi.yml",
+      "operation_count": 25,
+      "schema_count": 19,
+      "security_scheme_count": 0,
+      "source_commit": "1d859da35fb3245868eb9e69d71cb33d84740647"
+    },
+    {
+      "repository": "core-lending-loan-origination",
+      "sdk_module": "core-lending-loan-origination-sdk",
+      "pom": "core-lending-loan-origination/core-lending-loan-origination-sdk/pom.xml",
+      "input_spec": "core-lending-loan-origination/core-lending-loan-origination-sdk/src/main/resources/openapi.yml",
+      "operation_count": 111,
+      "schema_count": 42,
+      "security_scheme_count": 0,
+      "source_commit": "b565bf817a3ae18dc54c395047937c19e97c1d57"
+    },
+    {
+      "repository": "core-lending-loan-servicing",
+      "sdk_module": "core-lending-loan-servicing-sdk",
+      "pom": "core-lending-loan-servicing/core-lending-loan-servicing-sdk/pom.xml",
+      "input_spec": "core-lending-loan-servicing/core-lending-loan-servicing-sdk/src/main/resources/openapi.yml",
+      "operation_count": 100,
+      "schema_count": 61,
+      "security_scheme_count": 0,
+      "source_commit": "c6f0e7f3ce04a3e5b842764adc654a2c9f2ccb94"
+    },
+    {
+      "repository": "core-lending-mortgage",
+      "sdk_module": "core-lending-mortgages-sdk",
+      "pom": "core-lending-mortgage/core-lending-mortgages-sdk/pom.xml",
+      "input_spec": "core-lending-mortgage/core-lending-mortgages-sdk/src/main/resources/openapi.yml",
+      "operation_count": 5,
+      "schema_count": 7,
+      "security_scheme_count": 0,
+      "source_commit": "86bc04362b103752fe496523faa29fff321178b5"
+    },
+    {
+      "repository": "core-lending-personal-loans",
+      "sdk_module": "core-lending-personal-loans-sdk",
+      "pom": "core-lending-personal-loans/core-lending-personal-loans-sdk/pom.xml",
+      "input_spec": "core-lending-personal-loans/core-lending-personal-loans-sdk/src/main/resources/openapi.yml",
+      "operation_count": 5,
+      "schema_count": 7,
+      "security_scheme_count": 0,
+      "source_commit": "090007a2cbcbcd2cab7bd9234e5613a3d4b9947c"
+    },
+    {
+      "repository": "core-lending-provisioning-risk",
+      "sdk_module": "core-lending-provisioning-risk-sdk",
+      "pom": "core-lending-provisioning-risk/core-lending-provisioning-risk-sdk/pom.xml",
+      "input_spec": "core-lending-provisioning-risk/core-lending-provisioning-risk-sdk/src/main/resources/openapi.yml",
+      "operation_count": 25,
+      "schema_count": 19,
+      "security_scheme_count": 0,
+      "source_commit": "c19174c5e809af26237af424ddd32d30dc6a378b"
+    },
+    {
+      "repository": "core-lending-regulatory-compliance",
+      "sdk_module": "core-lending-regulatory-compliance-sdk",
+      "pom": "core-lending-regulatory-compliance/core-lending-regulatory-compliance-sdk/pom.xml",
+      "input_spec": "core-lending-regulatory-compliance/core-lending-regulatory-compliance-sdk/src/main/resources/openapi.yml",
+      "operation_count": 30,
+      "schema_count": 22,
+      "security_scheme_count": 0,
+      "source_commit": "fd8220fa1f10db3a11a75c790c450b966dd6f574"
+    },
+    {
+      "repository": "core-lending-supply-chain-finance",
+      "sdk_module": "core-lending-supply-chain-finance-sdk",
+      "pom": "core-lending-supply-chain-finance/core-lending-supply-chain-finance-sdk/pom.xml",
+      "input_spec": "core-lending-supply-chain-finance/core-lending-supply-chain-finance-sdk/src/main/resources/openapi.yml",
+      "operation_count": 30,
+      "schema_count": 17,
+      "security_scheme_count": 0,
+      "source_commit": "56ea0f31669d5f0c3249e51bc698f86cd4aa3e7b"
+    },
+    {
+      "repository": "domain-banking-accounts",
+      "sdk_module": "domain-banking-accounts-sdk",
+      "pom": "domain-banking-accounts/domain-banking-accounts-sdk/pom.xml",
+      "input_spec": "domain-banking-accounts/domain-banking-accounts-sdk/src/main/resources/openapi.yml",
+      "operation_count": 23,
+      "schema_count": 26,
+      "security_scheme_count": 0,
+      "source_commit": "d4e27b545878ca358e3dfdbccc04416caa73c528"
+    },
+    {
+      "repository": "domain-banking-cards",
+      "sdk_module": "domain-banking-cards-sdk",
+      "pom": "domain-banking-cards/domain-banking-cards-sdk/pom.xml",
+      "input_spec": "domain-banking-cards/domain-banking-cards-sdk/src/main/resources/openapi.yml",
+      "operation_count": 29,
+      "schema_count": 29,
+      "security_scheme_count": 0,
+      "source_commit": "fa75286715a89ca8f9486cb5fd9510c24e40a121"
+    },
+    {
+      "repository": "domain-banking-psdx",
+      "sdk_module": "domain-banking-psdx-sdk",
+      "pom": "domain-banking-psdx/domain-banking-psdx-sdk/pom.xml",
+      "input_spec": "domain-banking-psdx/domain-banking-psdx-sdk/src/main/resources/openapi.yml",
+      "operation_count": 23,
+      "schema_count": 10,
+      "security_scheme_count": 0,
+      "source_commit": "b45374ceafebc9c805b53bc89a43538a21076ae7"
+    },
+    {
+      "repository": "domain-common-accounting",
+      "sdk_module": "domain-common-accounting-sdk",
+      "pom": "domain-common-accounting/domain-common-accounting-sdk/pom.xml",
+      "input_spec": "domain-common-accounting/domain-common-accounting-sdk/src/main/resources/openapi.yml",
+      "operation_count": 3,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "c54d9fc44bb2042c82e8a956f201265e39157dbf"
+    },
+    {
+      "repository": "domain-common-contracts",
+      "sdk_module": "domain-common-contracts-sdk",
+      "pom": "domain-common-contracts/domain-common-contracts-sdk/pom.xml",
+      "input_spec": "domain-common-contracts/domain-common-contracts-sdk/src/main/resources/openapi.yml",
+      "operation_count": 24,
+      "schema_count": 23,
+      "security_scheme_count": 0,
+      "source_commit": "266d474f21024125feaf1566bb0ba7fd28e6107d"
+    },
+    {
+      "repository": "domain-common-notifications",
+      "sdk_module": "domain-common-notifications-sdk",
+      "pom": "domain-common-notifications/domain-common-notifications-sdk/pom.xml",
+      "input_spec": "domain-common-notifications/domain-common-notifications-sdk/src/main/resources/openapi.yml",
+      "operation_count": 7,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "708a6766738ee0d6f7bb516fc60520926824ed71"
+    },
+    {
+      "repository": "domain-common-sca",
+      "sdk_module": "domain-common-sca-sdk",
+      "pom": "domain-common-sca/domain-common-sca-sdk/pom.xml",
+      "input_spec": "domain-common-sca/domain-common-sca-sdk/src/main/resources/openapi.yml",
+      "operation_count": 6,
+      "schema_count": 10,
+      "security_scheme_count": 0,
+      "source_commit": "741cfd7dd9ec0459e29ecac054d97b4c639139f6"
+    },
+    {
+      "repository": "domain-core-configuration",
+      "sdk_module": "domain-core-configuration-sdk",
+      "pom": "domain-core-configuration/domain-core-configuration-sdk/pom.xml",
+      "input_spec": "domain-core-configuration/domain-core-configuration-sdk/src/main/resources/openapi.yml",
+      "operation_count": 8,
+      "schema_count": 11,
+      "security_scheme_count": 0,
+      "source_commit": "912c97d58fd77936f7a2f1b203ae8bc65c06bc97"
+    },
+    {
+      "repository": "domain-core-modelhub",
+      "sdk_module": "domain-core-modelhub-sdk",
+      "pom": "domain-core-modelhub/domain-core-modelhub-sdk/pom.xml",
+      "input_spec": "domain-core-modelhub/domain-core-modelhub-sdk/src/main/resources/openapi.yml",
+      "operation_count": 3,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "46285e8e047e072ccc9e6909eb98a362038bd5d4"
+    },
+    {
+      "repository": "domain-core-organization",
+      "sdk_module": "domain-core-organization-sdk",
+      "pom": "domain-core-organization/domain-core-organization-sdk/pom.xml",
+      "input_spec": "domain-core-organization/domain-core-organization-sdk/src/main/resources/openapi.yml",
+      "operation_count": 3,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "142a18fb7f99823dbb7ec0381603b369b91f2f99"
+    },
+    {
+      "repository": "domain-core-pricing-engine",
+      "sdk_module": "domain-core-pricing-engine-sdk",
+      "pom": "domain-core-pricing-engine/domain-core-pricing-engine-sdk/pom.xml",
+      "input_spec": "domain-core-pricing-engine/domain-core-pricing-engine-sdk/src/main/resources/openapi.yml",
+      "operation_count": 3,
+      "schema_count": 5,
+      "security_scheme_count": 0,
+      "source_commit": "bf30e82bdd09b606e9b4d8d8d462faec6b34f917"
+    },
+    {
+      "repository": "domain-core-reference-data",
+      "sdk_module": "domain-core-reference-data-sdk",
+      "pom": "domain-core-reference-data/domain-core-reference-data-sdk/pom.xml",
+      "input_spec": "domain-core-reference-data/domain-core-reference-data-sdk/src/main/resources/openapi.yml",
+      "operation_count": 3,
+      "schema_count": 1,
+      "security_scheme_count": 0,
+      "source_commit": "297be312b0ccf174c385801902572ad82bc6a1dd"
+    },
+    {
+      "repository": "domain-core-security-center",
+      "sdk_module": "domain-core-security-center-sdk",
+      "pom": "domain-core-security-center/domain-core-security-center-sdk/pom.xml",
+      "input_spec": "domain-core-security-center/domain-core-security-center-sdk/src/main/resources/openapi.yml",
+      "operation_count": 17,
+      "schema_count": 18,
+      "security_scheme_count": 0,
+      "source_commit": "da6006873315a81c5cd04057f83503e2f11dd030"
+    },
+    {
+      "repository": "domain-core-security-vault",
+      "sdk_module": "domain-core-security-vault-sdk",
+      "pom": "domain-core-security-vault/domain-core-security-vault-sdk/pom.xml",
+      "input_spec": "domain-core-security-vault/domain-core-security-vault-sdk/src/main/resources/openapi.yml",
+      "operation_count": 3,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "d28642121cd1fec88e7a99aae04dd93278f0e0e0"
+    },
+    {
+      "repository": "domain-core-user-mgmt",
+      "sdk_module": "domain-core-user-mgmt-sdk",
+      "pom": "domain-core-user-mgmt/domain-core-user-mgmt-sdk/pom.xml",
+      "input_spec": "domain-core-user-mgmt/domain-core-user-mgmt-sdk/src/main/resources/openapi.yml",
+      "operation_count": 3,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "8b6649ccdc336c21f1e64f5c2ca38df26d7cd204"
+    },
+    {
+      "repository": "domain-customer-kyc-kyb",
+      "sdk_module": "domain-customer-kyc-kyb-sdk",
+      "pom": "domain-customer-kyc-kyb/domain-customer-kyc-kyb-sdk/pom.xml",
+      "input_spec": "domain-customer-kyc-kyb/domain-customer-kyc-kyb-sdk/src/main/resources/openapi.yml",
+      "operation_count": 15,
+      "schema_count": 11,
+      "security_scheme_count": 0,
+      "source_commit": "1ebfe41745e73438c586fefced50fee6874c6387"
+    },
+    {
+      "repository": "domain-customer-people",
+      "sdk_module": "domain-customer-people-sdk",
+      "pom": "domain-customer-people/domain-customer-people-sdk/pom.xml",
+      "input_spec": "domain-customer-people/domain-customer-people-sdk/src/main/resources/openapi.yml",
+      "operation_count": 55,
+      "schema_count": 48,
+      "security_scheme_count": 0,
+      "source_commit": "efc8ca960f7326f9d8ec7b334a43f20af71ae0cf"
+    },
+    {
+      "repository": "domain-data-business-intelligence",
+      "sdk_module": "domain-data-business-intelligence-sdk",
+      "pom": "domain-data-business-intelligence/domain-data-business-intelligence-sdk/pom.xml",
+      "input_spec": "domain-data-business-intelligence/domain-data-business-intelligence-sdk/src/main/resources/openapi.yml",
+      "operation_count": 1,
+      "schema_count": 2,
+      "security_scheme_count": 0,
+      "source_commit": "d513c40bfc258876c24c3888bcb903b157ee9a3d"
+    },
+    {
+      "repository": "domain-data-credit-bureaus",
+      "sdk_module": "domain-data-credit-bureaus-sdk",
+      "pom": "domain-data-credit-bureaus/domain-data-credit-bureaus-sdk/pom.xml",
+      "input_spec": "domain-data-credit-bureaus/domain-data-credit-bureaus-sdk/src/main/resources/openapi.yml",
+      "operation_count": 3,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "bcab5dbae24b3daee0573db0de275a3f9aeb26a5"
+    },
+    {
+      "repository": "domain-distributor-branding",
+      "sdk_module": "domain-distributor-branding-sdk",
+      "pom": "domain-distributor-branding/domain-distributor-branding-sdk/pom.xml",
+      "input_spec": "domain-distributor-branding/domain-distributor-branding-sdk/src/main/resources/openapi.yml",
+      "operation_count": 54,
+      "schema_count": 36,
+      "security_scheme_count": 0,
+      "source_commit": "df367549efc2cc15dae0822d8f530bd96244363b"
+    },
+    {
+      "repository": "domain-distributor-catalog",
+      "sdk_module": "domain-distributor-catalog-sdk",
+      "pom": "domain-distributor-catalog/domain-distributor-catalog-sdk/pom.xml",
+      "input_spec": "domain-distributor-catalog/domain-distributor-catalog-sdk/src/main/resources/openapi.yml",
+      "operation_count": 14,
+      "schema_count": 16,
+      "security_scheme_count": 0,
+      "source_commit": "9d1ed971407cef9063f39c9a830359c7ffc50d58"
+    },
+    {
+      "repository": "domain-insurance-claims",
+      "sdk_module": "domain-insurance-claims-sdk",
+      "pom": "domain-insurance-claims/domain-insurance-claims-sdk/pom.xml",
+      "input_spec": "domain-insurance-claims/domain-insurance-claims-sdk/src/main/resources/openapi.yml",
+      "operation_count": 7,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "893780d41e5f79cdf61761f129430d178e82c435"
+    },
+    {
+      "repository": "domain-insurance-delegated-authority",
+      "sdk_module": "domain-insurance-delegated-authority-sdk",
+      "pom": "domain-insurance-delegated-authority/domain-insurance-delegated-authority-sdk/pom.xml",
+      "input_spec": "domain-insurance-delegated-authority/domain-insurance-delegated-authority-sdk/src/main/resources/openapi.yml",
+      "operation_count": 6,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "c979e0fb7b5237fc2f8bf9cd0e682ef941a9497c"
+    },
+    {
+      "repository": "domain-insurance-financials",
+      "sdk_module": "domain-insurance-financials-sdk",
+      "pom": "domain-insurance-financials/domain-insurance-financials-sdk/pom.xml",
+      "input_spec": "domain-insurance-financials/domain-insurance-financials-sdk/src/main/resources/openapi.yml",
+      "operation_count": 7,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "1e74e8cc552f03a903ed956f265ffb06e02fd6bd"
+    },
+    {
+      "repository": "domain-insurance-policies",
+      "sdk_module": "domain-insurance-policies-sdk",
+      "pom": "domain-insurance-policies/domain-insurance-policies-sdk/pom.xml",
+      "input_spec": "domain-insurance-policies/domain-insurance-policies-sdk/src/main/resources/openapi.yml",
+      "operation_count": 8,
+      "schema_count": 4,
+      "security_scheme_count": 0,
+      "source_commit": "4e92c22cb9f17251989a2748ea9543080b7210cd"
+    },
+    {
+      "repository": "domain-insurance-reinsurance",
+      "sdk_module": "domain-insurance-reinsurance-sdk",
+      "pom": "domain-insurance-reinsurance/domain-insurance-reinsurance-sdk/pom.xml",
+      "input_spec": "domain-insurance-reinsurance/domain-insurance-reinsurance-sdk/src/main/resources/openapi.yml",
+      "operation_count": 6,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "8c262120374099f1ca1465e77495b8f52df5c073"
+    },
+    {
+      "repository": "domain-insurance-reserving",
+      "sdk_module": "domain-insurance-reserving-sdk",
+      "pom": "domain-insurance-reserving/domain-insurance-reserving-sdk/pom.xml",
+      "input_spec": "domain-insurance-reserving/domain-insurance-reserving-sdk/src/main/resources/openapi.yml",
+      "operation_count": 6,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "8049135716eba977ac2ab5ecf0e3b7e5b364516a"
+    },
+    {
+      "repository": "domain-insurance-underwriting",
+      "sdk_module": "domain-insurance-underwriting-sdk",
+      "pom": "domain-insurance-underwriting/domain-insurance-underwriting-sdk/pom.xml",
+      "input_spec": "domain-insurance-underwriting/domain-insurance-underwriting-sdk/src/main/resources/openapi.yml",
+      "operation_count": 7,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "2aec713ebc7a28d8205c4cad4ecb37443fc9e508"
+    },
+    {
+      "repository": "domain-lending-asset-finance",
+      "sdk_module": "domain-lending-asset-finance-sdk",
+      "pom": "domain-lending-asset-finance/domain-lending-asset-finance-sdk/pom.xml",
+      "input_spec": "domain-lending-asset-finance/domain-lending-asset-finance-sdk/src/main/resources/openapi.yml",
+      "operation_count": 22,
+      "schema_count": 18,
+      "security_scheme_count": 0,
+      "source_commit": "10ad8d59fa64bc9af93e55a66692aad87d6dedd7"
+    },
+    {
+      "repository": "domain-lending-collateral-management",
+      "sdk_module": "domain-lending-collateral-management-sdk",
+      "pom": "domain-lending-collateral-management/domain-lending-collateral-management-sdk/pom.xml",
+      "input_spec": "domain-lending-collateral-management/domain-lending-collateral-management-sdk/src/main/resources/openapi.yml",
+      "operation_count": 6,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "1b6d9fbf6a196fa70d421a012b1d2f1d014f1e57"
+    },
+    {
+      "repository": "domain-lending-credit-scoring",
+      "sdk_module": "domain-lending-credit-scoring-sdk",
+      "pom": "domain-lending-credit-scoring/domain-lending-credit-scoring-sdk/pom.xml",
+      "input_spec": "domain-lending-credit-scoring/domain-lending-credit-scoring-sdk/src/main/resources/openapi.yml",
+      "operation_count": 8,
+      "schema_count": 12,
+      "security_scheme_count": 0,
+      "source_commit": "68b46911427a77bcd0926aa2cc463cd3b2f9f7f0"
+    },
+    {
+      "repository": "domain-lending-delinquency-collections",
+      "sdk_module": "domain-lending-delinquency-collections-sdk",
+      "pom": "domain-lending-delinquency-collections/domain-lending-delinquency-collections-sdk/pom.xml",
+      "input_spec": "domain-lending-delinquency-collections/domain-lending-delinquency-collections-sdk/src/main/resources/openapi.yml",
+      "operation_count": 8,
+      "schema_count": 5,
+      "security_scheme_count": 0,
+      "source_commit": "2c470b21cc164bb30825cebc055fd4f4c65f6475"
+    },
+    {
+      "repository": "domain-lending-loan-origination",
+      "sdk_module": "domain-lending-loan-origination-sdk",
+      "pom": "domain-lending-loan-origination/domain-lending-loan-origination-sdk/pom.xml",
+      "input_spec": "domain-lending-loan-origination/domain-lending-loan-origination-sdk/src/main/resources/openapi.yml",
+      "operation_count": 29,
+      "schema_count": 30,
+      "security_scheme_count": 0,
+      "source_commit": "4938b6de578b047c0c08acb108371c8b39c3c661"
+    },
+    {
+      "repository": "domain-lending-loan-servicing",
+      "sdk_module": "domain-lending-loan-servicing-sdk",
+      "pom": "domain-lending-loan-servicing/domain-lending-loan-servicing-sdk/pom.xml",
+      "input_spec": "domain-lending-loan-servicing/domain-lending-loan-servicing-sdk/src/main/resources/openapi.yml",
+      "operation_count": 37,
+      "schema_count": 53,
+      "security_scheme_count": 0,
+      "source_commit": "b8beb6a43e5111b02d83066853018b0d24016939"
+    },
+    {
+      "repository": "domain-lending-mortgage",
+      "sdk_module": "domain-lending-mortgage-sdk",
+      "pom": "domain-lending-mortgage/domain-lending-mortgage-sdk/pom.xml",
+      "input_spec": "domain-lending-mortgage/domain-lending-mortgage-sdk/src/main/resources/openapi.yml",
+      "operation_count": 7,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "6948e7725598a9bd91cbd2cb470d9ed2fe9d9363"
+    },
+    {
+      "repository": "domain-lending-personal-loans",
+      "sdk_module": "domain-lending-personal-loans-sdk",
+      "pom": "domain-lending-personal-loans/domain-lending-personal-loans-sdk/pom.xml",
+      "input_spec": "domain-lending-personal-loans/domain-lending-personal-loans-sdk/src/main/resources/openapi.yml",
+      "operation_count": 4,
+      "schema_count": 2,
+      "security_scheme_count": 0,
+      "source_commit": "fe7a27114329649d2a8a3081c16ad03ed4a1cf98"
+    },
+    {
+      "repository": "domain-lending-provisioning-risk",
+      "sdk_module": "domain-lending-provisioning-risk-sdk",
+      "pom": "domain-lending-provisioning-risk/domain-lending-provisioning-risk-sdk/pom.xml",
+      "input_spec": "domain-lending-provisioning-risk/domain-lending-provisioning-risk-sdk/src/main/resources/openapi.yml",
+      "operation_count": 6,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "39f036cba403dee0e0e1ea44fa27c223e99bddc7"
+    },
+    {
+      "repository": "domain-lending-regulatory-compliance",
+      "sdk_module": "domain-lending-regulatory-compliance-sdk",
+      "pom": "domain-lending-regulatory-compliance/domain-lending-regulatory-compliance-sdk/pom.xml",
+      "input_spec": "domain-lending-regulatory-compliance/domain-lending-regulatory-compliance-sdk/src/main/resources/openapi.yml",
+      "operation_count": 6,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "cf70ecbf9ca5ca0740fe2273561f60569392d13a"
+    },
+    {
+      "repository": "domain-lending-supply-chain-finance",
+      "sdk_module": "domain-lending-supply-chain-finance-sdk",
+      "pom": "domain-lending-supply-chain-finance/domain-lending-supply-chain-finance-sdk/pom.xml",
+      "input_spec": "domain-lending-supply-chain-finance/domain-lending-supply-chain-finance-sdk/src/main/resources/openapi.yml",
+      "operation_count": 7,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "11409276f8318484e2e5a424a6089232b1e8fd15"
+    },
+    {
+      "repository": "domain-payments",
+      "sdk_module": "domain-payments-sdk",
+      "pom": "domain-payments/domain-payments-sdk/pom.xml",
+      "input_spec": "domain-payments/domain-payments-sdk/src/main/resources/openapi.yml",
+      "operation_count": 30,
+      "schema_count": 24,
+      "security_scheme_count": 1,
+      "source_commit": "58fb42ab7d880c4dfda44bd0dc777bae68690452"
+    },
+    {
+      "repository": "domain-product-catalog",
+      "sdk_module": "domain-product-catalog-sdk",
+      "pom": "domain-product-catalog/domain-product-catalog-sdk/pom.xml",
+      "input_spec": "domain-product-catalog/domain-product-catalog-sdk/src/main/resources/openapi.yml",
+      "operation_count": 7,
+      "schema_count": 21,
+      "security_scheme_count": 0,
+      "source_commit": "730466b64cc0caec600cbd385c60c08c0b2785b8"
+    },
+    {
+      "repository": "domain-product-pricing",
+      "sdk_module": "domain-product-pricing-sdk",
+      "pom": "domain-product-pricing/domain-product-pricing-sdk/pom.xml",
+      "input_spec": "domain-product-pricing/domain-product-pricing-sdk/src/main/resources/openapi.yml",
+      "operation_count": 7,
+      "schema_count": 12,
+      "security_scheme_count": 0,
+      "source_commit": "186703e2a036be69e5bc015cb60b0ee013b9a53a"
+    },
+    {
+      "repository": "exp-accounts",
+      "sdk_module": "exp-accounts-sdk",
+      "pom": "exp-accounts/exp-accounts-sdk/pom.xml",
+      "input_spec": "exp-accounts/exp-accounts-sdk/src/main/resources/openapi.yml",
+      "operation_count": 11,
+      "schema_count": 11,
+      "security_scheme_count": 0,
+      "source_commit": "15a1a53f9d3b00a360462973f51e8f6231251f9c"
+    },
+    {
+      "repository": "exp-cards",
+      "sdk_module": "exp-cards-sdk",
+      "pom": "exp-cards/exp-cards-sdk/pom.xml",
+      "input_spec": "exp-cards/exp-cards-sdk/src/main/resources/openapi.yml",
+      "operation_count": 13,
+      "schema_count": 10,
+      "security_scheme_count": 0,
+      "source_commit": "07888d50d359fff00aeabc66f388c823997aa784"
+    },
+    {
+      "repository": "exp-channel-management",
+      "sdk_module": "exp-channel-management-sdk",
+      "pom": "exp-channel-management/exp-channel-management-sdk/pom.xml",
+      "input_spec": "exp-channel-management/exp-channel-management-sdk/src/main/resources/openapi.yml",
+      "operation_count": 5,
+      "schema_count": 5,
+      "security_scheme_count": 0,
+      "source_commit": "9291cf575f7888894fdc31ffa411d121758f6963"
+    },
+    {
+      "repository": "exp-distributor",
+      "sdk_module": "exp-distributor-sdk",
+      "pom": "exp-distributor/exp-distributor-sdk/pom.xml",
+      "input_spec": "exp-distributor/exp-distributor-sdk/src/main/resources/openapi.yml",
+      "operation_count": 70,
+      "schema_count": 40,
+      "security_scheme_count": 0,
+      "source_commit": "fa4c9c5dfd66674e4e56c528b9238b6770619b11"
+    },
+    {
+      "repository": "exp-finance-terminal",
+      "sdk_module": "exp-finance-terminal-sdk",
+      "pom": "exp-finance-terminal/exp-finance-terminal-sdk/pom.xml",
+      "input_spec": "exp-finance-terminal/exp-finance-terminal-sdk/src/main/resources/openapi.yml",
+      "operation_count": 15,
+      "schema_count": 10,
+      "security_scheme_count": 1,
+      "source_commit": "7309a4fa15e3b1e02334864dbb12575e386293e9"
+    },
+    {
+      "repository": "exp-insurance",
+      "sdk_module": "exp-insurance-sdk",
+      "pom": "exp-insurance/exp-insurance-sdk/pom.xml",
+      "input_spec": "exp-insurance/exp-insurance-sdk/src/main/resources/openapi.yml",
+      "operation_count": 15,
+      "schema_count": 8,
+      "security_scheme_count": 0,
+      "source_commit": "b81836f3234f6ed03ef78715e789e1b5c260948c"
+    },
+    {
+      "repository": "exp-insurance-terminal",
+      "sdk_module": "exp-insurance-terminal-sdk",
+      "pom": "exp-insurance-terminal/exp-insurance-terminal-sdk/pom.xml",
+      "input_spec": "exp-insurance-terminal/exp-insurance-terminal-sdk/src/main/resources/openapi.yml",
+      "operation_count": 11,
+      "schema_count": 7,
+      "security_scheme_count": 1,
+      "source_commit": "a9fc32a76ab2eae500ce90593c96103e681f1334"
+    },
+    {
+      "repository": "exp-lending",
+      "sdk_module": "exp-lending-sdk",
+      "pom": "exp-lending/exp-lending-sdk/pom.xml",
+      "input_spec": "exp-lending/exp-lending-sdk/src/main/resources/openapi.yml",
+      "operation_count": 86,
+      "schema_count": 79,
+      "security_scheme_count": 0,
+      "source_commit": "fcffe113af1171f5968bd6046b00e460a4142c94"
+    },
+    {
+      "repository": "exp-notifications",
+      "sdk_module": "exp-notifications-sdk",
+      "pom": "exp-notifications/exp-notifications-sdk/pom.xml",
+      "input_spec": "exp-notifications/exp-notifications-sdk/src/main/resources/openapi.yml",
+      "operation_count": 6,
+      "schema_count": 3,
+      "security_scheme_count": 0,
+      "source_commit": "dbaf6caa88c9407da3e3504f1c0a9718eed4f4db"
+    },
+    {
+      "repository": "exp-onboarding",
+      "sdk_module": "exp-onboarding-sdk",
+      "pom": "exp-onboarding/exp-onboarding-sdk/pom.xml",
+      "input_spec": "exp-onboarding/exp-onboarding-sdk/src/main/resources/openapi.yml",
+      "operation_count": 20,
+      "schema_count": 19,
+      "security_scheme_count": 0,
+      "source_commit": "0c2dae401b3d683c8828c9417f133a58412e162e"
+    },
+    {
+      "repository": "exp-profile",
+      "sdk_module": "exp-profile-sdk",
+      "pom": "exp-profile/exp-profile-sdk/pom.xml",
+      "input_spec": "exp-profile/exp-profile-sdk/src/main/resources/openapi.yml",
+      "operation_count": 16,
+      "schema_count": 13,
+      "security_scheme_count": 0,
+      "source_commit": "ab6ff382c129b9a7793a5c429f24f4a887d0aef5"
+    },
+    {
+      "repository": "exp-security",
+      "sdk_module": "exp-security-sdk",
+      "pom": "exp-security/exp-security-sdk/pom.xml",
+      "input_spec": "exp-security/exp-security-sdk/src/main/resources/openapi.yml",
+      "operation_count": 8,
+      "schema_count": 9,
+      "security_scheme_count": 0,
+      "source_commit": "8278c552f7b3cc374c041701ab75e631e1a6c4e9"
+    },
+    {
+      "repository": "core-common-case-mgmt",
+      "sdk_module": "core-common-case-mgmt-sdk",
+      "pom": "core-common-case-mgmt/core-common-case-mgmt-sdk/pom.xml",
+      "input_spec": "core-common-case-mgmt/core-common-case-mgmt-sdk/src/main/resources/openapi.yml",
+      "source_commit": null,
+      "publication": "local_addition_unpublished",
+      "operation_count": 7,
+      "schema_count": 9,
+      "security_scheme_count": 1
+    },
+    {
+      "repository": "domain-common-case-mgmt",
+      "sdk_module": "domain-common-case-mgmt-sdk",
+      "pom": "domain-common-case-mgmt/domain-common-case-mgmt-sdk/pom.xml",
+      "input_spec": "domain-common-case-mgmt/domain-common-case-mgmt-sdk/src/main/resources/openapi.yml",
+      "source_commit": null,
+      "publication": "local_addition_unpublished",
+      "operation_count": 5,
+      "schema_count": 9,
+      "security_scheme_count": 1
+    },
+    {
+      "repository": "exp-payments",
+      "sdk_module": "exp-payments-sdk",
+      "pom": "exp-payments/exp-payments-sdk/pom.xml",
+      "input_spec": "exp-payments/exp-payments-sdk/src/main/resources/openapi.yml",
+      "operation_count": 9,
+      "schema_count": 12,
+      "security_scheme_count": 1,
+      "source_commit": "7896f830da451b0d06fe00c6554d767ef4fc62f8"
+    }
+  ]
+}

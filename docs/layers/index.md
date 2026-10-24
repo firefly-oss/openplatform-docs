@@ -1,64 +1,46 @@
 # Architecture
 
-<div class="ff-banner" markdown="0">
-<img class="ff-banner__light" src="../assets/brand/banner-light.svg" alt="Firefly OpenPlatform">
-<img class="ff-banner__dark" src="../assets/brand/banner-dark.svg" alt="">
-</div>
+OpenPlatform separates channel journeys, business orchestration, and authoritative state. The boundary matters when eligibility changes, a participant times out, a process restarts, or a financial effect must be reversed.
 
-<p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
+```mermaid
+flowchart TD
+    A[Authenticated customer or employee] --> E[Experience: intent and outcome]
+    E -->|Domain SDK| D[Domain: business decisions and orchestration]
+    D -->|Core SDK| C[Core: authoritative state and local transaction]
+    D -->|Integration port| P[Sandbox or external provider adapter]
+    C --> DB[(Owned database)]
+    P --> X[External system]
+    D --> R[Recovery and reconciliation]
+    R -->|Existing action identity| C
+    R -->|Existing provider reference| P
+```
 
+## Experience
 
-OpenPlatform is a banking core and an insurance core. Products and the processes around them are built on those cores. A deposit account, a loan, and a policy are records in a core. The journey that opens them does not own the tables.
+An experience establishes the trusted subject and tenant, validates the requested operation at its channel boundary, calls domain capabilities through SDKs, and presents truthful outcomes. It must not infer permission from a caller-supplied party ID or report success merely because orchestration returned a result object. Staff-assisted operations preserve both employee and represented party authority.
 
-Insurance records policies, claims, premium schedules, and reserves. It does not move money and it does not certify IFRS 17 or Solvency II.
+## Domain
 
-Each process is a port. The journey calls the port. The adapter that answers today is the domain saga: create, update, change status, and close, with compensation, through that context's core. A later process engine can implement the same port. The journey stays. A later payment rail, payment provider, or identity adapter is the same kind of replacement. The journey does not learn the new system.
+A domain owns business decisions and transitions within a bounded context. CQRS separates command intent from queries; a saga coordinates recoverable steps; TCC coordinates participants with explicit try, confirm, and cancel semantics. Use the existing Jafly modules and application conventions. Selecting a pattern does not make cross-service HTTP calls atomic or process-local state durable.
 
-Identity and the rules engine are Jafly, from Firefly Framework, `org.fireflyframework`, BOM 26.10.20. OpenPlatform does not fork them. The sandbox identity adapter does not start Keycloak. The sandbox credit report does not call a bureau.
+Each step defines preconditions, stable action identity, durable result, retry behavior, compensation, and uncertainty. A business rejection, a failed transport, and a provider-accepted request with a lost response require different outcomes.
 
-A customer journey runs a product through its life. Origination starts it. Servicing continues it. Both live in `exp-lending`. Account and card tasks stay their own journeys, because a person does those as separate work. The finance staff terminal and the insurance staff terminal are the matching journeys for an employee: sign in, impersonate the customer, then run an operation on the same kind of record, and also run back-office work the customer does not run.
+## Core
 
-<div class="ff-topo" markdown="0">
-<p class="ff-topo__caption">Layers inside a business domain</p>
-<div class="ff-topo__stack">
-<div class="ff-topo__band">
-<p class="ff-topo__label">Experience</p>
-<p class="ff-topo__meta">A journey. One service can call several domain sagas. It does not own the database.</p>
-</div>
-<div class="ff-topo__band">
-<p class="ff-topo__label">Domain</p>
-<p class="ff-topo__meta">The saga for one bounded context. Create, update, status, and close, with compensation.</p>
-</div>
-<div class="ff-topo__band ff-topo__band--core">
-<p class="ff-topo__label">Core</p>
-<p class="ff-topo__meta">The system of record. Other contexts keep an identifier, not a foreign key into these tables.</p>
-</div>
-</div>
-</div>
+The core owns its records, local constraints, migrations, and atomic database operations. Consumers use its SDK instead of importing its internals or writing its tables. Cross-context links are explicit identifiers with validated ownership and lifecycle. Atomic ledger header/legs/history creation belongs within the ledger database transaction, rather than a sequence of independently committed SDK calls.
 
-Journeys are sequence diagrams under [Experience](../experience/index.md). This picture is only the layer stack.
+## SDK and version contract
 
-`DecisionPort` and `SandboxCreditReportAdapter` are in `domain-lending-credit-scoring`. `POST /api/v1/decisions` is the HTTP adapter. The rules engine is Jafly's, BOM 26.10.20. OpenPlatform does not ship a forked engine.
+Generate a consumer SDK from the actual producer controller contract. Validate required fields, enums, statuses, precision, pagination, optional headers, and errors against a running producer. Publish or install the exact qualified producer before checking dependent consumers. A stale generated client can compile while losing required business input.
 
-`AccessPort` runs before a journey changes a resource. A denial does not call the domain. The HTTP check is `POST /api/v1/access/checks` on `domain-core-security-center`.
+## External authority and recovery
 
-The domain saga then writes one core through that core's SDK. It does not import another core's internals. Cross-service links are UUIDs. Child rows inside one core cascade on delete. Currency is `VARCHAR(3)`.
+An adapter translates a port; it must not hide unsupported capabilities or synthesize approval after failure. Store provider references and business association in the responsible durable authority. Reconcile uncertain outcomes before retrying. The [integration guide](../adapters/index.md) defines sandbox replacement and live-provider gates.
 
-## A process engine later
+## Read the detailed boundaries
 
-An experience step calls a port. The default adapter calls a domain service. A later process engine can implement that same port. This version does not run that engine. No diagram here shows one in the call path.
-
-## Keycloak is not a journey call
-
-`domain-core-security-center` depends on `org.fireflyframework:fireflyframework-security-idp-keycloak`. That module is a Jafly identity-provider adapter, BOM `26.10.20`. The journey does not construct a Keycloak client. The default is `firefly.security-center.identity.adapter=sandbox`. An installer sets `keycloak`, `cognito`, or `internal-db`. The decision call does not read that property.
-
-Jafly (`org.fireflyframework`, BOM 26.10.20) is the identity and the rules engine, from Firefly Framework. OpenPlatform does not fork it. See [Jafly](../jafly.md).
-
-## Open a layer
-
-- [Experience](../experience/index.md). The journeys, not a list of domains.
-- [Domain](domain.md). The saga rule and every `domain-*` service.
-- [Core](core.md). Persistence rules and every `core-*` service.
-- [Libraries](libraries.md). Payment ports, batch jobs, the parent, and the bill of materials.
-
-The same repositories, grouped by business, are the [families](../catalog/index.md).
+- [Domain architecture](domain.md) and [core architecture](core.md).
+- [Libraries and Jafly](libraries.md), including dependency ownership.
+- [Business journeys](../journeys/index.md), including operational banking and insurance financial effects.
+- [Operating procedures](../operations/index.md), including restart, replay, reversal, and repair.
+- [Service landscape](bian.md) and [insurance mappings](acord.md), which are analysis references rather than implementation acceptance.

@@ -1,59 +1,85 @@
-# Finance terminal
+# Finance staff terminal
 
-An employee works the records Ada opens, without using her journey. The finance terminal is that desk. The employee signs in, the terminal checks that they may administer the area, and a change that names a customer first checks that they may act for that customer. Both identities are stored before the record changes.
+Staff operations preserve the authenticated employee, represented customer, delegated action, reason, approval, and durable audit. The same domain/financial rules apply to customer, staff, repair, and batch channels.
 
-The employee in the sandbox is `sample-employee`, actor `33333333-3333-4333-8333-333333333333`. Ada is still `sample-journey`, party `11111111-1111-4111-8111-111111111111`. She cannot sign in here. The terminal asks whether the caller may administer, and the sample customer does not have that grant. `denied-actor` cannot sign in either. An unknown name is refused before any list is returned.
+[Business lifecycle](../../journeys/banking.md) · [Repository guide](https://github.com/fireflysoftwaresolutions/exp-finance-terminal) · [Source reference](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/docs/openplatform/reference.md)
 
-When the employee signs in, the session returns that employee id and the provider sandbox. No identity-provider process is started. Listing accounts then checks administer on the account area. The sample account anchor is `10000000-0000-4000-8000-000000000002`. If administer is refused, the list is empty of records because the call stops.
+## Behavior and limitations
 
-Updating Ada's account is different from listing it. The employee sends her party id and a reason. The terminal checks administer on the account, then checks impersonate on her party. If impersonate is refused, the account is not changed. If it is allowed, the terminal stores an audit row with the employee id and Ada's party id, and only then updates the record. Close, a decision, and attaching a distributor follow the same impersonation when a customer is named.
+Sample sessions and in-memory audit/configuration do not establish production employee authentication, impersonation authority, dual control, or repair acceptance. Business approval and financial effects cannot be inferred from a terminal record update.
 
-The areas are accounts, cards, lending applications, mortgage agreements, supply-chain agreements, collateral cases, collection cases, provisioning cases, and AML cases. A decision applies only where that area has one. Asking to decide an account is refused, because an account has no decision on this desk. Asking to approve or reject a lending application is allowed. Removing a draft applies only where that area allows removal.
+## Declared entry points
 
-<div class="ff-journey" markdown="0">
-<img src="../../../assets/journeys/staff.svg" alt="Sequence: the employee signs in as sample-employee. Access must allow administer. Ada cannot sign in. An update impersonates Ada, stores both ids, and only then changes the record. Configuration and masters do not impersonate.">
-</div>
+The table is derived from local controller mappings. It does not include inherited, conditional, gateway, or framework routes and is not a runtime security or completeness assertion.
 
-The same employee can set a configuration value and can read master lists. Those calls check administer on the anchor. They do not impersonate Ada, because they are not a change to her record. The sandbox lists are currencies and countries. Any other master type is refused. A missing value on a close, when the status key has not been set, refuses the close. The sandbox store is the default. When `firefly.terminal.adapter` is `domain`, configuration and reference data go through the domain SDKs for environment configuration and reference masters, not through an HTTP client written in the terminal. Ada cannot open this terminal. Sign-in as `sample-journey` is refused before any list is returned.
+| Method | Path | Source |
+| --- | --- | --- |
+| `GET` | `/api/v1/staff/records/{area}` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `GET` | `/api/v1/staff/records/{area}/{recordId}` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `GET` | `/api/v1/staff/distributors` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `GET` | `/api/v1/staff/configuration/{key}` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `GET` | `/api/v1/staff/masters/{type}` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `GET` | `/api/v1/staff/accounts/{accountId}/servicing-mandates/{mandateId}` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `GET` | `/api/v1/staff/standing-orders/{runId}` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `GET` | `/api/v1/staff/direct-debits/{mandateId}` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `POST` | `/api/v1/staff/sessions` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `POST` | `/api/v1/staff/records/{area}/{recordId}/close` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `POST` | `/api/v1/staff/records/{area}/{recordId}/remove` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `POST` | `/api/v1/staff/records/{area}/{recordId}/decide` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `POST` | `/api/v1/staff/records/{area}/{recordId}/distributor` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `PUT` | `/api/v1/staff/records/{area}/{recordId}` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
+| `PUT` | `/api/v1/staff/configuration/{key}` | [StaffController](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-web/src/main/java/io/fireflysoftware/experience/finance/terminal/StaffController.java) |
 
-## What the employee is refused
+## Reproduce a source-specific boundary
 
-`sample-journey` and `denied-actor` do not receive a session.
+## Consumer example: read staff instruction views in the sandbox
 
-An update without Ada's party id, or without a reason, is refused before the record changes. Impersonation denied stops the update. Administer denied stops the list, the open, the configuration write, and the master read.
+Start with this repository-owned executable contract before connecting a full runtime. Use the JDK required by the effective parent, Maven, and the matching internal artifacts. The selected test defines its own collaborators; no provider credentials should be added to it. Run from this repository root:
 
-A master type other than currency or country is refused. A close whose status has not been configured is refused.
-
-## Where the records go
-
-The audit row keeps the employee and the customer together. The account or card or case itself stays in its own domain. With the domain adapter on, an account holder change is sent to the accounts domain, which writes the accounts core. The terminal does not write that core itself. Insurance money is not this desk. This desk does not post a payment.
-
-## Reference
-
-The service listens on port 8120. The header after sign-in is `X-Actor-Id`.
-
-| What the employee does | Call |
-| --- | --- |
-| Sign in | `POST /api/v1/staff/sessions` |
-| List an area | `GET /api/v1/staff/records/{area}` |
-| Open one record | `GET /api/v1/staff/records/{area}/{recordId}` |
-| Update, naming the customer | `PUT /api/v1/staff/records/{area}/{recordId}` |
-| Close | `POST /api/v1/staff/records/{area}/{recordId}/close` |
-| Decide, where the area has a decision | `POST /api/v1/staff/records/{area}/{recordId}/decide` |
-| Set a property | `PUT /api/v1/staff/configuration/{key}` |
-| Read masters | `GET /api/v1/staff/masters/{type}` |
-
-```text
-// POST /api/v1/staff/sessions
-{ "username": "sample-employee" }
-// actorId: 33333333-3333-4333-8333-333333333333
-// provider: sandbox
-
-// PUT /api/v1/staff/records/ACCOUNT/{recordId}
-{
-  // customerPartyId: 11111111-1111-4111-8111-111111111111
-  // reason: why the employee is acting for Ada
-}
+```sh
+mvn -B -pl exp-finance-terminal-core -am test -DskipOpenApiGen \
+  -Dtest=InstructionDeskTest -Dsurefire.failIfNoSpecifiedTests=false
 ```
 
-There is no OpenAPI file for this terminal. The type names are the staff session and the record command. Areas include `ACCOUNT`, `CARD`, and `LENDING_APPLICATION`. Master types in the sandbox are `CURRENCY` and `COUNTRY`.
+Runtime integration remains gated on the service configuration and selected adapters described below. The local port and bean-selection inventory below distinguishes the declared abstraction from its configured implementation. An SDK client is an outbound integration; its presence does not establish a working provider connection. Where a sandbox adapter is selected, its behavior is synthetic and limited to what that adapter implements.
+
+**Inputs and fixture ownership.** The complete linked test class supplies its imports, setup, synthetic IDs and collaborators. Run that class as shown; the excerpt is not a standalone Java program. Synthetic adapter data is scoped to this fixture and does not seed an external owner. For a deployed call, replace fixture IDs with IDs returned by the owning record-creation API and keep tenant/parent associations intact. The request values and assertions below describe this test boundary only.
+
+```java
+@Test
+    void employeeReadsTheSampleInstructionsWithoutASocket() {
+        InstructionDesk desk = desk(true, new SandboxInstructionBook());
+        UUID accountId = FinanceArea.ACCOUNT.primaryId();
+        UUID mandateId = UUID.randomUUID();
+        UUID runId = UUID.randomUUID();
+
+        InstructionPort.Mandate mandate = desk.mandate(EMPLOYEE, accountId, mandateId).block();
+        InstructionPort.StandingOrder order = desk.standingOrder(EMPLOYEE, runId).block();
+        InstructionPort.DirectDebit debit = desk.directDebit(EMPLOYEE, mandateId).block();
+
+        assertEquals("OPERATOR", mandate.role());
+        assertEquals(FinanceSamples.CUSTOMER_PARTY, mandate.partyId());
+        assertEquals("25.00", order.amount().toPlainString());
+        assertEquals("GBP", order.currency());
+        assertEquals("MANDATE-1", debit.reference());
+        assertEquals("100.00", debit.amountLimit().toPlainString());
+    }
+```
+
+**Expected behavior.** The sample employee reads an OPERATOR mandate, a GBP 25.00 standing-order run and a MANDATE-1 direct debit capped at GBP 100.00 from the synthetic instruction book.
+
+**Verification and recovery.** Run the complete selected test class and inspect its Surefire result: zero failures/errors and at least one executed test are required. A skipped or zero-test build is not evidence. Compare the assertions with the owning DTO/service before extending the request. For a runtime run, separately configure authentication/entitlements and the exact downstream endpoints, migrate/seed disposable owner stores, and reread the returned identifier; these unit/contract fixtures do not establish those prerequisites.
+
+Source of this example: [InstructionDeskTest](https://github.com/fireflysoftwaresolutions/exp-finance-terminal/blob/main/exp-finance-terminal-core/src/test/java/io/fireflysoftware/experience/finance/terminal/InstructionDeskTest.java).
+
+
+
+## Configuration and replacement
+
+Read the exact runtime configuration and existing adapter selectors in the repository guide. Defaults are implementation facts, not recommended live settings. A live dependency failure must not fall back to synthetic approval. [The adapter contract](../../adapters/index.md) defines durable request identity, lookup, uncertain outcomes, callbacks, and provenance.
+
+## Required negative and recovery cases
+
+Denied and cross-tenant callers must reach no unauthorized write. Missing or expired evidence, changed intent under the same key, duplicate callback, partial participant failure, lost response, process restart, and replica retry must preserve one authoritative outcome. Retain original and compensating effects; do not delete accepted evidence to simulate rollback. Financial cases reconcile posted, available, reserved, provider, and accounting state.
+
+See [operating procedures](../../operations/index.md) for duplicate requests, partial failures, provider uncertainty, and recovery.

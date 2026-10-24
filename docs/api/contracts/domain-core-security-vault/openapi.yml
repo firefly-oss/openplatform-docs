@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: Domain Security Vault API
+  version: 26.10.6
+paths:
+  /api/v1/credentials/{id}:
+    get:
+      tags: [Credentials]
+      operationId: read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        "200":
+          description: Credential
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CredentialView"
+    put:
+      tags: [Credentials]
+      operationId: update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CredentialDraft"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StoredCredential"
+  /api/v1/credentials:
+    post:
+      tags: [Credentials]
+      operationId: create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CredentialDraft"
+      responses:
+        "200":
+          description: Registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StoredCredential"
+components:
+  schemas:
+    CredentialView:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        label:
+          type: string
+    CredentialDraft:
+      type: object
+      additionalProperties: true
+    StoredCredential:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        body:
+          $ref: "#/components/schemas/CredentialDraft"

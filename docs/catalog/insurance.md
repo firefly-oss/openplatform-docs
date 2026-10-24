@@ -3,11 +3,11 @@
 <p class="ff-steward">Stewarded by the Firefly Software Foundation. <a href="mailto:dev@fireflysoftware.io">dev@fireflysoftware.io</a></p>
 
 
-Insurance is a full family: seven cores and seven domain services, one pair for each subject.
+The insurance implementation contexts comprise seven core/domain pairs plus `exp-insurance` and the insurance terminal. Their existence establishes source scope; complete cover-to-cash behavior requires the [insurance journey obligations](../journeys/insurance.md).
 
-Each domain orchestrates its own core. The saga is create, update, status change, and close, with compensation, and only when the core allows the close. A domain calls that core's SDK and does not import the core's internals.
+Each domain declares SDK-driven orchestration around its owning core. Inspect its actual workflow, state rules, compensations, and authority checks: record create/update/close operations do not establish complete underwriting, bind, claims, or financial processes.
 
-These domains do not move money and do not certify IFRS 17 or Solvency II. Premium schedules, commissions, refunds, bordereaux, and credit control are records on the financials core. Moving cash is outside this family.
+These domains do not move money and do not certify IFRS 17 or Solvency II. Premium schedules, commissions, refunds, bordereaux, and credit control are records on the financials core. Cash movement must integrate with the responsible payment and ledger authorities before a premium, refund, or settlement journey can be accepted. Those integrations remain part of platform scope.
 
 
 

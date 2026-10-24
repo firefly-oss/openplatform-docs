@@ -6,13 +6,13 @@ Insurance services do not move money. Where a capability collects or pays, the b
 
 ## Source
 
-Source: the public name is still the ACORD Capability Model, a facet of the ACORD Reference Architecture. Read on 20 October 2026 at https://www.acord.org/standards-architecture/reference-architecture. That page lists seven facets and shows ACORD Capability Model 2.6 as the current edition, with 2.5 and 2.4 still listed. The same page lists ACORD Information Model 2.13 and names the concepts Policy, Product, Party, and Claims.
+Source: the public name is still the ACORD Capability Model, a facet of the ACORD Reference Architecture. Read on 20 October 2026 at https://www.acord.org/standards-architecture/reference-architecture. That source identifies the ACORD Capability Model and lists its published editions. The same page lists ACORD Information Model 2.13 and names the concepts Policy, Product, Party, and Claims.
 
-Source: the 21 May 2025 ACORD note at https://www.acord.org/ACORD-about/acord-news/2025/05/21/acord-reference-architecture-updates-capability-model-business-glossary still calls it the ACORD Capability Model, describes ten high-level business capabilities, and names Business Management and Enterprise Services among them. It does not rename the model.
+Source: the 21 May 2025 ACORD note at https://www.acord.org/ACORD-about/acord-news/2025/05/21/acord-reference-architecture-updates-capability-model-business-glossary still calls it the ACORD Capability Model, describes the high-level business capabilities and names Business Management and Enterprise Services among them. It does not rename the model.
 
-Source: the 29 January 2026 ACORD note at https://www.acord.org/ACORD-about/acord-news/2026/01/29/acord-releases-interactive-online-versions-of-reference-architecture-models keeps the same seven facets. It gives underwriting, policy administration, and digital marketing as examples of value-chain activities. The full Capability Model 2.6 decomposition is member access. This file does not treat "policy administration" as a new title. In the published model that activity is Contract Administration.
+Source: the 29 January 2026 ACORD note at https://www.acord.org/ACORD-about/acord-news/2026/01/29/acord-releases-interactive-online-versions-of-reference-architecture-models retains the Reference Architecture structure. It gives underwriting, policy administration, and digital marketing as examples of value-chain activities. The full Capability Model 2.6 decomposition is member access. This file does not treat "policy administration" as a new title. In the published model that activity is Contract Administration.
 
-Source: second-level names below come from *The ACORD Capability Model* (ACORD Corporation, first printing October 2010) and from the ACORD 2011 framework slides that list the same ten top-level capabilities: Business Management, Channel Management, Claims, Contract Administration, Customer Service, Enterprise Services, Finance, Marketing, Product, and Sales. The May 2025 note still says there are ten. Where a 2.6 name was not on a public page, the row was left out.
+Source: second-level names below come from *The ACORD Capability Model* (ACORD Corporation, first printing October 2010) and from the ACORD 2011 framework slides that list the top-level capabilities: Business Management, Channel Management, Claims, Contract Administration, Customer Service, Enterprise Services, Finance, Marketing, Product, and Sales. Where a 2.6 name was not on a public page, the row was left out.
 
 This mapping uses that capability model and the Information Model names Policy, Product, Party, and Claims. It does not use IFRS 17, Solvency II, or the IAIS Insurance Core Principles.
 
@@ -24,7 +24,7 @@ A row exists only when the capability name is public and an insurance journey, d
 - **partial** means the service performs part of it and leaves out a material part.
 - **absent** means the capability is in the public model and OpenPlatform has no service that performs it.
 
-No row is marked covers. Each named capability still includes work these services do not do, such as pricing, fraud detection, reserve calculation, or cash movement.
+Read each capability alongside its actual behavior and boundaries, including pricing, fraud detection, reserve calculation, and cash movement.
 
 Groups follow the ACORD capabilities the insurance code can support: Channel Management, Sales, Contract Administration, Underwriting, Claims, Finance, and one Business Management activity. Underwriting is the shared capability the 2010 model places with Contract Administration process maps, and the January 2026 note lists it beside policy administration. Customer Service, Marketing, Product, and the rest of Business Management and Enterprise Services are not opened here. A Policy or submission stores a product id aimed at `core-common-product-mgmt`, which is outside these insurance repositories. Digital marketing appears only as an example on the January 2026 page, without a formal lower-level title on that page.
 
@@ -116,10 +116,6 @@ Case reserves on a single claim stay in Claims Handling. The reserving extract i
 | ACORD capability | Repository | Layer | Mark | What is implemented |
 | --- | --- | --- | --- | --- |
 | Perform Statutory Reporting | none | none | absent | No OpenPlatform service files a statutory insurance return, and a reserving extract is stored input only. |
-
-## Counts
-
-covers 0, partial 13, absent 9.
 
 ## Endorse and renew
 
