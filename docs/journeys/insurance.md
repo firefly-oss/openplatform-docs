@@ -69,6 +69,10 @@ This fixture exercises the SDK/controller boundary with mocked orchestration. Us
 
 ## Bind and put coverage into force
 
+The current customer experience bind route is unavailable. After current decision checks, even `APPROVE` returns HTTP 503 `INSURANCE_BINDING_UNAVAILABLE` before policy creation or document issuance. `REFER` returns HTTP 409; missing decision evidence returns HTTP 503. The [insurance binding guide](../reference/service-guides/insurance-bind-decision-boundary.md) reproduces [the published source](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/b81836f3234f6ed03ef78715e789e1b5c260948c/docs/insurance-bind-decision-boundary.md), including exact prerequisite gaps, retry handling and the breaking generated-client migration. This fence creates no durable bind receipt and does not resolve earlier effects. The direct domain policy example above exercises a separate transport boundary; it does not bypass this experience fence or establish coverage.
+
+The genuine producer now declares typed operations through `InsuranceControllerApi`. Published `exp-insurance-sdk:26.10.6` callers using the former bodyless `QuotesApi`, `PoliciesApi` and `ClaimsApi` need source, binary and request migration plus a coordinated future version bump. Source publication does not release that SDK or qualify positive binding.
+
 Binding means that an authorized acceptance establishes the intended coverage under its conditions. Before that action, verify current offered terms, underwriting approval and conditions, insured interests and parties, effective dates, required agreement/signature evidence, payment conditions, and delegated authority. Preserve exactly which terms were accepted.
 
 **Ownership and state panels.** Each numbered connection preserves the source, destination, and condition; dependency panels do not imply execution order.

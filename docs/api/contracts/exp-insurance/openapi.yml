@@ -357,15 +357,15 @@ paths:
     post:
       tags:
       - insurance-controller
-      summary: Create a policy through the configured insurance journey
+      summary: Check insurance binding prerequisites
+      description: Binding is unavailable until authoritative quote acceptance and
+        recoverable policy/document integration are connected
       operationId: bind
       parameters:
       - name: X-Idempotency-Key
         in: header
-        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
-          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
-          \ and namespace; changed input returns 409. Business effects require durable\
-          \ application idempotency."
+        description: Compatibility header; this route does not cache responses or
+          derive authority from it.
         required: false
         schema:
           type: string
@@ -377,7 +377,7 @@ paths:
         required: true
       responses:
         "201":
-          description: Configured journey returned a policy record
+          description: Reserved legacy success schema; binding is currently unavailable
           content:
             '*/*':
               schema:
@@ -389,51 +389,9 @@ paths:
         "422":
           description: Configured decision declined the operation
         "503":
-          description: Required credit observation or explicit bind decision is unavailable
-  /api/v1/experience/insurance/policies/{resourceId}/complaints:
-    post:
-      tags:
-      - policy-complaints-controller
-      operationId: open
-      parameters:
-      - name: resourceId
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: Idempotency-Key
-        in: header
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        required: false
-        schema:
-          type: string
-      - name: X-Idempotency-Key
-        in: header
-        description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
-          \ reuse. Safe methods ignore it. Reuse requires configured trusted identity\
-          \ and namespace; changed input returns 409. Business effects require durable\
-          \ application idempotency."
-        required: false
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ComplaintRequest"
-        required: true
-      responses:
-        "201":
-          description: Created
-          content:
-            '*/*':
-              schema:
-                $ref: "#/components/schemas/ComplaintResponse"
+          description: "Required decision is unavailable, or approved binding is fenced\
+            \ before policy and document effects"
+      x-disable-idempotency: true
   /api/v1/experience/insurance/policies/{policyId}/cancel:
     post:
       tags:
@@ -715,35 +673,3 @@ components:
       properties:
         reason:
           type: string
-    ComplaintRequest:
-      required:
-      - description
-      - sourceRequestId
-      - subject
-      type: object
-      properties:
-        sourceRequestId:
-          type: string
-          format: uuid
-        subject:
-          maxLength: 200
-          minLength: 0
-          type: string
-        description:
-          maxLength: 4000
-          minLength: 0
-          type: string
-    ComplaintResponse:
-      type: object
-      properties:
-        caseId:
-          type: string
-          format: uuid
-        state:
-          type: string
-        dueAt:
-          type: string
-          format: date-time
-        version:
-          type: integer
-          format: int64

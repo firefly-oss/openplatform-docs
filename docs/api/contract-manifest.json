@@ -12,10 +12,10 @@
     {
       "repository": "core-banking-cards",
       "source_path": "core-banking-cards/core-banking-cards-sdk/src/main/resources/openapi.yml",
-      "base_commit": "a734f9088594eb5c0ac441fb7eeefbd8cc406926",
-      "sha256": "dc7c090a1742ab9546e0f06dcc27b03624747b57ea6d6a6c17b71e32d5480c17",
-      "operation_count": 115,
-      "schema_count": 31,
+      "base_commit": "84fe51492341fb17200b3b3650d9039d86ce3b83",
+      "sha256": "adfee62a7ee32eee6d05f6a065623e0ef59c487b1d2d7d821ad3742b105b13f6",
+      "operation_count": 116,
+      "schema_count": 33,
       "qualification": "declaration_snapshot_not_runtime_acceptance"
     },
     {
@@ -777,10 +777,10 @@
     {
       "repository": "exp-insurance",
       "source_path": "exp-insurance/exp-insurance-sdk/src/main/resources/openapi.yml",
-      "base_commit": "42131de81f7dea80ec4ca3acbb2156697bc8edde",
-      "sha256": "139fde83dadcf02985b0c83d7ef234846792411a5d272e2bec5e796a8b276f07",
-      "operation_count": 16,
-      "schema_count": 10,
+      "base_commit": "b81836f3234f6ed03ef78715e789e1b5c260948c",
+      "sha256": "f28dd065bcab99c53f82078f5dd3f0fef7a65c6755ed494a60c8fcf51b9529ec",
+      "operation_count": 15,
+      "schema_count": 8,
       "qualification": "declaration_snapshot_not_runtime_acceptance"
     },
     {

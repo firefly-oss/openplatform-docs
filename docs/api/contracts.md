@@ -5,7 +5,7 @@ These public producer SDK input specifications are copied byte for byte from the
 | Producer | Operations | Schemas | Source baseline |
 | --- | --- | --- | --- |
 | [core-banking-accounts](services/core-banking-accounts.md) | 107 | 34 | `9b97b9fe5bc0` |
-| [core-banking-cards](services/core-banking-cards.md) | 115 | 31 | `a734f9088594` |
+| [core-banking-cards](services/core-banking-cards.md) | 116 | 33 | `84fe51492341` |
 | [core-banking-ledger](services/core-banking-ledger.md) | 90 | 34 | `b9bf0997a056` |
 | [core-banking-payments](services/core-banking-payments.md) | 82 | 27 | `72360395129c` |
 | [core-banking-psdx](services/core-banking-psdx.md) | 38 | 30 | `e91894575f17` |
@@ -90,7 +90,7 @@ These public producer SDK input specifications are copied byte for byte from the
 | [exp-channel-management](services/exp-channel-management.md) | 5 | 5 | `9291cf575f78` |
 | [exp-distributor](services/exp-distributor.md) | 70 | 40 | `fa4c9c5dfd66` |
 | [exp-finance-terminal](services/exp-finance-terminal.md) | 15 | 10 | `7309a4fa15e3` |
-| [exp-insurance](services/exp-insurance.md) | 16 | 10 | `42131de81f7d` |
+| [exp-insurance](services/exp-insurance.md) | 15 | 8 | `b81836f3234f` |
 | [exp-insurance-terminal](services/exp-insurance-terminal.md) | 11 | 7 | `a9fc32a76ab2` |
 | [exp-lending](services/exp-lending.md) | 86 | 79 | `fcffe113af11` |
 | [exp-notifications](services/exp-notifications.md) | 6 | 3 | `dbaf6caa88c9` |

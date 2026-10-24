@@ -153,6 +153,20 @@
       "destination": "card-authentication-data.md",
       "sha256": "3d12b87ba3af10665567e0068930350b01098c1f3db8af330ca160ced18f527c",
       "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "core-banking-cards",
+      "source": "docs/card-activation.md",
+      "destination": "card-activation.md",
+      "sha256": "872711f24ec66af143adb3b0564920f03408e0dc2bb708adeeaaa664b7aa167c",
+      "publication": "local_source_snapshot_not_release_proof"
+    },
+    {
+      "repository": "exp-insurance",
+      "source": "docs/insurance-bind-decision-boundary.md",
+      "destination": "insurance-bind-decision-boundary.md",
+      "sha256": "607c4386800ce02165e556027fb63c22ef40accd2c6dc9218825ae54c762ec6d",
+      "publication": "local_source_snapshot_not_release_proof"
     }
   ]
 }

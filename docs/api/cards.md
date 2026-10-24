@@ -4,6 +4,10 @@ Separate issuance and replacement from authorization, clearing, settlement, bill
 
 [Complete current producer contract](services/exp-cards.md) · [Business lifecycle](../journeys/banking.md) · [Repository adoption guide](https://github.com/fireflysoftwaresolutions/exp-cards)
 
+## Core activation boundary
+
+The [core activation contract](services/core-banking-cards.md) and [activation guide](../reference/service-guides/card-activation.md) describe current card authorization, stable action identity, proof and issuer-observation checks. The core source is published at `84fe51492341fb17200b3b3650d9039d86ce3b83`; a qualified core-owned issuance entry point and positive issuer journey remain unavailable. The experience contract above is a separate producer and has not been migrated by this documentation update. Select matching generated clients and complete that migration before adoption.
+
 ## Read the request in context
 
 Use the linked producer page for all declared paths, request and response models, required fields, enums, parameters, and statuses. Its downloadable contract and SHA256 identify the copied source independently of the producer's base revision. The [complete API directory](contracts.md) includes experience, domain, and core producers.

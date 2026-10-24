@@ -131,6 +131,20 @@
       "source": "docs/card-authentication-data.md",
       "title": "Protect card record credentials and separate processor operations",
       "destination": "card-authentication-data.md"
+    },
+    {
+      "repository": "core-banking-cards",
+      "source": "docs/card-activation.md",
+      "title": "Configure guarded card activation and issuer recovery",
+      "destination": "card-activation.md",
+      "source_commit": "84fe51492341fb17200b3b3650d9039d86ce3b83"
+    },
+    {
+      "repository": "exp-insurance",
+      "source": "docs/insurance-bind-decision-boundary.md",
+      "title": "Integrate unavailable insurance binding and migrate the generated SDK",
+      "destination": "insurance-bind-decision-boundary.md",
+      "source_commit": "b81836f3234f6ed03ef78715e789e1b5c260948c"
     }
   ]
 }

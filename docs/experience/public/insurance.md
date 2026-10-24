@@ -8,6 +8,8 @@ Quote and underwriting decisions precede effective binding. Policy servicing, cl
 
 The typed policy correction preserves customer party identity through the generated domain SDK and real controller validation. Its combined fixture mocks domain orchestration; underwriting approval, contract effects, premium, claim settlement, and insurance finance remain unqualified. A sample product-family classifier cannot remove insurance controls.
 
+The current bind route returns HTTP 503 `INSURANCE_BINDING_UNAVAILABLE` even after `APPROVE`, before policy creation or document issuance. A referral or absent decision cannot become a bind. Follow the [published binding boundary and generated-SDK migration guide](../../reference/service-guides/insurance-bind-decision-boundary.md) before integration: the typed `InsuranceControllerApi` replaces the published bodyless API classes and requires a coordinated future SDK version and caller migration. Positive binding and an SDK release remain unavailable.
+
 ## Declared entry points
 
 The table is derived from local controller mappings. It does not include inherited, conditional, gateway, or framework routes and is not a runtime security or completeness assertion.

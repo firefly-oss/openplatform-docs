@@ -22,6 +22,12 @@ Card record creation and update reject every non-null `pin` and `cvv`, including
 
 A record status change does not establish processor authorization. Keep issuance, activation, PAN handling, network authorization, and financial effects as separate integration boundaries and verify each through its owning service and adapter.
 
+## Guarded activation and issuer ownership
+
+The [card activation guide](../reference/service-guides/card-activation.md) reproduces [the published core source](https://github.com/fireflysoftwaresolutions/core-banking-cards/blob/84fe51492341fb17200b3b3650d9039d86ce3b83/docs/card-activation.md). The core activation action requires a stable UUID `X-Idempotency-Key`, a valid proof, current tenant/card authorization and an independently observed issuer result. Native transport opt-out makes each retry reach current checks. Ordinary create/update cannot activate a draft or lift a restriction.
+
+A genuine core-owned issuance integration, issuer adapter and positive issuer recovery journey remain unavailable for adoption. Database fixtures demonstrate persistence mechanics; they do not establish issued instruments or end-to-end activation. The existing domain and experience activation paths still require migration to the generated core command. Source publication establishes no SDK release or deployed card journey.
+
 ## Authorization: four different effects
 
 The current authorization saga first resolves the account linked to the card. A card with no linked account ID fails at that step. It then creates a `PURCHASE` card transaction in `PENDING`, submits a pending ledger command with source-account debit and configured card-authorization suspense credit, and updates the card-balance projection.

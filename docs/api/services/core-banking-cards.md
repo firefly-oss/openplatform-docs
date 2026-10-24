@@ -2,7 +2,7 @@
 
 [Repository adoption guide](https://github.com/fireflysoftwaresolutions/core-banking-cards) · [Complete contract](../contracts/core-banking-cards/openapi.yml)
 
-**Provenance:** base revision `a734f9088594eb5c0ac441fb7eeefbd8cc406926`; current copied input SHA256 `dc7c090a1742ab9546e0f06dcc27b03624747b57ea6d6a6c17b71e32d5480c17`. [Baseline source](https://github.com/fireflysoftwaresolutions/core-banking-cards/blob/a734f9088594eb5c0ac441fb7eeefbd8cc406926/core-banking-cards-sdk/src/main/resources/openapi.yml). The digest identifies the copied producer input independently of its base revision. Select a matching released SDK for the target service.
+**Provenance:** base revision `84fe51492341fb17200b3b3650d9039d86ce3b83`; current copied input SHA256 `adfee62a7ee32eee6d05f6a065623e0ef59c487b1d2d7d821ad3742b105b13f6`. [Baseline source](https://github.com/fireflysoftwaresolutions/core-banking-cards/blob/84fe51492341fb17200b3b3650d9039d86ce3b83/core-banking-cards-sdk/src/main/resources/openapi.yml). The digest identifies the copied producer input independently of its base revision. Select a matching released SDK for the target service.
 
 ## Before calling
 
@@ -121,6 +121,7 @@ Use the producer POM and matching SDK, validated authentication/tenant context, 
 | `POST` | `/api/v1/cards/{cardId}/balances` | `createBalance` | `201`, `400` |
 | `GET` | `/api/v1/cards/{cardId}/activities` | `getAllActivities` | `200`, `404` |
 | `POST` | `/api/v1/cards/{cardId}/activities` | `createActivity` | `201`, `400` |
+| `POST` | `/api/v1/cards/{cardId}/activation` | `activateCard` | `200`, `202`, `400`, `403`, `409`, `422`, `503` |
 | `POST` | `/api/v1/cards/filter` | `filterCards` | `200` |
 | `POST` | `/api/v1/cards` | `createCard` | `201`, `400` |
 | `GET` | `/api/v1/bins` | `getAllBINs` | `200`, `404` |
@@ -132,7 +133,7 @@ Use the producer POM and matching SDK, validated authentication/tenant context, 
 
 The interactive contract below contains field constraints, nesting, parameters, and response models. A missing constraint or error declaration is a specification gap to verify against the producer, not permission to omit the business rule.
 
-`BINDTO`, `CardAcquirerDTO`, `CardActivityDTO`, `CardBalanceDTO`, `CardConfigurationDTO`, `CardDTO`, `CardDisputeDTO`, `CardEnrollmentDTO`, `CardGatewayDTO`, `CardInterestDTO`, `CardLimitDTO`, `CardMerchantDTO`, `CardNetworkDTO`, `CardPaymentDTO`, `CardProgramDTO`, `CardPromotionDTO`, `CardProviderDTO`, `CardSecurityDTO`, `CardTerminalDTO`, `CardTransactionDTO`, `FilterOptions`, `FilterRequestCardDTO`, `FilterRequestCardTransactionDTO`, `IssuerDTO`, `PaginationRequest`, `PaginationResponse`, `PaginationResponseCardDTO`, `PhysicalCardDTO`, `RangeFilter`, `RangeObject`, `VirtualCardDTO`
+`BINDTO`, `CardAcquirerDTO`, `CardActivationReceipt`, `CardActivationRequest`, `CardActivityDTO`, `CardBalanceDTO`, `CardConfigurationDTO`, `CardDTO`, `CardDisputeDTO`, `CardEnrollmentDTO`, `CardGatewayDTO`, `CardInterestDTO`, `CardLimitDTO`, `CardMerchantDTO`, `CardNetworkDTO`, `CardPaymentDTO`, `CardProgramDTO`, `CardPromotionDTO`, `CardProviderDTO`, `CardSecurityDTO`, `CardTerminalDTO`, `CardTransactionDTO`, `FilterOptions`, `FilterRequestCardDTO`, `FilterRequestCardTransactionDTO`, `IssuerDTO`, `PaginationRequest`, `PaginationResponse`, `PaginationResponseCardDTO`, `PhysicalCardDTO`, `RangeFilter`, `RangeObject`, `VirtualCardDTO`
 
 ## Contract explorer
 

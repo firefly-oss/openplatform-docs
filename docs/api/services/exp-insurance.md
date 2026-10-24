@@ -2,7 +2,7 @@
 
 [Repository adoption guide](https://github.com/fireflysoftwaresolutions/exp-insurance) · [Complete contract](../contracts/exp-insurance/openapi.yml)
 
-**Provenance:** base revision `42131de81f7dea80ec4ca3acbb2156697bc8edde`; current copied input SHA256 `139fde83dadcf02985b0c83d7ef234846792411a5d272e2bec5e796a8b276f07`. [Baseline source](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/42131de81f7dea80ec4ca3acbb2156697bc8edde/exp-insurance-sdk/src/main/resources/openapi.yml). The digest identifies the copied producer input independently of its base revision. Select a matching released SDK for the target service.
+**Provenance:** base revision `b81836f3234f6ed03ef78715e789e1b5c260948c`; current copied input SHA256 `f28dd065bcab99c53f82078f5dd3f0fef7a65c6755ed494a60c8fcf51b9529ec`. [Baseline source](https://github.com/fireflysoftwaresolutions/exp-insurance/blob/b81836f3234f6ed03ef78715e789e1b5c260948c/exp-insurance-sdk/src/main/resources/openapi.yml). The digest identifies the copied producer input independently of its base revision. Select a matching released SDK for the target service.
 
 ## Before calling
 
@@ -24,7 +24,6 @@ Use the producer POM and matching SDK, validated authentication/tenant context, 
 | `POST` | `/api/v1/experience/insurance/quotes` | `createQuote` | `201` |
 | `POST` | `/api/v1/experience/insurance/quotes/{submissionId}/withdraw` | `withdrawQuote` | `200` |
 | `POST` | `/api/v1/experience/insurance/policies` | `bind` | `201`, `400`, `409`, `422`, `503` |
-| `POST` | `/api/v1/experience/insurance/policies/{resourceId}/complaints` | `open` | `201` |
 | `POST` | `/api/v1/experience/insurance/policies/{policyId}/cancel` | `cancelPolicy` | `200` |
 | `POST` | `/api/v1/experience/insurance/claims` | `registerClaim` | `201` |
 | `POST` | `/api/v1/experience/insurance/claims/{claimId}/close` | `closeClaim` | `200` |
@@ -33,7 +32,7 @@ Use the producer POM and matching SDK, validated authentication/tenant context, 
 
 The interactive contract below contains field constraints, nesting, parameters, and response models. A missing constraint or error declaration is a specification gap to verify against the producer, not permission to omit the business rule.
 
-`ClaimCommand`, `ClaimStatusBody`, `ComplaintRequest`, `ComplaintResponse`, `InsuranceRecord`, `PolicyCommand`, `PolicyStatusBody`, `QuoteCommand`, `QuoteStatusBody`, `ReasonCommand`
+`ClaimCommand`, `ClaimStatusBody`, `InsuranceRecord`, `PolicyCommand`, `PolicyStatusBody`, `QuoteCommand`, `QuoteStatusBody`, `ReasonCommand`
 
 ## Contract explorer
 

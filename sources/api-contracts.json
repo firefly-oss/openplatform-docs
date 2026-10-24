@@ -16,10 +16,10 @@
       "sdk_module": "core-banking-cards-sdk",
       "pom": "core-banking-cards/core-banking-cards-sdk/pom.xml",
       "input_spec": "core-banking-cards/core-banking-cards-sdk/src/main/resources/openapi.yml",
-      "operation_count": 115,
-      "schema_count": 31,
+      "operation_count": 116,
+      "schema_count": 33,
       "security_scheme_count": 0,
-      "source_commit": "a734f9088594eb5c0ac441fb7eeefbd8cc406926"
+      "source_commit": "84fe51492341fb17200b3b3650d9039d86ce3b83"
     },
     {
       "repository": "core-banking-ledger",
@@ -866,10 +866,10 @@
       "sdk_module": "exp-insurance-sdk",
       "pom": "exp-insurance/exp-insurance-sdk/pom.xml",
       "input_spec": "exp-insurance/exp-insurance-sdk/src/main/resources/openapi.yml",
-      "operation_count": 16,
-      "schema_count": 10,
+      "operation_count": 15,
+      "schema_count": 8,
       "security_scheme_count": 0,
-      "source_commit": "42131de81f7dea80ec4ca3acbb2156697bc8edde"
+      "source_commit": "b81836f3234f6ed03ef78715e789e1b5c260948c"
     },
     {
       "repository": "exp-insurance-terminal",
